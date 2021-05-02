@@ -1,6 +1,6 @@
 # Berry Free React Material Admin Template
 
-Berry is creative yet minimal free react admin template build using Material UI component library. It is meant to be the best User Experience with higly customizable. It is complete game changer React Dashboard Template with easy and intuitive responsiver design as on a ratina screens or laptop.
+Berry is a creative yet minimal free react admin template build using the Material UI. It is meant to be the best User Experience with highly customizable. It is a complete game-changer React Dashboard Template with easy and intuitive responsive design as on retina screens or laptops.
 
 [Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
 
