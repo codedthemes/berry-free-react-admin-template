@@ -76,7 +76,7 @@ Berry documentation help you out in all aspects from Installation to deployment 
 
 ## Author
 
-Berry Project is managed by Team [CodedThemes](https://codedthemes.com).
+Berry is managed by Team [CodedThemes](https://codedthemes.com).
 
 ## Issues
 
