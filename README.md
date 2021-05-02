@@ -21,8 +21,6 @@ Berry brings everything you need for dashboard development. We have added the fo
 
 We are expected to release the Free Berry React Admin Template in 07/05/2021
 
-Check out live preview of Datta Able lite version & download it.
-
 #### Preview
 
  - [Demo](#)
@@ -62,7 +60,7 @@ git clone https://github.com/codedthemes/berry-free-react-admin-template.git
 
 ## Documentation
 
-Berry documentation help you out in all aspects from Installation to deployment - Soon it will be available.
+Berry documentation helps you out in all aspects from Installation to deployment - Soon it will be available.
 
 ## Technology Stack
 
@@ -80,7 +78,7 @@ Berry is managed by Team [CodedThemes](https://codedthemes.com).
 
 ## Issues
 
-Please generate Github issue if you found bug in any version. We are try to be responsive to resolve the issue.
+Please generate a Github issue if you found a bug in any version. We are trying to be responsive to resolve the issue.
 
 ## License
 
