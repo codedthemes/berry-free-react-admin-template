@@ -120,6 +120,7 @@ const FirebaseRgister = ({className, ...rest}) => {
     const [level, setLevel] = React.useState('');
 
     const googleHandler = async () => {
+
     };
 
     const handleClickShowPassword = () => {

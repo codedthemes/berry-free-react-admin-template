@@ -57,13 +57,6 @@ export function themePalatte(navObject) {
             600: navObject.textPrimary,
             900: navObject.textDark
         },
-        dark: {
-            light: value.textPrimary,
-            main: value.darkLevel1,
-            dark: value.darkLevel2,
-            800: value.backgroundDark,
-            900: value.paperDark
-        },
         text: {
             primary: navObject.textPrimary,
             secondary: navObject.textSecondary,

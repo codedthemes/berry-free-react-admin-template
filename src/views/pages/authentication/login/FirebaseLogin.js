@@ -115,6 +115,7 @@ const FirebaseLogin = (props, {className, ...rest}) => {
     const [checked, setChecked] = React.useState(true);
 
     const googleHandler = async () => {
+
     };
 
     const handleClickShowPassword = () => {
@@ -207,7 +208,7 @@ const FirebaseLogin = (props, {className, ...rest}) => {
                                 name="email"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                labelWidth={70}
+                                label='Email Address / Username'
                                 inputProps={{
                                     classes: {
                                         notchedOutline: classes.notchedOutline
@@ -248,7 +249,7 @@ const FirebaseLogin = (props, {className, ...rest}) => {
                                         </IconButton>
                                     </InputAdornment>
                                 }
-                                labelWidth={70}
+                                label='Password'
                                 inputProps={{
                                     classes: {
                                         notchedOutline: classes.notchedOutline

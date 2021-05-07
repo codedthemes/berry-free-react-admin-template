@@ -5,7 +5,7 @@ import {IconMenu2} from '@tabler/icons';
 
 import LogoSection from '../LogoSection';
 import SearchSection from './SearchSection';
-import LocalizationSection from './LocalizationSection';
+
 import Customization from './Customization';
 
 import MobileSection from './MobileSection';
@@ -59,7 +59,6 @@ const Header = (props) => {
             <div className={classes.grow} />
             <Hidden smDown>
                 <Customization />
-                <LocalizationSection />
             </Hidden>
 
             <NotificationSection />

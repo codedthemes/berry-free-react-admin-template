@@ -129,31 +129,26 @@ const menuItems = {
                     type: 'collapse',
                     icon: icons['IconKey'],
                     children: [
-                        {
-                            id: 'authentication1',
-                            title: (
-                                <React.Fragment>
-                                    <FormattedMessage id="authentication" /> 1
-                                </React.Fragment>
-                            ),
-                            type: 'collapse',
-                            children: [
+
+
+
+
                                 {
-                                    id: 'login1',
+                                    id: 'login3',
                                     title: <FormattedMessage id="login" />,
                                     type: 'item',
-                                    url: '/pages/login/login1',
+                                    url: '/pages/login/login3',
                                     target: true
                                 },
                                 {
-                                    id: 'register1',
+                                    id: 'register3',
                                     title: <FormattedMessage id="register" />,
                                     type: 'item',
-                                    url: '/pages/register/register1',
+                                    url: '/pages/register/register3',
                                     target: true
-                                },
-                            ]
-                        },
+                                }
+
+
 
 
 
@@ -210,6 +205,28 @@ const menuItems = {
                             url: '/icons/material-icons'
                         }
                     ]
+                }
+            ]
+        },
+        {
+            id: 'sample-docs-roadmap',
+            type: 'group',
+            children: [
+                {
+                    id: 'sample-page',
+                    title: <FormattedMessage id="sample-page" />,
+                    type: 'item',
+                    url: '/sample-page',
+                    icon: icons['IconBrandChrome']
+                },
+                {
+                    id: 'documentation',
+                    title: <FormattedMessage id="documentation" />,
+                    type: 'item',
+                    url: 'https://codedthemes.com/demos/admin-templates/berry/stage/docs/basic-berry-intro',
+                    icon: icons['IconHelp'],
+                    target: true,
+                    external: true
                 }
             ]
         }

@@ -15,6 +15,8 @@ const UtilsShadow = lazy(() => import('../views/utilities/shadow'));
 const UtilsMaterialIcons = lazy(() => import('../views/utilities/icons/MaterialIcons'));
 const UtilsTablerIcons = lazy(() => import('../views/utilities/icons/TablerIcons'));
 
+const SamplePage = lazy(() => import('../views/sample-page'));
+
 const MainRoutes = () => {
     const location = useLocation();
 
@@ -31,6 +33,8 @@ const MainRoutes = () => {
                 '/utils/util-shadow',
                 '/icons/tabler-icons',
                 '/icons/material-icons',
+
+                '/sample-page'
             ]}
         >
             <MainLayout showBreadcrumb={true}>
@@ -45,6 +49,8 @@ const MainRoutes = () => {
                         <Route path="/utils/util-shadow" component={UtilsShadow} />
                         <Route path="/icons/tabler-icons" component={UtilsTablerIcons} />
                         <Route path="/icons/material-icons" component={UtilsMaterialIcons} />
+
+                        <Route path="/sample-page" component={SamplePage} />
 
                 </Switch>
             </MainLayout>

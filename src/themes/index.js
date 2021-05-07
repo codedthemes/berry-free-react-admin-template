@@ -19,18 +19,6 @@ export function theme(customization) {
     };
 
     switch (customization.navType) {
-        case 'dark':
-            //paper = value.paperDark;
-            navObject.paper = value.darkLevel2;
-            navObject.backgroundDefault = value.paperDark;
-            navObject.background = value.backgroundDark;
-            navObject.textPrimary = value.textPrimary;
-            navObject.textSecondary = value.textSecondary;
-            navObject.textDark = value.textPrimary;
-            navObject.menuSelected = value.textSecondary;
-            navObject.menuSelectedBack = value.darkLevel1;
-            navObject.divider = value.textPrimary;
-            break;
         case 'light':
         default:
             navObject.paper = value.paper;

@@ -3,10 +3,11 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import {Drawer, Hidden, makeStyles, useMediaQuery, useTheme} from '@material-ui/core';
 
 import MenuList from './MenuList';
-import MenuCard from './../../../ui-component/cards/MenuCard';
+
 import LogoSection from '../LogoSection';
 
 import {drawerWidth} from './../../../store/constant';
+import UpgradePlanCard from '../../../ui-component/cards/UpgradePlanCard';
 
 const useStyles = makeStyles((theme) => ({
     drawer: {
@@ -55,7 +56,7 @@ const Sidebar = (props) => {
             </Hidden>
             <PerfectScrollbar className={classes.ScrollHeight}>
                 <MenuList />
-                <MenuCard />
+                <UpgradePlanCard/>
             </PerfectScrollbar>
         </React.Fragment>
     );

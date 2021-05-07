@@ -15,7 +15,6 @@ import {
 } from '@material-ui/core';
 
 import Customization from '../Customization';
-import LocalizationSection from '../LocalizationSection';
 
 import {IconDotsVertical} from '@tabler/icons';
 
@@ -106,7 +105,6 @@ const MobileSection = () => {
                                         <Toolbar className={classes.toolbar}>
                                             <Grid container justifyContent={matchMobile ? 'space-between' : 'flex-end'} alignItems="center">
                                                 <Customization />
-                                                <LocalizationSection />
                                             </Grid>
                                         </Toolbar>
                                     </AppBar>

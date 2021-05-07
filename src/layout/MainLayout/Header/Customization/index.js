@@ -55,7 +55,7 @@ const Customization = () => {
     const customization = useSelector((state) => state.customization);
     const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
-    const [navType, setNavType] = React.useState(customization.navType);
+
     const [borderRadius, setBorderRadius] = React.useState(customization.borderRadius);
     const handleBorderRadius = (event, newValue) => {
         setBorderRadius(newValue);
@@ -88,10 +88,6 @@ const Customization = () => {
     useEffect(() => {
         dispatch({type: actionTypes.SET_BORDER_RADIUS, borderRadius: borderRadius});
     }, [dispatch, borderRadius]);
-
-    useEffect(() => {
-        dispatch({type: actionTypes.MENU_TYPE, navType: navType});
-    }, [dispatch, navType]);
 
     useEffect(() => {
         let newFont;
@@ -166,32 +162,6 @@ const Customization = () => {
                 }}
             >
                 <Grid container spacing={gridSpacing}>
-                    <Grid item xs={12}>
-                        <SubCard title="Layout" darkTitle>
-                            <FormControl>
-                                <RadioGroup
-                                    row
-                                    aria-label="layout"
-                                    value={navType}
-                                    onChange={(e) => setNavType(e.target.value)}
-                                    name="row-radio-buttons-group"
-                                >
-                                    <FormControlLabel
-                                        value="light"
-                                        control={<Radio />}
-                                        label="Light"
-                                        sx={{'& .MuiSvgIcon-root': {fontSize: 28}, '& .MuiFormControlLabel-label': {color: 'grey.900'}}}
-                                    />
-                                    <FormControlLabel
-                                        value="dark"
-                                        control={<Radio />}
-                                        label="Dark"
-                                        sx={{'& .MuiSvgIcon-root': {fontSize: 28}, '& .MuiFormControlLabel-label': {color: 'grey.900'}}}
-                                    />
-                                </RadioGroup>
-                            </FormControl>
-                        </SubCard>
-                    </Grid>
                     <Grid item xs={12}>
                         <SubCard title="Font Family" darkTitle>
                             <FormControl>

@@ -56,7 +56,6 @@ const NavItem = (props) => {
     );
 
     let itemIconClass = !item.icon ? classes.listIcon : classes.menuIcon;
-    itemIconClass = customization.navType === 'nav-dark' ? [itemIconClass, classes.listCustomIcon].join(' ') : itemIconClass;
 
     let itemTarget = '';
     if (item.target) {

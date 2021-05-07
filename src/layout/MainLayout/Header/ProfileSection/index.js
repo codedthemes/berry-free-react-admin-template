@@ -11,7 +11,6 @@ import {
     Fade,
     Grid,
     InputAdornment,
-    Link,
     List,
     ListItem,
     ListItemIcon,
@@ -24,8 +23,8 @@ import {
     Typography,
     useTheme
 } from '@material-ui/core';
-import {Link as RouterLink} from 'react-router-dom';
-import {IconLogout, IconSearch, IconSettings, IconUser} from '@tabler/icons';
+
+import {IconLogout, IconSearch, IconSettings} from '@tabler/icons';
 
 import UpgradePlanCard from '../../../../ui-component/cards/UpgradePlanCard';
 
@@ -115,7 +114,7 @@ const ProfileSection = () => {
     const [sdm, setSdm] = React.useState(true);
     const [value, setValue] = React.useState('');
     const [notification, setNotification] = React.useState(false);
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex] = React.useState(1);
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -125,12 +124,6 @@ const ProfileSection = () => {
             //await logout();
         } catch (err) {
             console.error(err);
-        }
-    };
-    const handleListItemClick = (event, index) => {
-        setSelectedIndex(index);
-        if (index === 4) {
-            //handleLogout;
         }
     };
     const handleToggle = () => {
@@ -275,60 +268,6 @@ const ProfileSection = () => {
                                             </Card>
                                             <Divider />
                                             <List component="nav" className={classes.navContainer}>
-                                                <ListItem
-                                                    className={classes.listItem}
-                                                    sx={{borderRadius: customization.borderRadius + 'px'}}
-                                                    button
-                                                    selected={selectedIndex === 0}
-                                                    onClick={(event) => handleListItemClick(event, 0)}
-                                                >
-                                                    <ListItemIcon>
-                                                        <IconSettings stroke={1.5} size="1.3rem" />
-                                                    </ListItemIcon>
-                                                    <ListItemText
-                                                        primary={
-                                                            <Link
-                                                                component={RouterLink}
-                                                                to="#"
-                                                                sx={{'&:hover, &:focus': {textDecoration: 'none'}}}
-                                                            >
-                                                                <Typography variant="body2">Account Settings</Typography>
-                                                            </Link>
-                                                        }
-                                                    />
-                                                </ListItem>
-                                                <ListItem
-                                                    className={classes.listItem}
-                                                    sx={{borderRadius: customization.borderRadius + 'px'}}
-                                                    button
-                                                    selected={selectedIndex === 1}
-                                                    onClick={(event) => handleListItemClick(event, 1)}
-                                                >
-                                                    <ListItemIcon>
-                                                        <IconUser stroke={1.5} size="1.3rem" />
-                                                    </ListItemIcon>
-                                                    <ListItemText
-                                                        primary={
-                                                            <React.Fragment>
-                                                                <Grid container spacing={1} justifyContent="space-between">
-                                                                    <Grid item>
-                                                                        <Link
-                                                                            component={RouterLink}
-                                                                            to="#"
-                                                                            sx={{'&:hover, &:focus': {textDecoration: 'none'}}}
-                                                                        >
-                                                                            <Typography variant="body2">Social Profile</Typography>
-                                                                        </Link>
-                                                                    </Grid>
-                                                                    <Grid item>
-                                                                        <Chip label="02" size="small" className={classes.badgeyellow} />
-                                                                    </Grid>
-                                                                </Grid>
-                                                            </React.Fragment>
-                                                        }
-                                                    />
-                                                    {/* <ListItemText primary={<Typography variant="body2">Profile</Typography>} /> */}
-                                                </ListItem>
                                                 {/* <ListItem
                                                     className={classes.listItem}
                                                     sx={{borderRadius: customization.borderRadius + 'px'}}

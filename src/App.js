@@ -29,12 +29,6 @@ const cacheRtl = createCache({
 
 const loadLocaleData = (locale) => {
     switch (locale) {
-        case 'fr':
-            return import('./utils/locals/fr.json');
-        case 'ro':
-            return import('./utils/locals/ro.json');
-        case 'zh':
-            return import('./utils/locals/zh.json');
         default:
             return import('./utils/locals/en.json');
     }

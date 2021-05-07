@@ -2,9 +2,10 @@ import React, {lazy} from 'react';
 import {Route, Switch, useLocation} from 'react-router-dom';
 import MinimalLayout from './../layout/MinimalLayout';
 
-// AuthenticationRoutes
-const AuthLogin1 = lazy(() => import('../views/pages/authentication/authentication1/Login1'));
-const AuthRegister1 = lazy(() => import('../views/pages/authentication/authentication1/Register1'));
+// login option 3
+const AuthLogin3 = lazy(() => import('../views/pages/authentication/authentication3/Login3'));
+const AuthRegister3 = lazy(() => import('../views/pages/authentication/authentication3/Register3'));
+
 
 const AuthenticationRoutes = () => {
     const location = useLocation();
@@ -12,14 +13,16 @@ const AuthenticationRoutes = () => {
     return (
         <Route
             path={[
-                '/pages/login/login1',
-                '/pages/register/register1',
+                '/pages/login/login3',
+                '/pages/register/register3'
             ]}
         >
             <MinimalLayout>
                 <Switch location={location} key={location.pathname}>
-                    <Route path="/pages/login/login1" component={AuthLogin1} />
-                    <Route path="/pages/register/register1" component={AuthRegister1} />
+
+                    <Route path="/pages/login/login3" component={AuthLogin3} />
+                    <Route path="/pages/register/register3" component={AuthRegister3} />
+
                 </Switch>
             </MinimalLayout>
         </Route>

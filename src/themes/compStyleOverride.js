@@ -24,7 +24,6 @@ export function componentStyleOverrides(theme) {
                 },
                 rounded: {
                     //border: '1px solid',
-                    //borderColor: customization.navType === 'dark' ? value.textPrimary : value.blue200,
                     borderRadius: theme.customization.borderRadius + 'px'
                 }
             }
@@ -121,17 +120,17 @@ export function componentStyleOverrides(theme) {
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
-                    background: theme.customization.navType === 'dark' ? value.backgroundDark : value.grey50,
+                    background: value.grey50,
                     borderRadius: theme.customization.borderRadius + 'px',
                     '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: theme.customization.navType === 'dark' ? value.textPrimary + 20 : value.grey400
+                        borderColor: value.grey400
                     },
                     '&:hover $notchedOutline': {
                         borderColor: value.blue50
                     }
                 },
                 input: {
-                    background: theme.customization.navType === 'dark' ? value.backgroundDark : value.grey50,
+                    background: value.grey50,
                     padding: '15.5px 14px',
                     borderRadius: theme.customization.borderRadius + 'px'
                 },
@@ -147,7 +146,7 @@ export function componentStyleOverrides(theme) {
             styleOverrides: {
                 root: {
                     '&.Mui-disabled': {
-                        color: theme.customization.navType === 'dark' ? value.textPrimary + 50 : value.grey300
+                        color: value.grey300
                     }
                 },
                 mark: {
@@ -160,11 +159,11 @@ export function componentStyleOverrides(theme) {
             styleOverrides: {
                 root: {
                     '& .MuiAutocomplete-tag': {
-                        background: theme.customization.navType === 'dark' ? value.textPrimary + 20 : value.deepPurple50,
+                        background: value.deepPurple50,
                         borderRadius: 4,
                         color: theme.textDark,
                         '.MuiChip-deleteIcon': {
-                            color: theme.customization.navType === 'dark' ? value.textPrimary + 80 : value.deepPurple200
+                            color: value.deepPurple200
                         }
                     }
                 },
@@ -178,7 +177,7 @@ export function componentStyleOverrides(theme) {
             styleOverrides: {
                 root: {
                     borderColor: theme.divider,
-                    opacity: theme.customization.navType === 'dark' ? 0.2 : 1
+                    opacity: 1
                 }
             }
         },
@@ -210,8 +209,8 @@ export function componentStyleOverrides(theme) {
         MuiAvatar: {
             styleOverrides: {
                 root: {
-                    color: theme.customization.navType === 'dark' ? value.darkLevel1 : value.blue600,
-                    background: theme.customization.navType === 'dark' ? theme.textPrimary : value.blue200
+                    color: value.blue600,
+                    background: value.blue200
                 }
             }
         },
@@ -255,7 +254,7 @@ export function componentStyleOverrides(theme) {
                         '& .MuiTabs-flexContainer .MuiButtonBase-root.MuiTab-textColorPrimary': {
                             color: theme.textDark,
                             '&.Mui-selected': {
-                                color: theme.customization.navType === 'dark' ? value.darkLevel1 : value.blue600
+                                color: value.blue600
                             }
                         },
                         '& .MuiTabs-indicator': {
@@ -276,7 +275,7 @@ export function componentStyleOverrides(theme) {
                             fontSize: '0.625rem'
                         },
                         '&.MuiClock-meridiemButtonSelected': {
-                            backgroundColor: theme.customization.navType === 'dark' ? value.darkLevel1 : value.blue600,
+                            backgroundColor: value.blue600,
                             '& .MuiIconButton-label .MuiTypography-root': {
                                 color: theme.paper
                             }

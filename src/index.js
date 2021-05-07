@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 
-import './_mockApis';
-
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
