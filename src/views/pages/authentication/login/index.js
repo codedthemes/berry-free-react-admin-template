@@ -19,7 +19,7 @@ import AuthPurpleCard from './../../../../assets/images/auth/auth-purple-card.sv
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.default : theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.light,
         height: '100%',
         minHeight: '100vh',
         width: '100%'
@@ -214,7 +214,7 @@ const Login = () => {
                                     </Grid>
                                     <Grid item className={classes.icon}>
                                         <RouterLink to="#">
-                                            <img alt="Auth method" src={theme.palette.mode === 'dark' ? logoDark : logo} width="100" />
+                                            <img alt="Auth method" src={logo} width="100" />
                                         </RouterLink>
                                     </Grid>
                                 </Grid>
@@ -259,8 +259,8 @@ const Login = () => {
                             maxWidth: 770,
                             minHeight: '100%',
                             height: '100vh',
-                            bgcolor: theme.palette.mode === 'dark' ? theme.palette.dark.dark : '#fff',
-                            backgroundImage: theme.palette.mode === 'dark' ? `url(${AuthPatternDark})` : `url(${AuthPattern})`,
+                            bgcolor: '#fff',
+                            backgroundImage: `url(${AuthPattern})`,
                             position: 'relative',
                             backgroundPosition: '0 0',
                             overflow: 'hidden',

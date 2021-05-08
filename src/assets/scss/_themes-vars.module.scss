@@ -46,11 +46,6 @@ $grey600: #757575;
 $grey700: #616161;
 $grey900: #212121;
 
-// Dark Theme Variants
-
-$darkLevel1: #29314f;
-$darkLevel2: #212946;
-$backgroundDark: #1a223f; // level 3
 $paperDark: #111936; // level 4
 
 $textPrimary: #8492c4;
@@ -61,10 +56,6 @@ $textSecondary: #bdc8f0;
     paper: $paper;
 
     paperDark: $paperDark;
-    backgroundDark: $backgroundDark;
-
-    darkLevel1: $darkLevel1;
-    darkLevel2: $darkLevel2;
     textPrimary: $textPrimary;
     textSecondary: $textSecondary;
 

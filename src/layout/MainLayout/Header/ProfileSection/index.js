@@ -28,7 +28,6 @@ import {IconLogout, IconSearch, IconSettings} from '@tabler/icons';
 
 import UpgradePlanCard from '../../../../ui-component/cards/UpgradePlanCard';
 
-
 import User1 from './../../../../assets/images/users/user-round.svg';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,8 +51,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         borderRadius: '27px',
         transition: 'all .2s ease-in-out',
-        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
+        borderColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.light,
         '&[aria-controls="menu-list-grow"], &:hover': {
             borderColor: theme.palette.primary.main,
             background: theme.palette.primary.main + '!important',
@@ -74,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '16px !important'
     },
     card: {
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark[800] : theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.light,
         marginBottom: '16px',
         marginTop: '16px'
     },
@@ -102,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
         overflowX: 'hidden'
     },
     badgeyellow: {
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.dark : theme.palette.warning.dark,
+        backgroundColor: theme.palette.warning.dark,
         color: '#fff'
     }
 }));
@@ -159,13 +158,7 @@ const ProfileSection = () => {
                         color="inherit"
                     />
                 }
-                label={
-                    <IconSettings
-                        stroke={1.5}
-                        size="1.5rem"
-                        color={theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.primary.main}
-                    />
-                }
+                label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
                 variant="outlined"
                 ref={anchorRef}
                 aria-controls={open ? 'menu-list-grow' : undefined}

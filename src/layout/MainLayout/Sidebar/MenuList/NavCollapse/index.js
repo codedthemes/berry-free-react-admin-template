@@ -59,8 +59,8 @@ const useStyles = makeStyles((theme) => ({
             top: 0,
             height: '100%',
             width: '1px',
-            opacity: theme.palette.mode === 'dark' ? 0.2 : 1,
-            background: theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.primary.light
+            opacity:  1,
+            background: theme.palette.primary.light
         }
     }
 }));

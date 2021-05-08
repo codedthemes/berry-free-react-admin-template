@@ -68,8 +68,8 @@ const useStyles = makeStyles((theme) => ({
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
         transition: 'all .2s ease-in-out',
-        background: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.purple.light,
-        color: theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.purple.dark,
+        background: theme.palette.purple.light,
+        color: theme.palette.purple.dark,
         '&[aria-controls="menu-list-grow"],&:hover': {
             background: theme.palette.purple.main,
             color: theme.palette.purple.light
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     },
     notificationChip: {
         color: '#fff',
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.warning.dark
+        backgroundColor: theme.palette.warning.dark
     },
     divider: {
         marginTop: 0,
@@ -92,40 +92,40 @@ const useStyles = makeStyles((theme) => ({
     },
     listChipError: {
         color: theme.palette.orange.dark,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.orange.light,
+        backgroundColor: theme.palette.orange.light,
         height: '24px',
         padding: '0 6px',
         marginRight: '5px'
     },
     listChipWarning: {
         color: theme.palette.warning.dark,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.warning.light,
+        backgroundColor: theme.palette.warning.light,
         height: '24px',
         padding: '0 6px'
     },
     listChipSuccess: {
         color: theme.palette.success.dark,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.success.light,
+        backgroundColor: theme.palette.success.light,
         height: '24px',
         padding: '0 6px'
     },
     listAvatarSuccess: {
         color: theme.palette.success.dark,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.success.light,
-        border: theme.palette.mode === 'dark' ? '1px solid' : 'none',
+        backgroundColor: theme.palette.success.light,
+        border: 'none',
         borderColor: theme.palette.success.main
     },
     listAvatarPrimary: {
         color: theme.palette.primary.dark,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-        border: theme.palette.mode === 'dark' ? '1px solid' : 'none',
+        backgroundColor: theme.palette.primary.light,
+        border: 'none',
         borderColor: theme.palette.primary.main
     },
     listContainer: {
         paddingLeft: '56px'
     },
     uploadCard: {
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.purple.light
+        backgroundColor: theme.palette.purple.light
     },
     cardAction: {
         padding: '10px',
@@ -151,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         padding: '16px',
         '&:hover': {
-            background: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light
+            background: theme.palette.primary.light
         }
     }
     // notificationpoper: {

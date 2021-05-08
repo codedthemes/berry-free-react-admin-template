@@ -3,7 +3,7 @@ import {Button, Card, CardContent, Grid, makeStyles, Typography} from '@material
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        background: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.warning.light,
+        background: theme.palette.warning.light,
         marginTop: '16px',
         marginBottom: '16px',
         overflow: 'hidden',
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
             width: '200px',
             height: '200px',
             border: '19px solid ',
-            borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.dark : theme.palette.warning.main,
+            borderColor: theme.palette.warning.main,
             borderRadius: '50%',
             top: '65px',
             right: '-150px'
@@ -25,22 +25,22 @@ const useStyles = makeStyles((theme) => ({
             width: '200px',
             height: '200px',
             border: '3px solid ',
-            borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.dark : theme.palette.warning.main,
+            borderColor: theme.palette.warning.main,
             borderRadius: '50%',
             top: '145px',
             right: '-70px'
         }
     },
     tagLine: {
-        color: theme.palette.mode === 'dark' ? theme.palette.text.secondary : theme.palette.grey[900],
-        opacity: theme.palette.mode === 'dark' ? 1 : 0.6
+        color: theme.palette.grey[900],
+        opacity: 0.6
     },
     button: {
         color: theme.palette.grey[900],
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.dark : theme.palette.warning.dark,
+        backgroundColor: theme.palette.warning.dark,
         textTransform: 'capitalize',
         '&:hover': {
-            backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark[800] : theme.palette.warning.main
+            backgroundColor: theme.palette.warning.main
         }
     }
 }));

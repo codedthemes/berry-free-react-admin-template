@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
         transition: 'all .2s ease-in-out',
-        background: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light,
-        color: theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.purple.dark,
+        background: theme.palette.primary.light,
+        color: theme.palette.purple.dark,
         '&:hover': {
             background: theme.palette.purple.main,
             color: theme.palette.purple.light

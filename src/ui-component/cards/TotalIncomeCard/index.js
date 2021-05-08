@@ -10,8 +10,8 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         ...theme.typography.commonAvatar,
         ...theme.typography.largeAvatar,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.warning.light,
-        color: theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.warning.dark
+        backgroundColor: theme.palette.warning.light,
+        color: theme.palette.warning.dark
     },
     secondary: {
         color: theme.palette.grey[500],

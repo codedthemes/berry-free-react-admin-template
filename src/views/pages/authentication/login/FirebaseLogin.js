@@ -32,13 +32,13 @@ const useStyles = makeStyles((theme) => ({
     redButton: {
         fontSize: '1rem',
         fontWeight: 500,
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.grey[50],
+        backgroundColor: theme.palette.grey[50],
         border: '1px solid',
-        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.light + 20 : theme.palette.grey[100],
+        borderColor: theme.palette.grey[100],
         color: theme.palette.grey[600],
         textTransform: 'none',
         '&:hover': {
-            backgroundColor: theme.palette.mode === 'dark' ? theme.palette.dark.light + 20 : theme.palette.primary.light
+            backgroundColor: theme.palette.primary.light
         },
         [theme.breakpoints.down('sm')]: {
             fontSize: '0.875rem'
@@ -51,8 +51,7 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'unset',
         margin: theme.spacing(2),
         padding: '5px 56px',
-        borderColor:
-            theme.palette.mode === 'dark' ? theme.palette.dark.light + 20 + ' !important' : theme.palette.grey[100] + ' !important',
+        borderColor: theme.palette.grey[100] + ' !important',
         color: theme.palette.grey[900] + '!important',
         fontWeight: 500
     },

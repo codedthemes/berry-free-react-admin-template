@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
         ...theme.typography.commonAvatar,
         ...theme.typography.largeAvatar,
         transition: 'all .2s ease-in-out',
-        background: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.dark,
-        color: theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.background.paper,
+        background: theme.palette.primary.dark,
+        color: theme.palette.background.paper,
         '&:hover': {
             background: theme.palette.primary.main,
             color: theme.palette.background.paper
@@ -109,15 +109,6 @@ const Customization = () => {
     return (
         <React.Fragment>
             <Tooltip title="Live Customize">
-                {/*  <Tooltip title={open ? 'Dark Layout' : 'Light Layout'}>
-                <Box component="span" className={classes.box}>
-                    <ButtonBase sx={{borderRadius: '12px'}}>
-                        <Avatar variant="rounded" className={classes.headerAvtar} onClick={handleToggle}>
-                            {!open && <Brightness6Icon className={classes.menuIcon} />}
-                            {open && <Brightness6OutlinedIcon className={classes.menuIcon} />}
-                        </Avatar>
-                    </ButtonBase>
-                </Box> */}
                 <Fab
                     color="primary"
                     onClick={handleToggle}

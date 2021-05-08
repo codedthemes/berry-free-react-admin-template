@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     frame: {
         height: 'calc(100vh - 210px)',
         border: '1px solid',
-        borderColor: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.primary.light
+        borderColor: theme.palette.primary.light
     }
 }));
 

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
     paperContainer: {
         [theme.breakpoints.down('sm')]: {
-            background: theme.palette.mode === 'dark' ? theme.palette.dark[800] : '#fff'
+            background: '#fff'
         }
     },
     popperContainer: {

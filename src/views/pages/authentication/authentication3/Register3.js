@@ -9,7 +9,7 @@ import logoDark from './../../../../assets/images/logo-dark.svg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.mode === 'dark' ? theme.palette.background.default : theme.palette.primary.light,
+        backgroundColor: theme.palette.primary.light,
         height: '100%',
         minHeight: '100vh',
         width: '100%',
@@ -62,7 +62,7 @@ const Register = () => {
                 >
                     <Grid item xs={12} sx={{mt: '40px', width: '100%', textAlign: 'center'}}>
                         <RouterLink to="#">
-                            <img alt="Auth method" src={theme.palette.mode === 'dark' ? logoDark : logo} width="100" />
+                            <img alt="Auth method" src={logo} width="100" />
                         </RouterLink>
                     </Grid>
                     <Grid item xs={12} container justifyContent="center" alignItems="center">

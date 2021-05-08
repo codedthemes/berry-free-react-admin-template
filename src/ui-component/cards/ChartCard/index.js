@@ -23,10 +23,9 @@ const ChartCard = () => {
     const [value, setValue] = React.useState('today');
     const theme = useTheme();
 
-    const primary = theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.secondary.main;
-    barChart.options.grid.borderColor = theme.palette.mode === 'dark' ? theme.palette.text.primary : theme.palette.primary.light;
-    barChart.options.yaxis.labels.style.colors =
-        theme.palette.mode === 'dark' ? [theme.palette.text.primary] : [theme.palette.secondary.main];
+    const primary = theme.palette.secondary.main;
+    barChart.options.grid.borderColor = theme.palette.primary.light;
+    barChart.options.yaxis.labels.style.colors = [theme.palette.secondary.main];
     barChart.options.xaxis.labels.style.colors = [primary, primary, primary, primary, primary, primary, primary];
 
     return (

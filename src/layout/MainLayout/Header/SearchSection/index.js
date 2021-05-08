@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('md')]: {
             width: '100%',
             marginLeft: '4px',
-            background: theme.palette.mode === 'dark' ? theme.palette.dark[800] : '#fff'
+            background: '#fff'
         }
     },
     startAdornment: {
@@ -43,13 +43,13 @@ const useStyles = makeStyles((theme) => ({
     headerAvtar: {
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
-        background: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.purple.light,
-        color: theme.palette.mode === 'dark' ? theme.palette.dark.light : theme.palette.purple.dark
+        background: theme.palette.purple.light,
+        color: theme.palette.purple.dark
     },
     colseAvtar: {
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
-        background: theme.palette.mode === 'dark' ? theme.palette.dark.main : theme.palette.orange.light,
+        background: theme.palette.orange.light,
         color: theme.palette.orange.dark
     },
     popperContainer: {
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '12px !important'
     },
     card: {
-        background: theme.palette.mode === 'dark' ? theme.palette.dark[900] : '#fff',
+        background: '#fff',
         [theme.breakpoints.down('sm')]: {
             border: 0,
             boxShadow: 'none'
