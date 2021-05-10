@@ -53,17 +53,16 @@ const UpgradePlanCard = () => {
             <CardContent>
                 <Grid container direction="column" spacing={2}>
                     <Grid item>
-                        <Typography variant="h4">Upgrade your plan</Typography>
+                        <Typography variant="h4">Upgrade to Pro</Typography>
                     </Grid>
                     <Grid item>
                         <Typography variant="subtitle2" className={classes.tagLine}>
-                            70% discount for 1 years <br />
-                            subscriptions.
+                            For more premium pages &#38; features<br />
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" className={classes.button} disableElevation>
-                            Go Premium
+                        <Button variant="link" href="https://berrydashboard.io" target="_blank" className={classes.button} disableElevation>
+                            Get Berry
                         </Button>
                     </Grid>
                 </Grid>

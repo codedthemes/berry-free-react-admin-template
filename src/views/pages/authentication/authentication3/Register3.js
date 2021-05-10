@@ -1,11 +1,10 @@
 import React from 'react';
 import {Link as RouterLink} from 'react-router-dom';
-import {Card, CardContent, Divider, Grid, makeStyles, Typography, useMediaQuery, useTheme} from '@material-ui/core';
+import {Card, CardContent, Divider, Grid, Link, makeStyles, Typography, useMediaQuery, useTheme} from '@material-ui/core';
 
 import FirebaseRgister from './../firebase-forms/FirebaseRgister';
 
 import logo from './../../../../assets/images/logo.svg';
-import logoDark from './../../../../assets/images/logo-dark.svg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -130,14 +129,14 @@ const Register = () => {
                         alignItems="center"
                         spacing={matchDownSM ? 2 : 0}
                     >
-                        <Grid item>
-                            <Typography variant="subtitle1" color={theme.palette.grey[600]}>
-                                www.codedthemes.com
+                       <Grid item>
+                            <Typography component={Link} href='https://berrydashboard.io' target='_blanks' variant="subtitle1" color={theme.palette.grey[600]}>
+                                www.berrydashboard.io
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Typography variant="subtitle1" color={theme.palette.grey[600]}>
-                                2021&copy;codedthemes.com
+                            <Typography component={Link} href='https://codedthemes.com' target='_blanks' variant="subtitle1" color={theme.palette.grey[600]}>
+                                &copy; codedthemes.com
                             </Typography>
                         </Grid>
                     </Grid>

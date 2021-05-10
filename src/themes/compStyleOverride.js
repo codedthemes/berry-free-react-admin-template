@@ -132,6 +132,7 @@ export function componentStyleOverrides(theme) {
                 input: {
                     background: value.grey50,
                     padding: '15.5px 14px',
+                    fontWeight:500,
                     borderRadius: theme.customization.borderRadius + 'px'
                 },
                 inputAdornedStart: {

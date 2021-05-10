@@ -223,7 +223,7 @@ const menuItems = {
                     id: 'documentation',
                     title: <FormattedMessage id="documentation" />,
                     type: 'item',
-                    url: 'https://codedthemes.com/demos/admin-templates/berry/stage/docs/basic-berry-intro',
+                    url: '#',
                     icon: icons['IconHelp'],
                     target: true,
                     external: true

@@ -9,9 +9,7 @@ import Carousel from 'react-material-ui-carousel';
 import FirebaseLogin from './FirebaseLogin';
 
 import logo from './../../../../assets/images/logo.svg';
-import logoDark from './../../../../assets/images/logo-dark.svg';
 import AuthPattern from './../../../../assets/images/auth/auth-pattern.svg';
-import AuthPatternDark from './../../../../assets/images/auth/auth-pattern-dark.svg';
 import AuthBlue from './../../../../assets/images/auth/auth-blue.svg';
 import AuthPurple from './../../../../assets/images/auth/auth-purple.svg';
 import AuthBlueCard from './../../../../assets/images/auth/auth-blue-card.svg';
