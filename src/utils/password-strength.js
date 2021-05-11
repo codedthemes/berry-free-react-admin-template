@@ -11,7 +11,7 @@ const hasSpecial = (value) => {
 };
 export const strengthColor = (count) => {
     if (count < 2) return {label: 'Poor', color: value.red500};
-    if (count < 3) return {label: 'Week', color: value.amber500};
+    if (count < 3) return {label: 'Weak', color: value.amber500};
     if (count < 4) return {label: 'Normal', color: value.deepOrange200};
     if (count < 5) return {label: 'Good', color: value.A200};
     if (count < 6) return {label: 'Strong', color: value.A700};
