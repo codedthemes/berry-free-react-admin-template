@@ -1223,28 +1223,28 @@
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.10.7.tgz#0fe1fa0ef02c827919e23c2802a4b25589ac522d"
   integrity sha512-EG/1qDiQvd12RoNJ6H+sZcHVswC/3uMx/ySvfaJ24vB30rLjkgHggEXbgMbfgki7wMuiQ/zXI8QlmF1k3kWRGQ==
 
-"@date-io/date-fns@^2.10.6", "@date-io/date-fns@^2.8.0":
+"@date-io/date-fns@^2.10.6":
   version "2.10.8"
   resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-2.10.8.tgz#08ab5ed26c6c88095474f9ddd948d65d8a023eb4"
   integrity sha512-T5RXKOt8CnjsKg0Orgbe/ekoafC02nsopS+wve5+6gF11hPfN2QUqXclxYQv1LIZSaAHJJ2gL8y0msOew74QHQ==
   dependencies:
     "@date-io/core" "^2.10.7"
 
-"@date-io/dayjs@^2.10.6", "@date-io/dayjs@^2.8.0":
+"@date-io/dayjs@^2.10.6":
   version "2.10.8"
   resolved "https://registry.yarnpkg.com/@date-io/dayjs/-/dayjs-2.10.8.tgz#f26959f0f797ef37cf16c2aeab92ff09c63192c8"
   integrity sha512-up4xsSGNyIfUue5q8CvqR4mYegLECbEFre812yLlM/97MoGvdbQJA1fOxlNLd82geG42XgQh8R/QQmNSJkHQ6A==
   dependencies:
     "@date-io/core" "^2.10.7"
 
-"@date-io/luxon@^2.10.6", "@date-io/luxon@^2.8.0":
+"@date-io/luxon@^2.10.6":
   version "2.10.8"
   resolved "https://registry.yarnpkg.com/@date-io/luxon/-/luxon-2.10.8.tgz#7dd72698aee026f14368977831b27c869f9941e9"
   integrity sha512-BmZ9KJnU6LOJx5i94lCVCaSpys15UYSsl1r3v6PBUKFF93e3pm6m0AhTtAUw0g9aLi+GbT7dAsf60UPl2yWCZg==
   dependencies:
     "@date-io/core" "^2.10.7"
 
-"@date-io/moment@^2.10.6", "@date-io/moment@^2.8.0":
+"@date-io/moment@^2.10.6":
   version "2.10.8"
   resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-2.10.8.tgz#8ec453bbcb81347a692c265a1d5e4e6cc7912c8a"
   integrity sha512-f7vDFqE4ukSsDZOOXe8a5UR4aqb7boN7gDdcGkhCRfmo+41SX3DBJRFkVWxUvoy8l05za/X6nTYksqNvv719Ng==
@@ -1677,15 +1677,6 @@
     react-is "^17.0.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/data-grid@^4.0.0-alpha.26":
-  version "4.0.0-alpha.27"
-  resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.27.tgz#8be77550e967700215f2ba3f95f0d528ee2241f7"
-  integrity sha512-nZFgtryrhU6c4Q8hl6KhcJMQ4gxYTpFybMyKWPBBJ6Izsgc5RbDrdB3zGy9MEOTbQP6e+RZT1bL/Es/efz9CRw==
-  dependencies:
-    "@material-ui/utils" "^5.0.0-alpha.14"
-    prop-types "^15.7.2"
-    reselect "^4.0.0"
-
 "@material-ui/icons@^5.0.0-alpha.29":
   version "5.0.0-alpha.29"
   resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-alpha.29.tgz#8b137dc014f928e18331028b896bf640d2743897"
@@ -1708,20 +1699,6 @@
     clsx "^1.0.4"
     prop-types "^15.7.2"
     react-is "^17.0.0"
-    react-transition-group "^4.4.1"
-    rifm "^0.12.0"
-
-"@material-ui/pickers@^4.0.0-alpha.12":
-  version "4.0.0-alpha.12"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-4.0.0-alpha.12.tgz#44ee222686ef537954f23bae58a713247106a1b8"
-  integrity sha512-Axk+9VDm2JE79mCNxhHnBVk6nEGUvQyckP2GQcbZnMiKrepBxvg9+Xkn7fXgMlBWsgbOtNp03aiyW11dpEMs9A==
-  dependencies:
-    "@date-io/date-fns" "^2.8.0"
-    "@date-io/dayjs" "^2.8.0"
-    "@date-io/luxon" "^2.8.0"
-    "@date-io/moment" "^2.8.0"
-    clsx "^1.0.2"
-    prop-types "^15.7.2"
     react-transition-group "^4.4.1"
     rifm "^0.12.0"
 
@@ -1842,7 +1819,7 @@
     prop-types "^15.7.2"
     react-is "^17.0.0"
 
-"@material-ui/utils@5.0.0-alpha.33", "@material-ui/utils@^5.0.0-alpha.14":
+"@material-ui/utils@5.0.0-alpha.33":
   version "5.0.0-alpha.33"
   resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-5.0.0-alpha.33.tgz#ed2961ce9e700cb3af1a7e663af67d33e8455fdb"
   integrity sha512-jzXUtTntCC7fumvXvT+scHj6t/A+qUKJ3XM/C1ZtPmPg4dA5+XmhD8uU9wZU3IuaDb66LJdZnfnhRD72052k+Q==
@@ -3748,7 +3725,7 @@ cliui@^6.0.0:
     strip-ansi "^6.0.0"
     wrap-ansi "^6.2.0"
 
-clsx@^1.0.2, clsx@^1.0.4, clsx@^1.1.1:
+clsx@^1.0.4, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
@@ -10169,11 +10146,6 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
-
-reselect@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
-  integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
 
 resolve-cwd@^2.0.0:
   version "2.0.0"

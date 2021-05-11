@@ -278,15 +278,7 @@ const FirebaseLogin = (props, {className, ...rest}) => {
                             </Grid>
                             <Grid item>
                                 <Typography
-                                    variant="subtitle1"
-                                    component={Link}
-                                    to={
-                                        props.login
-                                            ? '/pages/forgot-password/forgot-password' + props.login
-                                            : '/pages/forgot-password/forgot-password1'
-                                    }
-                                    className={classes.forgot}
-                                >
+                                    variant="subtitle1">
                                     Forgot Password?
                                 </Typography>
                             </Grid>
