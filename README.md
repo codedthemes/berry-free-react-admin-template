@@ -31,16 +31,16 @@ We are expected to release the Free Berry React Admin Template in 07/05/2021
 
  - [Download from Github](https://github.com/codedthemes/berry-free-react-admin-template)
  
-## Pro version preview & download
+## Pro version preview & Purchase
 
-Berry is soon available to purchase.
+Berry is available to purchase.
 #### Preview
 
  - [Demo](https://berrydashboard.io)
 
-#### Download
+#### Purchase
 
- - [Purchase from Material UI Store](https://material-ui.com/store/)
+ - [Purchase from Material UI Store](https://material-ui.com/store/items/berry-react-material-admin/)
 
 ## Table of contents
 
