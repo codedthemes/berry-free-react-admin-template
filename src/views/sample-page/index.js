@@ -1,25 +1,23 @@
 import React from 'react';
-import {Card, CardContent, CardHeader, Divider, Grid, Typography} from '@material-ui/core';
+
+// material-ui
+import { Typography } from '@material-ui/core';
+
+// project imports
+import MainCard from '../../ui-component/cards/MainCard';
+
+//==============================|| SAMPLE PAGE ||==============================//
 
 const SamplePage = () => {
     return (
-        <Grid container>
-            <Grid item xs={12}>
-                <Card>
-                    <CardHeader title={<Typography variant="h5">Sample Card</Typography>} />
-                    <Divider />
-                    <CardContent>
-                        <Typography variant="body2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum.
-                        </Typography>
-                    </CardContent>
-                </Card>
-            </Grid>
-        </Grid>
+        <MainCard title="Sample Card">
+            <Typography variant="body2">
+                Lorem ipsum dolor sit amen, consenter nipissing eli, sed do elusion tempos incident ut laborers et doolie magna alissa. Ut
+                enif ad minim venice, quin nostrum exercitation illampu laborings nisi ut liquid ex ea commons construal. Duos aube grue
+                dolor in reprehended in voltage veil esse colum doolie eu fujian bulla parian. Exceptive sin ocean cuspidate non president,
+                sunk in culpa qui officiate descent molls anim id est labours.
+            </Typography>
+        </MainCard>
     );
 };
 

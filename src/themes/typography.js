@@ -1,52 +1,53 @@
 /**
  * Typography used in theme
+ * @param {JsonObject} theme theme customization object
  */
-export function themeTypography(navObject) {
+export function themeTypography(theme) {
     return {
-        fontFamily: navObject.customization.fontFamily,
+        fontFamily: theme.customization.fontFamily,
         h6: {
             fontWeight: 500,
-            color: navObject.textDark,
+            color: theme.heading,
             fontSize: '0.75rem'
         },
         h5: {
             fontSize: '0.875rem',
-            color: navObject.textDark,
+            color: theme.heading,
             fontWeight: 500
         },
         h4: {
             fontSize: '1rem',
-            color: navObject.textDark,
+            color: theme.heading,
             fontWeight: 600
         },
         h3: {
             fontSize: '1.25rem',
-            color: navObject.textDark,
+            color: theme.heading,
             fontWeight: 600
         },
         h2: {
             fontSize: '1.5rem',
-            color: navObject.textDark,
+            color: theme.heading,
             fontWeight: 700
         },
         h1: {
             fontSize: '2.125rem',
-            color: navObject.textDark,
+            color: theme.heading,
             fontWeight: 700
         },
         subtitle1: {
             fontSize: '0.875rem',
             fontWeight: 500,
-            color: navObject.textDark
+            color: theme.textDark
         },
         subtitle2: {
             fontSize: '0.75rem',
             fontWeight: 400,
-            color: navObject.textSecondary
+            color: theme.darkTextSecondary
         },
         caption: {
             fontSize: '0.75rem',
-            color: navObject.textSecondary,
+            color: theme.darkTextSecondary,
             fontWeight: 400
         },
         body1: {
@@ -58,22 +59,43 @@ export function themeTypography(navObject) {
             letterSpacing: '0em',
             fontWeight: 400,
             lineHeight: '1.5em',
-            color: navObject.textPrimary
+            color: theme.darkTextPrimary
+        },
+        customInput: {
+            marginTop: 8,
+            marginBottom: 8,
+            '& > label': {
+                top: '23px',
+                left: 0,
+                color: theme.grey500,
+                '&[data-shrink="false"]': {
+                    top: '5px'
+                }
+            },
+            '& > div > input': {
+                padding: '30.5px 14px 11.5px !important'
+            },
+            '& legend': {
+                display: 'none'
+            },
+            '& fieldset': {
+                top: 0
+            }
         },
         mainContent: {
-            backgroundColor: navObject.background,
+            backgroundColor: theme.background,
             width: '100%',
             minHeight: 'calc(100vh - 88px)',
             flexGrow: 1,
             padding: '20px',
             marginTop: '88px',
             marginRight: '20px',
-            borderRadius: navObject.customization.borderRadius + 'px'
+            borderRadius: theme.customization.borderRadius + 'px'
         },
         menuCaption: {
             fontSize: '0.875rem',
             fontWeight: 500,
-            color: navObject.textDark,
+            color: theme.heading,
             padding: '6px',
             textTransform: 'capitalize',
             marginTop: '10px'
@@ -81,7 +103,7 @@ export function themeTypography(navObject) {
         subMenuCaption: {
             fontSize: '0.6875rem',
             fontWeight: 500,
-            color: navObject.textSecondary,
+            color: theme.darkTextSecondary,
             textTransform: 'capitalize'
         },
         commonAvatar: {

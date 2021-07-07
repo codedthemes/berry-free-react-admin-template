@@ -1,22 +1,19 @@
-import React, {useState} from 'react';
-import {
-    Avatar,
-    Box,
-    ButtonBase,
-    Card,
-    CardContent,
-    Fade,
-    Grid,
-    Hidden,
-    InputAdornment,
-    makeStyles,
-    OutlinedInput,
-    Popper
-} from '@material-ui/core';
-import PopupState, {bindPopper, bindToggle} from 'material-ui-popup-state';
+import React, { useState } from 'react';
 
-import {IconAdjustmentsHorizontal, IconSearch, IconX} from '@tabler/icons';
+// material-ui
+import { makeStyles } from '@material-ui/styles';
+import { Avatar, Box, ButtonBase, Card, CardContent, Grid, InputAdornment, OutlinedInput, Popper } from '@material-ui/core';
 
+// third-party
+import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
+
+// project imports
+import Transitions from '../../../../ui-component/extended/Transitions';
+
+// assets
+import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
+
+// style constant
 const useStyles = makeStyles((theme) => ({
     searchControl: {
         width: '434px',
@@ -40,17 +37,25 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1rem',
         color: theme.palette.grey[500]
     },
-    headerAvtar: {
+    headerAvatar: {
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
-        background: theme.palette.purple.light,
-        color: theme.palette.purple.dark
+        background: theme.palette.secondary.light,
+        color: theme.palette.secondary.dark,
+        '&:hover': {
+            background: theme.palette.secondary.dark,
+            color: theme.palette.secondary.light
+        }
     },
-    colseAvtar: {
+    closeAvatar: {
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
         background: theme.palette.orange.light,
-        color: theme.palette.orange.dark
+        color: theme.palette.orange.dark,
+        '&:hover': {
+            background: theme.palette.orange.dark,
+            color: theme.palette.orange.light
+        }
     },
     popperContainer: {
         zIndex: 1100,
@@ -73,26 +78,32 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+//-----------------------|| SEARCH INPUT ||-----------------------//
+
 const SearchSection = () => {
     const classes = useStyles();
     const [value, setValue] = useState('');
 
     return (
         <React.Fragment>
-            <Hidden mdUp>
+            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <PopupState variant="popper" popupId="demo-popup-popper">
                     {(popupState) => (
                         <React.Fragment>
-                            <Box ml={2}>
-                                <ButtonBase sx={{borderRadius: '12px'}}>
-                                    <Avatar variant="rounded" className={classes.headerAvtar} {...bindToggle(popupState)}>
+                            <Box
+                                sx={{
+                                    ml: 2
+                                }}
+                            >
+                                <ButtonBase sx={{ borderRadius: '12px' }}>
+                                    <Avatar variant="rounded" className={classes.headerAvatar} {...bindToggle(popupState)}>
                                         <IconSearch stroke={1.5} size="1.2rem" />
                                     </Avatar>
                                 </ButtonBase>
                             </Box>
                             <Popper {...bindPopper(popupState)} transition className={classes.popperContainer}>
-                                {({TransitionProps}) => (
-                                    <Fade {...TransitionProps} timeout={350}>
+                                {({ TransitionProps }) => (
+                                    <Transitions type="zoom" {...TransitionProps} sx={{ transformOrigin: 'center left' }}>
                                         <Card className={classes.card}>
                                             <CardContent className={classes.cardContent}>
                                                 <Grid container alignItems="center" justifyContent="space-between">
@@ -114,16 +125,20 @@ const SearchSection = () => {
                                                             }
                                                             endAdornment={
                                                                 <InputAdornment position="end">
-                                                                    <ButtonBase sx={{borderRadius: '12px'}}>
-                                                                        <Avatar variant="rounded" className={classes.headerAvtar}>
+                                                                    <ButtonBase sx={{ borderRadius: '12px' }}>
+                                                                        <Avatar variant="rounded" className={classes.headerAvatar}>
                                                                             <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
                                                                         </Avatar>
                                                                     </ButtonBase>
-                                                                    <Box ml={2}>
-                                                                        <ButtonBase sx={{borderRadius: '12px'}}>
+                                                                    <Box
+                                                                        sx={{
+                                                                            ml: 2
+                                                                        }}
+                                                                    >
+                                                                        <ButtonBase sx={{ borderRadius: '12px' }}>
                                                                             <Avatar
                                                                                 variant="rounded"
-                                                                                className={classes.colseAvtar}
+                                                                                className={classes.closeAvatar}
                                                                                 {...bindToggle(popupState)}
                                                                             >
                                                                                 <IconX stroke={1.5} size="1.3rem" />
@@ -136,20 +151,19 @@ const SearchSection = () => {
                                                             inputProps={{
                                                                 'aria-label': 'weight'
                                                             }}
-                                                            labelWidth={0}
                                                         />
                                                     </Grid>
                                                 </Grid>
                                             </CardContent>
                                         </Card>
-                                    </Fade>
+                                    </Transitions>
                                 )}
                             </Popper>
                         </React.Fragment>
                     )}
                 </PopupState>
-            </Hidden>
-            <Hidden mdDown>
+            </Box>
+            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                 <OutlinedInput
                     className={classes.searchControl}
                     id="input-search-header"
@@ -163,8 +177,8 @@ const SearchSection = () => {
                     }
                     endAdornment={
                         <InputAdornment position="end">
-                            <ButtonBase sx={{borderRadius: '12px'}}>
-                                <Avatar variant="rounded" className={classes.headerAvtar}>
+                            <ButtonBase sx={{ borderRadius: '12px' }}>
+                                <Avatar variant="rounded" className={classes.headerAvatar}>
                                     <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
                                 </Avatar>
                             </ButtonBase>
@@ -174,9 +188,8 @@ const SearchSection = () => {
                     inputProps={{
                         'aria-label': 'weight'
                     }}
-                    labelWidth={0}
                 />
-            </Hidden>
+            </Box>
         </React.Fragment>
     );
 };

@@ -1,4 +1,6 @@
-import {useEffect, useRef} from 'react';
+import { useEffect, useRef } from 'react';
+
+//-----------------------|| ELEMENT REFERENCE HOOKS  ||-----------------------//
 
 const useScriptRef = () => {
     const scripted = useRef(true);

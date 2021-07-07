@@ -1,14 +1,21 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+
+// material-ui
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { Box, Drawer, useMediaQuery } from '@material-ui/core';
+
+// third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import {Drawer, Hidden, makeStyles, useMediaQuery, useTheme} from '@material-ui/core';
+import { BrowserView, MobileView } from 'react-device-detect';
 
+// project imports
 import MenuList from './MenuList';
-
 import LogoSection from '../LogoSection';
+import MenuCard from './MenuCard';
+import { drawerWidth } from './../../../store/constant';
 
-import {drawerWidth} from './../../../store/constant';
-import UpgradePlanCard from '../../../ui-component/cards/UpgradePlanCard';
-
+// style constant
 const useStyles = makeStyles((theme) => ({
     drawer: {
         [theme.breakpoints.up('md')]: {
@@ -41,23 +48,32 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Sidebar = (props) => {
-    const {drawerOpen, drawerToggle, window} = props;
+//-----------------------|| SIDEBAR DRAWER ||-----------------------//
+
+const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     const classes = useStyles();
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     const drawer = (
         <React.Fragment>
-            <Hidden mdUp>
+            <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <div className={classes.boxContainer}>
                     <LogoSection />
                 </div>
-            </Hidden>
-            <PerfectScrollbar className={classes.ScrollHeight}>
-                <MenuList />
-                <UpgradePlanCard/>
-            </PerfectScrollbar>
+            </Box>
+            <BrowserView>
+                <PerfectScrollbar component="div" className={classes.ScrollHeight}>
+                    <MenuList />
+                    <MenuCard />
+                </PerfectScrollbar>
+            </BrowserView>
+            <MobileView>
+                <Box sx={{ px: 2 }}>
+                    <MenuList />
+                    <MenuCard />
+                </Box>
+            </MobileView>
         </React.Fragment>
     );
 
@@ -74,13 +90,19 @@ const Sidebar = (props) => {
                 classes={{
                     paper: classes.drawerPaper
                 }}
-                ModalProps={{keepMounted: true}}
+                ModalProps={{ keepMounted: true }}
                 color="inherit"
             >
                 {drawer}
             </Drawer>
         </nav>
     );
+};
+
+Sidebar.propTypes = {
+    drawerOpen: PropTypes.bool,
+    drawerToggle: PropTypes.func,
+    window: PropTypes.object
 };
 
 export default Sidebar;

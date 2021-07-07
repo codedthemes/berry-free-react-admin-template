@@ -1,5 +1,16 @@
+// color variants
 @import 'themes-vars.module.scss';
+
+// third-party
 @import '~react-perfect-scrollbar/dist/css/styles.css';
+
+//-----------------------|| APEXCHART ||-----------------------//
+
+.apexcharts-legend-series .apexcharts-legend-marker {
+    margin-right: 8px;
+}
+
+//-----------------------|| PERFECT SCROLLBAR ||-----------------------//
 
 .scrollbar-container {
     .ps__rail-y {
@@ -37,9 +48,7 @@
     }
 }
 
-.apexcharts-legend-marker {
-    margin-right: 15px !important;
-}
+//-----------------------|| ANIMATION KEYFRAMES ||-----------------------//
 
 @keyframes wings {
     50% {
@@ -49,6 +58,7 @@
         transform: translateY(0px);
     }
 }
+
 @keyframes blink {
     50% {
         opacity: 0;
@@ -57,6 +67,7 @@
         opacity: 1;
     }
 }
+
 @keyframes bounce {
     0%,
     20%,
@@ -83,27 +94,30 @@
     }
 }
 
-.syntax-high-lighter {
-    background-color: inherit !important;
-}
-body .ql-toolbar.ql-snow,
-.ql-toolbar.ql-snow + .ql-container.ql-snow,
-body .rdw-editor-toolbar,
-.editorClassName {
-    border: 1px solid $blue50;
-}
-.editorClassName {
-    padding: 5px 18px;
-}
-.MuiPickersBasePicker-pickerView {
-    .MuiPickersClockNumber-clockNumber,
-    .MuiPickersCalendarHeader-dayLabel {
-        color: $grey500;
+@keyframes slideY {
+    0%,
+    50%,
+    100% {
+        transform: translateY(0px);
+    }
+    25% {
+        transform: translateY(-10px);
+    }
+    75% {
+        transform: translateY(10px);
     }
 }
-.MuiTabs-flexContainer {
-    border-bottom: 1px solid $blue50;
-}
-#simple-popper[role="tooltip"]{
-    z-index: 1201;
+
+@keyframes slideX {
+    0%,
+    50%,
+    100% {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    75% {
+        transform: translateX(10px);
+    }
 }
