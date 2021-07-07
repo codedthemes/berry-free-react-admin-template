@@ -1,41 +1,38 @@
-import {createMuiTheme} from '@material-ui/core/styles';
-import value from '../assets/scss/_themes-vars.module.scss';
-import {componentStyleOverrides} from './compStyleOverride';
-import {themePalatte} from './palatte';
-import {themeTypography} from './typography';
+import { createTheme } from '@material-ui/core/styles';
 
+// assets
+import colors from '../assets/scss/_themes-vars.module.scss';
+
+// project imports
+import { componentStyleOverrides } from './compStyleOverride';
+import { themePalette } from './palette';
+import { themeTypography } from './typography';
+
+/**
+ * Represent theme style and structure as per Material-UI
+ * @param {JsonObject} customization customization parameter object
+ */
 export function theme(customization) {
-    let navObject = {
-        paper: '',
-        backgroundDefault: '',
-        background: '',
-        textPrimary: '',
-        textSecondary: '',
-        textDark: '',
-        menuSelected: '',
-        menuSelectedBack: '',
-        divider: '',
+    const color = colors;
+
+    let themeOption = {
+        colors: color,
+        heading: color.grey900,
+        paper: color.paper,
+        backgroundDefault: color.paper,
+        background: color.primaryLight,
+        darkTextPrimary: color.grey700,
+        darkTextSecondary: color.grey500,
+        textDark: color.grey900,
+        menuSelected: color.secondaryDark,
+        menuSelectedBack: color.secondaryLight,
+        divider: color.grey200,
         customization: customization
     };
 
-    switch (customization.navType) {
-        case 'light':
-        default:
-            navObject.paper = value.paper;
-            navObject.backgroundDefault = value.paper;
-            navObject.background = value.blue50;
-            navObject.textPrimary = value.grey700;
-            navObject.textSecondary = value.grey500;
-            navObject.textDark = value.grey900;
-            navObject.menuSelected = value.deepPurple600;
-            navObject.menuSelectedBack = value.blue50;
-            navObject.divider = value.grey200;
-            break;
-    }
-
-    return createMuiTheme({
-        direction: customization.rtlLayout ? 'rtl' : 'ltr',
-        palette: themePalatte(navObject),
+    return createTheme({
+        direction: 'ltr',
+        palette: themePalette(themeOption),
         mixins: {
             toolbar: {
                 minHeight: '48px',
@@ -45,8 +42,17 @@ export function theme(customization) {
                 }
             }
         },
-        typography: themeTypography(navObject),
-        components: componentStyleOverrides(navObject)
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920
+            }
+        },
+        typography: themeTypography(themeOption),
+        components: componentStyleOverrides(themeOption)
     });
 }
 

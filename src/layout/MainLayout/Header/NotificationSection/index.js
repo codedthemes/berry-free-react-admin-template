@@ -1,131 +1,66 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
+// material-ui
+import { makeStyles, useTheme } from '@material-ui/styles';
 import {
     Avatar,
     Box,
     Button,
     ButtonBase,
-    Card,
     CardActions,
     CardContent,
     Chip,
     ClickAwayListener,
     Divider,
-    Fade,
     Grid,
-    Link,
-    List,
-    ListItem,
-    ListItemAvatar,
-    ListItemSecondaryAction,
-    ListItemText,
-    makeStyles,
     Paper,
     Popper,
     Stack,
     TextField,
     Typography,
-    useMediaQuery,
-    useTheme
+    useMediaQuery
 } from '@material-ui/core';
 
+// third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-import {IconBell, IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto} from '@tabler/icons';
-import User1 from './../../../../assets/images/users/user-round.svg';
+// project imports
+import MainCard from '../../../../ui-component/cards/MainCard';
+import Transitions from '../../../../ui-component/extended/Transitions';
+import NotificationList from './NotificationList';
 
+// assets
+import { IconBell } from '@tabler/icons';
+
+// style constant
 const useStyles = makeStyles((theme) => ({
-    navContainer: {
-        width: '100%',
-        maxWidth: '330px',
-        paddingTop: 0,
-        paddingBottom: 0,
-        borderRadius: '10px',
-        [theme.breakpoints.down('sm')]: {
-            maxWidth: '300px'
-            //maxWidth: '100%'
-        }
-    },
-    listAction: {
-        top: '22px'
-    },
-    actionColor: {
-        color: theme.palette.grey[500]
-    },
     ScrollHeight: {
         height: '100%',
         maxHeight: 'calc(100vh - 205px)',
         overflowX: 'hidden'
     },
-    listItem: {
-        padding: 0
-    },
-    sendIcon: {
-        marginLeft: '8px',
-        marginTop: '-3px'
-    },
-    headerAvtar: {
+    headerAvatar: {
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
         transition: 'all .2s ease-in-out',
-        background: theme.palette.purple.light,
-        color: theme.palette.purple.dark,
+        background: theme.palette.secondary.light,
+        color: theme.palette.secondary.dark,
         '&[aria-controls="menu-list-grow"],&:hover': {
-            background: theme.palette.purple.main,
-            color: theme.palette.purple.light
+            background: theme.palette.secondary.dark,
+            color: theme.palette.secondary.light
         }
     },
     cardContent: {
         padding: '0px !important'
     },
     notificationChip: {
-        color: '#fff',
+        color: theme.palette.background.default,
         backgroundColor: theme.palette.warning.dark
     },
     divider: {
         marginTop: 0,
         marginBottom: 0
-    },
-    listDivider: {
-        marginTop: 0,
-        marginBottom: 0
-    },
-    listChipError: {
-        color: theme.palette.orange.dark,
-        backgroundColor: theme.palette.orange.light,
-        height: '24px',
-        padding: '0 6px',
-        marginRight: '5px'
-    },
-    listChipWarning: {
-        color: theme.palette.warning.dark,
-        backgroundColor: theme.palette.warning.light,
-        height: '24px',
-        padding: '0 6px'
-    },
-    listChipSuccess: {
-        color: theme.palette.success.dark,
-        backgroundColor: theme.palette.success.light,
-        height: '24px',
-        padding: '0 6px'
-    },
-    listAvatarSuccess: {
-        color: theme.palette.success.dark,
-        backgroundColor: theme.palette.success.light,
-        border: 'none',
-        borderColor: theme.palette.success.main
-    },
-    listAvatarPrimary: {
-        color: theme.palette.primary.dark,
-        backgroundColor: theme.palette.primary.light,
-        border: 'none',
-        borderColor: theme.palette.primary.main
-    },
-    listContainer: {
-        paddingLeft: '56px'
-    },
-    uploadCard: {
-        backgroundColor: theme.palette.purple.light
     },
     cardAction: {
         padding: '10px',
@@ -141,30 +76,15 @@ const useStyles = makeStyles((theme) => ({
             marginRight: '16px'
         }
     },
-    bodyspacing: {
+    bodyPPacing: {
         padding: '16px 16px 0'
     },
-    textboxspacing: {
+    textBoxSpacing: {
         padding: '0px 16px'
-    },
-    itemaction: {
-        cursor: 'pointer',
-        padding: '16px',
-        '&:hover': {
-            background: theme.palette.primary.light
-        }
     }
-    // notificationpoper: {
-    //     [theme.breakpoints.down('sm')]: {
-    //         maxWidth: '100% ',
-    //         //transform: 'none !important',
-    //         top: '100% !important',
-    //         left: '0px',
-    //         right: '0px'
-    //     }
-    // }
 }));
 
+// notification status options
 const status = [
     {
         value: 'all',
@@ -183,6 +103,8 @@ const status = [
         label: 'Other'
     }
 ];
+
+//-----------------------|| NOTIFICATION ||-----------------------//
 
 const NotificationSection = () => {
     const classes = useStyles();
@@ -219,10 +141,10 @@ const NotificationSection = () => {
     return (
         <React.Fragment>
             <Box component="span" className={classes.box}>
-                <ButtonBase sx={{borderRadius: '12px'}}>
+                <ButtonBase sx={{ borderRadius: '12px' }}>
                     <Avatar
                         variant="rounded"
-                        className={classes.headerAvtar}
+                        className={classes.headerAvatar}
                         ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}
                         aria-haspopup="true"
@@ -240,7 +162,6 @@ const NotificationSection = () => {
                 role={undefined}
                 transition
                 disablePortal
-                className={classes.notificationpoper}
                 popperOptions={{
                     modifiers: [
                         {
@@ -252,15 +173,15 @@ const NotificationSection = () => {
                     ]
                 }}
             >
-                {({TransitionProps, placement}) => (
-                    <Fade {...TransitionProps}>
+                {({ TransitionProps }) => (
+                    <Transitions in={open} {...TransitionProps}>
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
-                                <Card elevation={16}>
+                                <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
                                     <CardContent className={classes.cardContent}>
                                         <Grid container direction="column" spacing={2}>
                                             <Grid item xs={12}>
-                                                <div className={classes.bodyspacing}>
+                                                <div className={classes.bodyPPacing}>
                                                     <Grid container alignItems="center" justifyContent="space-between">
                                                         <Grid item>
                                                             <Stack direction="row" spacing={2}>
@@ -269,11 +190,9 @@ const NotificationSection = () => {
                                                             </Stack>
                                                         </Grid>
                                                         <Grid item>
-                                                            <Link href="#">
-                                                                <Typography variant="subtitle2" color="primary">
-                                                                    Mark as all read
-                                                                </Typography>
-                                                            </Link>
+                                                            <Typography component={Link} to="#" variant="subtitle2" color="primary">
+                                                                Mark as all read
+                                                            </Typography>
                                                         </Grid>
                                                     </Grid>
                                                 </div>
@@ -282,7 +201,7 @@ const NotificationSection = () => {
                                                 <PerfectScrollbar className={classes.ScrollHeight}>
                                                     <Grid container direction="column" spacing={2}>
                                                         <Grid item xs={12}>
-                                                            <div className={classes.textboxspacing}>
+                                                            <div className={classes.textBoxSpacing}>
                                                                 <TextField
                                                                     id="outlined-select-currency-native"
                                                                     select
@@ -292,7 +211,6 @@ const NotificationSection = () => {
                                                                     SelectProps={{
                                                                         native: true
                                                                     }}
-                                                                    variant="outlined"
                                                                 >
                                                                     {status.map((option) => (
                                                                         <option key={option.value} value={option.value}>
@@ -306,261 +224,7 @@ const NotificationSection = () => {
                                                             <Divider className={classes.divider} />
                                                         </Grid>
                                                         <Grid item xs={12}>
-                                                            <List className={classes.navContainer}>
-                                                                <div className={classes.itemaction}>
-                                                                    <ListItem alignItems="center" className={classes.listItem}>
-                                                                        <ListItemAvatar>
-                                                                            <Avatar alt="John Doe" src={User1} />
-                                                                        </ListItemAvatar>
-                                                                        <ListItemText
-                                                                            primary={
-                                                                                <Typography variant="subtitle1">Kishan Pandav</Typography>
-                                                                            }
-                                                                        />
-                                                                        <ListItemSecondaryAction className={classes.listAction}>
-                                                                            <Grid container justifyContent="flex-end">
-                                                                                <Grid item xs={12}>
-                                                                                    <Typography
-                                                                                        variant="caption"
-                                                                                        display="block"
-                                                                                        gutterBottom
-                                                                                        className={classes.actionColor}
-                                                                                    >
-                                                                                        2 min ago
-                                                                                    </Typography>
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </ListItemSecondaryAction>
-                                                                    </ListItem>
-                                                                    <Grid container direction="column" className={classes.listContainer}>
-                                                                        <Grid item xs={12} className={classes.paddingBottom}>
-                                                                            <Typography variant="subtitle2">
-                                                                                It is a long established fact that a reader will be
-                                                                                distracted
-                                                                            </Typography>
-                                                                        </Grid>
-                                                                        <Grid item xs={12}>
-                                                                            <Grid container>
-                                                                                <Grid item>
-                                                                                    <Chip
-                                                                                        label="Unread"
-                                                                                        className={classes.listChipError}
-                                                                                    />
-                                                                                </Grid>
-                                                                                <Grid item>
-                                                                                    <Chip label="New" className={classes.listChipWarning} />
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </div>
-                                                                <Divider className={classes.listDivider} />
-                                                                <div className={classes.itemaction}>
-                                                                    <ListItem alignItems="center" className={classes.listItem}>
-                                                                        <ListItemAvatar>
-                                                                            <Avatar className={classes.listAvatarSuccess}>
-                                                                                <IconBuildingStore stroke={1.5} size="1.3rem" />
-                                                                            </Avatar>
-                                                                        </ListItemAvatar>
-                                                                        <ListItemText
-                                                                            primary={
-                                                                                <Typography variant="subtitle1">
-                                                                                    Store Verification Done
-                                                                                </Typography>
-                                                                            }
-                                                                        />
-                                                                        <ListItemSecondaryAction className={classes.listAction}>
-                                                                            <Grid container justifyContent="flex-end">
-                                                                                <Grid item xs={12}>
-                                                                                    <Typography
-                                                                                        variant="caption"
-                                                                                        display="block"
-                                                                                        gutterBottom
-                                                                                        className={classes.actionColor}
-                                                                                    >
-                                                                                        2 min ago
-                                                                                    </Typography>
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </ListItemSecondaryAction>
-                                                                    </ListItem>
-                                                                    <Grid container direction="column" className={classes.listContainer}>
-                                                                        <Grid item xs={12} className={classes.paddingBottom}>
-                                                                            <Typography variant="subtitle2">
-                                                                                We have sucessfully recieved your request.
-                                                                            </Typography>
-                                                                        </Grid>
-                                                                        <Grid item xs={12}>
-                                                                            <Grid container>
-                                                                                <Grid item>
-                                                                                    <Chip
-                                                                                        label="Unread"
-                                                                                        className={classes.listChipError}
-                                                                                    />
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </div>
-                                                                <Divider className={classes.listDivider} />
-                                                                <div className={classes.itemaction}>
-                                                                    <ListItem alignItems="center" className={classes.listItem}>
-                                                                        <ListItemAvatar>
-                                                                            <Avatar className={classes.listAvatarPrimary}>
-                                                                                <IconMailbox stroke={1.5} size="1.3rem" />
-                                                                            </Avatar>
-                                                                        </ListItemAvatar>
-                                                                        <ListItemText
-                                                                            primary={
-                                                                                <Typography variant="subtitle1">
-                                                                                    Check Your Mail.
-                                                                                </Typography>
-                                                                            }
-                                                                        />
-                                                                        <ListItemSecondaryAction className={classes.listAction}>
-                                                                            <Grid container justifyContent="flex-end">
-                                                                                <Grid item>
-                                                                                    <Typography
-                                                                                        variant="caption"
-                                                                                        display="block"
-                                                                                        gutterBottom
-                                                                                        className={classes.actionColor}
-                                                                                    >
-                                                                                        2 min ago
-                                                                                    </Typography>
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </ListItemSecondaryAction>
-                                                                    </ListItem>
-                                                                    <Grid container direction="column" className={classes.listContainer}>
-                                                                        <Grid item xs={12} className={classes.paddingBottom}>
-                                                                            <Typography variant="subtitle2">
-                                                                                All done! Now check your inbox as you're in for a sweet
-                                                                                treat!
-                                                                            </Typography>
-                                                                        </Grid>
-                                                                        <Grid item xs={12}>
-                                                                            <Grid container>
-                                                                                <Grid item>
-                                                                                    <Button
-                                                                                        variant="contained"
-                                                                                        color="primary"
-                                                                                        disableElevation
-                                                                                    >
-                                                                                        Mail
-                                                                                        <IconBrandTelegram
-                                                                                            stroke={1.5}
-                                                                                            size="1.3rem"
-                                                                                            className={classes.sendIcon}
-                                                                                        />
-                                                                                    </Button>
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </div>
-                                                                <Divider className={classes.listDivider} />
-                                                                <div className={classes.itemaction}>
-                                                                    <ListItem alignItems="center" className={classes.listItem}>
-                                                                        <ListItemAvatar>
-                                                                            <Avatar alt="Jone Doe" src={User1} />
-                                                                        </ListItemAvatar>
-                                                                        <ListItemText
-                                                                            primary={<Typography variant="subtitle1">Jone Doe</Typography>}
-                                                                        />
-                                                                        <ListItemSecondaryAction className={classes.listAction}>
-                                                                            <Grid container justifyContent="flex-end">
-                                                                                <Grid item xs={12}>
-                                                                                    <Typography
-                                                                                        variant="caption"
-                                                                                        display="block"
-                                                                                        gutterBottom
-                                                                                        className={classes.actionColor}
-                                                                                    >
-                                                                                        2 min ago
-                                                                                    </Typography>
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </ListItemSecondaryAction>
-                                                                    </ListItem>
-                                                                    <Grid container direction="column" className={classes.listContainer}>
-                                                                        <Grid item xs={12} className={classes.paddingBottom}>
-                                                                            <Typography component="span" variant="subtitle2">
-                                                                                Uploaded two file on &nbsp;
-                                                                                <Typography component="span" variant="h6">
-                                                                                    21 Jan 2020
-                                                                                </Typography>
-                                                                            </Typography>
-                                                                        </Grid>
-                                                                        <Grid item xs={12}>
-                                                                            <Grid container>
-                                                                                <Grid item xs={12}>
-                                                                                    <Card className={classes.uploadCard}>
-                                                                                        <CardContent>
-                                                                                            <Grid container direction="column">
-                                                                                                <Grid item xs={12}>
-                                                                                                    <Stack direction="row" spacing={2}>
-                                                                                                        <IconPhoto
-                                                                                                            stroke={1.5}
-                                                                                                            size="1.3rem"
-                                                                                                        />
-                                                                                                        <Typography variant="subtitle1">
-                                                                                                            demo.jpg
-                                                                                                        </Typography>
-                                                                                                    </Stack>
-                                                                                                </Grid>
-                                                                                            </Grid>
-                                                                                        </CardContent>
-                                                                                    </Card>
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </div>
-                                                                <Divider className={classes.listDivider} />
-                                                                <div className={classes.itemaction}>
-                                                                    <ListItem alignItems="center" className={classes.listItem}>
-                                                                        <ListItemAvatar>
-                                                                            <Avatar alt="Jone Doe" src={User1} />
-                                                                        </ListItemAvatar>
-                                                                        <ListItemText
-                                                                            primary={<Typography variant="subtitle1">Jone Doe</Typography>}
-                                                                        />
-                                                                        <ListItemSecondaryAction className={classes.listAction}>
-                                                                            <Grid container justifyContent="flex-end">
-                                                                                <Grid item xs={12}>
-                                                                                    <Typography
-                                                                                        variant="caption"
-                                                                                        display="block"
-                                                                                        gutterBottom
-                                                                                        className={classes.actionColor}
-                                                                                    >
-                                                                                        2 min ago
-                                                                                    </Typography>
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </ListItemSecondaryAction>
-                                                                    </ListItem>
-                                                                    <Grid container direction="column" className={classes.listContainer}>
-                                                                        <Grid item xs={12} className={classes.paddingBottom}>
-                                                                            <Typography variant="subtitle2">
-                                                                                It is a long established fact that a reader will be
-                                                                                distracted
-                                                                            </Typography>
-                                                                        </Grid>
-                                                                        <Grid item xs={12}>
-                                                                            <Grid container>
-                                                                                <Grid item>
-                                                                                    <Chip
-                                                                                        label="Confirmation of Account."
-                                                                                        className={classes.listChipSuccess}
-                                                                                    />
-                                                                                </Grid>
-                                                                            </Grid>
-                                                                        </Grid>
-                                                                    </Grid>
-                                                                </div>
-                                                            </List>
+                                                            <NotificationList />
                                                         </Grid>
                                                     </Grid>
                                                 </PerfectScrollbar>
@@ -569,14 +233,14 @@ const NotificationSection = () => {
                                     </CardContent>
                                     <Divider />
                                     <CardActions className={classes.cardAction}>
-                                        <Button size="small" color="primary" disableElevation>
+                                        <Button size="small" disableElevation>
                                             View All
                                         </Button>
                                     </CardActions>
-                                </Card>
+                                </MainCard>
                             </ClickAwayListener>
                         </Paper>
-                    </Fade>
+                    </Transitions>
                 )}
             </Popper>
         </React.Fragment>

@@ -1,19 +1,20 @@
 import React from 'react';
-import {Link} from '@material-ui/core';
-import {Link as RouterLink} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
+// material-ui
+import { ButtonBase } from '@material-ui/core';
+
+// project imports
 import config from './../../../config';
+import Logo from './../../../ui-component/Logo';
 
-import logo from './../../../assets/images/logo.svg';
+//-----------------------|| MAIN LOGO ||-----------------------//
 
 const LogoSection = () => {
-
     return (
-        <React.Fragment>
-            <Link component={RouterLink} to={config.defaultPath}>
-                <img src={logo} alt="Berry" width="100" />
-            </Link>
-        </React.Fragment>
+        <ButtonBase disableRipple component={Link} to={config.defaultPath}>
+            <Logo />
+        </ButtonBase>
     );
 };
 

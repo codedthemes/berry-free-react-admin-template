@@ -1,42 +1,42 @@
-// Paper & Background Color
+// paper & background
 $paper: #ffffff;
-$background: #ffffff;
 
-// Primary Colors
-$blue50: #e3f2fd;
-$blue200: #90caf9;
-$blue500: #2196f3;
-$blue600: #1e88e5;
-$blue800: #1565c0;
+// primary
+$primaryLight: #e3f2fd;
+$primaryMain: #2196f3;
+$primaryDark: #1e88e5;
+$primary200: #90caf9;
+$primary800: #1565c0;
 
-// Success Colors
-$A100: #b9f6ca;
-$A200: #69f0ae;
-$A700: #00c853;
+// secondary
+$secondaryLight: #ede7f6;
+$secondaryMain: #673ab7;
+$secondaryDark: #5e35b1;
+$secondary200: #b39ddb;
+$secondary800: #4527a0;
 
-// Purple Colors
-$deepPurple50: #ede7f6;
-$deepPurple200: #b39ddb;
-$deepPurple500: #673ab7;
-$deepPurple600: #5e35b1;
-$deepPurple800: #4527a0;
+// success Colors
+$successLight: #b9f6ca;
+$success200: #69f0ae;
+$successMain: #00e676;
+$successDark: #00c853;
 
-// Error Colors
-$red200: #ef9a9a;
-$red500: #f44336;
-$red800: #c62828;
+// error
+$errorLight: #ef9a9a;
+$errorMain: #f44336;
+$errorDark: #c62828;
 
-// Orange Colors
-$deepOrange50: #fbe9e7;
-$deepOrange200: #ffab91;
-$deepOrange800: #d84315;
+// orange
+$orangeLight: #fbe9e7;
+$orangeMain: #ffab91;
+$orangeDark: #d84315;
 
-// Warning Colors
-$amber50: #fff8e1;
-$amber100: #ffe57f;
-$amber500: #ffc107;
+// warning
+$warningLight: #fff8e1;
+$warningMain: #ffe57f;
+$warningDark: #ffc107;
 
-// Grey Colors
+// grey
 $grey50: #fafafa;
 $grey100: #f5f5f5;
 $grey200: #eeeeee;
@@ -46,39 +46,48 @@ $grey600: #757575;
 $grey700: #616161;
 $grey900: #212121;
 
-$paperDark: #111936; // level 4
+//-----------------------|| JAVASCRIPT ||-----------------------//
 
-$textPrimary: #8492c4;
-$textSecondary: #bdc8f0;
-
-// this will use in javascript
 :export {
+    // paper & background
     paper: $paper;
 
-    paperDark: $paperDark;
-    textPrimary: $textPrimary;
-    textSecondary: $textSecondary;
+    // primary
+    primaryLight: $primaryLight;
+    primary200: $primary200;
+    primaryMain: $primaryMain;
+    primaryDark: $primaryDark;
+    primary800: $primary800;
 
-    blue50: $blue50;
-    blue200: $blue200;
-    blue500: $blue500;
-    blue600: $blue600;
-    blue800: $blue800;
+    // secondary
+    secondaryLight: $secondaryLight;
+    secondary200: $secondary200;
+    secondaryMain: $secondaryMain;
+    secondaryDark: $secondaryDark;
+    secondary800: $secondary800;
 
-    A100: $A100;
-    A200: $A200;
-    A700: $A700;
+    // success
+    successLight: $successLight;
+    success200: $success200;
+    successMain: $successMain;
+    successDark: $successDark;
 
-    deepPurple50: $deepPurple50;
-    deepPurple200: $deepPurple200;
-    deepPurple500: $deepPurple500;
-    deepPurple600: $deepPurple600;
-    deepPurple800: $deepPurple800;
+    // error
+    errorLight: $errorLight;
+    errorMain: $errorMain;
+    errorDark: $errorDark;
 
-    amber50: $amber50;
-    amber100: $amber100;
-    amber500: $amber500;
+    // orange
+    orangeLight: $orangeLight;
+    orangeMain: $orangeMain;
+    orangeDark: $orangeDark;
 
+    // warning
+    warningLight: $warningLight;
+    warningMain: $warningMain;
+    warningDark: $warningDark;
+
+    // grey
     grey50: $grey50;
     grey100: $grey100;
     grey200: $grey200;
@@ -87,12 +96,4 @@ $textSecondary: #bdc8f0;
     grey600: $grey600;
     grey700: $grey700;
     grey900: $grey900;
-
-    red200: $red200;
-    red500: $red500;
-    red800: $red800;
-
-    deepOrange50: $deepOrange50;
-    deepOrange200: $deepOrange200;
-    deepOrange800: $deepOrange800;
 }

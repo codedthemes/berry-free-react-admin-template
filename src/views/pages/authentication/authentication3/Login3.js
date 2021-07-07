@@ -1,73 +1,38 @@
 import React from 'react';
-import {Link as RouterLink} from 'react-router-dom';
-import {Card, CardContent, Divider, Grid, Link, makeStyles, Typography, useMediaQuery, useTheme} from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 
-import FirebaseLogin from '../login/FirebaseLogin';
+// material-ui
+import { useTheme } from '@material-ui/core';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@material-ui/core';
 
-import logo from './../../../../assets/images/logo.svg';
+// project imports
+import AuthWrapper1 from './../AuthWrapper1';
+import AuthCardWrapper from './../AuthCardWrapper';
+import FirebaseLogin from './../firebase-forms/FirebaseLogin';
+import Logo from './../../../../ui-component/Logo';
+import AuthFooter from './../../../../ui-component/cards/AuthFooter';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        backgroundColor: theme.palette.primary.light,
-        height: '100%',
-        minHeight: '100vh',
-        width: '100%',
-        maxWidth: 'calc(100% + 16px)'
-    },
-    card: {
-        margin: theme.spacing(0) + ' auto',
-        maxWidth: '475px',
-        overflow: 'visible',
-        display: 'flex',
-        position: 'relative',
-        '& > *': {
-            flexGrow: 1,
-            flexBasis: '50%'
-        },
-        [theme.breakpoints.down('lg')]: {
-            maxWidth: '400px'
-        },
-        [theme.breakpoints.down('sm')]: {
-            maxWidth: '80%'
-        }
-    },
-    content: {
-        padding: theme.spacing(5),
-        [theme.breakpoints.down('lg')]: {
-            padding: theme.spacing(3)
-        }
-    },
-    title: {
-        color: theme.palette.grey[600],
-        textDecoration: 'none'
-    }
-}));
+// assets
+
+//================================|| AUTH3 - LOGIN ||================================//
 
 const Login = () => {
-    const classes = useStyles();
     const theme = useTheme();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <Grid container justifyContent={matchDownSM ? 'center' : 'space-between'} alignItems="center" className={classes.root}>
-            <Grid item xs={12} sx={{minHeight: '100vh', height: '100%'}}>
-                <Grid
-                    sx={{minHeight: '100vh', height: '100%', p: matchDownSM ? 0 : '0 80px'}}
-                    container
-                    direction="column"
-                    alignItems={matchDownSM ? 'center' : 'flex-start'}
-                    spacing={matchDownSM ? 5 : 6}
-                    justifyContent="space-between"
-                >
-                    <Grid item xs={12} sx={{mt: '40px', width: '100%', textAlign: 'center'}}>
-                        <RouterLink to="#">
-                            <img alt="Auth method" src={logo} width="100" />
-                        </RouterLink>
-                    </Grid>
-                    <Grid item xs={12} container justifyContent="center" alignItems="center">
-                        <Card className={classes.card}>
-                            <CardContent className={classes.content}>
-                                <Grid container direction="column" spacing={2} justifyContent="center">
+        <AuthWrapper1>
+            <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
+                <Grid item xs={12}>
+                    <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
+                        <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+                            <AuthCardWrapper>
+                                <Grid container spacing={2} alignItems="center" justifyContent="center">
+                                    <Grid item sx={{ mb: 3 }}>
+                                        <RouterLink to="#">
+                                            <Logo />
+                                        </RouterLink>
+                                    </Grid>
                                     <Grid item xs={12}>
                                         <Grid
                                             container
@@ -76,25 +41,18 @@ const Login = () => {
                                             justifyContent="center"
                                         >
                                             <Grid item>
-                                                <Grid container direction="column" alignItems="center" spacing={1}>
-                                                    <Grid item container direction="column" alignItems="center">
-                                                        <Grid item>
-                                                            <Typography
-                                                                color={theme.palette.purple.main}
-                                                                gutterBottom
-                                                                variant={matchDownSM ? 'h3' : 'h2'}
-                                                            >
-                                                                Hi, Welcome Back
-                                                            </Typography>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <Typography variant="caption" fontSize="16px">
-                                                            {' '}
-                                                            Enter your credentials to continue
-                                                        </Typography>
-                                                    </Grid>
-                                                </Grid>
+                                                <Stack alignItems="center" justifyContent="center" spacing={1}>
+                                                    <Typography
+                                                        color={theme.palette.secondary.main}
+                                                        gutterBottom
+                                                        variant={matchDownSM ? 'h3' : 'h2'}
+                                                    >
+                                                        Hi, Welcome Back
+                                                    </Typography>
+                                                    <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : ''}>
+                                                        Enter your credentials to continue
+                                                    </Typography>
+                                                </Stack>
                                             </Grid>
                                         </Grid>
                                     </Grid>
@@ -110,39 +68,22 @@ const Login = () => {
                                                 component={RouterLink}
                                                 to="/pages/register/register3"
                                                 variant="subtitle1"
-                                                className={classes.title}
+                                                sx={{ textDecoration: 'none' }}
                                             >
                                                 Don't have an account?
                                             </Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                    <Grid
-                        sx={{mb: '40px'}}
-                        item
-                        container
-                        justifyContent={matchDownSM ? 'center' : 'space-between'}
-                        direction={matchDownSM ? 'column' : 'row'}
-                        alignItems="center"
-                        spacing={matchDownSM ? 2 : 0}
-                    >
-                        <Grid item>
-                            <Typography component={Link} href='https://berrydashboard.io' target='_blanks' variant="subtitle1" color={theme.palette.grey[600]}>
-                                www.berrydashboard.io
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography component={Link} href='https://codedthemes.com' target='_blanks' variant="subtitle1" color={theme.palette.grey[600]}>
-                                &copy; codedthemes.com
-                            </Typography>
+                            </AuthCardWrapper>
                         </Grid>
                     </Grid>
                 </Grid>
+                <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+                    <AuthFooter />
+                </Grid>
             </Grid>
-        </Grid>
+        </AuthWrapper1>
     );
 };
 

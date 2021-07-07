@@ -1,13 +1,20 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {makeStyles} from '@material-ui/core/styles';
-import {useMediaQuery, Avatar, Chip, ListItem, ListItemIcon, ListItemText, Typography} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
+// material-ui
+import { makeStyles } from '@material-ui/styles';
+import { Avatar, Chip, ListItemIcon, ListItemText, Typography, useMediaQuery } from '@material-ui/core';
+import ListItemButton from '@material-ui/core/ListItemButton';
+
+// project imports
+import { MENU_OPEN, SET_MENU } from '../../../../../store/actions';
+
+// assets
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
-import * as actionTypes from '../../../../../store/actions';
-
+// style constant
 const useStyles = makeStyles((theme) => ({
     listIcon: {
         minWidth: '18px',
@@ -38,56 +45,71 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const NavItem = (props) => {
+//-----------------------|| SIDEBAR MENU LIST ITEMS ||-----------------------//
+
+const NavItem = ({ item, level }) => {
     const classes = useStyles();
-    const matchesSM = useMediaQuery((theme) => theme.breakpoints.down('md'));
-    const customization = useSelector((state) => state.customization);
     const dispatch = useDispatch();
-    const {item, level} = props;
+    const customization = useSelector((state) => state.customization);
+    const matchesSM = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
     const Icon = item.icon;
     const itemIcon = item.icon ? (
         <Icon stroke={1.5} size="1.3rem" className={classes.listCustomIcon} />
     ) : (
         <FiberManualRecordIcon
-            className={customization.isOpen === item.id ? classes.listCustomIconSubActive : classes.listCustomIconSub}
+            className={
+                customization.isOpen.findIndex((id) => id === item.id) > -1 ? classes.listCustomIconSubActive : classes.listCustomIconSub
+            }
             fontSize={level > 0 ? 'inherit' : 'default'}
         />
     );
 
     let itemIconClass = !item.icon ? classes.listIcon : classes.menuIcon;
+    itemIconClass = customization.navType === 'nav-dark' ? [itemIconClass, classes.listCustomIcon].join(' ') : itemIconClass;
 
     let itemTarget = '';
     if (item.target) {
         itemTarget = '_blank';
     }
 
-    let listItemProps = {component: Link, to: item.url};
+    let listItemProps = { component: React.forwardRef((props, ref) => <Link {...props} to={item.url} />) };
     if (item.external) {
-        listItemProps = {component: 'a', href: item.url};
+        listItemProps = { component: 'a', href: item.url };
     }
 
     const itemHandler = (id) => {
-        dispatch({type: actionTypes.MENU_OPEN, isOpen: id});
-        matchesSM && dispatch({type: actionTypes.SET_MENU, opened: false});
+        dispatch({ type: MENU_OPEN, id: id });
+        matchesSM && dispatch({ type: SET_MENU, opened: false });
     };
 
+    // active menu item on page load
+    React.useEffect(() => {
+        const currentIndex = document.location.pathname
+            .toString()
+            .split('/')
+            .findIndex((id) => id === item.id);
+        if (currentIndex > -1) {
+            dispatch({ type: MENU_OPEN, id: item.id });
+        }
+        // eslint-disable-next-line
+    }, []);
+
     return (
-        <ListItem
+        <ListItemButton
+            {...listItemProps}
             disabled={item.disabled}
             className={level > 1 ? classes.listItemNoBack : classes.listItem}
-            sx={{borderRadius: customization.borderRadius + 'px'}}
-            selected={customization.isOpen === item.id}
+            sx={{ borderRadius: customization.borderRadius + 'px' }}
+            selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
-            button
             target={itemTarget}
-            style={{paddingLeft: level * 23 + 'px'}}
-            {...listItemProps}
+            style={{ paddingLeft: level * 23 + 'px' }}
         >
             <ListItemIcon className={itemIconClass}>{itemIcon}</ListItemIcon>
             <ListItemText
                 primary={
-                    <Typography variant={customization.isOpen === item.id ? 'h5' : 'body1'} color="inherit">
+                    <Typography variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
                         {item.title}
                     </Typography>
                 }
@@ -108,8 +130,13 @@ const NavItem = (props) => {
                     avatar={item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>}
                 />
             )}
-        </ListItem>
+        </ListItemButton>
     );
+};
+
+NavItem.propTypes = {
+    item: PropTypes.object,
+    level: PropTypes.number
 };
 
 export default NavItem;

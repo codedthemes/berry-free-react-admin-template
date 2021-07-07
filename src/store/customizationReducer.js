@@ -1,37 +1,25 @@
-import * as actionTypes from './actions';
+// project imports
 import config from '../config';
 
+// action - state management
+import * as actionTypes from './actions';
+
 export const initialState = {
-    isOpen: 'dashboard', //for active default menu
+    isOpen: [], //for active default menu
     fontFamily: config.fontFamily,
     borderRadius: config.borderRadius,
-    navType: config.theme,
-    locale: config.i18n,
-    rtlLayout: false, // rtlLayout: config.rtlLayout,
     opened: true
 };
+
+//-----------------------|| CUSTOMIZATION REDUCER ||-----------------------//
 
 const customizationReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.MENU_OPEN:
+            const id = action.id;
             return {
                 ...state,
-                isOpen: action.isOpen
-            };
-        case actionTypes.MENU_TYPE:
-            return {
-                ...state,
-                navType: action.navType
-            };
-        case actionTypes.THEME_LOCALE:
-            return {
-                ...state,
-                locale: action.locale
-            };
-        case actionTypes.THEME_RTL:
-            return {
-                ...state,
-                rtlLayout: action.rtlLayout
+                isOpen: [id]
             };
         case actionTypes.SET_MENU:
             return {

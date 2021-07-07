@@ -1,31 +1,33 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import {Avatar, ButtonBase, Hidden, makeStyles} from '@material-ui/core';
 
-import {IconMenu2} from '@tabler/icons';
+// material-ui
+import { makeStyles } from '@material-ui/styles';
+import { Avatar, Box, ButtonBase } from '@material-ui/core';
 
+// project imports
 import LogoSection from '../LogoSection';
 import SearchSection from './SearchSection';
-
-import Customization from './Customization';
-
-import MobileSection from './MobileSection';
-
 import ProfileSection from './ProfileSection';
 import NotificationSection from './NotificationSection';
 
+// assets
+import { IconMenu2 } from '@tabler/icons';
+
+// style constant
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1
     },
-    headerAvtar: {
+    headerAvatar: {
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
         transition: 'all .2s ease-in-out',
-        background: theme.palette.primary.light,
-        color: theme.palette.purple.dark,
+        background: theme.palette.secondary.light,
+        color: theme.palette.secondary.dark,
         '&:hover': {
-            background: theme.palette.purple.main,
-            color: theme.palette.purple.light
+            background: theme.palette.secondary.dark,
+            color: theme.palette.secondary.light
         }
     },
     boxContainer: {
@@ -37,37 +39,39 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Header = (props) => {
-    const {handleLeftDrawerToggle} = props;
+//-----------------------|| MAIN NAVBAR / HEADER ||-----------------------//
+
+const Header = ({ handleLeftDrawerToggle }) => {
     const classes = useStyles();
 
     return (
         <React.Fragment>
+            {/* logo & toggler button */}
             <div className={classes.boxContainer}>
-                <Hidden mdDown>
+                <Box component="span" sx={{ display: { xs: 'none', md: 'block' }, flexGrow: 1 }}>
                     <LogoSection />
-                    <div className={classes.grow} />
-                </Hidden>
-                <ButtonBase sx={{borderRadius: '12px'}}>
-                    <Avatar variant="rounded" className={classes.headerAvtar} onClick={handleLeftDrawerToggle}>
+                </Box>
+                <ButtonBase sx={{ borderRadius: '12px', overflow: 'hidden' }}>
+                    <Avatar variant="rounded" className={classes.headerAvatar} onClick={handleLeftDrawerToggle} color="inherit">
                         <IconMenu2 stroke={1.5} size="1.3rem" />
                     </Avatar>
                 </ButtonBase>
             </div>
+
+            {/* header search */}
             <SearchSection theme="light" />
             <div className={classes.grow} />
             <div className={classes.grow} />
-            <Hidden smDown>
-                <Customization />
-            </Hidden>
 
+            {/* notification & profile */}
             <NotificationSection />
             <ProfileSection />
-            <Hidden smUp>
-                <MobileSection />
-            </Hidden>
         </React.Fragment>
     );
+};
+
+Header.propTypes = {
+    handleLeftDrawerToggle: PropTypes.func
 };
 
 export default Header;

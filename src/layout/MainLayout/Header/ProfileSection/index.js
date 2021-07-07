@@ -1,6 +1,9 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import { Link as RouterLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+// material-ui
+import { makeStyles, useTheme } from '@material-ui/styles';
 import {
     Avatar,
     Card,
@@ -8,28 +11,32 @@ import {
     Chip,
     ClickAwayListener,
     Divider,
-    Fade,
     Grid,
     InputAdornment,
     List,
-    ListItem,
     ListItemIcon,
     ListItemText,
-    makeStyles,
     OutlinedInput,
     Paper,
     Popper,
     Switch,
-    Typography,
-    useTheme
+    Typography
 } from '@material-ui/core';
+import ListItemButton from '@material-ui/core/ListItemButton';
 
-import {IconLogout, IconSearch, IconSettings} from '@tabler/icons';
+// third-party
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
-import UpgradePlanCard from '../../../../ui-component/cards/UpgradePlanCard';
+// project imports
+import MainCard from '../../../../ui-component/cards/MainCard';
+import Transitions from '../../../../ui-component/extended/Transitions';
+import UpgradePlanCard from './UpgradePlanCard';
 
+// assets
+import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 import User1 from './../../../../assets/images/users/user-round.svg';
 
+// style const
 const useStyles = makeStyles((theme) => ({
     navContainer: {
         width: '100%',
@@ -41,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
             minWidth: '100%'
         }
     },
-    headerAvtar: {
+    headerAvatar: {
         cursor: 'pointer',
         ...theme.typography.mediumAvatar,
         margin: '8px 0 8px 8px !important'
@@ -100,30 +107,32 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 'calc(100vh - 250px)',
         overflowX: 'hidden'
     },
-    badgeyellow: {
+    badgeWarning: {
         backgroundColor: theme.palette.warning.dark,
         color: '#fff'
     }
 }));
 
+//-----------------------|| PROFILE MENU ||-----------------------//
+
 const ProfileSection = () => {
     const classes = useStyles();
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
+
     const [sdm, setSdm] = React.useState(true);
     const [value, setValue] = React.useState('');
     const [notification, setNotification] = React.useState(false);
-    const [selectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(1);
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const handleLogout = async () => {
-        try {
-            //handleClose();
-            //await logout();
-        } catch (err) {
-            console.error(err);
-        }
+        console.error('Logout');
+    };
+    const handleListItemClick = (event, index) => {
+        setSelectedIndex(index);
+        handleClose(event);
     };
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -146,12 +155,12 @@ const ProfileSection = () => {
     return (
         <React.Fragment>
             <Chip
-                classes={{label: classes.profileLabel}}
+                classes={{ label: classes.profileLabel }}
                 className={classes.profileChip}
                 icon={
                     <Avatar
                         src={User1}
-                        className={classes.headerAvtar}
+                        className={classes.headerAvatar}
                         ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}
                         aria-haspopup="true"
@@ -184,17 +193,17 @@ const ProfileSection = () => {
                     ]
                 }}
             >
-                {({TransitionProps, placement}) => (
-                    <Fade {...TransitionProps}>
+                {({ TransitionProps }) => (
+                    <Transitions in={open} {...TransitionProps}>
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
-                                <Card elevation={16}>
+                                <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
                                     <CardContent className={classes.cardContent}>
                                         <Grid container direction="column" spacing={0}>
                                             <Grid item className={classes.flex}>
                                                 <Typography variant="h4">Good Morning,</Typography>
                                                 <Typography component="span" variant="h4" className={classes.name}>
-                                                    Kishan
+                                                    John
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
@@ -216,7 +225,6 @@ const ProfileSection = () => {
                                             inputProps={{
                                                 'aria-label': 'weight'
                                             }}
-                                            labelWidth={0}
                                         />
                                         <Divider />
                                         <PerfectScrollbar className={classes.ScrollHeight}>
@@ -261,22 +269,48 @@ const ProfileSection = () => {
                                             </Card>
                                             <Divider />
                                             <List component="nav" className={classes.navContainer}>
-                                                {/* <ListItem
+                                                <ListItemButton
                                                     className={classes.listItem}
-                                                    sx={{borderRadius: customization.borderRadius + 'px'}}
-                                                    button
-                                                    selected={selectedIndex === 3}
-                                                    onClick={(event) => handleListItemClick(event, 3)}
+                                                    sx={{ borderRadius: customization.borderRadius + 'px' }}
+                                                    selected={selectedIndex === 0}
+                                                    onClick={(event) => handleListItemClick(event, 0)}
+                                                    component={React.forwardRef((props, ref) => (
+                                                        <RouterLink {...props} to="/user/account-profile/profile1" />
+                                                    ))}
                                                 >
                                                     <ListItemIcon>
-                                                        <IconLock stroke={1.5} size="1.3rem" />
+                                                        <IconSettings stroke={1.5} size="1.3rem" />
                                                     </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant="body2">Lock Screen</Typography>} />
-                                                </ListItem> */}
-                                                <ListItem
+                                                    <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                                                </ListItemButton>
+                                                <ListItemButton
                                                     className={classes.listItem}
-                                                    sx={{borderRadius: customization.borderRadius + 'px'}}
-                                                    button
+                                                    sx={{ borderRadius: customization.borderRadius + 'px' }}
+                                                    selected={selectedIndex === 1}
+                                                    onClick={(event) => handleListItemClick(event, 1)}
+                                                    component={React.forwardRef((props, ref) => (
+                                                        <RouterLink {...props} to="/user/social-profile/posts" />
+                                                    ))}
+                                                >
+                                                    <ListItemIcon>
+                                                        <IconUser stroke={1.5} size="1.3rem" />
+                                                    </ListItemIcon>
+                                                    <ListItemText
+                                                        primary={
+                                                            <Grid container spacing={1} justifyContent="space-between">
+                                                                <Grid item>
+                                                                    <Typography variant="body2">Social Profile</Typography>
+                                                                </Grid>
+                                                                <Grid item>
+                                                                    <Chip label="02" size="small" className={classes.badgeWarning} />
+                                                                </Grid>
+                                                            </Grid>
+                                                        }
+                                                    />
+                                                </ListItemButton>
+                                                <ListItemButton
+                                                    className={classes.listItem}
+                                                    sx={{ borderRadius: customization.borderRadius + 'px' }}
                                                     selected={selectedIndex === 4}
                                                     onClick={handleLogout}
                                                 >
@@ -284,14 +318,14 @@ const ProfileSection = () => {
                                                         <IconLogout stroke={1.5} size="1.3rem" />
                                                     </ListItemIcon>
                                                     <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
-                                                </ListItem>
+                                                </ListItemButton>
                                             </List>
                                         </PerfectScrollbar>
                                     </CardContent>
-                                </Card>
+                                </MainCard>
                             </ClickAwayListener>
                         </Paper>
-                    </Fade>
+                    </Transitions>
                 )}
             </Popper>
         </React.Fragment>

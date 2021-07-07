@@ -1,17 +1,27 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import clsx from 'clsx';
-import {AppBar, CssBaseline, makeStyles, Toolbar, useMediaQuery, useTheme} from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 
-import {drawerWidth} from '../../store/constant';
+// material-ui
+import { makeStyles, useTheme } from '@material-ui/styles';
+import { AppBar, CssBaseline, Toolbar, useMediaQuery } from '@material-ui/core';
+
+// third-party
+import clsx from 'clsx';
+
+// project imports
+import Breadcrumbs from './../../ui-component/extended/Breadcrumbs';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import Customization from './../Customization';
+import navigation from './../../menu-items';
+import { drawerWidth } from '../../store/constant';
+import { SET_MENU } from './../../store/actions';
 
-import Breadcrumb from './../../ui-component/extended/Breadcrumb';
-import navigation from './../../menu-items/main-menu-items';
+// assets
+import { IconChevronRight } from '@tabler/icons';
 
-import {IconChevronRight} from '@tabler/icons';
-import {useDispatch, useSelector} from 'react-redux';
-
+// style constant
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex'
@@ -25,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         ...theme.typography.mainContent,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen
@@ -51,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.enteringScreen
         }),
         marginLeft: 0,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
         [theme.breakpoints.down('md')]: {
             marginLeft: '20px'
         },
@@ -60,34 +74,45 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const MainLayout = ({children, showBreadcrumb = true}) => {
+//-----------------------|| MAIN LAYOUT ||-----------------------//
+
+const MainLayout = ({ children }) => {
     const classes = useStyles();
     const theme = useTheme();
-    const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
 
     // Handle left drawer
     const leftDrawerOpened = useSelector((state) => state.customization.opened);
     const dispatch = useDispatch();
     const handleLeftDrawerToggle = () => {
-        dispatch({type: 'SET_MENU', opened: !leftDrawerOpened});
+        dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
     };
 
     React.useEffect(() => {
-        const openLeftDrawerState = (val) => {
-            dispatch({type: 'SET_MENU', opened: val});
-        };
-        openLeftDrawerState(matchUpMd);
-    }, [dispatch, matchUpMd]);
+        dispatch({ type: SET_MENU, opened: !matchDownMd });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [matchDownMd]);
 
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="fixed" color="inherit" elevation={0} className={leftDrawerOpened ? classes.appBarWidth : classes.appBar}>
+            {/* header */}
+            <AppBar
+                enableColorOnDark
+                position="fixed"
+                color="inherit"
+                elevation={0}
+                className={leftDrawerOpened ? classes.appBarWidth : classes.appBar}
+            >
                 <Toolbar>
                     <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
                 </Toolbar>
             </AppBar>
+
+            {/* drawer */}
             <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
+
+            {/* main content */}
             <main
                 className={clsx([
                     classes.content,
@@ -96,11 +121,19 @@ const MainLayout = ({children, showBreadcrumb = true}) => {
                     }
                 ])}
             >
-                {showBreadcrumb && <Breadcrumb separator={IconChevronRight} navigation={navigation} icon title rightAlign />}
+                {/* <Main open={leftDrawerOpened}> */}
+                {/* breadcrumb */}
+                <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
                 <div>{children}</div>
+                {/* </Main> */}
             </main>
+            <Customization />
         </div>
     );
+};
+
+MainLayout.propTypes = {
+    children: PropTypes.node
 };
 
 export default MainLayout;

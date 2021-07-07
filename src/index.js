@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
 
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
+// third party
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import App from './App';
-import reducer from './store/reducer';
-import config from './config';
-import './assets/scss/style.scss';
+// project imports
+import { store } from './store';
 import * as serviceWorker from './serviceWorker';
+import App from './App';
+import config from './config';
 
-const store = createStore(reducer);
+// style + assets
+import './assets/scss/style.scss';
+
+//-----------------------|| REACT DOM RENDER  ||-----------------------//
 
 ReactDOM.render(
     <Provider store={store}>

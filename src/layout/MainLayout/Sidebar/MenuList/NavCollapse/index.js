@@ -1,13 +1,20 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import {useSelector} from 'react-redux';
-import {Collapse, List, ListItem, ListItemIcon, ListItemText, makeStyles, Typography} from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+// material-ui
+import { makeStyles } from '@material-ui/styles';
+import { Collapse, List, ListItemIcon, ListItemText, Typography } from '@material-ui/core';
+import ListItemButton from '@material-ui/core/ListItemButton';
 
-import {IconChevronDown, IconChevronUp} from '@tabler/icons';
-
+// project imports
 import NavItem from './../NavItem';
 
+// assets
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import { IconChevronDown, IconChevronUp } from '@tabler/icons';
+
+// style constant
 const useStyles = makeStyles((theme) => ({
     collapseIcon: {
         fontSize: '1rem',
@@ -59,16 +66,18 @@ const useStyles = makeStyles((theme) => ({
             top: 0,
             height: '100%',
             width: '1px',
-            opacity:  1,
+            opacity: 1,
             background: theme.palette.primary.light
         }
     }
 }));
 
-const NavCollapse = (props) => {
+//-----------------------|| SIDEBAR MENU LIST COLLAPSE ITEMS ||-----------------------//
+
+const NavCollapse = ({ menu, level }) => {
     const classes = useStyles();
     const customization = useSelector((state) => state.customization);
-    const {menu, level} = props;
+
     const [open, setOpen] = React.useState(false);
     const [selected, setSelected] = React.useState(null);
 
@@ -77,6 +86,7 @@ const NavCollapse = (props) => {
         setSelected(!selected ? menu.id : null);
     };
 
+    // menu collapse & item
     const menus = menu.children.map((item) => {
         switch (item.type) {
             case 'collapse':
@@ -106,13 +116,12 @@ const NavCollapse = (props) => {
 
     return (
         <React.Fragment>
-            <ListItem
+            <ListItemButton
                 className={level > 1 ? classes.listItemNoBack : classes.listItem}
-                sx={{borderRadius: customization.borderRadius + 'px'}}
+                sx={{ borderRadius: customization.borderRadius + 'px' }}
                 selected={selected === menu.id}
-                button
                 onClick={handleClick}
-                style={{paddingLeft: level * 23 + 'px'}}
+                style={{ paddingLeft: level * 23 + 'px' }}
             >
                 <ListItemIcon className={menuIconClass}>{menuIcon}</ListItemIcon>
                 <ListItemText
@@ -134,7 +143,7 @@ const NavCollapse = (props) => {
                 ) : (
                     <IconChevronDown stroke={1.5} size="1rem" className={level > 1 ? classes.collapseIconSub : classes.collapseIcon} />
                 )}
-            </ListItem>
+            </ListItemButton>
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding className={classes.collapseWrapper}>
                     {menus}
@@ -142,6 +151,11 @@ const NavCollapse = (props) => {
             </Collapse>
         </React.Fragment>
     );
+};
+
+NavCollapse.propTypes = {
+    menu: PropTypes.object,
+    level: PropTypes.number
 };
 
 export default NavCollapse;
