@@ -1,3 +1,8 @@
+// action - account reducer
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const ACCOUNT_INITIALIZE = 'ACCOUNT_INITIALIZE';
+
 // action - customization reducer
 export const SET_MENU = '@customization/SET_MENU';
 export const MENU_OPEN = '@customization/MENU_OPEN';

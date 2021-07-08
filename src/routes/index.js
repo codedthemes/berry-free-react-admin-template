@@ -3,6 +3,7 @@ import { Redirect, Switch } from 'react-router-dom';
 
 // routes
 import MainRoutes from './MainRoutes';
+import LoginRoutes from './LoginRoutes';
 import AuthenticationRoutes from './AuthenticationRoutes';
 
 // project imports
@@ -17,6 +18,9 @@ const Routes = () => {
             <React.Fragment>
                 {/* Routes for authentication pages */}
                 <AuthenticationRoutes />
+
+                {/* Route for login */}
+                <LoginRoutes />
 
                 {/* Routes for main layouts */}
                 <MainRoutes />

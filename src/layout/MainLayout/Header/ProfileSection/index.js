@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -26,11 +26,13 @@ import ListItemButton from '@material-ui/core/ListItemButton';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import axios from 'axios';
 
 // project imports
 import MainCard from '../../../../ui-component/cards/MainCard';
 import Transitions from '../../../../ui-component/extended/Transitions';
 import UpgradePlanCard from './UpgradePlanCard';
+import { LOGOUT } from './../../../../store/actions';
 
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
@@ -119,6 +121,8 @@ const ProfileSection = () => {
     const classes = useStyles();
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
+    const account = useSelector((state) => state.account);
+    const dispatcher = useDispatch();
 
     const [sdm, setSdm] = React.useState(true);
     const [value, setValue] = React.useState('');
@@ -127,8 +131,20 @@ const ProfileSection = () => {
 
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
-    const handleLogout = async () => {
-        console.error('Logout');
+    const handleLogout = () => {
+        console.log(account.token);
+        axios
+            .post('https://api-server-nodejs.appseed.us/api/users/logout', {}, { headers: { Authorization: `${account.token}` } })
+            .then(function (response) {
+                if (response.data.success) {
+                    dispatcher({ type: LOGOUT });
+                } else {
+                    console.log('response - ', response.data.msg);
+                }
+            })
+            .catch(function (error) {
+                console.log('error - ', error);
+            });
     };
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
