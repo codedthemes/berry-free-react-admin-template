@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import configData from '../../../../config';
+
 // material-ui
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -105,7 +107,7 @@ const RestLogin = (props, { ...others }) => {
                 onSubmit={(values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post('https://api-server-nodejs.appseed.us/api/users/login', {
+                            .post( configData.API_SERVER + 'users/login', {
                                 password: values.password,
                                 email: values.email
                             })

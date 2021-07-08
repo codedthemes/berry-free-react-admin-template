@@ -1,5 +1,14 @@
 # Change Log
 
+## [0.0.3] 2021-07-08
+### Improvements
+
+- Isolate API URL in config. Impacted files:
+    - `src/config.js`
+    - `src/layout/.../ProfileSection/index.js`
+    - `src/views/pages/auth/.../RestLogin.js`
+    - `src/views/pages/auth/.../RestRegister.js`
+
 ## [0.0.2] 2021-07-08
 ### Added JWT Authentication
 

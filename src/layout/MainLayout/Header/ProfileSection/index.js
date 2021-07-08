@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import configData from '../../../../config';
 
 // material-ui
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -134,7 +135,7 @@ const ProfileSection = () => {
     const handleLogout = () => {
         console.log(account.token);
         axios
-            .post('https://api-server-nodejs.appseed.us/api/users/logout', {}, { headers: { Authorization: `${account.token}` } })
+            .post( configData.API_SERVER + 'users/logout', {}, { headers: { Authorization: `${account.token}` } })
             .then(function (response) {
                 if (response.data.success) {
                     dispatcher({ type: LOGOUT });

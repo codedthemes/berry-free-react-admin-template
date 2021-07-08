@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+import configData from '../../../../config';
+
 // material-ui
 import { makeStyles } from '@material-ui/styles';
 import {
@@ -121,7 +123,7 @@ const RestRegister = ({ ...others }) => {
                 onSubmit={(values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post('https://api-server-nodejs.appseed.us/api/users/register', {
+                            .post( configData.API_SERVER + 'users/register', {
                                 username: values.username,
                                 password: values.password,
                                 email: values.email
