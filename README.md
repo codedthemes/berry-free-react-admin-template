@@ -2,6 +2,8 @@
 
 **Berry** is a creative free **React Dashboard** build using the Material-UI. It is meant to be the best User Experience with highly customizable feature-riched pages. It is a complete game-changer React Dashboard Template with easy and intuitive responsive design as on retina screens or laptops. The product comes with a simple JWT authentication flow: login/register/logout. 
 
+<br />
+
 > Features
 
 - Modern aesthetics UI design - Designed by [CodedThemes](https://codedthemes.com/)
@@ -12,12 +14,16 @@
 
 <br />
 
+> Links
+
 - [React Nodejs Berry](https://appseed.us/product/react-node-js-berry-dashboard) - product page
 - [React Nodejs Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo (UI only)
 - [Node JS API](https://github.com/app-generator/api-server-nodejs) - the backend server 
 - Support via **Github** (issues tracker) and [Discord](https://appseed.us/support) - LIVE Assistance 
 
 <br >
+
+![React Nodejs Berry - Open-source full-stack seed project crafted by CodedThemes and AppSeed.](https://user-images.githubusercontent.com/51070104/124934742-aa392300-e00d-11eb-83bf-28d8b8704ec8.png)
 
 <br />
 
@@ -91,6 +97,8 @@ The product is also open-source and cis already configured to work with Berry Da
 - [Node JS API](https://appseed.us/boilerplate-code) - product page
 
 <br />
+
+![Node JS API - Open-source API server built on top of Express Nodejs Framework.](https://user-images.githubusercontent.com/51070104/124934824-c210a700-e00d-11eb-9d01-e05bd8bfb608.png)
 
 <br />
 
