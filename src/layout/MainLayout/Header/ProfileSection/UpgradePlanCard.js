@@ -2,7 +2,7 @@ import React from 'react';
 
 // material-ui
 import { makeStyles } from '@material-ui/styles';
-import { Button, Card, CardContent, Grid, Stack, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Grid, Link, Stack, Typography } from '@material-ui/core';
 
 // project imports
 import AnimateButton from './../../../../ui-component/extended/AnimateButton';
@@ -63,20 +63,27 @@ const UpgradePlanCard = () => {
             <CardContent>
                 <Grid container direction="column" spacing={2}>
                     <Grid item>
-                        <Typography variant="h4">Upgrade your plan</Typography>
+                        <Typography variant="h4">
+                            React Nodejs Berry
+                        </Typography>
                     </Grid>
                     <Grid item>
                         <Typography variant="subtitle2" className={classes.tagLine}>
-                            70% discount for 1 years <br />
-                            subscriptions.
+                            Open-source full-stack seed project.
                         </Typography>
                     </Grid>
                     <Grid item>
                         <Stack direction="row">
                             <AnimateButton>
-                                <Button variant="contained" className={classes.button}>
-                                    Go Premium
-                                </Button>
+                                <Button
+                                    component={Link}
+                                    href="https://appseed.us/product/react-node-js-berry-dashboard"
+                                    target="_blank"
+                                    variant="contained"
+                                    className={classes.button}
+                                >
+                                    See Product
+                                </Button>                                
                             </AnimateButton>
                         </Stack>
                     </Grid>

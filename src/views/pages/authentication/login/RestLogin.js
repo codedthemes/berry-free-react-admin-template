@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//============================|| FIREBASE - LOGIN ||============================//
+//============================|| API JWT - LOGIN ||============================//
 
 const RestLogin = (props, { ...others }) => {
     const classes = useStyles();
@@ -146,7 +146,7 @@ const RestLogin = (props, { ...others }) => {
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
                         <FormControl fullWidth error={Boolean(touched.email && errors.email)} className={classes.loginInput}>
-                            <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-email-login">Email</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-email-login"
                                 type="email"
@@ -251,7 +251,7 @@ const RestLogin = (props, { ...others }) => {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Sign in
+                                    Sign IN
                                 </Button>
                             </AnimateButton>
                         </Box>

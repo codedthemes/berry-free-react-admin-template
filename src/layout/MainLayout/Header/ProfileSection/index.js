@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import configData from '../../../../config';
 
@@ -36,7 +35,7 @@ import UpgradePlanCard from './UpgradePlanCard';
 import { LOGOUT } from './../../../../store/actions';
 
 // assets
-import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
+import { IconLogout, IconSearch, IconSettings } from '@tabler/icons';
 import User1 from './../../../../assets/images/users/user-round.svg';
 
 // style const
@@ -137,19 +136,17 @@ const ProfileSection = () => {
         axios
             .post( configData.API_SERVER + 'users/logout', {}, { headers: { Authorization: `${account.token}` } })
             .then(function (response) {
-                if (response.data.success) {
+                
+                // Force the LOGOUT
+                //if (response.data.success) {
                     dispatcher({ type: LOGOUT });
-                } else {
-                    console.log('response - ', response.data.msg);
-                }
+                //} else {
+                //    console.log('response - ', response.data.msg);
+                //}
             })
             .catch(function (error) {
                 console.log('error - ', error);
             });
-    };
-    const handleListItemClick = (event, index) => {
-        setSelectedIndex(index);
-        handleClose(event);
     };
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -286,45 +283,6 @@ const ProfileSection = () => {
                                             </Card>
                                             <Divider />
                                             <List component="nav" className={classes.navContainer}>
-                                                <ListItemButton
-                                                    className={classes.listItem}
-                                                    sx={{ borderRadius: customization.borderRadius + 'px' }}
-                                                    selected={selectedIndex === 0}
-                                                    onClick={(event) => handleListItemClick(event, 0)}
-                                                    component={React.forwardRef((props, ref) => (
-                                                        <RouterLink {...props} to="/user/account-profile/profile1" />
-                                                    ))}
-                                                >
-                                                    <ListItemIcon>
-                                                        <IconSettings stroke={1.5} size="1.3rem" />
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
-                                                </ListItemButton>
-                                                <ListItemButton
-                                                    className={classes.listItem}
-                                                    sx={{ borderRadius: customization.borderRadius + 'px' }}
-                                                    selected={selectedIndex === 1}
-                                                    onClick={(event) => handleListItemClick(event, 1)}
-                                                    component={React.forwardRef((props, ref) => (
-                                                        <RouterLink {...props} to="/user/social-profile/posts" />
-                                                    ))}
-                                                >
-                                                    <ListItemIcon>
-                                                        <IconUser stroke={1.5} size="1.3rem" />
-                                                    </ListItemIcon>
-                                                    <ListItemText
-                                                        primary={
-                                                            <Grid container spacing={1} justifyContent="space-between">
-                                                                <Grid item>
-                                                                    <Typography variant="body2">Social Profile</Typography>
-                                                                </Grid>
-                                                                <Grid item>
-                                                                    <Chip label="02" size="small" className={classes.badgeWarning} />
-                                                                </Grid>
-                                                            </Grid>
-                                                        }
-                                                    />
-                                                </ListItemButton>
                                                 <ListItemButton
                                                     className={classes.listItem}
                                                     sx={{ borderRadius: customization.borderRadius + 'px' }}

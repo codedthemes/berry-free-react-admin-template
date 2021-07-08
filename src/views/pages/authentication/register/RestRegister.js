@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//===========================|| FIREBASE - REGISTER ||===========================//
+//===========================|| API JWT - REGISTER ||===========================//
 
 const RestRegister = ({ ...others }) => {
     const classes = useStyles();
@@ -177,7 +177,7 @@ const RestRegister = ({ ...others }) => {
                             </Grid>
                         </Grid>
                         <FormControl fullWidth error={Boolean(touched.email && errors.email)} className={classes.loginInput}>
-                            <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
+                            <InputLabel htmlFor="outlined-adornment-email-register">Email</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-email-register"
                                 type="email"
@@ -312,7 +312,7 @@ const RestRegister = ({ ...others }) => {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Sign up
+                                    Sign UP
                                 </Button>
                             </AnimateButton>
                         </Box>
