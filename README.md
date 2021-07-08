@@ -1,108 +1,98 @@
-# Berry Free React Material Admin Template [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20Berry%20React%20-%20The%20most%20beautiful%20Material%20designed%20Admin%20Dashboard%20Template%20&url=https://berrydashboard.io&via=codedthemes&hashtags=reactjs,webdev,developers,javascript)
+# Berry React Material Dashboard 
 
-[![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)](https://github.com/codedthemes/berry-free-react-admin-template/blob/main/LICENSE)
-[![npm](https://img.shields.io/npm/v/froala-design-blocks.svg?colorB=brightgreen)](https://www.npmjs.com/package/berry-material-react-free)
-[![GitHub package version](https://img.shields.io/github/package-json/v/froala/design-blocks.svg)](https://github.com/codedthemes/berry-free-react-admin-template/)
+**Berry** is a creative free **React Dashboard** build using the Material-UI. It is meant to be the best User Experience with highly customizable feature-riched pages. It is a complete game-changer React Dashboard Template with easy and intuitive responsive design as on retina screens or laptops. The product comes with a simple JWT authentication flow: login/register/logout. 
 
+> Features
 
-Berry is a creative free react admin template build using the Material-UI. It is meant to be the best User Experience with highly customizable feature-riched pages. It is a complete game-changer React Dashboard Template with easy and intuitive responsive design as on retina screens or laptops.
+- Modern aesthetics UI design - Designed by [CodedThemes](https://codedthemes.com/)
+- Material-UI components
+- React, Redux, Redux-persist
+- Authentication: JWT Login/Register/Logout
+- (Optional) - can be used with a Node JS API server for a complete full-stack experience 
 
-<a href="https://www.producthunt.com/posts/berry-free-react-admin-template?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-berry-free-react-admin-template" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=295529&theme=dark" alt="Berry - Free React Admin Template - Help you to create React web applications faster & beautiful | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+<br />
 
-[Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
+- [React Nodejs Berry](https://appseed.us/product/react-node-js-berry-dashboard) - product page
+- [React Nodejs Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo (UI only)
+- [Node JS API](https://github.com/app-generator/api-server-nodejs) - the backend server 
+- Support via **Github** (issues tracker) and [Discord](https://appseed.us/support) - LIVE Assistance 
 
-![Berry React Material Admin Template](https://blog.berrydashboard.io/content/images/size/w1000/2021/04/Og-Blog-social.png)
+<br >
 
-## Why Berry?
+<br />
 
-Berry brings everything you need for dashboard development. We have added the following high-end features in the initial release.
+## How to use it
 
- * Modern aesthetics UI design
- * Material-UI components
- * Fully Responsive, all modern browser supported
- * Easy to use code structure
- * Flexible & High-Performance code
- * Easy Documentation Guide
+To use the product Node JS (>= 12.x) is required and GIT to clone/download the project from the public repository.
 
-## Free version preview & download
+**Step #1** - Clone the project
 
-We are expected to release the Free Berry React Admin Template in 07/05/2021
-
-#### Preview
-
- - [Demo](https://berrydashboard.io/free)
-
-#### Download
-
- - [Download from Github](https://github.com/codedthemes/berry-free-react-admin-template)
- 
-## Pro version preview & Purchase
-
-Berry is available to purchase.
-#### Preview
-
- - [Demo](https://berrydashboard.io)
-
-#### Purchase
-
- - [Purchase from Material UI Store](https://material-ui.com/store/items/berry-react-material-admin/)
-
-## Table of contents
-
- * [Getting Started](#getting-started)
- * [Documentation](#documentation)
- * [Technology Stack](#technology-stack)
- * [Author](#author)
- * [Issues?](#issues)
- * [License](#license)
- * [More Products](#more-free-react-material-admin-templates)
- * [Follow us](#follow-us)
- 
-## Getting Started
-
-Clone from Github 
-```
-git clone https://github.com/codedthemes/berry-free-react-admin-template.git
+```bash
+$ git clone https://github.com/app-generator/react-berry-admin-template.git
+$ cd react-berry-admin-template
 ```
 
-## Documentation
+<br >
 
-Berry documentation helps you out in all aspects from Installation to deployment - Soon it will be available.
+**Step #2** - Install dependencies via NPM or yarn
 
-## Technology Stack
+```bash
+$ npm i
+// OR
+$ yarn
+```
 
- - [Material UI V5](https://material-ui.com/)
- - Built with React Hooks API
- - Redux & React Context API for State Management
- - React Router for Navigation Routing
- - Support of react-script
- - Code Splitting
- - CSS-in-JS where CSS is composed using JavaScript instead of defined in external files
+<br />
 
-## Author
+**Step #3** - Start in development mode
 
-Berry is managed by Team [CodedThemes](https://codedthemes.com).
+```bash
+$ npm run start 
+// OR
+$ yarn start
+```
 
-## Issues
+<br />
 
-Please generate a Github issue if you found a bug in any version. We are trying to be responsive to resolve the issue.
+## Configure the backend server
 
-## License
+The product comes with a usable JWT Authentication flow that provides only the basic requests: login/logout/register. 
 
- - Licensed cover under [MIT](https://github.com/codedthemes/datta-able-bootstrap-dashboard/blob/master/LICENSE)
+**API Server URL** - `src/config.js` 
 
-## More Free React Material Admin Templates
+```javascript
+const config = {
+    ...
+    API_SERVER: 'http://localhost:5000/api/'  // <-- The magic line
+};
+```
 
- - [Free Materially](https://codedthemes.com/item/materially-free-reactjs-admin-template/)
+<br />
 
-## More Premium React Material Admin Templates
+**API Server Descriptor** - POSTMAN Collection
 
- - [Materially](https://codedthemes.com/item/materially-reactjs-admin-dashboard/)
- 
-## Follow us
- - Website [https://berrydashboard.io](https://berrydashboard.io)
- - Blog [https://blog.berrydashboard.io](https://blog.berrydashboard.io)
- - CodedThemes [https://codedthemes.com](https://codedthemes.com)
- - Dribbble [https://dribbble.com/codedthemes](https://dribbble.com/codedthemes)
- - Facebook [https://www.facebook.com/codedthemes](https://www.facebook.com/codedthemes)
- - Twitter [https://twitter.com/codedthemes](https://twitter.com/codedthemes)
+The API Server definition is provided by the [Nodejs API Server](https://github.com/app-generator/api-server-nodejs)
+
+- [API POSTMAN Collection](https://github.com/app-generator/api-server-nodejs/blob/master/media/api.postman_collection.json) - can be used to mock (simulate) the backend server or code a new one in your preferred framework. 
+
+<br />
+
+## Node JS API Server
+
+The product is also open-source and cis already configured to work with Berry Dashboard Template - product features:
+
+- Nodejs / Express server
+- JWT authentication (`passport-jwt` strategy)
+- Persistence: MongoDB 
+
+> Links
+
+- [Node JS API](https://github.com/app-generator/api-server-nodejs) - source code
+- [Node JS API](https://appseed.us/boilerplate-code) - product page
+
+<br />
+
+<br />
+
+---
+[React Nodejs Berry](https://appseed.us/product/react-node-js-berry-dashboard) - Provided by [CodedThemes](https://codedthemes.com/) and **AppSeed [App Generator](https://appseed.us/app-generator)**.
