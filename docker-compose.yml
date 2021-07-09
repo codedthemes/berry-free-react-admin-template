@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+
+  sample:
+    container_name: react-berry
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 3000:3000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      

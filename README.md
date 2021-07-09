@@ -83,6 +83,26 @@ The API Server definition is provided by the [Nodejs API Server](https://github.
 
 <br />
 
+### [Docker](https://www.docker.com/) execution
+---
+
+> Get the code
+
+```bash
+$ git clone https://github.com/app-generator/react-berry-admin-template.git
+$ cd react-berry-admin-template
+```
+
+> Start the app in Docker
+
+```bash
+$ sudo docker-compose pull && sudo docker-compose build && sudo docker-compose up -d
+```
+
+Visit `http://localhost:3000` in your browser. The Berry Template should be up & running.
+
+<br />
+
 ## Node JS API Server
 
 The product is also open-source and cis already configured to work with Berry Dashboard Template - product features:
