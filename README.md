@@ -10,7 +10,7 @@
 - Material-UI components
 - React, Redux, Redux-persist
 - Authentication: JWT Login/Register/Logout
-- (Optional) - can be used with a Node JS API server for a complete full-stack experience 
+- (Optional) - can be used with a [Node JS API server](https://github.com/app-generator/api-server-nodejs) for a complete full-stack experience 
 
 <br />
 
