@@ -1,6 +1,6 @@
 {
     "name": "react-berry-admin-template",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "private": true,
     "homepage": "https://berrydashboard.io",
     "dependencies": {

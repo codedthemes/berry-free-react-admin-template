@@ -1,10 +1,9 @@
 # Change Log
 
-## Unreleased
-### Improvements
+## [0.0.4] 2021-07-09
+### Minor Update
 
 - Code & Links cleanUp
-
 
 ## [0.0.3] 2021-07-08
 ### Improvements
@@ -15,12 +14,10 @@
     - `src/views/pages/auth/.../RestLogin.js`
     - `src/views/pages/auth/.../RestRegister.js`
 
-
 ## [0.0.2] 2021-07-08
 ### Added JWT Authentication
 
 - JWT Auth: login/register/logout
-
 
 ## [0.0.1] 2021-07-01
 ### Initial import
