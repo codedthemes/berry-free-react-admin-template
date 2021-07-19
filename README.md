@@ -18,7 +18,7 @@
 
 - [React Nodejs Berry](https://appseed.us/product/react-node-js-berry-dashboard) - product page
 - [React Nodejs Berry](https://docs.appseed.us/products/react/node-js-berry-dashboard) - product documentation
-- [React Nodejs Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo (UI only)
+- [React Nodejs Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
 - Support via **Github** (issues tracker) and [Discord](https://appseed.us/support) - LIVE Assistance 
 
 <br >
