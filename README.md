@@ -13,7 +13,7 @@
 
 <br />
 
-> Can be used with other UI projects for a complete fullstack experience. ALL servers use an unified API definition  
+> Can be used with many API Servers for a complete fullstack experience. ALL servers use an unified API definition  
 
 - [Django API Server](https://github.com/app-generator/api-server-django) - open-source product
 - [Flask API Server](https://github.com/app-generator/api-server-flask) - open-source product
