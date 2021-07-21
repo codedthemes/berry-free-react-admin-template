@@ -16,9 +16,9 @@
 
 > Links
 
-- [React Nodejs Berry](https://appseed.us/product/react-node-js-berry-dashboard) - product page
-- [React Nodejs Berry](https://docs.appseed.us/products/react/node-js-berry-dashboard) - product documentation
-- [React Nodejs Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
+- [React Node JS Berry](https://appseed.us/product/react-node-js-berry-dashboard) - product page
+- [React Node JS Berry](https://docs.appseed.us/products/react/node-js-berry-dashboard) - product documentation
+- [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
 - Support via **Github** (issues tracker) and [Discord](https://appseed.us/support) - LIVE Assistance 
 
 <br >
@@ -123,4 +123,4 @@ The product is also open-source and cis already configured to work with Berry Da
 <br />
 
 ---
-[React Nodejs Berry](https://appseed.us/product/react-node-js-berry-dashboard) - Provided by [CodedThemes](https://codedthemes.com/) and **AppSeed [App Generator](https://appseed.us/app-generator)**.
+[React Node JS Berry](https://appseed.us/product/react-node-js-berry-dashboard) - Provided by [CodedThemes](https://codedthemes.com/) and **AppSeed [App Generator](https://appseed.us/app-generator)**.
