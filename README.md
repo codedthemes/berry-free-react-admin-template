@@ -13,6 +13,15 @@
 
 <br />
 
+> Links
+
+- [React Node JS Berry](https://appseed.us/product/react-node-js-berry-dashboard) - product page
+- [React Node JS Berry](https://docs.appseed.us/products/react/node-js-berry-dashboard) - product documentation
+- [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
+- Support via **Github** (issues tracker) and [Discord](https://appseed.us/support) - LIVE Assistance 
+
+<br >
+
 > **Note**: This product can be used with other API Servers for a complete fullstack experience. **ALL API servers use an unified interface**
 
 - [Django API Server](https://github.com/app-generator/api-server-django) - open-source product
@@ -22,16 +31,8 @@
     - SQLite / TypeORM / Joy / Docker
     - MongoDB / Mongoose / Joy Docker (separate branch, same project)
 
-<br />
+<br /> 
 
-> Links
-
-- [React Node JS Berry](https://appseed.us/product/react-node-js-berry-dashboard) - product page
-- [React Node JS Berry](https://docs.appseed.us/products/react/node-js-berry-dashboard) - product documentation
-- [React Node JS Berry](https://react-node-js-berry-dashboard.appseed-srv1.com/) - LIVE Demo
-- Support via **Github** (issues tracker) and [Discord](https://appseed.us/support) - LIVE Assistance 
-
-<br >
 
 ![React Nodejs Berry - Open-source full-stack seed project crafted by CodedThemes and AppSeed.](https://user-images.githubusercontent.com/51070104/124934742-aa392300-e00d-11eb-83bf-28d8b8704ec8.png)
 
