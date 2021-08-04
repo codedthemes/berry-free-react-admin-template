@@ -11,7 +11,7 @@ import { useTheme } from '@material-ui/styles';
  *
  */
 
-//-----------------------|| LOGO SVG ||-----------------------//
+// ===========================|| LOGO SVG ||=========================== //
 
 const Logo = () => {
     const theme = useTheme();

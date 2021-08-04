@@ -9,9 +9,9 @@ import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // project imports
-import SkeletonTotalGrowthBarChart from './../../../ui-component/cards/Skeleton/TotalGrowthBarChart';
-import MainCard from './../../../ui-component/cards/MainCard';
-import { gridSpacing } from './../../../store/constant';
+import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
+import MainCard from 'ui-component/cards/MainCard';
+import { gridSpacing } from 'store/constant';
 
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';
@@ -31,13 +31,13 @@ const status = [
     }
 ];
 
-//-----------------------|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||-----------------------//
+// ===========================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||=========================== //
 
 const TotalGrowthBarChart = ({ isLoading }) => {
     const [value, setValue] = React.useState('today');
     const theme = useTheme();
 
-    const primary = theme.palette.text.primary;
+    const { primary } = theme.palette.text;
     const grey200 = theme.palette.grey[200];
 
     const primary200 = theme.palette.primary[200];
@@ -84,7 +84,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
     }, [primary200, primaryDark, secondaryMain, secondaryLight, primary, grey200, isLoading, grey500]);
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <SkeletonTotalGrowthBarChart />
             ) : (
@@ -124,7 +124,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                     </Grid>
                 </MainCard>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

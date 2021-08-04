@@ -8,7 +8,7 @@ import { Avatar, Box, ButtonBase, Card, CardContent, Grid, InputAdornment, Outli
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // project imports
-import Transitions from '../../../../ui-component/extended/Transitions';
+import Transitions from 'ui-component/extended/Transitions';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
@@ -78,18 +78,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| SEARCH INPUT ||-----------------------//
+// ===========================|| SEARCH INPUT ||=========================== //
 
 const SearchSection = () => {
     const classes = useStyles();
     const [value, setValue] = useState('');
 
     return (
-        <React.Fragment>
+        <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <PopupState variant="popper" popupId="demo-popup-popper">
                     {(popupState) => (
-                        <React.Fragment>
+                        <>
                             <Box
                                 sx={{
                                     ml: 2
@@ -159,7 +159,7 @@ const SearchSection = () => {
                                     </Transitions>
                                 )}
                             </Popper>
-                        </React.Fragment>
+                        </>
                     )}
                 </PopupState>
             </Box>
@@ -190,7 +190,7 @@ const SearchSection = () => {
                     }}
                 />
             </Box>
-        </React.Fragment>
+        </>
     );
 };
 

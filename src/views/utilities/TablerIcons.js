@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/styles';
 import { Card } from '@material-ui/core';
 
 // project imports
-import MainCard from './../../ui-component/cards/MainCard';
-import SecondaryAction from './../../ui-component/cards/CardSecondaryAction';
+import MainCard from 'ui-component/cards/MainCard';
+import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//=============================|| TABLER ICONS ||=============================//
+//= ============================|| TABLER ICONS ||=============================//
 
 const TablerIcons = () => {
     const classes = useStyles();

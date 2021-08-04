@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/styles';
 import { Divider, List, Typography } from '@material-ui/core';
 
 // project imports
-import NavItem from './../NavItem';
-import NavCollapse from './../NavCollapse';
+import NavItem from '../NavItem';
+import NavCollapse from '../NavCollapse';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| SIDEBAR MENU LIST GROUP ||-----------------------//
+// ===========================|| SIDEBAR MENU LIST GROUP ||=========================== //
 
 const NavGroup = ({ item }) => {
     const classes = useStyles();
@@ -45,7 +45,7 @@ const NavGroup = ({ item }) => {
     });
 
     return (
-        <React.Fragment>
+        <>
             <List
                 subheader={
                     item.title && (
@@ -65,7 +65,7 @@ const NavGroup = ({ item }) => {
 
             {/* group divider */}
             <Divider className={classes.menuDivider} />
-        </React.Fragment>
+        </>
     );
 };
 

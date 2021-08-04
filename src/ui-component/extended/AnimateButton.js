@@ -4,7 +4,7 @@ import React from 'react';
 // third-party
 import { motion, useCycle } from 'framer-motion';
 
-//-----------------------|| ANIMATION BUTTON ||-----------------------//
+// ===========================|| ANIMATION BUTTON ||=========================== //
 
 const AnimateButton = React.forwardRef(({ children, type, direction, offset, scale }, ref) => {
     let offset1;
@@ -45,17 +45,17 @@ const AnimateButton = React.forwardRef(({ children, type, direction, offset, sca
         case 'slide':
             if (direction === 'up' || direction === 'down') {
                 return (
-                    <motion.div ref={ref} animate={{ y: y }} onHoverEnd={() => cycleY()} onHoverStart={() => cycleY()}>
-                        {children}
-                    </motion.div>
-                );
-            } else {
-                return (
-                    <motion.div ref={ref} animate={{ x: x }} onHoverEnd={() => cycleX()} onHoverStart={() => cycleX()}>
+                    <motion.div ref={ref} animate={{ y }} onHoverEnd={() => cycleY()} onHoverStart={() => cycleY()}>
                         {children}
                     </motion.div>
                 );
             }
+            return (
+                <motion.div ref={ref} animate={{ x }} onHoverEnd={() => cycleX()} onHoverStart={() => cycleX()}>
+                    {children}
+                </motion.div>
+            );
+
         case 'scale':
         default:
             if (typeof scale === 'number') {

@@ -9,16 +9,15 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import config from './config';
 
 // style + assets
 import './assets/scss/style.scss';
 
-//-----------------------|| REACT DOM RENDER  ||-----------------------//
+// ===========================|| REACT DOM RENDER  ||=========================== //
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter basename={config.basename}>
+        <BrowserRouter>
             <App />
         </BrowserRouter>
     </Provider>,

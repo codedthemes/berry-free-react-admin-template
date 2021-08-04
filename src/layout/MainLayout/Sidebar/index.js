@@ -13,7 +13,7 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
 import MenuCard from './MenuCard';
-import { drawerWidth } from './../../../store/constant';
+import { drawerWidth } from 'store/constant';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| SIDEBAR DRAWER ||-----------------------//
+// ===========================|| SIDEBAR DRAWER ||=========================== //
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     const classes = useStyles();
@@ -56,7 +56,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     const drawer = (
-        <React.Fragment>
+        <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
                 <div className={classes.boxContainer}>
                     <LogoSection />
@@ -74,7 +74,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     <MenuCard />
                 </Box>
             </MobileView>
-        </React.Fragment>
+        </>
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;

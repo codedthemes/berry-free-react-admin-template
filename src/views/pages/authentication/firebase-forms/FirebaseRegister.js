@@ -27,10 +27,10 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project imports
-import useScriptRef from '../../../../hooks/useScriptRef';
-import Google from './../../../../assets/images/icons/social-google.svg';
-import AnimateButton from './../../../../ui-component/extended/AnimateButton';
-import { strengthColor, strengthIndicator } from '../../../../utils/password-strength';
+import useScriptRef from 'hooks/useScriptRef';
+import Google from 'assets/images/icons/social-google.svg';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
 // assets
 import Visibility from '@material-ui/icons/Visibility';
@@ -60,8 +60,8 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'unset',
         margin: theme.spacing(2),
         padding: '5px 56px',
-        borderColor: theme.palette.grey[100] + ' !important',
-        color: theme.palette.grey[900] + '!important',
+        borderColor: `${theme.palette.grey[100]} !important`,
+        color: `${theme.palette.grey[900]}!important`,
         fontWeight: 500
     },
     loginIcon: {
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//===========================|| FIREBASE - REGISTER ||===========================//
+//= ==========================|| FIREBASE - REGISTER ||===========================//
 
 const FirebaseRegister = ({ ...others }) => {
     const classes = useStyles();
@@ -111,13 +111,13 @@ const FirebaseRegister = ({ ...others }) => {
     }, []);
 
     return (
-        <React.Fragment>
+        <>
             <Grid container direction="column" justifyContent="center" spacing={2}>
                 <Grid item xs={12}>
                     <AnimateButton>
                         <Button
                             disableElevation
-                            fullWidth={true}
+                            fullWidth
                             className={classes.redButton}
                             onClick={googleHandler}
                             size="large"
@@ -140,7 +140,7 @@ const FirebaseRegister = ({ ...others }) => {
                             <Button
                                 variant="outlined"
                                 className={classes.signText}
-                                sx={{ borderRadius: customization.borderRadius + 'px' }}
+                                sx={{ borderRadius: `${customization.borderRadius}px` }}
                                 disableRipple
                                 disabled
                             >
@@ -291,7 +291,7 @@ const FirebaseRegister = ({ ...others }) => {
                                                     height: 8,
                                                     borderRadius: '7px'
                                                 }}
-                                            ></Box>
+                                            />
                                         </Grid>
                                         <Grid item>
                                             <Typography variant="subtitle1" fontSize="0.75rem">
@@ -357,7 +357,7 @@ const FirebaseRegister = ({ ...others }) => {
                     </form>
                 )}
             </Formik>
-        </React.Fragment>
+        </>
     );
 };
 

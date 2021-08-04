@@ -5,7 +5,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 
 // project import
-import MainCard from './../../../ui-component/cards/MainCard';
+import MainCard from 'ui-component/cards/MainCard';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -23,14 +23,14 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     content: {
-        padding: theme.spacing(5) + ' !important',
+        padding: `${theme.spacing(5)} !important`,
         [theme.breakpoints.down('lg')]: {
-            padding: theme.spacing(3) + ' !important'
+            padding: `${theme.spacing(3)} !important`
         }
     }
 }));
 
-//-----------------------|| AUTHENTICATION CARD WRAPPER ||-----------------------//
+// ===========================|| AUTHENTICATION CARD WRAPPER ||=========================== //
 
 const AuthCardWrapper = ({ children, ...other }) => {
     const classes = useStyles();

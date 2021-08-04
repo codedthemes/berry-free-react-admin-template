@@ -26,8 +26,8 @@ import {
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import MainCard from '../../../../ui-component/cards/MainCard';
-import Transitions from '../../../../ui-component/extended/Transitions';
+import MainCard from 'ui-component/cards/MainCard';
+import Transitions from 'ui-component/extended/Transitions';
 import NotificationList from './NotificationList';
 
 // assets
@@ -104,7 +104,7 @@ const status = [
     }
 ];
 
-//-----------------------|| NOTIFICATION ||-----------------------//
+// ===========================|| NOTIFICATION ||=========================== //
 
 const NotificationSection = () => {
     const classes = useStyles();
@@ -139,7 +139,7 @@ const NotificationSection = () => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <Box component="span" className={classes.box}>
                 <ButtonBase sx={{ borderRadius: '12px' }}>
                     <Avatar
@@ -243,7 +243,7 @@ const NotificationSection = () => {
                     </Transitions>
                 )}
             </Popper>
-        </React.Fragment>
+        </>
     );
 };
 

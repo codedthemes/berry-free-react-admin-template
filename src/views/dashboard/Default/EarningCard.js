@@ -6,11 +6,11 @@ import { makeStyles } from '@material-ui/styles';
 import { Avatar, Grid, Menu, MenuItem, Typography } from '@material-ui/core';
 
 // project imports
-import MainCard from './../../../ui-component/cards/MainCard';
-import SkeletonEarningCard from './../../../ui-component/cards/Skeleton/EarningCard';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 // assets
-import EarningIcon from './../../../assets/images/icons/earning.svg';
+import EarningIcon from 'assets/images/icons/earning.svg';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import GetAppTwoToneIcon from '@material-ui/icons/GetAppOutlined';
@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//===========================|| DASHBOARD DEFAULT - EARNING CARD ||===========================//
+//= ==========================|| DASHBOARD DEFAULT - EARNING CARD ||===========================//
 
 const EarningCard = ({ isLoading }) => {
     const classes = useStyles();
@@ -114,7 +114,7 @@ const EarningCard = ({ isLoading }) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <SkeletonEarningCard />
             ) : (
@@ -187,7 +187,7 @@ const EarningCard = ({ isLoading }) => {
                     </Grid>
                 </MainCard>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

@@ -8,8 +8,8 @@ import { Card, CardContent, Divider, Grid, Typography } from '@material-ui/core'
 import MuiBreadcrumbs from '@material-ui/core/Breadcrumbs';
 
 // project imports
-import config from './../../config';
-import { gridSpacing } from './../../store/constant';
+import config from 'config';
+import { gridSpacing } from 'store/constant';
 
 // assets
 import AccountTreeTwoToneIcon from '@material-ui/icons/AccountTreeTwoTone';
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     icon: {
         marginRight: theme.spacing(0.75),
-        marginTop: '-' + theme.spacing(0.25),
+        marginTop: `-${theme.spacing(0.25)}`,
         width: '1rem',
         height: '1rem',
         color: theme.palette.secondary.main
@@ -68,22 +68,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| BREADCRUMBS ||-----------------------//
+// ===========================|| BREADCRUMBS ||=========================== //
 
 const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAlign, separator, title, titleBottom, ...others }) => {
     const classes = useStyles();
 
     const [main, setMain] = useState([]);
     const [item, setItem] = useState([]);
-
-    useEffect(() => {
-        navigation.items.map((item, index) => {
-            if (item.type && item.type === 'group') {
-                getCollapse(item, index);
-            }
-            return false;
-        });
-    });
 
     // set active item state
     const getCollapse = (item) => {
@@ -102,6 +93,15 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
         }
     };
 
+    useEffect(() => {
+        navigation.items.map((item, index) => {
+            if (item.type && item.type === 'group') {
+                getCollapse(item, index);
+            }
+            return false;
+        });
+    });
+
     // item separator
     const SeparatorIcon = separator;
     const separatorIcon = separator ? <SeparatorIcon stroke={1.5} size="1rem" /> : '/';
@@ -118,7 +118,8 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
         contentClass = classes.noPadding;
     }
 
-    let mainContent, itemContent;
+    let mainContent;
+    let itemContent;
     let breadcrumbContent = '';
     let itemTitle = '';
     let CollapseIcon;
@@ -168,7 +169,7 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
                                 </Grid>
                             )}
                             <Grid item>
-                                <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems ? maxItems : 8} separator={separatorIcon}>
+                                <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
                                     <Typography component={Link} to="/" color="inherit" variant="subtitle1" className={classes.link}>
                                         {icons && <HomeTwoToneIcon className={classes.icon} />}
                                         {icon && <HomeIcon className={classes.icon} style={{ marginRight: 0 }} />}
