@@ -5,7 +5,7 @@ import React from 'react';
 import { useTheme } from '@material-ui/styles';
 import { Card, CardContent, CardHeader, Divider, Typography } from '@material-ui/core';
 
-//-----------------------|| CUSTOM SUB CARD ||-----------------------//
+// ===========================|| CUSTOM SUB CARD ||=========================== //
 
 const SubCard = ({ children, content, contentClass, darkTitle, secondary, sx = {}, title, ...others }) => {
     const theme = useTheme();

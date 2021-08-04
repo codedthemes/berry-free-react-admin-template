@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//===========================|| DASHBOARD DEFAULT - BAJAJ AREA CHART CARD ||===========================//
+//= ==========================|| DASHBOARD DEFAULT - BAJAJ AREA CHART CARD ||===========================//
 
 const BajajAreaChartCard = () => {
     const classes = useStyles();

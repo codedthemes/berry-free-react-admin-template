@@ -21,10 +21,10 @@ import {
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import SubCard from '../../ui-component/cards/SubCard';
-import AnimateButton from '../../ui-component/extended/AnimateButton';
-import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from '../../store/actions'; // THEME_RTL
-import { gridSpacing } from '../../store/constant';
+import SubCard from 'ui-component/cards/SubCard';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions'; // THEME_RTL
+import { gridSpacing } from 'store/constant';
 
 // assets
 import { IconSettings } from '@tabler/icons';
@@ -34,7 +34,7 @@ function valueText(value) {
     return `${value}px`;
 }
 
-//-----------------------|| LIVE CUSTOMIZATION ||-----------------------//
+// ===========================|| LIVE CUSTOMIZATION ||=========================== //
 
 const Customization = () => {
     const theme = useTheme();
@@ -54,7 +54,7 @@ const Customization = () => {
     };
 
     useEffect(() => {
-        dispatch({ type: SET_BORDER_RADIUS, borderRadius: borderRadius });
+        dispatch({ type: SET_BORDER_RADIUS, borderRadius });
     }, [dispatch, borderRadius]);
 
     let initialFont;
@@ -91,7 +91,7 @@ const Customization = () => {
     }, [dispatch, fontFamily]);
 
     return (
-        <React.Fragment>
+        <>
             {/* toggle button */}
 
             <Tooltip title="Live Customize">
@@ -211,7 +211,7 @@ const Customization = () => {
                     </Grid>
                 </PerfectScrollbar>
             </Drawer>
-        </React.Fragment>
+        </>
     );
 };
 

@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     }
 });
 
-//-----------------------|| SKELETON - TOTAL INCOME DARK/LIGHT Card ||-----------------------//
+// ===========================|| SKELETON - TOTAL INCOME DARK/LIGHT Card ||=========================== //
 
 const TotalIncomeCard = () => {
     const classes = useStyles();

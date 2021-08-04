@@ -6,17 +6,17 @@ import { useTheme } from '@material-ui/styles';
 import { Box, Card, Grid, Typography } from '@material-ui/core';
 
 // project imports
-import SubCard from './../../ui-component/cards/SubCard';
-import MainCard from './../../ui-component/cards/MainCard';
-import SecondaryAction from './../../ui-component/cards/CardSecondaryAction';
-import { gridSpacing } from './../../store/constant';
+import SubCard from 'ui-component/cards/SubCard';
+import MainCard from 'ui-component/cards/MainCard';
+import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
+import { gridSpacing } from 'store/constant';
 
-//===============================|| COLOR BOX ||===============================//
+//= ==============================|| COLOR BOX ||===============================//
 
 const ColorBox = ({ bgcolor, title, data, dark }) => {
     const theme = useTheme();
     return (
-        <React.Fragment>
+        <>
             <Card sx={{ mb: 3 }}>
                 <Box
                     sx={{
@@ -24,7 +24,7 @@ const ColorBox = ({ bgcolor, title, data, dark }) => {
                         justifyContent: 'center',
                         alignItems: 'center',
                         py: 4.5,
-                        bgcolor: bgcolor,
+                        bgcolor,
                         color: dark ? theme.palette.grey[800] : '#ffffff'
                     }}
                 >
@@ -33,7 +33,7 @@ const ColorBox = ({ bgcolor, title, data, dark }) => {
                             {title}
                         </Typography>
                     )}
-                    {!title && <Box sx={{ p: 1.15 }}></Box>}
+                    {!title && <Box sx={{ p: 1.15 }} />}
                 </Box>
             </Card>
             {data && (
@@ -48,7 +48,7 @@ const ColorBox = ({ bgcolor, title, data, dark }) => {
                     </Grid>
                 </Grid>
             )}
-        </React.Fragment>
+        </>
     );
 };
 
@@ -59,7 +59,7 @@ ColorBox.propTypes = {
     dark: PropTypes.bool
 };
 
-//===============================|| UI COLOR ||===============================//
+//= ==============================|| UI COLOR ||===============================//
 
 const UIColor = () => {
     const theme = useTheme();

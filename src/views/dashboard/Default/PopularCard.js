@@ -7,9 +7,9 @@ import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem
 
 // project imports
 import BajajAreaChartCard from './BajajAreaChartCard';
-import MainCard from './../../../ui-component/cards/MainCard';
-import SkeletonPopularCard from './../../../ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from './../../../store/constant';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
+import { gridSpacing } from 'store/constant';
 
 // assets
 import ChevronRightOutlinedIcon from '@material-ui/icons/ChevronRightOutlined';
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| DASHBOARD DEFAULT - POPULAR CARD ||-----------------------//
+// ===========================|| DASHBOARD DEFAULT - POPULAR CARD ||=========================== //
 
 const PopularCard = ({ isLoading }) => {
     const classes = useStyles();
@@ -72,7 +72,7 @@ const PopularCard = ({ isLoading }) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <SkeletonPopularCard />
             ) : (
@@ -284,7 +284,7 @@ const PopularCard = ({ isLoading }) => {
                     </CardActions>
                 </MainCard>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

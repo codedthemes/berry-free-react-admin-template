@@ -26,14 +26,14 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 // project imports
-import useScriptRef from '../../../../hooks/useScriptRef';
-import AnimateButton from '../../../../ui-component/extended/AnimateButton';
+import useScriptRef from 'hooks/useScriptRef';
+import AnimateButton from 'ui-component/extended/AnimateButton';
 
 // assets
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-import Google from './../../../../assets/images/icons/social-google.svg';
+import Google from 'assets/images/icons/social-google.svg';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -59,8 +59,8 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'unset',
         margin: theme.spacing(2),
         padding: '5px 56px',
-        borderColor: theme.palette.grey[100] + ' !important',
-        color: theme.palette.grey[900] + '!important',
+        borderColor: `${theme.palette.grey[100]} !important`,
+        color: `${theme.palette.grey[900]}!important`,
         fontWeight: 500
     },
     loginIcon: {
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//============================|| FIREBASE - LOGIN ||============================//
+//= ===========================|| FIREBASE - LOGIN ||============================//
 
 const FirebaseLogin = (props, { ...others }) => {
     const classes = useStyles();
@@ -97,13 +97,13 @@ const FirebaseLogin = (props, { ...others }) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <Grid container direction="column" justifyContent="center" spacing={2}>
                 <Grid item xs={12}>
                     <AnimateButton>
                         <Button
                             disableElevation
-                            fullWidth={true}
+                            fullWidth
                             className={classes.redButton}
                             onClick={googleHandler}
                             size="large"
@@ -125,7 +125,7 @@ const FirebaseLogin = (props, { ...others }) => {
                             <Button
                                 variant="outlined"
                                 className={classes.signText}
-                                sx={{ borderRadius: customization.borderRadius + 'px' }}
+                                sx={{ borderRadius: `${customization.borderRadius}px` }}
                                 disableRipple
                                 disabled
                             >
@@ -248,7 +248,7 @@ const FirebaseLogin = (props, { ...others }) => {
                             <Typography
                                 variant="subtitle1"
                                 component={Link}
-                                to={props.login ? '/pages/forgot-password/forgot-password' + props.login : '#'}
+                                to="/pages/forgot-password/forgot-password3"
                                 color="secondary"
                                 sx={{ textDecoration: 'none' }}
                             >
@@ -287,7 +287,7 @@ const FirebaseLogin = (props, { ...others }) => {
                     </form>
                 )}
             </Formik>
-        </React.Fragment>
+        </>
     );
 };
 

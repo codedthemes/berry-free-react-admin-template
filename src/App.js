@@ -8,19 +8,19 @@ import { CssBaseline, StyledEngineProvider } from '@material-ui/core';
 import Routes from './routes';
 
 // defaultTheme
-import theme from './themes';
+import themes from './themes';
 
 // project imports
 import NavigationScroll from './layout/NavigationScroll';
 
-//-----------------------|| APP ||-----------------------//
+// ===========================|| APP ||=========================== //
 
 const App = () => {
     const customization = useSelector((state) => state.customization);
 
     return (
         <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme(customization)}>
+            <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
                 <NavigationScroll>
                     <Routes />

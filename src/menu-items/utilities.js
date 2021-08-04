@@ -3,17 +3,17 @@ import { IconBrandFramer, IconTypography, IconPalette, IconShadow, IconWindmill,
 
 // constant
 const icons = {
-    IconTypography: IconTypography,
-    IconPalette: IconPalette,
-    IconShadow: IconShadow,
-    IconWindmill: IconWindmill,
-    IconBrandFramer: IconBrandFramer,
-    IconLayoutGridAdd: IconLayoutGridAdd
+    IconTypography,
+    IconPalette,
+    IconShadow,
+    IconWindmill,
+    IconBrandFramer,
+    IconLayoutGridAdd
 };
 
-//-----------------------|| UTILITIES MENU ITEMS ||-----------------------//
+// ===========================|| UTILITIES MENU ITEMS ||=========================== //
 
-export const utilities = {
+const utilities = {
     id: 'utilities',
     title: 'Utilities',
     type: 'group',
@@ -23,7 +23,7 @@ export const utilities = {
             title: 'Typography',
             type: 'item',
             url: '/utils/util-typography',
-            icon: icons['IconTypography'],
+            icon: icons.IconTypography,
             breadcrumbs: false
         },
         {
@@ -31,7 +31,7 @@ export const utilities = {
             title: 'Color',
             type: 'item',
             url: '/utils/util-color',
-            icon: icons['IconPalette'],
+            icon: icons.IconPalette,
             breadcrumbs: false
         },
         {
@@ -39,14 +39,14 @@ export const utilities = {
             title: 'Shadow',
             type: 'item',
             url: '/utils/util-shadow',
-            icon: icons['IconShadow'],
+            icon: icons.IconShadow,
             breadcrumbs: false
         },
         {
             id: 'icons',
             title: 'Icons',
             type: 'collapse',
-            icon: icons['IconWindmill'],
+            icon: icons.IconWindmill,
             children: [
                 {
                     id: 'tabler-icons',
@@ -66,3 +66,5 @@ export const utilities = {
         }
     ]
 };
+
+export default utilities;

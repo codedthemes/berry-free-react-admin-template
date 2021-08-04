@@ -2,7 +2,7 @@
  * MUI Components whose styles are override as per theme
  * @param {JsonObject} theme Plain Json Object
  */
-export function componentStyleOverrides(theme) {
+export default function componentStyleOverrides(theme) {
     return {
         MuiButton: {
             styleOverrides: {
@@ -22,7 +22,7 @@ export function componentStyleOverrides(theme) {
                     backgroundImage: 'none'
                 },
                 rounded: {
-                    borderRadius: theme.customization.borderRadius + 'px'
+                    borderRadius: `${theme.customization.borderRadius}px`
                 }
             }
         },
@@ -107,7 +107,7 @@ export function componentStyleOverrides(theme) {
             styleOverrides: {
                 root: {
                     background: theme.colors.grey50,
-                    borderRadius: theme.customization.borderRadius + 'px',
+                    borderRadius: `${theme.customization.borderRadius}px`,
                     '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: theme.colors.grey400
                     },
@@ -122,7 +122,7 @@ export function componentStyleOverrides(theme) {
                     fontWeight: 500,
                     background: theme.colors.grey50,
                     padding: '15.5px 14px',
-                    borderRadius: theme.customization.borderRadius + 'px',
+                    borderRadius: `${theme.customization.borderRadius}px`,
                     '&.MuiInputBase-inputSizeSmall': {
                         padding: '10px 14px',
                         '&.MuiInputBase-inputAdornedStart': {
@@ -134,7 +134,7 @@ export function componentStyleOverrides(theme) {
                     paddingLeft: 4
                 },
                 notchedOutline: {
-                    borderRadius: theme.customization.borderRadius + 'px'
+                    borderRadius: `${theme.customization.borderRadius}px`
                 }
             }
         },

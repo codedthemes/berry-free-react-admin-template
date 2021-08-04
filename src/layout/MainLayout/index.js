@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 
 // material-ui
 import { makeStyles, useTheme } from '@material-ui/styles';
@@ -10,13 +10,13 @@ import { AppBar, CssBaseline, Toolbar, useMediaQuery } from '@material-ui/core';
 import clsx from 'clsx';
 
 // project imports
-import Breadcrumbs from './../../ui-component/extended/Breadcrumbs';
+import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Customization from './../Customization';
-import navigation from './../../menu-items';
-import { drawerWidth } from '../../store/constant';
-import { SET_MENU } from './../../store/actions';
+import Customization from '../Customization';
+import navigation from 'menu-items';
+import { drawerWidth } from 'store/constant';
+import { SET_MENU } from 'store/actions';
 
 // assets
 import { IconChevronRight } from '@tabler/icons';
@@ -74,9 +74,9 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| MAIN LAYOUT ||-----------------------//
+// ===========================|| MAIN LAYOUT ||=========================== //
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
     const classes = useStyles();
     const theme = useTheme();
     const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
@@ -121,19 +121,13 @@ const MainLayout = ({ children }) => {
                     }
                 ])}
             >
-                {/* <Main open={leftDrawerOpened}> */}
                 {/* breadcrumb */}
                 <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
-                <div>{children}</div>
-                {/* </Main> */}
+                <Outlet />
             </main>
             <Customization />
         </div>
     );
-};
-
-MainLayout.propTypes = {
-    children: PropTypes.node
 };
 
 export default MainLayout;

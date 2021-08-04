@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     }
 });
 
-//-----------------------|| SKELETON EARNING CARD ||-----------------------//
+// ===========================|| SKELETON EARNING CARD ||=========================== //
 
 const EarningCard = () => {
     const classes = useStyles();

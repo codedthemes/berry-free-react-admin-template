@@ -2,7 +2,7 @@
  * Typography used in theme
  * @param {JsonObject} theme theme customization object
  */
-export function themeTypography(theme) {
+export default function themeTypography(theme) {
     return {
         fontFamily: theme.customization.fontFamily,
         h6: {
@@ -90,7 +90,7 @@ export function themeTypography(theme) {
             padding: '20px',
             marginTop: '88px',
             marginRight: '20px',
-            borderRadius: theme.customization.borderRadius + 'px'
+            borderRadius: `${theme.customization.borderRadius}px`
         },
         menuCaption: {
             fontSize: '0.875rem',

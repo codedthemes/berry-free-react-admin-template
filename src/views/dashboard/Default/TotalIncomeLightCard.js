@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/styles';
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
 
 // project imports
-import MainCard from './../../../ui-component/cards/MainCard';
-import TotalIncomeCard from './../../../ui-component/cards/Skeleton/TotalIncomeCard';
+import MainCard from 'ui-component/cards/MainCard';
+import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
 import StorefrontTwoToneIcon from '@material-ui/icons/StorefrontTwoTone';
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
             position: 'absolute',
             width: '210px',
             height: '210px',
-            background: 'linear-gradient(210.04deg, ' + theme.palette.warning.dark + ' -50.94%, rgba(144, 202, 249, 0) 83.49%)',
+            background: `linear-gradient(210.04deg, ${theme.palette.warning.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
             borderRadius: '50%',
             top: '-30px',
             right: '-180px'
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
             position: 'absolute',
             width: '210px',
             height: '210px',
-            background: 'linear-gradient(140.9deg, ' + theme.palette.warning.dark + ' -14.02%, rgba(144, 202, 249, 0) 70.50%)',
+            background: `linear-gradient(140.9deg, ${theme.palette.warning.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
             borderRadius: '50%',
             top: '-160px',
             right: '-130px'
@@ -57,13 +57,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| DASHBOARD - TOTAL INCOME LIGHT CARD ||-----------------------//
+// ===========================|| DASHBOARD - TOTAL INCOME LIGHT CARD ||=========================== //
 
 const TotalIncomeLightCard = ({ isLoading }) => {
     const classes = useStyles();
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <TotalIncomeCard />
             ) : (
@@ -92,7 +92,7 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                     </List>
                 </MainCard>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

@@ -8,7 +8,7 @@ import { Collapse, List, ListItemIcon, ListItemText, Typography } from '@materia
 import ListItemButton from '@material-ui/core/ListItemButton';
 
 // project imports
-import NavItem from './../NavItem';
+import NavItem from '../NavItem';
 
 // assets
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| SIDEBAR MENU LIST COLLAPSE ITEMS ||-----------------------//
+// ===========================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||=========================== //
 
 const NavCollapse = ({ menu, level }) => {
     const classes = useStyles();
@@ -112,16 +112,16 @@ const NavCollapse = ({ menu, level }) => {
         />
     );
 
-    let menuIconClass = !menu.icon ? classes.listIcon : classes.menuIcon;
+    const menuIconClass = !menu.icon ? classes.listIcon : classes.menuIcon;
 
     return (
-        <React.Fragment>
+        <>
             <ListItemButton
                 className={level > 1 ? classes.listItemNoBack : classes.listItem}
-                sx={{ borderRadius: customization.borderRadius + 'px' }}
+                sx={{ borderRadius: `${customization.borderRadius}px` }}
                 selected={selected === menu.id}
                 onClick={handleClick}
-                style={{ paddingLeft: level * 23 + 'px' }}
+                style={{ paddingLeft: `${level * 23}px` }}
             >
                 <ListItemIcon className={menuIconClass}>{menuIcon}</ListItemIcon>
                 <ListItemText
@@ -149,7 +149,7 @@ const NavCollapse = ({ menu, level }) => {
                     {menus}
                 </List>
             </Collapse>
-        </React.Fragment>
+        </>
     );
 };
 

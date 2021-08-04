@@ -9,8 +9,8 @@ import { Avatar, Button, Grid, Typography } from '@material-ui/core';
 import Chart from 'react-apexcharts';
 
 // project imports
-import MainCard from './../../../ui-component/cards/MainCard';
-import SkeletonTotalOrderCard from './../../../ui-component/cards/Skeleton/EarningCard';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
 
 import ChartDataMonth from './chart-data/total-order-month-line-chart';
 import ChartDataYear from './chart-data/total-order-year-line-chart';
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||-----------------------//
+// ===========================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||=========================== //
 
 const TotalOrderLineChartCard = ({ isLoading }) => {
     const classes = useStyles();
@@ -106,7 +106,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <SkeletonTotalOrderCard />
             ) : (
@@ -168,7 +168,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                     </Grid>
                 </MainCard>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

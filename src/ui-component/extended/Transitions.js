@@ -4,7 +4,7 @@ import React from 'react';
 // material-ui
 import { Box, Collapse, Fade, Grow, Slide, Zoom } from '@material-ui/core';
 
-//-----------------------|| TRANSITIONS ||-----------------------//
+// ===========================|| TRANSITIONS ||=========================== //
 
 const Transitions = React.forwardRef(({ children, position, type, direction, ...others }, ref) => {
     let positionSX = {

@@ -2,19 +2,19 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@material-ui/core';
 
 // project imports
-import AuthWrapper1 from './../AuthWrapper1';
-import AuthCardWrapper from './../AuthCardWrapper';
-import Logo from './../../../../ui-component/Logo';
-import FirebaseRegister from './../firebase-forms/FirebaseRegister';
-import AuthFooter from './../../../../ui-component/cards/AuthFooter';
+import AuthWrapper1 from '../AuthWrapper1';
+import AuthCardWrapper from '../AuthCardWrapper';
+import Logo from 'ui-component/Logo';
+import FirebaseRegister from '../firebase-forms/FirebaseRegister';
+import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // assets
 
-//===============================|| AUTH3 - REGISTER ||===============================//
+//= ==============================|| AUTH3 - REGISTER ||===============================//
 
 const Register = () => {
     const theme = useTheme();

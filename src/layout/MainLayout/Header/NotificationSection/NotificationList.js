@@ -21,7 +21,7 @@ import {
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons';
-import User1 from './../../../../assets/images/users/user-round.svg';
+import User1 from 'assets/images/users/user-round.svg';
 
 // style constant
 const useStyles = makeStyles((theme) => ({
@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| NOTIFICATION LIST ITEM ||-----------------------//
+// ===========================|| NOTIFICATION LIST ITEM ||=========================== //
 
 const NotificationList = () => {
     const classes = useStyles();
@@ -194,7 +194,7 @@ const NotificationList = () => {
                 </ListItem>
                 <Grid container direction="column" className={classes.listContainer}>
                     <Grid item xs={12} className={classes.paddingBottom}>
-                        <Typography variant="subtitle2">All done! Now check your inbox as you're in for a sweet treat!</Typography>
+                        <Typography variant="subtitle2">All done! Now check your inbox as you&apos;re in for a sweet treat!</Typography>
                     </Grid>
                     <Grid item xs={12}>
                         <Grid container>

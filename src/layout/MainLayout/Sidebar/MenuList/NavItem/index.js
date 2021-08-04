@@ -9,7 +9,7 @@ import { Avatar, Chip, ListItemIcon, ListItemText, Typography, useMediaQuery } f
 import ListItemButton from '@material-ui/core/ListItemButton';
 
 // project imports
-import { MENU_OPEN, SET_MENU } from '../../../../../store/actions';
+import { MENU_OPEN, SET_MENU } from 'store/actions';
 
 // assets
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-//-----------------------|| SIDEBAR MENU LIST ITEMS ||-----------------------//
+// ===========================|| SIDEBAR MENU LIST ITEMS ||=========================== //
 
 const NavItem = ({ item, level }) => {
     const classes = useStyles();
@@ -73,14 +73,14 @@ const NavItem = ({ item, level }) => {
         itemTarget = '_blank';
     }
 
-    let listItemProps = { component: React.forwardRef((props, ref) => <Link {...props} to={item.url} />) };
+    let listItemProps = { component: React.forwardRef((props, ref) => <Link ref={ref} {...props} to={item.url} />) };
     if (item.external) {
         listItemProps = { component: 'a', href: item.url };
     }
 
     const itemHandler = (id) => {
-        dispatch({ type: MENU_OPEN, id: id });
-        matchesSM && dispatch({ type: SET_MENU, opened: false });
+        dispatch({ type: MENU_OPEN, id });
+        if (matchesSM) dispatch({ type: SET_MENU, opened: false });
     };
 
     // active menu item on page load
@@ -100,11 +100,11 @@ const NavItem = ({ item, level }) => {
             {...listItemProps}
             disabled={item.disabled}
             className={level > 1 ? classes.listItemNoBack : classes.listItem}
-            sx={{ borderRadius: customization.borderRadius + 'px' }}
+            sx={{ borderRadius: `${customization.borderRadius}px` }}
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
             target={itemTarget}
-            style={{ paddingLeft: level * 23 + 'px' }}
+            style={{ paddingLeft: `${level * 23}px` }}
         >
             <ListItemIcon className={itemIconClass}>{itemIcon}</ListItemIcon>
             <ListItemText

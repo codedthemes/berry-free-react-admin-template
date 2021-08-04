@@ -2,19 +2,19 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@material-ui/core/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@material-ui/core';
 
 // project imports
-import AuthWrapper1 from './../AuthWrapper1';
-import AuthCardWrapper from './../AuthCardWrapper';
-import FirebaseLogin from './../firebase-forms/FirebaseLogin';
-import Logo from './../../../../ui-component/Logo';
-import AuthFooter from './../../../../ui-component/cards/AuthFooter';
+import AuthWrapper1 from '../AuthWrapper1';
+import AuthCardWrapper from '../AuthCardWrapper';
+import FirebaseLogin from '../firebase-forms/FirebaseLogin';
+import Logo from 'ui-component/Logo';
+import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // assets
 
-//================================|| AUTH3 - LOGIN ||================================//
+//= ===============================|| AUTH3 - LOGIN ||================================//
 
 const Login = () => {
     const theme = useTheme();
@@ -70,7 +70,7 @@ const Login = () => {
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >
-                                                Don't have an account?
+                                                Don&apos;t have an account?
                                             </Typography>
                                         </Grid>
                                     </Grid>

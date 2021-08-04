@@ -1,4 +1,4 @@
-//-----------------------|| DASHBOARD - TOTAL ORDER MONTH CHART ||-----------------------//
+// ===========================|| DASHBOARD - TOTAL ORDER MONTH CHART ||=========================== //
 
 const chartData = {
     type: 'line',
@@ -35,7 +35,7 @@ const chartData = {
             },
             y: {
                 title: {
-                    formatter: (seriesName) => 'Total Order'
+                    formatter: () => 'Total Order'
                 }
             },
             marker: {

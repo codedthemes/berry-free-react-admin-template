@@ -1,12 +1,12 @@
 import { createTheme } from '@material-ui/core/styles';
 
 // assets
-import colors from '../assets/scss/_themes-vars.module.scss';
+import colors from 'assets/scss/_themes-vars.module.scss';
 
 // project imports
-import { componentStyleOverrides } from './compStyleOverride';
-import { themePalette } from './palette';
-import { themeTypography } from './typography';
+import componentStyleOverrides from './compStyleOverride';
+import themePalette from './palette';
+import themeTypography from './typography';
 
 /**
  * Represent theme style and structure as per Material-UI
@@ -15,7 +15,7 @@ import { themeTypography } from './typography';
 export function theme(customization) {
     const color = colors;
 
-    let themeOption = {
+    const themeOption = {
         colors: color,
         heading: color.grey900,
         paper: color.paper,
@@ -27,7 +27,7 @@ export function theme(customization) {
         menuSelected: color.secondaryDark,
         menuSelectedBack: color.secondaryLight,
         divider: color.grey200,
-        customization: customization
+        customization
     };
 
     return createTheme({
