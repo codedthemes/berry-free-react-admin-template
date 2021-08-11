@@ -153,6 +153,8 @@ $ npm dev
 $ yarn dev
 ```
 
+The API server will start using the `PORT` specified in `.env` file (default 5000).
+
 <br /> 
 
 ---
