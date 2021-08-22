@@ -54,8 +54,8 @@ To use the product Node JS (>= 12.x) is required and GIT to clone/download the p
 **Step #1** - Clone the project
 
 ```bash
-$ git clone https://github.com/app-generator/react-berry-admin-template.git
-$ cd react-berry-admin-template
+$ git clone https://github.com/app-generator/react-berry-dashboard.git
+$ cd react-berry-dashboard
 ```
 
 <br >
@@ -97,9 +97,9 @@ const config = {
 
 **API Server Descriptor** - POSTMAN Collection
 
-The API Server definition is provided by the [Nodejs API Server](https://github.com/app-generator/api-server-nodejs)
+The API Server signature is provided by the [Unified API Definition](https://docs.appseed.us/boilerplate-code/api-unified-definition)
 
-- [API POSTMAN Collection](https://github.com/app-generator/api-server-nodejs/blob/master/media/api.postman_collection.json) - can be used to mock (simulate) the backend server or code a new one in your preferred framework. 
+- [API POSTMAN Collection](https://github.com/app-generator/api-server-unified/blob/main/api.postman_collection.json) - can be used to mock (simulate) the backend server or code a new one in your preferred framework. 
 
 <br />
 
