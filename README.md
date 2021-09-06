@@ -91,6 +91,11 @@ Please generate a Github issue if you found a bug in any version. We are trying 
 
  - Licensed cover under [MIT](https://github.com/codedthemes/datta-able-bootstrap-dashboard/blob/master/LICENSE)
 
+## Berry - Nodejs version by Appseed
+
+- [Free Nodejs](https://appseed.us/product/react-node-js-berry-dashboard)
+- [Premium Berry Nodejs](https://appseed.us/full-stack/react-berry-dashboard)
+
 ## More Free React Material Admin Templates
 
  - [Free Materially](https://codedthemes.com/item/materially-free-reactjs-admin-template/)
