@@ -26,7 +26,7 @@ Berry brings everything you need for dashboard development. We have added the fo
 
 #### Preview
 
- - [Demo](https://berrydashboard.io/free)
+ - [Demo](https://berry-free-react-admin-template-git-v20-codedthemes.vercel.app/)
 
 #### Download
 
