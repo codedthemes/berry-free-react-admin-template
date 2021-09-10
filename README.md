@@ -81,7 +81,7 @@ Berry is managed by Team [CodedThemes](https://codedthemes.com).
 
 ## Issues
 
-Please generate a Github issue if you found a bug in any version. We are trying to be responsive to resolve the issue.
+Please generate a [Github issue](https://github.com/codedthemes/berry-free-react-admin-template/issues) if you found a bug in any version. We are trying to be responsive to resolve the issue.
 
 ## License
 
