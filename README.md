@@ -75,7 +75,7 @@ git clone https://github.com/codedthemes/berry-free-react-admin-template.git
 
 ## Documentation
 
-Berry documentation helps you out in all aspects from Installation to deployment - Soon it will be available.
+[Berry documentation](https://codedthemes.gitbook.io/berry/) helps you out in all aspects from Installation to deployment.
 
 ## Technology Stack
 
