@@ -1,6 +1,6 @@
 {
     "name": "berry-material-react-free",
-    "version": "1.3.0",
+    "version": "2.0.0",
     "private": true,
     "dependencies": {
         "@emotion/cache": "^11.4.0",
