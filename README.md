@@ -24,8 +24,6 @@ Berry brings everything you need for dashboard development. We have added the fo
 
 ## Free Berry React version
 
-We are expected to release the Free Berry React Admin Template in 07/05/2021
-
 #### Preview
 
  - [Demo](https://berrydashboard.io/free)
