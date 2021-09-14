@@ -6,14 +6,14 @@ import { makeStyles } from '@material-ui/styles';
 import { Avatar, Button, Grid, Typography } from '@material-ui/core';
 
 // third-party
-import Chart from 'react-apexcharts';
+// import Chart from 'react-apexcharts';
 
 // project imports
 import MainCard from './../../../ui-component/cards/MainCard';
 import SkeletonTotalOrderCard from './../../../ui-component/cards/Skeleton/EarningCard';
 
-import ChartDataMonth from './chart-data/total-order-month-line-chart';
-import ChartDataYear from './chart-data/total-order-year-line-chart';
+// import ChartDataMonth from './chart-data/total-order-month-line-chart';
+// import ChartDataYear from './chart-data/total-order-year-line-chart';
 
 // assets
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
@@ -155,13 +155,10 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                                 <ArrowDownwardIcon fontSize="inherit" className={classes.circleIcon} />
                                             </Avatar>
                                         </Grid>
-                                        <Grid item xs={12}>
-                                            <Typography className={classes.subHeading}>Total Order</Typography>
-                                        </Grid>
+                                        {/* <Grid item xs={12}>
+                                            <Typography className={classes.subHeading}>Totaljjj Order</Typography>
+                                        </Grid> */}
                                     </Grid>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    {timeValue ? <Chart {...ChartDataMonth} /> : <Chart {...ChartDataYear} />}
                                 </Grid>
                             </Grid>
                         </Grid>

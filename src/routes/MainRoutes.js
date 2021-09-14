@@ -8,15 +8,15 @@ import Loadable from '../ui-component/Loadable';
 // dashboard routing
 const DashboardDefault = Loadable(lazy(() => import('../views/dashboard/Default')));
 
-// utilities routing
-const UtilsTypography = Loadable(lazy(() => import('../views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('../views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/MaterialIcons')));
-const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
+// // utilities routing
+// const UtilsTypography = Loadable(lazy(() => import('../views/utilities/Typography')));
+// const UtilsColor = Loadable(lazy(() => import('../views/utilities/Color')));
+// const UtilsShadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
+// const UtilsMaterialIcons = Loadable(lazy(() => import('../views/utilities/MaterialIcons')));
+// const UtilsTablerIcons = Loadable(lazy(() => import('../views/utilities/TablerIcons')));
 
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
+// // sample page routing
+// const SamplePage = Loadable(lazy(() => import('../views/sample-page')));
 
 //-----------------------|| MAIN ROUTING ||-----------------------//
 
@@ -40,14 +40,14 @@ const MainRoutes = () => {
             <MainLayout>
                 <Switch location={location} key={location.pathname}>
                     <Route path="/dashboard/default" component={DashboardDefault} />
-
+{/* 
                     <Route path="/utils/util-typography" component={UtilsTypography} />
                     <Route path="/utils/util-color" component={UtilsColor} />
                     <Route path="/utils/util-shadow" component={UtilsShadow} />
                     <Route path="/icons/tabler-icons" component={UtilsTablerIcons} />
-                    <Route path="/icons/material-icons" component={UtilsMaterialIcons} />
+                    <Route path="/icons/material-icons" component={UtilsMaterialIcons} /> */}
 
-                    <Route path="/sample-page" component={SamplePage} />
+                    {/* <Route path="/sample-page" component={SamplePage} /> */}
                 </Switch>
             </MainLayout>
         </Route>
