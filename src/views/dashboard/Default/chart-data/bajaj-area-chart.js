@@ -1,4 +1,3 @@
-//-----------------------|| DASHBOARD - BAJAJ AREA CHART ||-----------------------//
 
 const chartData = {
     type: 'area',
