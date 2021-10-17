@@ -98,9 +98,9 @@ The API Server signature is provided by the [Unified API Definition](https://doc
 
 The product is also open-source and is already configured to work with Berry Dashboard Template - product features:
 
-- Typescript / Node js / Express server
+- Typescript / `NodeJS` / `Express` Server
 - JWT authentication (`passport-jwt` strategy)
-- Persistence: SQLite 
+- Persistence: `SQLite` / `TypeORM`
 
 > Links
 
