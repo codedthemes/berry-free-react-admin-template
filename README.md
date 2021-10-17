@@ -6,11 +6,12 @@
 
 > Features
 
-- Modern aesthetics UI design - Designed by [CodedThemes](https://codedthemes.com/)
+- Modern aesthetics UI design - Designed by *CodedThemes*
 - React, Redux, Redux-persist
 - Authentication: JWT Login/Register/Logout
-- Full-stack ready using **[Node JS API Server](https://github.com/app-generator/api-server-nodejs)** (open-source project)
-  - Features: Typescript / SQLite / TypeORM / Joy (validation) / Passport library - `passport-jwt` strategy.
+- Full-stack ready using a **Node JS API Server** (open-source project) - Server Features
+  - `Typescript` / SQLite Persistence / TypeORM / Joy (validation)
+  - Passport library - `passport-jwt` strategy.
 
 <br />
 
