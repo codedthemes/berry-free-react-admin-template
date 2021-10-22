@@ -1,9 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 // material-ui
-import { makeStyles } from '@material-ui/styles';
+import { useTheme } from '@mui/material/styles';
 import {
     Box,
     Button,
@@ -18,8 +17,9 @@ import {
     InputLabel,
     OutlinedInput,
     Stack,
-    Typography
-} from '@material-ui/core';
+    Typography,
+    useMediaQuery
+} from '@mui/material';
 
 // third party
 import * as Yup from 'yup';
@@ -30,64 +30,25 @@ import useScriptRef from 'hooks/useScriptRef';
 import AnimateButton from 'ui-component/extended/AnimateButton';
 
 // assets
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 import Google from 'assets/images/icons/social-google.svg';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    redButton: {
-        fontSize: '1rem',
-        fontWeight: 500,
-        backgroundColor: theme.palette.grey[50],
-        border: '1px solid',
-        borderColor: theme.palette.grey[100],
-        color: theme.palette.grey[700],
-        textTransform: 'none',
-        '&:hover': {
-            backgroundColor: theme.palette.primary.light
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '0.875rem'
-        }
-    },
-    signDivider: {
-        flexGrow: 1
-    },
-    signText: {
-        cursor: 'unset',
-        margin: theme.spacing(2),
-        padding: '5px 56px',
-        borderColor: `${theme.palette.grey[100]} !important`,
-        color: `${theme.palette.grey[900]}!important`,
-        fontWeight: 500
-    },
-    loginIcon: {
-        marginRight: '16px',
-        [theme.breakpoints.down('sm')]: {
-            marginRight: '8px'
-        }
-    },
-    loginInput: {
-        ...theme.typography.customInput
-    }
-}));
+// ============================|| FIREBASE - LOGIN ||============================ //
 
-//= ===========================|| FIREBASE - LOGIN ||============================//
-
-const FirebaseLogin = (props, { ...others }) => {
-    const classes = useStyles();
-
-    const customization = useSelector((state) => state.customization);
+const FirebaseLogin = ({ ...others }) => {
+    const theme = useTheme();
     const scriptedRef = useScriptRef();
-    const [checked, setChecked] = React.useState(true);
+    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+    const customization = useSelector((state) => state.customization);
+    const [checked, setChecked] = useState(true);
 
     const googleHandler = async () => {
         console.error('Login');
     };
 
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -104,12 +65,19 @@ const FirebaseLogin = (props, { ...others }) => {
                         <Button
                             disableElevation
                             fullWidth
-                            className={classes.redButton}
                             onClick={googleHandler}
                             size="large"
-                            variant="contained"
+                            variant="outlined"
+                            sx={{
+                                color: 'grey.700',
+                                backgroundColor: theme.palette.grey[50],
+                                borderColor: theme.palette.grey[100]
+                            }}
                         >
-                            <img src={Google} alt="google" width="20px" className={classes.loginIcon} /> Sign in with Google
+                            <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
+                                <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
+                            </Box>
+                            Sign in with Google
                         </Button>
                     </AnimateButton>
                 </Grid>
@@ -120,27 +88,31 @@ const FirebaseLogin = (props, { ...others }) => {
                             display: 'flex'
                         }}
                     >
-                        <Divider className={classes.signDivider} orientation="horizontal" />
-                        <AnimateButton>
-                            <Button
-                                variant="outlined"
-                                className={classes.signText}
-                                sx={{ borderRadius: `${customization.borderRadius}px` }}
-                                disableRipple
-                                disabled
-                            >
-                                OR
-                            </Button>
-                        </AnimateButton>
-                        <Divider className={classes.signDivider} orientation="horizontal" />
+                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
+
+                        <Button
+                            variant="outlined"
+                            sx={{
+                                cursor: 'unset',
+                                m: 2,
+                                py: 0.5,
+                                px: 7,
+                                borderColor: `${theme.palette.grey[100]} !important`,
+                                color: `${theme.palette.grey[900]}!important`,
+                                fontWeight: 500,
+                                borderRadius: `${customization.borderRadius}px`
+                            }}
+                            disableRipple
+                            disabled
+                        >
+                            OR
+                        </Button>
+
+                        <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
                     </Box>
                 </Grid>
                 <Grid item xs={12} container alignItems="center" justifyContent="center">
-                    <Box
-                        sx={{
-                            mb: 2
-                        }}
-                    >
+                    <Box sx={{ mb: 2 }}>
                         <Typography variant="subtitle1">Sign in with Email address</Typography>
                     </Box>
                 </Grid>
@@ -174,7 +146,7 @@ const FirebaseLogin = (props, { ...others }) => {
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
-                        <FormControl fullWidth error={Boolean(touched.email && errors.email)} className={classes.loginInput}>
+                        <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
                             <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-email-login"
@@ -184,21 +156,20 @@ const FirebaseLogin = (props, { ...others }) => {
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                                 label="Email Address / Username"
-                                inputProps={{
-                                    classes: {
-                                        notchedOutline: classes.notchedOutline
-                                    }
-                                }}
+                                inputProps={{}}
                             />
                             {touched.email && errors.email && (
                                 <FormHelperText error id="standard-weight-helper-text-email-login">
-                                    {' '}
-                                    {errors.email}{' '}
+                                    {errors.email}
                                 </FormHelperText>
                             )}
                         </FormControl>
 
-                        <FormControl fullWidth error={Boolean(touched.password && errors.password)} className={classes.loginInput}>
+                        <FormControl
+                            fullWidth
+                            error={Boolean(touched.password && errors.password)}
+                            sx={{ ...theme.typography.customInput }}
+                        >
                             <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password-login"
@@ -214,22 +185,18 @@ const FirebaseLogin = (props, { ...others }) => {
                                             onClick={handleClickShowPassword}
                                             onMouseDown={handleMouseDownPassword}
                                             edge="end"
+                                            size="large"
                                         >
                                             {showPassword ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
                                 label="Password"
-                                inputProps={{
-                                    classes: {
-                                        notchedOutline: classes.notchedOutline
-                                    }
-                                }}
+                                inputProps={{}}
                             />
                             {touched.password && errors.password && (
                                 <FormHelperText error id="standard-weight-helper-text-password-login">
-                                    {' '}
-                                    {errors.password}{' '}
+                                    {errors.password}
                                 </FormHelperText>
                             )}
                         </FormControl>
@@ -245,31 +212,17 @@ const FirebaseLogin = (props, { ...others }) => {
                                 }
                                 label="Remember me"
                             />
-                            <Typography
-                                variant="subtitle1"
-                                component={Link}
-                                to="/pages/forgot-password/forgot-password3"
-                                color="secondary"
-                                sx={{ textDecoration: 'none' }}
-                            >
+                            <Typography variant="subtitle1" color="secondary" sx={{ textDecoration: 'none', cursor: 'pointer' }}>
                                 Forgot Password?
                             </Typography>
                         </Stack>
                         {errors.submit && (
-                            <Box
-                                sx={{
-                                    mt: 3
-                                }}
-                            >
+                            <Box sx={{ mt: 3 }}>
                                 <FormHelperText error>{errors.submit}</FormHelperText>
                             </Box>
                         )}
 
-                        <Box
-                            sx={{
-                                mt: 2
-                            }}
-                        >
+                        <Box sx={{ mt: 2 }}>
                             <AnimateButton>
                                 <Button
                                     disableElevation

@@ -1,19 +1,18 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline, StyledEngineProvider } from '@material-ui/core';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
 // routing
-import Routes from './routes';
+import Routes from 'routes';
 
 // defaultTheme
-import themes from './themes';
+import themes from 'themes';
 
 // project imports
-import NavigationScroll from './layout/NavigationScroll';
+import NavigationScroll from 'layout/NavigationScroll';
 
-// ===========================|| APP ||=========================== //
+// ==============================|| APP ||============================== //
 
 const App = () => {
     const customization = useSelector((state) => state.customization);

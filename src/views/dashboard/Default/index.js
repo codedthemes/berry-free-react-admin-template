@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 
 // project imports
 import EarningCard from './EarningCard';
@@ -12,7 +12,7 @@ import TotalIncomeLightCard from './TotalIncomeLightCard';
 import TotalGrowthBarChart from './TotalGrowthBarChart';
 import { gridSpacing } from 'store/constant';
 
-// ===========================|| DEFAULT DASHBOARD ||=========================== //
+// ==============================|| DEFAULT DASHBOARD ||============================== //
 
 const Dashboard = () => {
     const [isLoading, setLoading] = useState(true);

@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { forwardRef } from 'react';
 
 // material-ui
-import { Box, Collapse, Fade, Grow, Slide, Zoom } from '@material-ui/core';
+import { Collapse, Fade, Box, Grow, Slide, Zoom } from '@mui/material';
 
-// ===========================|| TRANSITIONS ||=========================== //
+// ==============================|| TRANSITIONS ||============================== //
 
-const Transitions = React.forwardRef(({ children, position, type, direction, ...others }, ref) => {
+const Transitions = forwardRef(({ children, position, type, direction, ...others }, ref) => {
     let positionSX = {
         transformOrigin: '0 0 0'
     };
@@ -46,15 +46,15 @@ const Transitions = React.forwardRef(({ children, position, type, direction, ...
     }
 
     return (
-        <React.Fragment ref={ref}>
+        <Box ref={ref}>
             {type === 'grow' && (
                 <Grow {...others}>
                     <Box sx={positionSX}>{children}</Box>
                 </Grow>
             )}
             {type === 'collapse' && (
-                <Collapse {...others}>
-                    <Box sx={positionSX}>{children}</Box>
+                <Collapse {...others} sx={positionSX}>
+                    {children}
                 </Collapse>
             )}
             {type === 'fade' && (
@@ -87,7 +87,7 @@ const Transitions = React.forwardRef(({ children, position, type, direction, ...
                     <Box sx={positionSX}>{children}</Box>
                 </Zoom>
             )}
-        </React.Fragment>
+        </Box>
     );
 });
 
