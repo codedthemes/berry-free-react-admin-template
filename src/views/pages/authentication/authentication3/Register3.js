@@ -1,24 +1,23 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@material-ui/core/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@mui/material/styles';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
 import AuthCardWrapper from '../AuthCardWrapper';
 import Logo from 'ui-component/Logo';
-import FirebaseRegister from '../firebase-forms/FirebaseRegister';
+import AuthRegister from '../auth-forms/AuthRegister';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // assets
 
-//= ==============================|| AUTH3 - REGISTER ||===============================//
+// ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const Register = () => {
     const theme = useTheme();
-    const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <AuthWrapper1>
@@ -29,9 +28,9 @@ const Register = () => {
                             <AuthCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                                     <Grid item sx={{ mb: 3 }}>
-                                        <RouterLink to="#">
+                                        <Link to="#">
                                             <Logo />
-                                        </RouterLink>
+                                        </Link>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Grid
@@ -49,7 +48,11 @@ const Register = () => {
                                                     >
                                                         Sign up
                                                     </Typography>
-                                                    <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : ''}>
+                                                    <Typography
+                                                        variant="caption"
+                                                        fontSize="16px"
+                                                        textAlign={matchDownSM ? 'center' : 'inherit'}
+                                                    >
                                                         Enter your credentials to continue
                                                     </Typography>
                                                 </Stack>
@@ -57,7 +60,7 @@ const Register = () => {
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FirebaseRegister />
+                                        <AuthRegister />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Divider />
@@ -65,12 +68,12 @@ const Register = () => {
                                     <Grid item xs={12}>
                                         <Grid item container direction="column" alignItems="center" xs={12}>
                                             <Typography
-                                                component={RouterLink}
+                                                component={Link}
                                                 to="/pages/login/login3"
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >
-                                                Have an account?
+                                                Already have an account?
                                             </Typography>
                                         </Grid>
                                     </Grid>

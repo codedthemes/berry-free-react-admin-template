@@ -1,14 +1,10 @@
 // assets
-import { IconBrandChrome, IconHelp, IconSitemap } from '@tabler/icons';
+import { IconBrandChrome, IconHelp } from '@tabler/icons';
 
 // constant
-const icons = {
-    IconBrandChrome,
-    IconHelp,
-    IconSitemap
-};
+const icons = { IconBrandChrome, IconHelp };
 
-// ===========================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||=========================== //
+// ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
 const other = {
     id: 'sample-docs-roadmap',

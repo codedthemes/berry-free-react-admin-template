@@ -1,7 +1,5 @@
-import React from 'react';
-// material-ui
-import { Grid, Link } from '@material-ui/core';
-import MuiTypography from '@material-ui/core/Typography';
+import { Grid, Link } from '@mui/material';
+import MuiTypography from '@mui/material/Typography';
 
 // project imports
 import SubCard from 'ui-component/cards/SubCard';
@@ -112,8 +110,8 @@ const Typography = () => (
                                 href="https://berrydashboard.io"
                                 target="_blank"
                                 display="block"
-                                gutterBottom
                                 underline="hover"
+                                gutterBottom
                             >
                                 https://berrydashboard.io
                             </MuiTypography>

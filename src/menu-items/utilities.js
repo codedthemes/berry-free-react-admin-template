@@ -1,17 +1,15 @@
 // assets
-import { IconBrandFramer, IconTypography, IconPalette, IconShadow, IconWindmill, IconLayoutGridAdd } from '@tabler/icons';
+import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons';
 
 // constant
 const icons = {
     IconTypography,
     IconPalette,
     IconShadow,
-    IconWindmill,
-    IconBrandFramer,
-    IconLayoutGridAdd
+    IconWindmill
 };
 
-// ===========================|| UTILITIES MENU ITEMS ||=========================== //
+// ==============================|| UTILITIES MENU ITEMS ||============================== //
 
 const utilities = {
     id: 'utilities',

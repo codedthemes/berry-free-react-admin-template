@@ -1,16 +1,12 @@
 // assets
-import { IconKey, IconReceipt2, IconBug, IconBellRinging, IconPhoneCall } from '@tabler/icons';
+import { IconKey } from '@tabler/icons';
 
 // constant
 const icons = {
-    IconKey,
-    IconReceipt2,
-    IconBug,
-    IconBellRinging,
-    IconPhoneCall
+    IconKey
 };
 
-// ===========================|| EXTRA PAGES MENU ITEMS ||=========================== //
+// ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
 const pages = {
     id: 'pages',
@@ -23,6 +19,7 @@ const pages = {
             title: 'Authentication',
             type: 'collapse',
             icon: icons.IconKey,
+
             children: [
                 {
                     id: 'login3',
