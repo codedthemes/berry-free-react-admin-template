@@ -11,7 +11,7 @@ export const initialState = {
     opened: true
 };
 
-// ===========================|| CUSTOMIZATION REDUCER ||=========================== //
+// ==============================|| CUSTOMIZATION REDUCER ||============================== //
 
 const customizationReducer = (state = initialState, action) => {
     let id;

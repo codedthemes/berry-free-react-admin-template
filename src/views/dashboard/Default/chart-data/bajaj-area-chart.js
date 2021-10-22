@@ -25,9 +25,7 @@ const chartData = {
                 show: false
             },
             y: {
-                title: {
-                    formatter: () => 'Ticket '
-                }
+                title: 'Ticket '
             },
             marker: {
                 show: false

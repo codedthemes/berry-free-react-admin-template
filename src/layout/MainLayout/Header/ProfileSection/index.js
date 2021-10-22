@@ -1,10 +1,13 @@
-import React from 'react';
+import { useState, useRef, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // material-ui
-import { makeStyles, useTheme } from '@material-ui/styles';
+import { useTheme } from '@mui/material/styles';
 import {
     Avatar,
+    Box,
     Card,
     CardContent,
     Chip,
@@ -13,15 +16,16 @@ import {
     Grid,
     InputAdornment,
     List,
+    ListItemButton,
     ListItemIcon,
     ListItemText,
     OutlinedInput,
     Paper,
     Popper,
+    Stack,
     Switch,
     Typography
-} from '@material-ui/core';
-import ListItemButton from '@material-ui/core/ListItemButton';
+} from '@mui/material';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -30,134 +34,89 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
 import UpgradePlanCard from './UpgradePlanCard';
-
-// assets
-import { IconLogout, IconSearch, IconSettings } from '@tabler/icons';
 import User1 from 'assets/images/users/user-round.svg';
 
-// style const
-const useStyles = makeStyles((theme) => ({
-    navContainer: {
-        width: '100%',
-        maxWidth: '350px',
-        minWidth: '300px',
-        backgroundColor: theme.palette.background.paper,
-        borderRadius: '10px',
-        [theme.breakpoints.down('sm')]: {
-            minWidth: '100%'
-        }
-    },
-    headerAvatar: {
-        cursor: 'pointer',
-        ...theme.typography.mediumAvatar,
-        margin: '8px 0 8px 8px !important'
-    },
-    profileChip: {
-        height: '48px',
-        alignItems: 'center',
-        borderRadius: '27px',
-        transition: 'all .2s ease-in-out',
-        borderColor: theme.palette.primary.light,
-        backgroundColor: theme.palette.primary.light,
-        '&[aria-controls="menu-list-grow"], &:hover': {
-            borderColor: theme.palette.primary.main,
-            background: `${theme.palette.primary.main}!important`,
-            color: theme.palette.primary.light,
-            '& svg': {
-                stroke: theme.palette.primary.light
-            }
-        }
-    },
-    profileLabel: {
-        lineHeight: 0,
-        padding: '12px'
-    },
-    listItem: {
-        marginTop: '5px'
-    },
-    cardContent: {
-        padding: '16px !important'
-    },
-    card: {
-        backgroundColor: theme.palette.primary.light,
-        marginBottom: '16px',
-        marginTop: '16px'
-    },
-    searchControl: {
-        width: '100%',
-        paddingRight: '8px',
-        paddingLeft: '16px',
-        marginBottom: '16px',
-        marginTop: '16px'
-    },
-    startAdornment: {
-        fontSize: '1rem',
-        color: theme.palette.grey[500]
-    },
-    flex: {
-        display: 'flex'
-    },
-    name: {
-        marginLeft: '2px',
-        fontWeight: 400
-    },
-    ScrollHeight: {
-        height: '100%',
-        maxHeight: 'calc(100vh - 250px)',
-        overflowX: 'hidden'
-    },
-    badgeWarning: {
-        backgroundColor: theme.palette.warning.dark,
-        color: '#fff'
-    }
-}));
+// assets
+import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 
-// ===========================|| PROFILE MENU ||=========================== //
+// ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
-    const classes = useStyles();
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
+    const navigate = useNavigate();
 
-    const [sdm, setSdm] = React.useState(true);
-    const [value, setValue] = React.useState('');
-    const [notification, setNotification] = React.useState(false);
-    const [selectedIndex] = React.useState(1);
-
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
+    const [sdm, setSdm] = useState(true);
+    const [value, setValue] = useState('');
+    const [notification, setNotification] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(-1);
+    const [open, setOpen] = useState(false);
+    /**
+     * anchorRef is used on different componets and specifying one type leads to other components throwing an error
+     * */
+    const anchorRef = useRef(null);
     const handleLogout = async () => {
-        console.error('Logout');
+        console.log('Logout');
     };
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-
         setOpen(false);
     };
 
-    const prevOpen = React.useRef(open);
-    React.useEffect(() => {
+    const handleListItemClick = (event, index, route = '') => {
+        setSelectedIndex(index);
+        handleClose(event);
+
+        if (route && route !== '') {
+            navigate(route);
+        }
+    };
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
+    };
+
+    const prevOpen = useRef(open);
+    useEffect(() => {
         if (prevOpen.current === true && open === false) {
             anchorRef.current.focus();
         }
 
         prevOpen.current = open;
     }, [open]);
+
     return (
         <>
             <Chip
-                classes={{ label: classes.profileLabel }}
-                className={classes.profileChip}
+                sx={{
+                    height: '48px',
+                    alignItems: 'center',
+                    borderRadius: '27px',
+                    transition: 'all .2s ease-in-out',
+                    borderColor: theme.palette.primary.light,
+                    backgroundColor: theme.palette.primary.light,
+                    '&[aria-controls="menu-list-grow"], &:hover': {
+                        borderColor: theme.palette.primary.main,
+                        background: `${theme.palette.primary.main}!important`,
+                        color: theme.palette.primary.light,
+                        '& svg': {
+                            stroke: theme.palette.primary.light
+                        }
+                    },
+                    '& .MuiChip-label': {
+                        lineHeight: 0
+                    }
+                }}
                 icon={
                     <Avatar
                         src={User1}
-                        className={classes.headerAvatar}
+                        sx={{
+                            ...theme.typography.mediumAvatar,
+                            margin: '8px 0 8px 8px !important',
+                            cursor: 'pointer'
+                        }}
                         ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}
                         aria-haspopup="true"
@@ -195,27 +154,25 @@ const ProfileSection = () => {
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
-                                    <CardContent className={classes.cardContent}>
-                                        <Grid container direction="column" spacing={0}>
-                                            <Grid item className={classes.flex}>
+                                    <Box sx={{ p: 2 }}>
+                                        <Stack>
+                                            <Stack direction="row" spacing={0.5} alignItems="center">
                                                 <Typography variant="h4">Good Morning,</Typography>
-                                                <Typography component="span" variant="h4" className={classes.name}>
-                                                    John
+                                                <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
+                                                    Johne Doe
                                                 </Typography>
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography variant="subtitle2">Project Admin</Typography>
-                                            </Grid>
-                                        </Grid>
+                                            </Stack>
+                                            <Typography variant="subtitle2">Project Admin</Typography>
+                                        </Stack>
                                         <OutlinedInput
-                                            className={classes.searchControl}
+                                            sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
                                             id="input-search-profile"
                                             value={value}
                                             onChange={(e) => setValue(e.target.value)}
                                             placeholder="Search profile options"
                                             startAdornment={
                                                 <InputAdornment position="start">
-                                                    <IconSearch stroke={1.5} size="1.3rem" className={classes.startAdornment} />
+                                                    <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
                                                 </InputAdornment>
                                             }
                                             aria-describedby="search-helper-text"
@@ -224,10 +181,17 @@ const ProfileSection = () => {
                                             }}
                                         />
                                         <Divider />
-                                        <PerfectScrollbar className={classes.ScrollHeight}>
+                                    </Box>
+                                    <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
+                                        <Box sx={{ p: 2 }}>
                                             <UpgradePlanCard />
                                             <Divider />
-                                            <Card className={classes.card}>
+                                            <Card
+                                                sx={{
+                                                    bgcolor: theme.palette.primary.light,
+                                                    my: 2
+                                                }}
+                                            >
                                                 <CardContent>
                                                     <Grid container spacing={3} direction="column">
                                                         <Grid item>
@@ -265,9 +229,61 @@ const ProfileSection = () => {
                                                 </CardContent>
                                             </Card>
                                             <Divider />
-                                            <List component="nav" className={classes.navContainer}>
+                                            <List
+                                                component="nav"
+                                                sx={{
+                                                    width: '100%',
+                                                    maxWidth: 350,
+                                                    minWidth: 300,
+                                                    backgroundColor: theme.palette.background.paper,
+                                                    borderRadius: '10px',
+                                                    [theme.breakpoints.down('md')]: {
+                                                        minWidth: '100%'
+                                                    },
+                                                    '& .MuiListItemButton-root': {
+                                                        mt: 0.5
+                                                    }
+                                                }}
+                                            >
                                                 <ListItemButton
-                                                    className={classes.listItem}
+                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                    selected={selectedIndex === 0}
+                                                    onClick={(event) => handleListItemClick(event, 0, '/user/account-profile/profile1')}
+                                                >
+                                                    <ListItemIcon>
+                                                        <IconSettings stroke={1.5} size="1.3rem" />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                                                </ListItemButton>
+                                                <ListItemButton
+                                                    sx={{ borderRadius: `${customization.borderRadius}px` }}
+                                                    selected={selectedIndex === 1}
+                                                    onClick={(event) => handleListItemClick(event, 1, '/user/social-profile/posts')}
+                                                >
+                                                    <ListItemIcon>
+                                                        <IconUser stroke={1.5} size="1.3rem" />
+                                                    </ListItemIcon>
+                                                    <ListItemText
+                                                        primary={
+                                                            <Grid container spacing={1} justifyContent="space-between">
+                                                                <Grid item>
+                                                                    <Typography variant="body2">Social Profile</Typography>
+                                                                </Grid>
+                                                                <Grid item>
+                                                                    <Chip
+                                                                        label="02"
+                                                                        size="small"
+                                                                        sx={{
+                                                                            bgcolor: theme.palette.warning.dark,
+                                                                            color: theme.palette.background.default
+                                                                        }}
+                                                                    />
+                                                                </Grid>
+                                                            </Grid>
+                                                        }
+                                                    />
+                                                </ListItemButton>
+                                                <ListItemButton
                                                     sx={{ borderRadius: `${customization.borderRadius}px` }}
                                                     selected={selectedIndex === 4}
                                                     onClick={handleLogout}
@@ -278,8 +294,8 @@ const ProfileSection = () => {
                                                     <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
                                                 </ListItemButton>
                                             </List>
-                                        </PerfectScrollbar>
-                                    </CardContent>
+                                        </Box>
+                                    </PerfectScrollbar>
                                 </MainCard>
                             </ClickAwayListener>
                         </Paper>

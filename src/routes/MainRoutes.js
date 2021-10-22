@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import { lazy } from 'react';
 
 // project imports
 import MainLayout from 'layout/MainLayout';
@@ -17,7 +17,7 @@ const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
-// ===========================|| MAIN ROUTING ||=========================== //
+// ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
     path: '/',
@@ -51,7 +51,6 @@ const MainRoutes = {
             path: '/icons/material-icons',
             element: <UtilsMaterialIcons />
         },
-
         {
             path: '/sample-page',
             element: <SamplePage />

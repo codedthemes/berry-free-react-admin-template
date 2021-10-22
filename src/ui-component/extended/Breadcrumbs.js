@@ -1,90 +1,55 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Divider, Grid, Typography } from '@material-ui/core';
-import MuiBreadcrumbs from '@material-ui/core/Breadcrumbs';
+import { useTheme } from '@mui/material/styles';
+import { Box, Card, Divider, Grid, Typography } from '@mui/material';
+import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project imports
 import config from 'config';
 import { gridSpacing } from 'store/constant';
 
 // assets
-import AccountTreeTwoToneIcon from '@material-ui/icons/AccountTreeTwoTone';
-import HomeIcon from '@material-ui/icons/Home';
-import HomeTwoToneIcon from '@material-ui/icons/HomeTwoTone';
+import { IconTallymark1 } from '@tabler/icons';
+import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
+import HomeIcon from '@mui/icons-material/Home';
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    link: {
-        display: 'flex',
-        color: theme.palette.grey[900],
-        textDecoration: 'none',
-        alignContent: 'center',
-        alignItems: 'center'
-    },
-    activeLink: {
-        display: 'flex',
-        textDecoration: 'none',
-        alignContent: 'center',
-        alignItems: 'center',
-        color: theme.palette.grey[500]
-    },
-    icon: {
+const linkSX = {
+    display: 'flex',
+    color: 'grey.900',
+    textDecoration: 'none',
+    alignContent: 'center',
+    alignItems: 'center'
+};
+
+// ==============================|| BREADCRUMBS ||============================== //
+
+const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAlign, separator, title, titleBottom, ...others }) => {
+    const theme = useTheme();
+
+    const iconStyle = {
         marginRight: theme.spacing(0.75),
         marginTop: `-${theme.spacing(0.25)}`,
         width: '1rem',
         height: '1rem',
         color: theme.palette.secondary.main
-    },
-    content: {
-        padding: '16px !important'
-    },
-    noPadding: {
-        padding: '16px !important',
-        paddingLeft: '0 !important'
-    },
-    card: {
-        marginBottom: theme.spacing(gridSpacing),
-        border: '1px solid',
-        borderColor: theme.palette.primary[200] + 75
-    },
-    root: {
-        background: 'transparent',
-        boxShadow: 'none',
-        border: 'none'
-    },
-    titleTop: {
-        marginBottom: theme.spacing(1)
-    },
-    titleBottom: {
-        marginTop: theme.spacing(1)
-    },
-    divider: {
-        borderColor: theme.palette.primary.main,
-        marginBottom: theme.spacing(gridSpacing)
-    }
-}));
+    };
 
-// ===========================|| BREADCRUMBS ||=========================== //
-
-const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAlign, separator, title, titleBottom, ...others }) => {
-    const classes = useStyles();
-
-    const [main, setMain] = useState([]);
-    const [item, setItem] = useState([]);
+    const [main, setMain] = useState();
+    const [item, setItem] = useState();
 
     // set active item state
-    const getCollapse = (item) => {
-        if (item.children) {
-            item.children.filter((collapse) => {
+    const getCollapse = (menu) => {
+        if (menu.children) {
+            menu.children.filter((collapse) => {
                 if (collapse.type && collapse.type === 'collapse') {
                     getCollapse(collapse);
                 } else if (collapse.type && collapse.type === 'item') {
                     if (document.location.pathname === config.basename + collapse.url) {
-                        setMain(item);
+                        setMain(menu);
                         setItem(collapse);
                     }
                 }
@@ -94,9 +59,9 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
     };
 
     useEffect(() => {
-        navigation.items.map((item, index) => {
-            if (item.type && item.type === 'group') {
-                getCollapse(item, index);
+        navigation?.items?.map((menu) => {
+            if (menu.type && menu.type === 'group') {
+                getCollapse(menu);
             }
             return false;
         });
@@ -104,23 +69,11 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
     // item separator
     const SeparatorIcon = separator;
-    const separatorIcon = separator ? <SeparatorIcon stroke={1.5} size="1rem" /> : '/';
-
-    // card class
-    let cardClass = classes.card;
-    if (card === false) {
-        cardClass = classes.root;
-    }
-
-    // card content class
-    let contentClass = classes.content;
-    if (card === false) {
-        contentClass = classes.noPadding;
-    }
+    const separatorIcon = separator ? <SeparatorIcon stroke={1.5} size="1rem" /> : <IconTallymark1 stroke={1.5} size="1rem" />;
 
     let mainContent;
     let itemContent;
-    let breadcrumbContent = '';
+    let breadcrumbContent = <Typography />;
     let itemTitle = '';
     let CollapseIcon;
     let ItemIcon;
@@ -129,8 +82,8 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
     if (main && main.type === 'collapse') {
         CollapseIcon = main.icon ? main.icon : AccountTreeTwoToneIcon;
         mainContent = (
-            <Typography component={Link} to="#" variant="subtitle1" className={classes.link}>
-                {icons && <CollapseIcon className={classes.icon} />}
+            <Typography component={Link} to="#" variant="subtitle1" sx={linkSX}>
+                {icons && <CollapseIcon style={iconStyle} />}
                 {main.title}
             </Typography>
         );
@@ -142,8 +95,17 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
 
         ItemIcon = item.icon ? item.icon : AccountTreeTwoToneIcon;
         itemContent = (
-            <Typography variant="subtitle1" className={classes.activeLink}>
-                {icons && <ItemIcon className={classes.icon} />}
+            <Typography
+                variant="subtitle1"
+                sx={{
+                    display: 'flex',
+                    textDecoration: 'none',
+                    alignContent: 'center',
+                    alignItems: 'center',
+                    color: 'grey.500'
+                }}
+            >
+                {icons && <ItemIcon style={iconStyle} />}
                 {itemTitle}
             </Typography>
         );
@@ -151,8 +113,16 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
         // main
         if (item.breadcrumbs !== false) {
             breadcrumbContent = (
-                <Card className={cardClass} {...others}>
-                    <CardContent className={contentClass}>
+                <Card
+                    sx={{
+                        marginBottom: card === false ? 0 : theme.spacing(gridSpacing),
+                        border: card === false ? 'none' : '1px solid',
+                        borderColor: theme.palette.primary[200] + 75,
+                        background: card === false ? 'transparent' : theme.palette.background.default
+                    }}
+                    {...others}
+                >
+                    <Box sx={{ p: 2, pl: card === false ? 0 : 2 }}>
                         <Grid
                             container
                             direction={rightAlign ? 'row' : 'column'}
@@ -163,16 +133,20 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
                             {title && !titleBottom && (
                                 <Grid item>
                                     <Typography variant="h3" sx={{ fontWeight: 500 }}>
-                                        {' '}
-                                        {item.title}{' '}
+                                        {item.title}
                                     </Typography>
                                 </Grid>
                             )}
                             <Grid item>
-                                <MuiBreadcrumbs aria-label="breadcrumb" maxItems={maxItems || 8} separator={separatorIcon}>
-                                    <Typography component={Link} to="/" color="inherit" variant="subtitle1" className={classes.link}>
-                                        {icons && <HomeTwoToneIcon className={classes.icon} />}
-                                        {icon && <HomeIcon className={classes.icon} style={{ marginRight: 0 }} />}
+                                <MuiBreadcrumbs
+                                    sx={{ '& .MuiBreadcrumbs-separator': { width: 16, ml: 1.25, mr: 1.25 } }}
+                                    aria-label="breadcrumb"
+                                    maxItems={maxItems || 8}
+                                    separator={separatorIcon}
+                                >
+                                    <Typography component={Link} to="/" color="inherit" variant="subtitle1" sx={linkSX}>
+                                        {icons && <HomeTwoToneIcon sx={iconStyle} />}
+                                        {icon && <HomeIcon sx={{ ...iconStyle, mr: 0 }} />}
                                         {!icon && 'Dashboard'}
                                     </Typography>
                                     {mainContent}
@@ -182,14 +156,13 @@ const Breadcrumbs = ({ card, divider, icon, icons, maxItems, navigation, rightAl
                             {title && titleBottom && (
                                 <Grid item>
                                     <Typography variant="h3" sx={{ fontWeight: 500 }}>
-                                        {' '}
-                                        {item.title}{' '}
+                                        {item.title}
                                     </Typography>
                                 </Grid>
                             )}
                         </Grid>
-                    </CardContent>
-                    {card === false && divider !== false && <Divider className={classes.divider} />}
+                    </Box>
+                    {card === false && divider !== false && <Divider sx={{ borderColor: theme.palette.primary.main, mb: gridSpacing }} />}
                 </Card>
             );
         }

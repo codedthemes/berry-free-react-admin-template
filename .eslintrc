@@ -4,7 +4,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["airbnb", "prettier", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],
+    "extends": ["airbnb", "prettier", "plugin:react/jsx-runtime", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],
     "settings": {
         "import/resolver": {
             "node": {
@@ -32,6 +32,7 @@
         "import/order": 0,
         "no-console": 0,
         "jsx-a11y/anchor-is-valid": 0,
+        "prefer-destructuring": 0,
         "no-shadow": 0,
         "no-unused-vars": [
             1,
@@ -47,7 +48,8 @@
                 "singleQuote": true,
                 "trailingComma": "none",
                 "tabWidth": 4,
-                "useTabs": false
+                "useTabs": false,
+                "endOfLine": "auto"
             }
         ]
     }

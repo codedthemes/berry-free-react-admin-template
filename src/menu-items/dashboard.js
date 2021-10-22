@@ -1,13 +1,10 @@
 // assets
-import { IconDashboard, IconDeviceAnalytics } from '@tabler/icons';
+import { IconDashboard } from '@tabler/icons';
 
 // constant
-const icons = {
-    IconDashboard,
-    IconDeviceAnalytics
-};
+const icons = { IconDashboard };
 
-// ===========================|| DASHBOARD MENU ITEMS ||=========================== //
+// ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
 const dashboard = {
     id: 'dashboard',

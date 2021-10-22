@@ -1,7 +1,6 @@
 /**
  * Password validator for login pages
  */
-
 import value from 'assets/scss/_themes-vars.module.scss';
 
 // has number
@@ -20,7 +19,7 @@ export const strengthColor = (count) => {
     if (count < 4) return { label: 'Normal', color: value.orangeMain };
     if (count < 5) return { label: 'Good', color: value.successMain };
     if (count < 6) return { label: 'Strong', color: value.successDark };
-    return false;
+    return { label: 'Poor', color: value.errorMain };
 };
 
 // password strength indicator
