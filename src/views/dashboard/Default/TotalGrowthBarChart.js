@@ -1,17 +1,19 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 // material-ui
-import { Grid, MenuItem, TextField, Typography, useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material/styles';
+import { Grid, MenuItem, TextField, Typography } from '@mui/material';
 
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // project imports
-import SkeletonTotalGrowthBarChart from './../../../ui-component/cards/Skeleton/TotalGrowthBarChart';
-import MainCard from './../../../ui-component/cards/MainCard';
-import { gridSpacing } from './../../../store/constant';
+import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
+import MainCard from 'ui-component/cards/MainCard';
+import { gridSpacing } from 'store/constant';
 
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';
@@ -31,22 +33,25 @@ const status = [
     }
 ];
 
-//-----------------------|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||-----------------------//
+// ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
 const TotalGrowthBarChart = ({ isLoading }) => {
-    const [value, setValue] = React.useState('today');
+    const [value, setValue] = useState('today');
     const theme = useTheme();
+    const customization = useSelector((state) => state.customization);
 
-    const primary = theme.palette.text.primary;
+    const { navType } = customization;
+    const { primary } = theme.palette.text;
+    const darkLight = theme.palette.dark.light;
     const grey200 = theme.palette.grey[200];
+    const grey500 = theme.palette.grey[500];
 
     const primary200 = theme.palette.primary[200];
     const primaryDark = theme.palette.primary.dark;
     const secondaryMain = theme.palette.secondary.main;
     const secondaryLight = theme.palette.secondary.light;
-    const grey500 = theme.palette.grey[500];
 
-    React.useEffect(() => {
+    useEffect(() => {
         const newChartData = {
             ...chartData.options,
             colors: [primary200, primaryDark, secondaryMain, secondaryLight],
@@ -81,10 +86,10 @@ const TotalGrowthBarChart = ({ isLoading }) => {
         if (!isLoading) {
             ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
         }
-    }, [primary200, primaryDark, secondaryMain, secondaryLight, primary, grey200, isLoading, grey500]);
+    }, [navType, primary200, primaryDark, secondaryMain, secondaryLight, primary, darkLight, grey200, isLoading, grey500]);
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <SkeletonTotalGrowthBarChart />
             ) : (
@@ -124,7 +129,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                     </Grid>
                 </MainCard>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

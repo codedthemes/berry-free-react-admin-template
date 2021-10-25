@@ -4,13 +4,18 @@
 // third-party
 @import '~react-perfect-scrollbar/dist/css/styles.css';
 
-//-----------------------|| APEXCHART ||-----------------------//
+// ==============================|| LIGHT BOX ||============================== //
+.fullscreen .react-images__blanket {
+    z-index: 1200;
+}
+
+// ==============================|| APEXCHART ||============================== //
 
 .apexcharts-legend-series .apexcharts-legend-marker {
     margin-right: 8px;
 }
 
-//-----------------------|| PERFECT SCROLLBAR ||-----------------------//
+// ==============================|| PERFECT SCROLLBAR ||============================== //
 
 .scrollbar-container {
     .ps__rail-y {
@@ -48,7 +53,7 @@
     }
 }
 
-//-----------------------|| ANIMATION KEYFRAMES ||-----------------------//
+// ==============================|| ANIMATION KEYFRAMES ||============================== //
 
 @keyframes wings {
     50% {

@@ -1,4 +1,4 @@
-//-----------------------|| DASHBOARD - TOTAL GROWTH BAR CHART ||-----------------------//
+// ===========================|| DASHBOARD - TOTAL GROWTH BAR CHART ||=========================== //
 
 const chartData = {
     height: 480,

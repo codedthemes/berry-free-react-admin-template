@@ -1,33 +1,21 @@
-import React from 'react';
-
 // material-ui
-import { makeStyles } from '@material-ui/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgress from '@mui/material/LinearProgress';
+import { styled } from '@mui/material/styles';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    root: {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        zIndex: 1301,
-        width: '100%',
-        '& > * + *': {
-            marginTop: theme.spacing(2)
-        }
-    }
-}));
+// styles
+const LoaderWrapper = styled('div')({
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 1301,
+    width: '100%'
+});
 
-//-----------------------|| Loader ||-----------------------//
-
-const Loader = () => {
-    const classes = useStyles();
-
-    return (
-        <div className={classes.root}>
-            <LinearProgress color="primary" />
-        </div>
-    );
-};
+// ==============================|| LOADER ||============================== //
+const Loader = () => (
+    <LoaderWrapper>
+        <LinearProgress color="primary" />
+    </LoaderWrapper>
+);
 
 export default Loader;

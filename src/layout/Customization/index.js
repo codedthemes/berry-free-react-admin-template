@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@mui/material/styles';
 import {
     Drawer,
     Fab,
@@ -15,26 +15,24 @@ import {
     Slider,
     Tooltip,
     Typography
-} from '@material-ui/core';
+} from '@mui/material';
+import { IconSettings } from '@tabler/icons';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import SubCard from '../../ui-component/cards/SubCard';
-import AnimateButton from '../../ui-component/extended/AnimateButton';
-import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from '../../store/actions'; // THEME_RTL
-import { gridSpacing } from '../../store/constant';
-
-// assets
-import { IconSettings } from '@tabler/icons';
+import SubCard from 'ui-component/cards/SubCard';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import { SET_BORDER_RADIUS, SET_FONT_FAMILY } from 'store/actions';
+import { gridSpacing } from 'store/constant';
 
 // concat 'px'
 function valueText(value) {
     return `${value}px`;
 }
 
-//-----------------------|| LIVE CUSTOMIZATION ||-----------------------//
+// ==============================|| LIVE CUSTOMIZATION ||============================== //
 
 const Customization = () => {
     const theme = useTheme();
@@ -42,19 +40,19 @@ const Customization = () => {
     const customization = useSelector((state) => state.customization);
 
     // drawer on/off
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen(!open);
     };
 
     // state - border radius
-    const [borderRadius, setBorderRadius] = React.useState(customization.borderRadius);
+    const [borderRadius, setBorderRadius] = useState(customization.borderRadius);
     const handleBorderRadius = (event, newValue) => {
         setBorderRadius(newValue);
     };
 
     useEffect(() => {
-        dispatch({ type: SET_BORDER_RADIUS, borderRadius: borderRadius });
+        dispatch({ type: SET_BORDER_RADIUS, borderRadius });
     }, [dispatch, borderRadius]);
 
     let initialFont;
@@ -72,7 +70,7 @@ const Customization = () => {
     }
 
     // state - font family
-    const [fontFamily, setFontFamily] = React.useState(initialFont);
+    const [fontFamily, setFontFamily] = useState(initialFont);
     useEffect(() => {
         let newFont;
         switch (fontFamily) {
@@ -91,23 +89,25 @@ const Customization = () => {
     }, [dispatch, fontFamily]);
 
     return (
-        <React.Fragment>
+        <>
             {/* toggle button */}
-
             <Tooltip title="Live Customize">
                 <Fab
                     component="div"
                     onClick={handleToggle}
                     size="medium"
-                    variant="string"
+                    variant="circular"
                     color="secondary"
                     sx={{
-                        bottom: 0,
-                        m: 4,
+                        borderRadius: 0,
+                        borderTopLeftRadius: '50%',
+                        borderBottomLeftRadius: '50%',
+                        borderTopRightRadius: '50%',
+                        borderBottomRightRadius: '4px',
+                        top: '25%',
                         position: 'fixed',
-                        right: 20,
-                        zIndex: (theme) => theme.zIndex.speedDial,
-                        boxShadow: theme.shadows[8]
+                        right: 10,
+                        zIndex: theme.zIndex.speedDial
                     }}
                 >
                     <AnimateButton type="rotate">
@@ -146,7 +146,7 @@ const Customization = () => {
                                             label="Roboto"
                                             sx={{
                                                 '& .MuiSvgIcon-root': { fontSize: 28 },
-                                                '& .MuiFormControlLabel-label': { color: 'grey.900' }
+                                                '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
                                             }}
                                         />
                                         <FormControlLabel
@@ -155,7 +155,7 @@ const Customization = () => {
                                             label="Poppins"
                                             sx={{
                                                 '& .MuiSvgIcon-root': { fontSize: 28 },
-                                                '& .MuiFormControlLabel-label': { color: 'grey.900' }
+                                                '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
                                             }}
                                         />
                                         <FormControlLabel
@@ -164,7 +164,7 @@ const Customization = () => {
                                             label="Inter"
                                             sx={{
                                                 '& .MuiSvgIcon-root': { fontSize: 28 },
-                                                '& .MuiFormControlLabel-label': { color: 'grey.900' }
+                                                '& .MuiFormControlLabel-label': { color: theme.palette.grey[900] }
                                             }}
                                         />
                                     </RadioGroup>
@@ -211,7 +211,7 @@ const Customization = () => {
                     </Grid>
                 </PerfectScrollbar>
             </Drawer>
-        </React.Fragment>
+        </>
     );
 };
 

@@ -1,16 +1,12 @@
 // assets
-import { IconBrandChrome, IconHelp, IconSitemap } from '@tabler/icons';
+import { IconBrandChrome, IconHelp } from '@tabler/icons';
 
 // constant
-const icons = {
-    IconBrandChrome: IconBrandChrome,
-    IconHelp: IconHelp,
-    IconSitemap: IconSitemap
-};
+const icons = { IconBrandChrome, IconHelp };
 
-//-----------------------|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||-----------------------//
+// ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
-export const other = {
+const other = {
     id: 'sample-docs-roadmap',
     type: 'group',
     children: [
@@ -19,17 +15,19 @@ export const other = {
             title: 'Sample Page',
             type: 'item',
             url: '/sample-page',
-            icon: icons['IconBrandChrome'],
+            icon: icons.IconBrandChrome,
             breadcrumbs: false
         },
         {
             id: 'documentation',
             title: 'Documentation',
             type: 'item',
-            url: 'https://docs.appseed.us/products/react/node-js-berry-dashboard',
-            icon: icons['IconHelp'],
+            url: 'https://codedthemes.gitbook.io/berry/',
+            icon: icons.IconHelp,
             external: true,
             target: true
         }
     ]
 };
+
+export default other;

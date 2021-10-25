@@ -1,4 +1,4 @@
-//-----------------------|| DASHBOARD - BAJAJ AREA CHART ||-----------------------//
+// ===========================|| DASHBOARD - BAJAJ AREA CHART ||=========================== //
 
 const chartData = {
     type: 'area',
@@ -25,9 +25,7 @@ const chartData = {
                 show: false
             },
             y: {
-                title: {
-                    formatter: (seriesName) => 'Ticket '
-                }
+                title: 'Ticket '
             },
             marker: {
                 show: false

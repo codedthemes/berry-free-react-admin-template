@@ -1,109 +1,65 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useState } from 'react';
 
 // material-ui
-import { makeStyles } from '@material-ui/styles';
-import { Avatar, Grid, Menu, MenuItem, Typography } from '@material-ui/core';
+import { styled, useTheme } from '@mui/material/styles';
+import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
-import MainCard from './../../../ui-component/cards/MainCard';
-import SkeletonEarningCard from './../../../ui-component/cards/Skeleton/EarningCard';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 // assets
-import EarningIcon from './../../../assets/images/icons/earning.svg';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import GetAppTwoToneIcon from '@material-ui/icons/GetAppOutlined';
-import FileCopyTwoToneIcon from '@material-ui/icons/FileCopyOutlined';
-import PictureAsPdfTwoToneIcon from '@material-ui/icons/PictureAsPdfOutlined';
-import ArchiveTwoToneIcon from '@material-ui/icons/ArchiveOutlined';
+import EarningIcon from 'assets/images/icons/earning.svg';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
+import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
+import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
+import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    card: {
-        backgroundColor: theme.palette.secondary.dark,
-        color: '#fff',
-        overflow: 'hidden',
-        position: 'relative',
-        '&:after': {
-            content: '""',
-            position: 'absolute',
-            width: '210px',
-            height: '210px',
-            background: theme.palette.secondary[800],
-            borderRadius: '50%',
-            top: '-85px',
-            right: '-95px',
-            [theme.breakpoints.down('xs')]: {
-                top: '-105px',
-                right: '-140px'
-            }
-        },
-        '&:before': {
-            content: '""',
-            position: 'absolute',
-            width: '210px',
-            height: '210px',
-            background: theme.palette.secondary[800],
-            borderRadius: '50%',
-            top: '-125px',
-            right: '-15px',
-            opacity: 0.5,
-            [theme.breakpoints.down('xs')]: {
-                top: '-155px',
-                right: '-70px'
-            }
+const CardWrapper = styled(MainCard)(({ theme }) => ({
+    backgroundColor: theme.palette.secondary.dark,
+    color: '#fff',
+    overflow: 'hidden',
+    position: 'relative',
+    '&:after': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: theme.palette.secondary[800],
+        borderRadius: '50%',
+        top: -85,
+        right: -95,
+        [theme.breakpoints.down('sm')]: {
+            top: -105,
+            right: -140
         }
     },
-    content: {
-        padding: '20px !important'
-    },
-    avatar: {
-        ...theme.typography.commonAvatar,
-        ...theme.typography.largeAvatar,
-        backgroundColor: theme.palette.secondary[800],
-        marginTop: '8px'
-    },
-    avatarRight: {
-        ...theme.typography.commonAvatar,
-        ...theme.typography.mediumAvatar,
-        backgroundColor: theme.palette.secondary.dark,
-        color: theme.palette.secondary[200],
-        zIndex: 1
-    },
-    cardHeading: {
-        fontSize: '2.125rem',
-        fontWeight: 500,
-        marginRight: '8px',
-        marginTop: '14px',
-        marginBottom: '6px'
-    },
-    subHeading: {
-        fontSize: '1rem',
-        fontWeight: 500,
-        color: theme.palette.secondary[200]
-    },
-    avatarCircle: {
-        cursor: 'pointer',
-        ...theme.typography.smallAvatar,
-        backgroundColor: theme.palette.secondary[200],
-        color: theme.palette.secondary.dark
-    },
-    circleIcon: {
-        transform: 'rotate3d(1, 1, 1, 45deg)'
-    },
-    menuItem: {
-        marginRight: '14px',
-        fontSize: '1.25rem'
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: theme.palette.secondary[800],
+        borderRadius: '50%',
+        top: -125,
+        right: -15,
+        opacity: 0.5,
+        [theme.breakpoints.down('sm')]: {
+            top: -155,
+            right: -70
+        }
     }
 }));
 
-//===========================|| DASHBOARD DEFAULT - EARNING CARD ||===========================//
+// ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
 const EarningCard = ({ isLoading }) => {
-    const classes = useStyles();
+    const theme = useTheme();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -114,80 +70,113 @@ const EarningCard = ({ isLoading }) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <SkeletonEarningCard />
             ) : (
-                <MainCard border={false} className={classes.card} contentClass={classes.content}>
-                    <Grid container direction="column">
-                        <Grid item>
-                            <Grid container justifyContent="space-between">
-                                <Grid item>
-                                    <Avatar variant="rounded" className={classes.avatar}>
-                                        <img src={EarningIcon} alt="Notification" />
-                                    </Avatar>
-                                </Grid>
-                                <Grid item>
-                                    <Avatar
-                                        variant="rounded"
-                                        className={classes.avatarRight}
-                                        aria-controls="menu-earning-card"
-                                        aria-haspopup="true"
-                                        onClick={handleClick}
-                                    >
-                                        <MoreHorizIcon fontSize="inherit" />
-                                    </Avatar>
-                                    <Menu
-                                        id="menu-earning-card"
-                                        anchorEl={anchorEl}
-                                        keepMounted
-                                        open={Boolean(anchorEl)}
-                                        onClose={handleClose}
-                                        variant="selectedMenu"
-                                        anchorOrigin={{
-                                            vertical: 'bottom',
-                                            horizontal: 'right'
-                                        }}
-                                        transformOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right'
-                                        }}
-                                    >
-                                        <MenuItem onClick={handleClose}>
-                                            <GetAppTwoToneIcon fontSize="inherit" className={classes.menuItem} /> Import Card
-                                        </MenuItem>
-                                        <MenuItem onClick={handleClose}>
-                                            <FileCopyTwoToneIcon fontSize="inherit" className={classes.menuItem} /> Copy Data
-                                        </MenuItem>
-                                        <MenuItem onClick={handleClose}>
-                                            <PictureAsPdfTwoToneIcon fontSize="inherit" className={classes.menuItem} /> Export
-                                        </MenuItem>
-                                        <MenuItem onClick={handleClose}>
-                                            <ArchiveTwoToneIcon fontSize="inherit" className={classes.menuItem} /> Archive File
-                                        </MenuItem>
-                                    </Menu>
+                <CardWrapper border={false} content={false}>
+                    <Box sx={{ p: 2.25 }}>
+                        <Grid container direction="column">
+                            <Grid item>
+                                <Grid container justifyContent="space-between">
+                                    <Grid item>
+                                        <Avatar
+                                            variant="rounded"
+                                            sx={{
+                                                ...theme.typography.commonAvatar,
+                                                ...theme.typography.largeAvatar,
+                                                backgroundColor: theme.palette.secondary[800],
+                                                mt: 1
+                                            }}
+                                        >
+                                            <img src={EarningIcon} alt="Notification" />
+                                        </Avatar>
+                                    </Grid>
+                                    <Grid item>
+                                        <Avatar
+                                            variant="rounded"
+                                            sx={{
+                                                ...theme.typography.commonAvatar,
+                                                ...theme.typography.mediumAvatar,
+                                                backgroundColor: theme.palette.secondary.dark,
+                                                color: theme.palette.secondary[200],
+                                                zIndex: 1
+                                            }}
+                                            aria-controls="menu-earning-card"
+                                            aria-haspopup="true"
+                                            onClick={handleClick}
+                                        >
+                                            <MoreHorizIcon fontSize="inherit" />
+                                        </Avatar>
+                                        <Menu
+                                            id="menu-earning-card"
+                                            anchorEl={anchorEl}
+                                            keepMounted
+                                            open={Boolean(anchorEl)}
+                                            onClose={handleClose}
+                                            variant="selectedMenu"
+                                            anchorOrigin={{
+                                                vertical: 'bottom',
+                                                horizontal: 'right'
+                                            }}
+                                            transformOrigin={{
+                                                vertical: 'top',
+                                                horizontal: 'right'
+                                            }}
+                                        >
+                                            <MenuItem onClick={handleClose}>
+                                                <GetAppTwoToneIcon sx={{ mr: 1.75 }} /> Import Card
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <FileCopyTwoToneIcon sx={{ mr: 1.75 }} /> Copy Data
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <PictureAsPdfTwoToneIcon sx={{ mr: 1.75 }} /> Export
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <ArchiveTwoToneIcon sx={{ mr: 1.75 }} /> Archive File
+                                            </MenuItem>
+                                        </Menu>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                        </Grid>
-                        <Grid item>
-                            <Grid container alignItems="center">
-                                <Grid item>
-                                    <Typography className={classes.cardHeading}>$500.00</Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Avatar className={classes.avatarCircle}>
-                                        <ArrowUpwardIcon fontSize="inherit" className={classes.circleIcon} />
-                                    </Avatar>
+                            <Grid item>
+                                <Grid container alignItems="center">
+                                    <Grid item>
+                                        <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
+                                            $500.00
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item>
+                                        <Avatar
+                                            sx={{
+                                                cursor: 'pointer',
+                                                ...theme.typography.smallAvatar,
+                                                backgroundColor: theme.palette.secondary[200],
+                                                color: theme.palette.secondary.dark
+                                            }}
+                                        >
+                                            <ArrowUpwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
+                                        </Avatar>
+                                    </Grid>
                                 </Grid>
                             </Grid>
+                            <Grid item sx={{ mb: 1.25 }}>
+                                <Typography
+                                    sx={{
+                                        fontSize: '1rem',
+                                        fontWeight: 500,
+                                        color: theme.palette.secondary[200]
+                                    }}
+                                >
+                                    Total Earning
+                                </Typography>
+                            </Grid>
                         </Grid>
-                        <Grid item sx={{ mb: 1.25 }}>
-                            <Typography className={classes.subHeading}>Total Earning</Typography>
-                        </Grid>
-                    </Grid>
-                </MainCard>
+                    </Box>
+                </CardWrapper>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

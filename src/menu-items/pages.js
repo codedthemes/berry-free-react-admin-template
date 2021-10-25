@@ -1,18 +1,14 @@
 // assets
-import { IconKey, IconReceipt2, IconBug, IconBellRinging, IconPhoneCall } from '@tabler/icons';
+import { IconKey } from '@tabler/icons';
 
 // constant
 const icons = {
-    IconKey: IconKey,
-    IconReceipt2: IconReceipt2,
-    IconBug: IconBug,
-    IconBellRinging: IconBellRinging,
-    IconPhoneCall: IconPhoneCall
+    IconKey
 };
 
-//-----------------------|| EXTRA PAGES MENU ITEMS ||-----------------------//
+// ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
 
-export const pages = {
+const pages = {
     id: 'pages',
     title: 'Pages',
     caption: 'Pages Caption',
@@ -22,7 +18,8 @@ export const pages = {
             id: 'authentication',
             title: 'Authentication',
             type: 'collapse',
-            icon: icons['IconKey'],
+            icon: icons.IconKey,
+
             children: [
                 {
                     id: 'login3',
@@ -42,3 +39,5 @@ export const pages = {
         }
     ]
 };
+
+export default pages;

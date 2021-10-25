@@ -1,22 +1,15 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 // project imports
-import Customization from './../Customization';
+import Customization from '../Customization';
 
-//-----------------------|| MINIMAL LAYOUT ||-----------------------//
+// ==============================|| MINIMAL LAYOUT ||============================== //
 
-const MinimalLayout = (props) => {
-    return (
-        <React.Fragment>
-            {props.children}
-            <Customization />
-        </React.Fragment>
-    );
-};
-
-MinimalLayout.propTypes = {
-    children: PropTypes.node
-};
+const MinimalLayout = () => (
+    <>
+        <Outlet />
+        <Customization />
+    </>
+);
 
 export default MinimalLayout;

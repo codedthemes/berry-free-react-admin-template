@@ -1,24 +1,28 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // project imports
-import config from '../../config';
+import config from 'config';
+import { useEffect } from 'react';
 
-//-----------------------|| GUEST GUARD ||-----------------------//
+// ==============================|| GUEST GUARD ||============================== //
 
 /**
  * Guest guard for routes having no auth required
  * @param {PropTypes.node} children children element/node
  */
+
 const GuestGuard = ({ children }) => {
     const account = useSelector((state) => state.account);
     const { isLoggedIn } = account;
+    const navigate = useNavigate();
 
-    if (isLoggedIn) {
-        return <Redirect to={config.defaultPath} />;
-    }
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate(config.defaultPath, { replace: true });
+        }
+    }, [isLoggedIn, navigate]);
 
     return children;
 };

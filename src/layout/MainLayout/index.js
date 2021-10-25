@@ -1,40 +1,27 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 
 // material-ui
-import { makeStyles, useTheme } from '@material-ui/styles';
-import { AppBar, CssBaseline, Toolbar, useMediaQuery } from '@material-ui/core';
-
-// third-party
-import clsx from 'clsx';
+import { styled, useTheme } from '@mui/material/styles';
+import { AppBar, Box, CssBaseline, Toolbar, useMediaQuery } from '@mui/material';
 
 // project imports
-import Breadcrumbs from './../../ui-component/extended/Breadcrumbs';
+import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Customization from './../Customization';
-import navigation from './../../menu-items';
-import { drawerWidth } from '../../store/constant';
-import { SET_MENU } from './../../store/actions';
+import Customization from '../Customization';
+import navigation from 'menu-items';
+import { drawerWidth } from 'store/constant';
+import { SET_MENU } from 'store/actions';
 
 // assets
 import { IconChevronRight } from '@tabler/icons';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex'
-    },
-    appBar: {
-        backgroundColor: theme.palette.background.default
-    },
-    appBarWidth: {
-        transition: theme.transitions.create('width'),
-        backgroundColor: theme.palette.background.default
-    },
-    content: {
-        ...theme.typography.mainContent,
+// styles
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
+    ...theme.typography.mainContent,
+    ...(!open && {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         transition: theme.transitions.create('margin', {
@@ -56,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
             padding: '16px',
             marginRight: '10px'
         }
-    },
-    contentShift: {
+    }),
+    ...(open && {
         transition: theme.transitions.create('margin', {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen
@@ -65,21 +52,21 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 0,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
+        width: `calc(100% - ${drawerWidth}px)`,
         [theme.breakpoints.down('md')]: {
             marginLeft: '20px'
         },
         [theme.breakpoints.down('sm')]: {
             marginLeft: '10px'
         }
-    }
+    })
 }));
 
-//-----------------------|| MAIN LAYOUT ||-----------------------//
+// ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = ({ children }) => {
-    const classes = useStyles();
+const MainLayout = () => {
     const theme = useTheme();
-    const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
+    const matchDownMd = useMediaQuery(theme.breakpoints.down('lg'));
 
     // Handle left drawer
     const leftDrawerOpened = useSelector((state) => state.customization.opened);
@@ -88,13 +75,13 @@ const MainLayout = ({ children }) => {
         dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         dispatch({ type: SET_MENU, opened: !matchDownMd });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [matchDownMd]);
 
     return (
-        <div className={classes.root}>
+        <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             {/* header */}
             <AppBar
@@ -102,7 +89,10 @@ const MainLayout = ({ children }) => {
                 position="fixed"
                 color="inherit"
                 elevation={0}
-                className={leftDrawerOpened ? classes.appBarWidth : classes.appBar}
+                sx={{
+                    bgcolor: theme.palette.background.default,
+                    transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
+                }}
             >
                 <Toolbar>
                     <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
@@ -113,27 +103,14 @@ const MainLayout = ({ children }) => {
             <Sidebar drawerOpen={leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
 
             {/* main content */}
-            <main
-                className={clsx([
-                    classes.content,
-                    {
-                        [classes.contentShift]: leftDrawerOpened
-                    }
-                ])}
-            >
-                {/* <Main open={leftDrawerOpened}> */}
+            <Main theme={theme} open={leftDrawerOpened}>
                 {/* breadcrumb */}
                 <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
-                <div>{children}</div>
-                {/* </Main> */}
-            </main>
+                <Outlet />
+            </Main>
             <Customization />
-        </div>
+        </Box>
     );
-};
-
-MainLayout.propTypes = {
-    children: PropTypes.node
 };
 
 export default MainLayout;

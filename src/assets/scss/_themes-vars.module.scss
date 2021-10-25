@@ -46,7 +46,36 @@ $grey600: #757575;
 $grey700: #616161;
 $grey900: #212121;
 
-//-----------------------|| JAVASCRIPT ||-----------------------//
+// ==============================|| DARK THEME VARIANTS ||============================== //
+
+// paper & background
+$darkBackground: #1a223f; // level 3
+$darkPaper: #111936; // level 4
+
+// dark 800 & 900
+$darkLevel1: #29314f; // level 1
+$darkLevel2: #212946; // level 2
+
+// primary dark
+$darkPrimaryLight: #e3f2fd;
+$darkPrimaryMain: #2196f3;
+$darkPrimaryDark: #1e88e5;
+$darkPrimary200: #90caf9;
+$darkPrimary800: #1565c0;
+
+// secondary dark
+$darkSecondaryLight: #d1c4e9;
+$darkSecondaryMain: #7c4dff;
+$darkSecondaryDark: #651fff;
+$darkSecondary200: #b39ddb;
+$darkSecondary800: #6200ea;
+
+// text variants
+$darkTextTitle: #d7dcec;
+$darkTextPrimary: #bdc8f0;
+$darkTextSecondary: #8492c4;
+
+// ==============================|| JAVASCRIPT ||============================== //
 
 :export {
     // paper & background
@@ -96,4 +125,33 @@ $grey900: #212121;
     grey600: $grey600;
     grey700: $grey700;
     grey900: $grey900;
+
+    // ==============================|| DARK THEME VARIANTS ||============================== //
+
+    // paper & background
+    darkPaper: $darkPaper;
+    darkBackground: $darkBackground;
+
+    // dark 800 & 900
+    darkLevel1: $darkLevel1;
+    darkLevel2: $darkLevel2;
+
+    // text variants
+    darkTextTitle: $darkTextTitle;
+    darkTextPrimary: $darkTextPrimary;
+    darkTextSecondary: $darkTextSecondary;
+
+    // primary dark
+    darkPrimaryLight: $darkPrimaryLight;
+    darkPrimaryMain: $darkPrimaryMain;
+    darkPrimaryDark: $darkPrimaryDark;
+    darkPrimary200: $darkPrimary200;
+    darkPrimary800: $darkPrimary800;
+
+    // secondary dark
+    darkSecondaryLight: $darkSecondaryLight;
+    darkSecondaryMain: $darkSecondaryMain;
+    darkSecondaryDark: $darkSecondaryDark;
+    darkSecondary200: $darkSecondary200;
+    darkSecondary800: $darkSecondary800;
 }

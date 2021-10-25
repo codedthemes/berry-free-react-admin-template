@@ -1,98 +1,94 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 
 // material-ui
-import { makeStyles } from '@material-ui/styles';
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@material-ui/core';
+import { useTheme, styled } from '@mui/material/styles';
+import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
 
 // project imports
-import MainCard from './../../../ui-component/cards/MainCard';
-import TotalIncomeCard from './../../../ui-component/cards/Skeleton/TotalIncomeCard';
+import MainCard from 'ui-component/cards/MainCard';
+import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 
 // assets
-import StorefrontTwoToneIcon from '@material-ui/icons/StorefrontTwoTone';
+import StorefrontTwoToneIcon from '@mui/icons-material/StorefrontTwoTone';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    card: {
-        overflow: 'hidden',
-        position: 'relative',
-        '&:after': {
-            content: '""',
-            position: 'absolute',
-            width: '210px',
-            height: '210px',
-            background: 'linear-gradient(210.04deg, ' + theme.palette.warning.dark + ' -50.94%, rgba(144, 202, 249, 0) 83.49%)',
-            borderRadius: '50%',
-            top: '-30px',
-            right: '-180px'
-        },
-        '&:before': {
-            content: '""',
-            position: 'absolute',
-            width: '210px',
-            height: '210px',
-            background: 'linear-gradient(140.9deg, ' + theme.palette.warning.dark + ' -14.02%, rgba(144, 202, 249, 0) 70.50%)',
-            borderRadius: '50%',
-            top: '-160px',
-            right: '-130px'
-        }
+// styles
+const CardWrapper = styled(MainCard)(({ theme }) => ({
+    overflow: 'hidden',
+    position: 'relative',
+    '&:after': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: `linear-gradient(210.04deg, ${theme.palette.warning.dark} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
+        borderRadius: '50%',
+        top: -30,
+        right: -180
     },
-    content: {
-        padding: '16px !important'
-    },
-    avatar: {
-        ...theme.typography.commonAvatar,
-        ...theme.typography.largeAvatar,
-        backgroundColor: theme.palette.warning.light,
-        color: theme.palette.warning.dark
-    },
-    secondary: {
-        color: theme.palette.grey[500],
-        marginTop: '5px'
-    },
-    padding: {
-        paddingTop: 0,
-        paddingBottom: 0
+    '&:before': {
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: `linear-gradient(140.9deg, ${theme.palette.warning.dark} -14.02%, rgba(144, 202, 249, 0) 70.50%)`,
+        borderRadius: '50%',
+        top: -160,
+        right: -130
     }
 }));
 
-//-----------------------|| DASHBOARD - TOTAL INCOME LIGHT CARD ||-----------------------//
+// ==============================|| DASHBOARD - TOTAL INCOME LIGHT CARD ||============================== //
 
 const TotalIncomeLightCard = ({ isLoading }) => {
-    const classes = useStyles();
+    const theme = useTheme();
 
     return (
-        <React.Fragment>
+        <>
             {isLoading ? (
                 <TotalIncomeCard />
             ) : (
-                <MainCard className={classes.card} contentClass={classes.content}>
-                    <List className={classes.padding}>
-                        <ListItem alignItems="center" disableGutters className={classes.padding}>
-                            <ListItemAvatar>
-                                <Avatar variant="rounded" className={classes.avatar}>
-                                    <StorefrontTwoToneIcon fontSize="inherit" />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText
-                                sx={{
-                                    mt: 0.45,
-                                    mb: 0.45
-                                }}
-                                className={classes.padding}
-                                primary={<Typography variant="h4">$203k</Typography>}
-                                secondary={
-                                    <Typography variant="subtitle2" className={classes.secondary}>
-                                        Total Income
-                                    </Typography>
-                                }
-                            />
-                        </ListItem>
-                    </List>
-                </MainCard>
+                <CardWrapper border={false} content={false}>
+                    <Box sx={{ p: 2 }}>
+                        <List sx={{ py: 0 }}>
+                            <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
+                                <ListItemAvatar>
+                                    <Avatar
+                                        variant="rounded"
+                                        sx={{
+                                            ...theme.typography.commonAvatar,
+                                            ...theme.typography.largeAvatar,
+                                            backgroundColor: theme.palette.warning.light,
+                                            color: theme.palette.warning.dark
+                                        }}
+                                    >
+                                        <StorefrontTwoToneIcon fontSize="inherit" />
+                                    </Avatar>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    sx={{
+                                        py: 0,
+                                        mt: 0.45,
+                                        mb: 0.45
+                                    }}
+                                    primary={<Typography variant="h4">$203k</Typography>}
+                                    secondary={
+                                        <Typography
+                                            variant="subtitle2"
+                                            sx={{
+                                                color: theme.palette.grey[500],
+                                                mt: 0.5
+                                            }}
+                                        >
+                                            Total Income
+                                        </Typography>
+                                    }
+                                />
+                            </ListItem>
+                        </List>
+                    </Box>
+                </CardWrapper>
             )}
-        </React.Fragment>
+        </>
     );
 };
 

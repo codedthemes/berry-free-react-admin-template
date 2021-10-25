@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 
 // material-ui
-import { makeStyles, useTheme } from '@material-ui/styles';
-import { Box, Drawer, useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@mui/material/styles';
+import { Box, Drawer, useMediaQuery } from '@mui/material';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -13,57 +12,30 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
 import MenuCard from './MenuCard';
-import { drawerWidth } from './../../../store/constant';
+import { drawerWidth } from 'store/constant';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    drawer: {
-        [theme.breakpoints.up('md')]: {
-            width: drawerWidth,
-            flexShrink: 0
-        }
-    },
-    drawerPaper: {
-        width: drawerWidth,
-        background: theme.palette.background.default,
-        color: theme.palette.text.primary,
-        borderRight: 'none',
-        [theme.breakpoints.up('md')]: {
-            top: '88px'
-        }
-    },
-    ScrollHeight: {
-        height: 'calc(100vh - 88px)',
-        paddingLeft: '16px',
-        paddingRight: '16px',
-        [theme.breakpoints.down('sm')]: {
-            height: 'calc(100vh - 56px)'
-        }
-    },
-    boxContainer: {
-        display: 'flex',
-        padding: '16px',
-        marginLeft: 'auto',
-        marginRight: 'auto'
-    }
-}));
-
-//-----------------------|| SIDEBAR DRAWER ||-----------------------//
+// ==============================|| SIDEBAR DRAWER ||============================== //
 
 const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
-    const classes = useStyles();
     const theme = useTheme();
     const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
     const drawer = (
-        <React.Fragment>
+        <>
             <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-                <div className={classes.boxContainer}>
+                <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
                     <LogoSection />
-                </div>
+                </Box>
             </Box>
             <BrowserView>
-                <PerfectScrollbar component="div" className={classes.ScrollHeight}>
+                <PerfectScrollbar
+                    component="div"
+                    style={{
+                        height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
+                        paddingLeft: '16px',
+                        paddingRight: '16px'
+                    }}
+                >
                     <MenuList />
                     <MenuCard />
                 </PerfectScrollbar>
@@ -74,28 +46,36 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     <MenuCard />
                 </Box>
             </MobileView>
-        </React.Fragment>
+        </>
     );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
+    const container = window !== undefined ? () => window.document.body : undefined;
 
     return (
-        <nav className={classes.drawer} aria-label="mailbox folders">
+        <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
             <Drawer
                 container={container}
                 variant={matchUpMd ? 'persistent' : 'temporary'}
                 anchor="left"
                 open={drawerOpen}
                 onClose={drawerToggle}
-                classes={{
-                    paper: classes.drawerPaper
+                sx={{
+                    '& .MuiDrawer-paper': {
+                        width: drawerWidth,
+                        background: theme.palette.background.default,
+                        color: theme.palette.text.primary,
+                        borderRight: 'none',
+                        [theme.breakpoints.up('md')]: {
+                            top: '88px'
+                        }
+                    }
                 }}
                 ModalProps={{ keepMounted: true }}
                 color="inherit"
             >
                 {drawer}
             </Drawer>
-        </nav>
+        </Box>
     );
 };
 

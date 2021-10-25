@@ -1,11 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
-import configData from '../../../../config';
+import { Link } from 'react-router-dom';
 
 // material-ui
-import { makeStyles } from '@material-ui/styles';
+import { useTheme } from '@mui/material/styles';
 import {
     Box,
     Button,
@@ -19,71 +18,33 @@ import {
     OutlinedInput,
     Stack,
     Typography
-} from '@material-ui/core';
+} from '@mui/material';
 
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import axios from 'axios';
 
 // project imports
-import useScriptRef from '../../../../hooks/useScriptRef';
-import AnimateButton from '../../../../ui-component/extended/AnimateButton';
-import { ACCOUNT_INITIALIZE } from './../../../../store/actions';
+import useScriptRef from 'hooks/useScriptRef';
+import AnimateButton from 'ui-component/extended/AnimateButton';
+import axios from 'axios';
+import configData from 'config';
+import { LOGIN } from 'store/actions';
 
 // assets
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-// style constant
-const useStyles = makeStyles((theme) => ({
-    redButton: {
-        fontSize: '1rem',
-        fontWeight: 500,
-        backgroundColor: theme.palette.grey[50],
-        border: '1px solid',
-        borderColor: theme.palette.grey[100],
-        color: theme.palette.grey[700],
-        textTransform: 'none',
-        '&:hover': {
-            backgroundColor: theme.palette.primary.light
-        },
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '0.875rem'
-        }
-    },
-    signDivider: {
-        flexGrow: 1
-    },
-    signText: {
-        cursor: 'unset',
-        margin: theme.spacing(2),
-        padding: '5px 56px',
-        borderColor: theme.palette.grey[100] + ' !important',
-        color: theme.palette.grey[900] + '!important',
-        fontWeight: 500
-    },
-    loginIcon: {
-        marginRight: '16px',
-        [theme.breakpoints.down('sm')]: {
-            marginRight: '8px'
-        }
-    },
-    loginInput: {
-        ...theme.typography.customInput
-    }
-}));
+// ============================|| REST - LOGIN ||============================ //
 
-//============================|| API JWT - LOGIN ||============================//
-
-const RestLogin = (props, { ...others }) => {
-    const classes = useStyles();
-    const dispatcher = useDispatch();
+const RestLogin = ({ loginProp, ...others }) => {
+    const theme = useTheme();
+    const dispatch = useDispatch();
 
     const scriptedRef = useScriptRef();
-    const [checked, setChecked] = React.useState(true);
+    const [checked, setChecked] = useState(true);
 
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -93,11 +54,11 @@ const RestLogin = (props, { ...others }) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <Formik
                 initialValues={{
-                    email: '',
-                    password: '',
+                    email: 'info@codedthemes.com',
+                    password: '123456',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
@@ -107,16 +68,15 @@ const RestLogin = (props, { ...others }) => {
                 onSubmit={(values, { setErrors, setStatus, setSubmitting }) => {
                     try {
                         axios
-                            .post( configData.API_SERVER + 'users/login', {
+                            .post(`${configData.apiServer}users/login`, {
                                 password: values.password,
                                 email: values.email
                             })
-                            .then(function (response) {
+                            .then((response) => {
                                 if (response.data.success) {
-                                    console.log(response.data);
-                                    dispatcher({
-                                        type: ACCOUNT_INITIALIZE,
-                                        payload: { isLoggedIn: true, user: response.data.user, token: response.data.token }
+                                    dispatch({
+                                        type: LOGIN,
+                                        payload: { user: response.data.user, token: response.data.token }
                                     });
                                     if (scriptedRef.current) {
                                         setStatus({ success: true });
@@ -128,13 +88,12 @@ const RestLogin = (props, { ...others }) => {
                                     setSubmitting(false);
                                 }
                             })
-                            .catch(function (error) {
+                            .catch((error) => {
                                 setStatus({ success: false });
                                 setErrors({ submit: error.response.data.msg });
                                 setSubmitting(false);
                             });
                     } catch (err) {
-                        console.error(err);
                         if (scriptedRef.current) {
                             setStatus({ success: false });
                             setErrors({ submit: err.message });
@@ -145,8 +104,8 @@ const RestLogin = (props, { ...others }) => {
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
-                        <FormControl fullWidth error={Boolean(touched.email && errors.email)} className={classes.loginInput}>
-                            <InputLabel htmlFor="outlined-adornment-email-login">Email</InputLabel>
+                        <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
+                            <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-email-login"
                                 type="email"
@@ -154,22 +113,21 @@ const RestLogin = (props, { ...others }) => {
                                 name="email"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                label="Email Address"
-                                inputProps={{
-                                    classes: {
-                                        notchedOutline: classes.notchedOutline
-                                    }
-                                }}
+                                label="Email Address / Username"
+                                inputProps={{}}
                             />
                             {touched.email && errors.email && (
                                 <FormHelperText error id="standard-weight-helper-text-email-login">
-                                    {' '}
-                                    {errors.email}{' '}
+                                    {errors.email}
                                 </FormHelperText>
                             )}
                         </FormControl>
 
-                        <FormControl fullWidth error={Boolean(touched.password && errors.password)} className={classes.loginInput}>
+                        <FormControl
+                            fullWidth
+                            error={Boolean(touched.password && errors.password)}
+                            sx={{ ...theme.typography.customInput }}
+                        >
                             <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
                             <OutlinedInput
                                 id="outlined-adornment-password-login"
@@ -185,22 +143,18 @@ const RestLogin = (props, { ...others }) => {
                                             onClick={handleClickShowPassword}
                                             onMouseDown={handleMouseDownPassword}
                                             edge="end"
+                                            size="large"
                                         >
                                             {showPassword ? <Visibility /> : <VisibilityOff />}
                                         </IconButton>
                                     </InputAdornment>
                                 }
                                 label="Password"
-                                inputProps={{
-                                    classes: {
-                                        notchedOutline: classes.notchedOutline
-                                    }
-                                }}
+                                inputProps={{}}
                             />
                             {touched.password && errors.password && (
                                 <FormHelperText error id="standard-weight-helper-text-password-login">
-                                    {' '}
-                                    {errors.password}{' '}
+                                    {errors.password}
                                 </FormHelperText>
                             )}
                         </FormControl>
@@ -219,7 +173,7 @@ const RestLogin = (props, { ...others }) => {
                             <Typography
                                 variant="subtitle1"
                                 component={Link}
-                                to={props.login ? '/pages/forgot-password/forgot-password' + props.login : '#'}
+                                to={loginProp ? `/pages/forgot-password/forgot-password${loginProp}` : '/forgot'}
                                 color="secondary"
                                 sx={{ textDecoration: 'none' }}
                             >
@@ -227,20 +181,12 @@ const RestLogin = (props, { ...others }) => {
                             </Typography>
                         </Stack>
                         {errors.submit && (
-                            <Box
-                                sx={{
-                                    mt: 3
-                                }}
-                            >
+                            <Box sx={{ mt: 3 }}>
                                 <FormHelperText error>{errors.submit}</FormHelperText>
                             </Box>
                         )}
 
-                        <Box
-                            sx={{
-                                mt: 2
-                            }}
-                        >
+                        <Box sx={{ mt: 2 }}>
                             <AnimateButton>
                                 <Button
                                     disableElevation
@@ -251,15 +197,19 @@ const RestLogin = (props, { ...others }) => {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Sign IN
+                                    Sign in
                                 </Button>
                             </AnimateButton>
                         </Box>
                     </form>
                 )}
             </Formik>
-        </React.Fragment>
+        </>
     );
+};
+
+RestLogin.propTypes = {
+    loginProp: PropTypes.number
 };
 
 export default RestLogin;

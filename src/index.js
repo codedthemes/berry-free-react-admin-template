@@ -1,29 +1,24 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 
 // third party
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 
 // project imports
-import { store, persister } from './store';
-import * as serviceWorker from './serviceWorker';
-import App from './App';
-import config from './config';
+import * as serviceWorker from 'serviceWorker';
+import App from 'App';
+import { store } from 'store';
 
 // style + assets
-import './assets/scss/style.scss';
+import 'assets/scss/style.scss';
 
-//-----------------------|| REACT DOM RENDER  ||-----------------------//
+// ==============================|| REACT DOM RENDER  ||============================== //
 
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persister}>
-            <BrowserRouter basename={config.basename}>
-                <App />
-            </BrowserRouter>
-        </PersistGate>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
     </Provider>,
     document.getElementById('root')
 );

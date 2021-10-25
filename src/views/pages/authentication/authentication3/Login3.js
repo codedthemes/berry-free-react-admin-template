@@ -1,24 +1,24 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // material-ui
-import { useTheme } from '@material-ui/core';
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@material-ui/core';
+import { useTheme } from '@mui/material/styles';
+import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
-import AuthWrapper1 from './../AuthWrapper1';
-import AuthCardWrapper from './../AuthCardWrapper';
-import FirebaseLogin from './../firebase-forms/FirebaseLogin';
-import Logo from './../../../../ui-component/Logo';
-import AuthFooter from './../../../../ui-component/cards/AuthFooter';
+import AuthWrapper1 from '../AuthWrapper1';
+import AuthCardWrapper from '../AuthCardWrapper';
+import AuthLogin from '../auth-forms/AuthLogin';
+import Logo from 'ui-component/Logo';
+import AuthFooter from 'ui-component/cards/AuthFooter';
 
-// assets
-
-//================================|| AUTH3 - LOGIN ||================================//
+// ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {
     const theme = useTheme();
-    const matchDownSM = useMediaQuery(theme.breakpoints.down('sm'));
+    const account = useSelector((state) => state.account);
+    const { isLoggedIn } = account;
+    const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
     return (
         <AuthWrapper1>
@@ -29,9 +29,9 @@ const Login = () => {
                             <AuthCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                                     <Grid item sx={{ mb: 3 }}>
-                                        <RouterLink to="#">
+                                        <Link to="#">
                                             <Logo />
-                                        </RouterLink>
+                                        </Link>
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Grid
@@ -49,7 +49,11 @@ const Login = () => {
                                                     >
                                                         Hi, Welcome Back
                                                     </Typography>
-                                                    <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : ''}>
+                                                    <Typography
+                                                        variant="caption"
+                                                        fontSize="16px"
+                                                        textAlign={matchDownSM ? 'center' : 'inherit'}
+                                                    >
                                                         Enter your credentials to continue
                                                     </Typography>
                                                 </Stack>
@@ -57,7 +61,7 @@ const Login = () => {
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <FirebaseLogin login={3} />
+                                        <AuthLogin />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Divider />
@@ -65,12 +69,12 @@ const Login = () => {
                                     <Grid item xs={12}>
                                         <Grid item container direction="column" alignItems="center" xs={12}>
                                             <Typography
-                                                component={RouterLink}
-                                                to="/pages/register/register3"
+                                                component={Link}
+                                                to={isLoggedIn ? '/pages/register/register3' : '/register'}
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >
-                                                Don't have an account?
+                                                Don&apos;t have an account?
                                             </Typography>
                                         </Grid>
                                     </Grid>
