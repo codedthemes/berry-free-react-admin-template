@@ -69,7 +69,7 @@ function LinearProgressWithLabel({ value, ...others }) {
                 </Grid>
             </Grid>
             <Grid item>
-                <BorderLinearProgress variant="determinate" {...others} />
+                <BorderLinearProgress variant="determinate" value={value} {...others} />
             </Grid>
         </Grid>
     );
