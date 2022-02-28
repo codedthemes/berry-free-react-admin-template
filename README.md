@@ -111,6 +111,9 @@ Please generate a [Github issue](https://github.com/codedthemes/berry-free-react
 ## More Free React Material Admin Templates
 
  - [Free Materially](https://codedthemes.com/item/materially-free-reactjs-admin-template/)
+ - [Free Mantis](https://mantisdashboard.io/free/)
+
+![IMG_8566.jpg](https://camo.githubusercontent.com/a2364ad8c498b2a7378dae5e1a5eb5d8e1fcb2d6ceeb8b54acdc2e8bc2508775/68747470733a2f2f6d616e74697364617368626f6172642e696f2f6164762d62616e6e65722d696d616765732f6f672d736f6369616c2e706e67)
 
 ## More Premium React Material Admin Templates
 
