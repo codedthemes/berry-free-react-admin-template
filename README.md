@@ -14,7 +14,7 @@ Berry is a free react admin template build using the M-UI. It is meant to be the
 
 [Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
 
-| [Berry Free](https://berry-free-react-admin-template-git-v20-codedthemes.vercel.app/)    | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
+| [Berry Free](https://berrydashboard.io/free/)    | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
 | ---------------------------------------------------------------------------------------- | :------------------------------------------------------------------------|
 | **9** Demo pages                                                                         | **45+** demo pages                                                       |
 | -                                                                                        | ✓ Multi-language                                                         |
@@ -42,7 +42,7 @@ Berry brings everything you need for dashboard development. We have added the fo
 
 #### Preview
 
- - [Demo](https://berry-free-react-admin-template-git-v20-codedthemes.vercel.app/)
+ - [Demo](https://berrydashboard.io/free/)
 
 #### Download
 
