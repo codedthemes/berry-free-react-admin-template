@@ -5,14 +5,14 @@
 [![GitHub package version](https://img.shields.io/github/package-json/v/codedthemes/berry-free-react-admin-template)](https://github.com/codedthemes/berry-free-react-admin-template/)
 
 
-Berry is a free react admin template build using the M-UI. It is meant to be the best User Experience with highly customizable feature-riched pages. It is a complete React Dashboard Template with easy and intuitive responsive design as on retina screens or laptops.
+Berry is a free Material UI admin dashboard template built with React. It is meant to provide the best possible User Experience with highly customizable feature-rich pages. It is a complete Dashboard Template that has easy and intuitive responsive design whether it is viewed on retina screens or laptops.
 
 :star: :star: :star: Do not forget to star (Top right of this page) it if you like the theme  :star: :star: :star:
 
 ![IMG_8566.jpg](https://berrydashboard.io/imp-images/berry-github-free-repo-1.jpg)
 
 
-[Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
+[Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Next.js Seed versions, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
 
 | [Berry Free](https://berrydashboard.io/free/)    | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
 | ---------------------------------------------------------------------------------------- | :------------------------------------------------------------------------|
@@ -29,7 +29,7 @@ Berry is a free react admin template build using the M-UI. It is meant to be the
 
 ## Why Berry?
 
-Berry brings everything you need for dashboard development. We have added the following high-end features in the initial release.
+Berry offers everything you need to create dashboards. We have included the following high-end features in our initial release:
 
  * Modern aesthetics UI design
  * Material-UI components
@@ -40,24 +40,13 @@ Berry brings everything you need for dashboard development. We have added the fo
 
 ## Free Berry React version
 
-#### Preview
-
- - [Demo](https://berrydashboard.io/free/)
-
-#### Download
-
+ - [Preview](https://berrydashboard.io/free/)
  - [Download from Github](https://github.com/codedthemes/berry-free-react-admin-template)
  
 ## Berry Pro version
 
-Berry is available to purchase.
-#### Preview
-
- - [Demo](https://berrydashboard.io)
-
-#### Purchase
-
- - [Purchase from Material UI Store](https://material-ui.com/store/items/berry-react-material-admin/)
+ - [Preview](https://berrydashboard.io)
+ - [Purchase from MUI Store](https://material-ui.com/store/items/berry-react-material-admin/)
 
 ## Table of contents
 
@@ -79,7 +68,7 @@ git clone https://github.com/codedthemes/berry-free-react-admin-template.git
 
 ## Documentation
 
-[Berry documentation](https://codedthemes.gitbook.io/berry/) helps you out in all aspects from Installation to deployment.
+[Berry documentation](https://codedthemes.gitbook.io/berry/) helps you with installation, deployment, and troubleshooting.
 
 ## Technology Stack
 
@@ -93,11 +82,11 @@ git clone https://github.com/codedthemes/berry-free-react-admin-template.git
 
 ## Author
 
-Berry is managed by Team [CodedThemes](https://codedthemes.com).
+Berry is developed by Team [CodedThemes](https://codedthemes.com).
 
 ## Issues
 
-Please generate a [Github issue](https://github.com/codedthemes/berry-free-react-admin-template/issues) if you found a bug in any version. We are trying to be responsive to resolve the issue.
+To report a bug, please submit an [issue](https://github.com/codedthemes/berry-free-react-admin-template/issues) on Github. We will respond as soon as possible to resolve the issue.
 
 ## License
 
@@ -117,12 +106,13 @@ Please generate a [Github issue](https://github.com/codedthemes/berry-free-react
 
 ## More Premium React Material Admin Templates
 
+ - [Mantis](https://mui.com/store/items/mantis-react-admin-dashboard-template/)
  - [Materially](https://codedthemes.com/item/materially-reactjs-admin-dashboard/)
  
 ## Follow us
- - Website [https://berrydashboard.io](https://berrydashboard.io)
- - Blog [https://blog.berrydashboard.io](https://blog.berrydashboard.io)
- - CodedThemes [https://codedthemes.com](https://codedthemes.com)
- - Dribbble [https://dribbble.com/codedthemes](https://dribbble.com/codedthemes)
- - Facebook [https://www.facebook.com/codedthemes](https://www.facebook.com/codedthemes)
- - Twitter [https://twitter.com/codedthemes](https://twitter.com/codedthemes)
+ - [Website](https://berrydashboard.io)
+ - [Blog](https://blog.berrydashboard.io)
+ - [CodedThemes](https://codedthemes.com)
+ - [Dribbble](https://dribbble.com/codedthemes)
+ - [Facebook](https://www.facebook.com/codedthemes)
+ - [Twitter](https://twitter.com/codedthemes)
