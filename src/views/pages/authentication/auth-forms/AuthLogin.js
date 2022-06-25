@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import {
     Box,
@@ -20,22 +18,18 @@ import {
     Typography,
     useMediaQuery
 } from '@mui/material';
-
-// third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-
-// project imports
 import useScriptRef from 'hooks/useScriptRef';
 import AnimateButton from 'ui-component/extended/AnimateButton';
-
-// assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import { useMsal } from "@azure/msal-react";
+import { loginRequest } from "../../../../slice/auth";
 import Google from 'assets/images/icons/social-google.svg';
+import { useDispatch } from "react-redux";
+import {loginAzure} from '../../../../slice/auth'
 
-// ============================|| FIREBASE - LOGIN ||============================ //
 
 const FirebaseLogin = ({ ...others }) => {
     const theme = useTheme();
@@ -43,11 +37,8 @@ const FirebaseLogin = ({ ...others }) => {
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
     const customization = useSelector((state) => state.customization);
     const [checked, setChecked] = useState(true);
-
-    const googleHandler = async () => {
-        console.error('Login');
-    };
-
+    const { instance } = useMsal();
+    const dispatch = useDispatch();
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
@@ -56,6 +47,22 @@ const FirebaseLogin = ({ ...others }) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const handleLogin = (instance) => {
+        instance.loginPopup(loginRequest)
+        .then(res => {
+          console.log(res);
+          var responseModel = {
+            accessToken: res.accessToken,
+            name: res.account.name,
+            email : res.account.username,
+            _id : res.account.idTokenClaims.oid
+          };
+          dispatch(loginAzure(responseModel))
+        })
+        .catch(e => {
+            console.error(e);
+        })
+    }
 
     return (
         <>
@@ -65,7 +72,7 @@ const FirebaseLogin = ({ ...others }) => {
                         <Button
                             disableElevation
                             fullWidth
-                            onClick={googleHandler}
+                            onClick={() => handleLogin(instance)}
                             size="large"
                             variant="outlined"
                             sx={{
@@ -77,7 +84,7 @@ const FirebaseLogin = ({ ...others }) => {
                             <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
                                 <img src={Google} alt="google" width={16} height={16} style={{ marginRight: matchDownSM ? 8 : 16 }} />
                             </Box>
-                            Sign in with Google
+                            Sign in with Azure
                         </Button>
                     </AnimateButton>
                 </Grid>
@@ -100,7 +107,6 @@ const FirebaseLogin = ({ ...others }) => {
                                 borderColor: `${theme.palette.grey[100]} !important`,
                                 color: `${theme.palette.grey[900]}!important`,
                                 fontWeight: 500,
-                                borderRadius: `${customization.borderRadius}px`
                             }}
                             disableRipple
                             disabled

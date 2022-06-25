@@ -8,6 +8,7 @@ import Routes from 'routes';
 
 // defaultTheme
 import themes from 'themes';
+import { BrowserRouter as Router } from "react-router-dom";
 
 // project imports
 import NavigationScroll from 'layout/NavigationScroll';
@@ -18,6 +19,7 @@ const App = () => {
     const customization = useSelector((state) => state.customization);
 
     return (
+        <Router> 
         <StyledEngineProvider injectFirst>
             <ThemeProvider theme={themes(customization)}>
                 <CssBaseline />
@@ -26,6 +28,7 @@ const App = () => {
                 </NavigationScroll>
             </ThemeProvider>
         </StyledEngineProvider>
+        </Router>
     );
 };
 

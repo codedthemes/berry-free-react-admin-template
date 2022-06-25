@@ -2,8 +2,10 @@
     "name": "berry-material-react-free",
     "version": "3.0.1",
     "private": true,
-    "homepage": "https://berrydashboard.io/free",
+    "homepage": "https://berrydashboard.io",
     "dependencies": {
+        "@azure/msal-browser": "^2.26.0",
+        "@azure/msal-react": "^1.4.2",
         "@emotion/cache": "^11.4.0",
         "@emotion/react": "^11.4.0",
         "@emotion/styled": "^11.3.0",
@@ -14,11 +16,13 @@
         "@mui/system": "^5.0.3",
         "@mui/utils": "^5.0.1",
         "@mui/x-data-grid": "^5.0.0-beta.3",
+        "@reduxjs/toolkit": "^1.8.2",
         "@tabler/icons": "^1.39.1",
         "@testing-library/jest-dom": "^5.11.10",
         "@testing-library/react": "^11.2.6",
         "@testing-library/user-event": "^12.8.3",
         "apexcharts": "^3.26.1",
+        "axios": "^0.27.2",
         "clsx": "^1.1.1",
         "formik": "^2.2.6",
         "framer-motion": "^4.1.13",
@@ -30,7 +34,7 @@
         "react-device-detect": "^1.17.0",
         "react-dom": "^17.0.2",
         "react-perfect-scrollbar": "^1.5.8",
-        "react-redux": "^7.2.3",
+        "react-redux": "^7.2.8",
         "react-router": "6.0.0-beta.0",
         "react-router-dom": "6.0.0-beta.0",
         "react-scripts": "^4.0.3",
@@ -38,7 +42,7 @@
         "yup": "^0.32.9"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "react-scripts --openssl-legacy-provider start",
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

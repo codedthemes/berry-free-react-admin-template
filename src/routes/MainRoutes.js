@@ -24,11 +24,11 @@ const MainRoutes = {
     element: <MainLayout />,
     children: [
         {
-            path: '/',
+            path: '',
             element: <DashboardDefault />
         },
         {
-            path: '/dashboard/default',
+            path: '/default',
             element: <DashboardDefault />
         },
         {
