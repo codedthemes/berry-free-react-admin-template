@@ -20,7 +20,7 @@
         "@testing-library/user-event": "^12.8.3",
         "apexcharts": "^3.35.3",
         "clsx": "^1.1.1",
-        "formik": "^2.2.6",
+        "formik": "^2.2.9",
         "framer-motion": "^4.1.13",
         "history": "^5.0.0",
         "material-ui-popup-state": "^1.8.0",
