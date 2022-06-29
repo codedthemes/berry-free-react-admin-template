@@ -11,12 +11,13 @@ import { store } from 'store';
 
 // style + assets
 import 'assets/scss/style.scss';
+import config from './config';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename={config.basename}>
             <App />
         </BrowserRouter>
     </Provider>,
