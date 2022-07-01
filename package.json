@@ -1,6 +1,6 @@
 {
     "name": "berry-material-react-free",
-    "version": "3.0.1",
+    "version": "3.1.0",
     "private": true,
     "homepage": "https://berrydashboard.io/free",
     "dependencies": {
@@ -13,16 +13,10 @@
         "@mui/styles": "^5.8.6",
         "@mui/system": "^5.8.6",
         "@mui/utils": "^5.8.6",
-        "@mui/x-data-grid": "^5.12.3",
         "@tabler/icons": "^1.72.0",
-        "@testing-library/jest-dom": "^5.16.4",
-        "@testing-library/react": "^11.2.6",
-        "@testing-library/user-event": "^12.8.3",
         "apexcharts": "^3.35.3",
-        "clsx": "^1.1.1",
         "formik": "^2.2.9",
         "framer-motion": "^4.1.13",
-        "history": "^5.3.0",
         "material-ui-popup-state": "^3.1.1",
         "prop-types": "^15.8.1",
         "react": "^17.0.2",
@@ -55,9 +49,9 @@
     },
     "browserslist": {
         "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
+            "defaults",
+            "not IE 11",
+            "maintained node versions"
         ],
         "development": [
             "last 1 chrome version",
