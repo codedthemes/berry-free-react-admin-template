@@ -1,6 +1,6 @@
 {
     "name": "berry-material-react-free",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "private": true,
     "homepage": "https://berrydashboard.io/free",
     "dependencies": {
@@ -19,12 +19,12 @@
         "framer-motion": "^4.1.13",
         "material-ui-popup-state": "^3.1.1",
         "prop-types": "^15.8.1",
-        "react": "^17.0.2",
+        "react": "^18.2.0",
         "react-apexcharts": "^1.4.0",
         "react-device-detect": "^1.17.0",
-        "react-dom": "^17.0.2",
+        "react-dom": "^18.2.0",
         "react-perfect-scrollbar": "^1.5.8",
-        "react-redux": "^7.2.3",
+        "react-redux": "^8.0.2",
         "react-router": "6.3.0",
         "react-router-dom": "6.3.0",
         "react-scripts": "^4.0.3",
