@@ -50,8 +50,7 @@
     "browserslist": {
         "production": [
             "defaults",
-            "not IE 11",
-            "maintained node versions"
+            "not IE 11"
         ],
         "development": [
             "last 1 chrome version",
