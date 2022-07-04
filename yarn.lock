@@ -5193,10 +5193,10 @@ eslint-import-resolver-node@^0.3.6:
     debug "^3.2.7"
     resolve "^1.20.0"
 
-eslint-import-resolver-typescript@3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.1.4.tgz#a1b1425143b28594e9a483b025ab3600aea391cd"
-  integrity sha512-cDOnlg4ZRVMC5ZQ8WNpd5UsOg1YFskGBw15KXSC+sogExW8zjSycc55iBSNKdKuveCMof2VtLz0Dw4WkXAHkag==
+eslint-import-resolver-typescript@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.2.1.tgz#62770f5659547f258ade68ff69661894dfd86efd"
+  integrity sha512-3BStJ19GFJCzvhyPV8UO2xPxsAqQ5v41h4WeUsF/Oyy70AjeQx2l1RfzpJL1H7K7xNMiayty4uj3BkNWhgHDtg==
   dependencies:
     debug "^4.3.4"
     enhanced-resolve "^5.10.0"
@@ -7540,10 +7540,10 @@ makeerror@1.0.x:
   dependencies:
     tmpl "1.0.x"
 
-material-ui-popup-state@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-3.1.1.tgz#a8310e4472ec05628fff62105acbe20b68fe634a"
-  integrity sha512-ACUvVEiAZHngoeptRcledKYxmK6lJMI2KIXpcDpnKaEZXWnxOH6fWzhrgiglXK+52FTfdGRzXWVA6KqKcUAIjg==
+material-ui-popup-state@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-4.0.1.tgz#356258aa5d6be40d22512c1e9bb4c58f303d0e3f"
+  integrity sha512-4Ywj2QFOaS4mirRRtX4xps1waJQPa+IIEnVj/nnA4+aglinEcPkALPq+akAlvzKAjkjkmIjiku8SbdmTl0hTCQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
     "@mui/material" "^5.0.0"
