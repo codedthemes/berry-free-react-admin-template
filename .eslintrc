@@ -4,7 +4,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["prettier", "plugin:react/jsx-runtime", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],
+    "extends": ["plugin:react/jsx-runtime", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],
     "settings": {
         "import/resolver": {
             "node": {
@@ -38,18 +38,6 @@
             1,
             {
                 "ignoreRestSiblings": false
-            }
-        ],
-        "prettier/prettier": [
-            2,
-            {
-                "bracketSpacing": true,
-                "printWidth": 140,
-                "singleQuote": true,
-                "trailingComma": "none",
-                "tabWidth": 4,
-                "useTabs": false,
-                "endOfLine": "auto"
             }
         ]
     }

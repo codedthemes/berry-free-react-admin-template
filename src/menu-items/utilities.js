@@ -1,66 +1,61 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons';
+import { IconVaccine, IconEdit, IconUser, IconHistory, IconWriting } from '@tabler/icons';
 
 // constant
 const icons = {
-    IconTypography,
-    IconPalette,
-    IconShadow,
-    IconWindmill
+    IconVaccine,
+    IconEdit,
+    IconUser,
+    IconHistory,
+    IconWriting
 };
 
 // ==============================|| UTILITIES MENU ITEMS ||============================== //
 
 const utilities = {
     id: 'utilities',
-    title: 'Utilities',
+    title: 'Chức năng',
     type: 'group',
     children: [
         {
-            id: 'util-typography',
-            title: 'Typography',
+            id: 'injection-data',
+            title: 'Dữ liệu tiêm chủng',
             type: 'item',
-            url: '/utils/util-typography',
-            icon: icons.IconTypography,
+            url: '/utils/main',
+            icon: icons.IconVaccine,
             breadcrumbs: false
         },
         {
-            id: 'util-color',
-            title: 'Color',
+            id: 'info',
+            title: 'Thông tin cá nhân',
             type: 'item',
-            url: '/utils/util-color',
-            icon: icons.IconPalette,
+            url: '/utils/info',
+            icon: icons.IconUser,
             breadcrumbs: false
         },
         {
-            id: 'util-shadow',
-            title: 'Shadow',
+            id: 'edit-info',
+            title: 'Sửa thông tin tiêm chủng',
             type: 'item',
             url: '/utils/util-shadow',
-            icon: icons.IconShadow,
+            icon: icons.IconEdit,
             breadcrumbs: false
         },
         {
-            id: 'icons',
-            title: 'Icons',
-            type: 'collapse',
-            icon: icons.IconWindmill,
-            children: [
-                {
-                    id: 'tabler-icons',
-                    title: 'Tabler Icons',
-                    type: 'item',
-                    url: '/icons/tabler-icons',
-                    breadcrumbs: false
-                },
-                {
-                    id: 'material-icons',
-                    title: 'Material Icons',
-                    type: 'item',
-                    url: '/icons/material-icons',
-                    breadcrumbs: false
-                }
-            ]
+            id: 'history',
+            title: 'Lịch sử lây nhiễm',
+            type: 'item',
+            url: '/utils/history',
+            icon: icons.IconHistory,
+            breadcrumbs: false
+        },
+        {
+            id: 'self-declare',
+            title: 'Khai báo tình trạng nhiễm bệnh',
+            type: 'item',
+            url: '/sample-page',
+            icon: icons.IconWriting,
+            breadcrumbs: false
         }
     ]
 };

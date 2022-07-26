@@ -8,12 +8,14 @@ import Loadable from 'ui-component/Loadable';
 const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
 
 // utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
+const Main = Loadable(lazy(() => import('views/utilities/Main')));
+const Info = Loadable(lazy(() => import('views/utilities/Info')));
+const InjectionInfoRequest = Loadable(lazy(() => import('views/utilities/InjectionInfoRequest')));
+const History = Loadable(lazy(() => import('views/utilities/History')));
+const RequestChange = Loadable(lazy(() => import('views/utilities/RequestChange')));
 const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
+const Role = Loadable(lazy(() => import('other/Role')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
@@ -40,8 +42,8 @@ const MainRoutes = {
             path: 'utils',
             children: [
                 {
-                    path: 'util-typography',
-                    element: <UtilsTypography />
+                    path: 'main',
+                    element: <Main />
                 }
             ]
         },
@@ -49,8 +51,8 @@ const MainRoutes = {
             path: 'utils',
             children: [
                 {
-                    path: 'util-color',
-                    element: <UtilsColor />
+                    path: 'info',
+                    element: <Info />
                 }
             ]
         },
@@ -59,7 +61,7 @@ const MainRoutes = {
             children: [
                 {
                     path: 'util-shadow',
-                    element: <UtilsShadow />
+                    element: <InjectionInfoRequest />
                 }
             ]
         },
@@ -73,18 +75,33 @@ const MainRoutes = {
             ]
         },
         {
-            path: 'icons',
+            path: 'utils',
             children: [
                 {
-                    path: 'material-icons',
-                    element: <UtilsMaterialIcons />
+                    path: 'history',
+                    element: <History />
                 }
             ]
         },
         {
-            path: 'sample-page',
-            element: <SamplePage />
-        }
+            path: 'utils',
+            children: [
+                {
+                    path: 'request-change',
+                    element: <RequestChange />
+                }
+            ]
+        },
+        {
+            path: 'admin',
+            children: [
+                {
+                    path: 'role',
+                    element: <Role />
+                }
+            ]
+        },
+
     ]
 };
 

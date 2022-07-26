@@ -11,7 +11,6 @@ import { BrowserView, MobileView } from 'react-device-detect';
 // project imports
 import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
-import MenuCard from './MenuCard';
 import { drawerWidth } from 'store/constant';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
@@ -37,13 +36,11 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     }}
                 >
                     <MenuList />
-                    <MenuCard />
                 </PerfectScrollbar>
             </BrowserView>
             <MobileView>
                 <Box sx={{ px: 2 }}>
                     <MenuList />
-                    <MenuCard />
                 </Box>
             </MobileView>
         </>

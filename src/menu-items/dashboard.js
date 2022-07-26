@@ -1,22 +1,22 @@
 // assets
-import { IconDashboard } from '@tabler/icons';
+import { IconChartBar } from '@tabler/icons';
 
 // constant
-const icons = { IconDashboard };
+const icons = { IconChartBar };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
 const dashboard = {
     id: 'dashboard',
-    title: 'Dashboard',
+    title: 'Trang chủ',
     type: 'group',
     children: [
         {
             id: 'default',
-            title: 'Dashboard',
+            title: 'Số liệu covid',
             type: 'item',
             url: '/dashboard/default',
-            icon: icons.IconDashboard,
+            icon: icons.IconChartBar,
             breadcrumbs: false
         }
     ]
