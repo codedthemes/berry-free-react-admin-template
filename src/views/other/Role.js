@@ -8,7 +8,7 @@ import {
   dataRef,
   db,
   injectionRef,
-} from "../firebase/firebase";
+} from "../../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -65,7 +65,17 @@ const AddRole = () => {
     navigate("/");
   };
 
+
   useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUserEmail(currentUser.email);
+        onSnapshot(queryGetUserInfoByEmail(userEmail), (snapshot) => {
+          snapshot.forEach((data) => setUserRole(data.data().assignedRole));
+        });
+      }
+    });
+    
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUserEmail(currentUser.email);
@@ -83,7 +93,7 @@ const AddRole = () => {
       setTotalUserInfo(users);
     });
     console.log(userId);
-  }, [userId]);
+  }, [userId, userRole]);
 
   if (!userRole) {
     return <div>Loading</div>;

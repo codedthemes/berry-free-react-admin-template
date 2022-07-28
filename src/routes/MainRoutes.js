@@ -13,9 +13,11 @@ const Info = Loadable(lazy(() => import('views/utilities/Info')));
 const InjectionInfoRequest = Loadable(lazy(() => import('views/utilities/InjectionInfoRequest')));
 const History = Loadable(lazy(() => import('views/utilities/History')));
 const RequestChange = Loadable(lazy(() => import('views/utilities/RequestChange')));
-const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
+const SelfDeclare = Loadable(lazy(() => import('views/utilities/SelfDeclare')));
+const Register = Loadable(lazy(() => import('views/utilities/Register')));
 
-const Role = Loadable(lazy(() => import('other/Role')));
+const Role = Loadable(lazy(() => import('views/other/Role')));
+const AddInjectionInfo = Loadable(lazy(() => import('views/other/AddInjectionInfo')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
@@ -60,17 +62,17 @@ const MainRoutes = {
             path: 'utils',
             children: [
                 {
-                    path: 'util-shadow',
+                    path: 'injection-info-request',
                     element: <InjectionInfoRequest />
                 }
             ]
         },
         {
-            path: 'icons',
+            path: 'utils',
             children: [
                 {
-                    path: 'tabler-icons',
-                    element: <UtilsTablerIcons />
+                    path: 'self-declare',
+                    element: <SelfDeclare />
                 }
             ]
         },
@@ -93,10 +95,28 @@ const MainRoutes = {
             ]
         },
         {
+            path: 'utils',
+            children: [
+                {
+                    path: 'register',
+                    element: <Register />
+                }
+            ]
+        },
+        {
             path: 'admin',
             children: [
                 {
                     path: 'role',
+                    element: <Role />
+                }
+            ]
+        },
+        {
+            path: 'admin',
+            children: [
+                {
+                    path: 'add-injection-info',
                     element: <Role />
                 }
             ]

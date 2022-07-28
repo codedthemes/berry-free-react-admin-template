@@ -11,14 +11,9 @@ import {
 } from "../../firebase/firebase";
 import { onSnapshot, doc, setDoc, orderBy, addDoc } from "@firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import Typography from "@mui/material/Typography";
+
+import { Container, Button, TextField, Stack, MenuItem, FormControl, Select, InputLabel, Typography, Card, CardContent, Grid } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const InjectionInfoRequest = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -52,6 +47,16 @@ const InjectionInfoRequest = () => {
   // upload img
   const [imageUpload, setImageUpload] = useState(null);
 
+  const useStyles = makeStyles((theme) => ({
+    title: {
+      paddingBottom: '30px',
+      textTransform: 'uppercase',
+      textAlign: 'center',
+    },
+  }));
+
+  const classes = useStyles();
+
   const submitInfoHanlder = (e) => {
     e.preventDefault();
     if (imageUpload === null) return;
@@ -82,6 +87,15 @@ const InjectionInfoRequest = () => {
       setPlace("");
       setTimes("");
     });
+    setVaccineType1("");
+    setVaccineType2("");
+    setVaccineType3("");
+    setInjectDate1("");
+    setInjectDate2("");
+    setInjectDate3("");
+    setInjectPerson1("");
+    setInjectPerson2("");
+    setInjectPerson3("");
   };
 
   useEffect(() => {
@@ -123,7 +137,6 @@ const InjectionInfoRequest = () => {
       onSnapshot(
         queryGetUserInfoByPhone(injectionRequestRef, phone),
         (snapshot) => {
-          console.log(snapshot._snapshot.docChanges.length);
           snapshot.forEach((data) => {
             setRequestInfo(data.data());
             setRequestId(data.id);
@@ -145,253 +158,246 @@ const InjectionInfoRequest = () => {
   }, [isLoggedIn, userId, requestId]);
 
   return (
-    <div className="container addInfo">
-      {/* {isLoggedIn ? (
-        <Stack sx={{ alignItems: "center" }}>
-          <Stack>
-            <Typography variant="h4" gutterBottom>
-              Thông tin yêu cầu
-            </Typography>
-          </Stack>
-          <Stack>
-            {requestInfo?.status === "none" ? (
-              <Typography>Chưa có yêu cầu nào</Typography>
-            ) : (
-              <Stack>
-                {requestInfo?.status === "pending" ? (
-                  <Typography>Yêu cầu của bạn đang được xử lí</Typography>
-                ) : (
-                  <Stack>
-                    {requestInfo?.status === "approved" ? (
-                      <Typography>
-                        Yêu cầu của bạn đã được chấp thuận, vui lòng kiểm tra
-                        thông tin được thay đổi
-                      </Typography>
-                    ) : (
-                      <Stack>
-                        {requestInfo?.status === "rejected" ? (
-                          <Typography>
-                            Yêu cầu của bạn đã bị từ chối với lí do:{" "}
-                            {requestInfo?.reason}
-                          </Typography>
-                        ) : (
-                          <></>
-                        )}
-                      </Stack>
-                    )}
-                  </Stack>
-                )}
-              </Stack>
-            )}
-          </Stack>
-          <Stack>
-            {" "}
-            <FormControl
-              variant="outlined"
-              sx={{ marginTop: 5, minWidth: 210 }}
-            >
-              <InputLabel id="demo-simple-select-label">
-                Số lần đã tiêm:{" "}
-              </InputLabel>
-              <Select
-                label={"Số lần đã tiêm"}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                className="addInfo-times"
-                onChange={(e) => setTimes(e.target.value)}
-                value={times}
-              >
-                {" "}
-                <MenuItem value="Chưa tiêm">Chưa tiêm </MenuItem>
-                <MenuItem value="1 mũi">1 lần</MenuItem>
-                <MenuItem value="2 mũi">2 lần</MenuItem>
-                <MenuItem value="3 mũi">3 lần</MenuItem>
-              </Select>
-            </FormControl>
-          </Stack>
-          <Stack spacing={2} direction="row" className="addInfo-button">
-            <div>
+    <Container>
+      {isLoggedIn ? (
+        <Card>
+          <CardContent>
+            <Stack>
+              <Typography variant="h2" className={classes.title} >
+                Thông tin yêu cầu
+              </Typography>
+            </Stack>
+            <Stack>
+              {requestInfo?.status === "none" ? (
+                <Typography variant="subtitle2" sx={{ color: 'red' }}>*Chưa có yêu cầu nào</Typography>
+              ) : (
+                <Stack>
+                  {requestInfo?.status === "pending" ? (
+                    <Typography>Yêu cầu của bạn đang được xử lí</Typography>
+                  ) : (
+                    <Stack>
+                      {requestInfo?.status === "approved" ? (
+                        <Typography>
+                          Yêu cầu của bạn đã được chấp thuận, vui lòng kiểm tra
+                          thông tin được thay đổi
+                        </Typography>
+                      ) : (
+                        <Stack>
+                          {requestInfo?.status === "rejected" ? (
+                            <Typography>
+                              Yêu cầu của bạn đã bị từ chối với lí do:{" "}
+                              {requestInfo?.reason}
+                            </Typography>
+                          ) : (
+                            <></>
+                          )}
+                        </Stack>
+                      )}
+                    </Stack>
+                  )}
+                </Stack>
+              )}
+            </Stack>
+            <Stack>
               <FormControl
                 variant="outlined"
-                sx={{ marginTop: 1, minWidth: 210 }}
+                sx={{ margin: '20px 0', minWidth: 210 }}
               >
-                <InputLabel id="demo-simple-select-label">Mũi 1</InputLabel>
+                <InputLabel id="demo-simple-select-label">
+                  Số lần đã tiêm:{" "}
+                </InputLabel>
                 <Select
-                  label={"Mũi 1"}
+                  label={"Số lần đã tiêm"}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  onChange={(e) => setVaccineType1(e.target.value)}
-                  value={vaccineType1}
+                  className="addInfo-times"
+                  onChange={(e) => setTimes(e.target.value)}
+                  value={times}
                 >
-                  <MenuItem value="" disabled>
-                    Chọn loại vaccine
-                  </MenuItem>
-                  <MenuItem value="Nanocovax">Nanocovax</MenuItem>
-                  <MenuItem value="Pfizer-BioNTech">Pfizer-BioNTech</MenuItem>
-                  <MenuItem value="AstraZeneca">AstraZeneca</MenuItem>
-                  <MenuItem value="Moderna">Moderna</MenuItem>
+                  <MenuItem value="Chưa tiêm">Chưa tiêm </MenuItem>
+                  <MenuItem value="1 mũi">1 lần</MenuItem>
+                  <MenuItem value="2 mũi">2 lần</MenuItem>
+                  <MenuItem value="3 mũi">3 lần</MenuItem>
                 </Select>
               </FormControl>
-            </div>
+            </Stack>
+            <Grid container spacing={3} justifyContent="center" alignItems="center">
+              <Grid item md={4}>
+                <Stack>
+                  <FormControl
+                    variant="outlined"
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                  >
+                    <InputLabel id="demo-simple-select-label">Mũi 1</InputLabel>
+                    <Select
+                      label={"Mũi 1"}
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      onChange={(e) => setVaccineType1(e.target.value)}
+                      value={vaccineType1}
+                    >
+                      <MenuItem value="" disabled>
+                        Chọn loại vaccine
+                      </MenuItem>
+                      <MenuItem value="Nanocovax">Nanocovax</MenuItem>
+                      <MenuItem value="Pfizer-BioNTech">Pfizer-BioNTech</MenuItem>
+                      <MenuItem value="AstraZeneca">AstraZeneca</MenuItem>
+                      <MenuItem value="Moderna">Moderna</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <TextField
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                    id="standard-basic"
+                    helperText="Ngày tiêm mũi 1"
+                    variant="outlined"
+                    type="date"
+                    className="register-dob"
+                    value={injectDate1}
+                    onChange={(e) => setInjectDate1(e.target.value)}
+                  />
+                  <TextField
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                    id="standard-basic"
+                    variant="outlined"
+                    type="text"
+                    label="Đơn vị tiêm mũi 1"
+                    className="addInfo-findWithPhone"
+                    value={injectPerson1}
+                    onChange={(e) => setInjectPerson1(e.target.value)}
+                  />
+                </Stack>
+              </Grid>
 
-            <div>
-              <FormControl
-                variant="outlined"
-                sx={{ marginTop: 1, minWidth: 210 }}
+              <Grid item md={4}>
+                <Stack>
+                  <FormControl
+                    variant="outlined"
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                  >
+                    <InputLabel id="demo-simple-select-label">Mũi 2</InputLabel>
+                    <Select
+                      label={"Mũi 2"}
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      onChange={(e) => setVaccineType2(e.target.value)}
+                      value={vaccineType2}
+                    >
+                      <MenuItem value="Chưa tiêm" disabled>
+                        Chọn loại vaccine
+                      </MenuItem>
+                      <MenuItem value="Chưa tiêm">Chưa tiêm</MenuItem>
+                      <MenuItem value="Nanocovax">Nanocovax</MenuItem>
+                      <MenuItem value="Pfizer-BioNTech">Pfizer-BioNTech</MenuItem>
+                      <MenuItem value="AstraZeneca">AstraZeneca</MenuItem>
+                      <MenuItem value="Moderna">Moderna</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <TextField
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                    id="standard-basic"
+                    helperText="Ngày tiêm mũi 2"
+                    variant="outlined"
+                    type="date"
+                    className="register-dob"
+                    value={injectDate2}
+                    onChange={(e) => setInjectDate2(e.target.value)}
+                  />
+                  <TextField
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                    id="standard-basic"
+                    variant="outlined"
+                    type="text"
+                    label="Đơn vị tiêm mũi 2"
+                    className="addInfo-findWithPhone"
+                    value={injectPerson2}
+                    onChange={(e) => setInjectPerson2(e.target.value)}
+                  />
+                </Stack>
+              </Grid>
+              <Grid item md={4}>
+                <Stack>
+                  <FormControl
+                    variant="outlined"
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                  >
+                    <InputLabel id="demo-simple-select-label">Mũi 3</InputLabel>
+                    <Select
+                      label={"Mũi 3"}
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      onChange={(e) => setVaccineType3(e.target.value)}
+                      value={vaccineType3}
+                    >
+                      <MenuItem value="Chưa tiêm" disabled>
+                        Chọn loại vaccine
+                      </MenuItem>
+                      <MenuItem value="Chưa tiêm">Chưa tiêm</MenuItem>
+                      <MenuItem value="Nanocovax">Nanocovax</MenuItem>
+                      <MenuItem value="Pfizer-BioNTech">Pfizer-BioNTech</MenuItem>
+                      <MenuItem value="AstraZeneca">AstraZeneca</MenuItem>
+                      <MenuItem value="Moderna">Moderna</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <TextField
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                    id="standard-basic"
+                    helperText="Ngày tiêm mũi 3"
+                    variant="outlined"
+                    type="date"
+                    className="register-dob"
+                    value={injectDate3}
+                    onChange={(e) => setInjectDate3(e.target.value)}
+                  />
+                  <TextField
+                    sx={{ marginTop: 1, minWidth: 210 }}
+                    id="standard-basic"
+                    variant="outlined"
+                    type="text"
+                    label="Đơn vị tiêm mũi 3"
+                    className="addInfo-findWithPhone"
+                    value={injectPerson3}
+                    onChange={(e) => setInjectPerson3(e.target.value)}
+                  />
+                </Stack>
+              </Grid>
+            </Grid>
+            <Stack sx={{ alignItems: "center" }}>
+              <Button
+                variant="contained"
+                component="label"
+                className="addInfo-button"
+                sx={{ width: 120, marginTop: 4 }}
+                color="info"
               >
-                <InputLabel id="demo-simple-select-label">Mũi 2</InputLabel>
-                <Select
-                  label={"Mũi 2"}
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  onChange={(e) => setVaccineType2(e.target.value)}
-                  value={vaccineType2}
-                >
-                  <MenuItem value="Chưa tiêm" disabled>
-                    Chọn loại vaccine
-                  </MenuItem>
-                  <MenuItem value="Chưa tiêm">Chưa tiêm</MenuItem>
-                  <MenuItem value="Nanocovax">Nanocovax</MenuItem>
-                  <MenuItem value="Pfizer-BioNTech">Pfizer-BioNTech</MenuItem>
-                  <MenuItem value="AstraZeneca">AstraZeneca</MenuItem>
-                  <MenuItem value="Moderna">Moderna</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            <div>
-              <FormControl
-                variant="outlined"
-                sx={{ marginTop: 1, minWidth: 210 }}
+                Tải ảnh lên
+                <input
+                  hidden
+                  accept="image/*"
+                  multiple
+                  type="file"
+                  onChange={(e) => setImageUpload(e.target.files[0])}
+                />
+              </Button>
+              <Typography sx={{ marginTop: 1 }}>{imageUpload?.name}</Typography>
+            </Stack>
+            <Stack sx={{ marginTop: 5, justifyContent: 'flex-end' }}>
+              <Button
+                variant="contained"
+                type="submit"
+                onClick={submitInfoHanlder}
+                color="error"
               >
-                <InputLabel id="demo-simple-select-label">Mũi 3</InputLabel>
-                <Select
-                  label={"Mũi 3"}
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  onChange={(e) => setVaccineType3(e.target.value)}
-                  value={vaccineType3}
-                >
-                  <MenuItem value="Chưa tiêm" disabled>
-                    Chọn loại vaccine
-                  </MenuItem>
-                  <MenuItem value="Chưa tiêm">Chưa tiêm</MenuItem>
-                  <MenuItem value="Nanocovax">Nanocovax</MenuItem>
-                  <MenuItem value="Pfizer-BioNTech">Pfizer-BioNTech</MenuItem>
-                  <MenuItem value="AstraZeneca">AstraZeneca</MenuItem>
-                  <MenuItem value="Moderna">Moderna</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-          </Stack>
-          <Stack
-            spacing={2}
-            direction="row"
-            className="addInfo-button"
-            sx={{ alignItems: "baseline" }}
-          >
-            <TextField
-              sx={{ marginTop: 1, minWidth: 210 }}
-              id="standard-basic"
-              helperText="Ngày tiêm mũi 1"
-              variant="outlined"
-              type="date"
-              className="register-dob"
-              value={injectDate1}
-              onChange={(e) => setInjectDate1(e.target.value)}
-            />
-            <TextField
-              sx={{ marginTop: 1, minWidth: 210 }}
-              id="standard-basic"
-              helperText="Ngày tiêm mũi 2"
-              variant="outlined"
-              type="date"
-              className="register-dob"
-              value={injectDate2}
-              onChange={(e) => setInjectDate2(e.target.value)}
-            />
-            <TextField
-              sx={{ marginTop: 1, minWidth: 210 }}
-              id="standard-basic"
-              helperText="Ngày tiêm mũi 3"
-              variant="outlined"
-              type="date"
-              className="register-dob"
-              value={injectDate3}
-              onChange={(e) => setInjectDate3(e.target.value)}
-            />
-          </Stack>
-          <Stack
-            spacing={2}
-            direction="row"
-            className="addInfo-button"
-            sx={{ alignItems: "baseline" }}
-          >
-            <TextField
-              sx={{ marginTop: 1, minWidth: 210 }}
-              id="standard-basic"
-              variant="outlined"
-              type="text"
-              label="Đơn vị tiêm mũi 1"
-              className="addInfo-findWithPhone"
-              value={injectPerson1}
-              onChange={(e) => setInjectPerson1(e.target.value)}
-            />
-            <TextField
-              sx={{ marginTop: 1, minWidth: 210 }}
-              id="standard-basic"
-              variant="outlined"
-              type="text"
-              label="Đơn vị tiêm mũi 2"
-              className="addInfo-findWithPhone"
-              value={injectPerson2}
-              onChange={(e) => setInjectPerson2(e.target.value)}
-            />
-            <TextField
-              sx={{ marginTop: 1, minWidth: 210 }}
-              id="standard-basic"
-              variant="outlined"
-              type="text"
-              label="Đơn vị tiêm mũi 3"
-              className="addInfo-findWithPhone"
-              value={injectPerson3}
-              onChange={(e) => setInjectPerson3(e.target.value)}
-            />
-          </Stack>
-          <Stack sx={{ alignItems: "center" }}>
-            <Button
-              variant="contained"
-              component="label"
-              className="addInfo-button"
-              sx={{ width: 120, marginTop: 4 }}
-            >
-              Tải ảnh lên
-              <input
-                hidden
-                accept="image/*"
-                multiple
-                type="file"
-                onChange={(e) => setImageUpload(e.target.files[0])}
-              />
-            </Button>
-            <Typography sx={{ marginTop: 1 }}>{imageUpload?.name}</Typography>
-          </Stack>
-          <Stack sx={{ marginTop: 5 }}>
-            {" "}
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={submitInfoHanlder}
-            >
-              Gửi yêu cầu
-            </Button>
-          </Stack>
-        </Stack>
+                Gửi yêu cầu
+              </Button>
+            </Stack>
+          </CardContent>
+        </Card>
       ) : (
         <Typography variant="h5" gutterBottom>
           Vui lòng đăng nhập để tiếp tục
         </Typography>
-      )} */}
-    </div>
+      )}
+    </Container>
   );
 };
 

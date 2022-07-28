@@ -37,7 +37,7 @@ const utilities = {
             id: 'edit-info',
             title: 'Sửa thông tin tiêm chủng',
             type: 'item',
-            url: '/utils/util-shadow',
+            url: '/utils/injection-info-request',
             icon: icons.IconEdit,
             breadcrumbs: false
         },
@@ -53,10 +53,19 @@ const utilities = {
             id: 'self-declare',
             title: 'Khai báo tình trạng nhiễm bệnh',
             type: 'item',
-            url: '/sample-page',
+            url: '/utils/self-declare',
             icon: icons.IconWriting,
             breadcrumbs: false
-        }
+        },
+        {
+            id: 'register',
+            title: 'Register',
+            type: 'item',
+            url: '/utils/register',
+            icon: icons.IconWriting,
+            breadcrumbs: false
+        },
+
     ]
 };
 

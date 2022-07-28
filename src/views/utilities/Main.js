@@ -24,16 +24,10 @@ import {
 } from "../../firebase/firebase";
 
 import { onSnapshot, doc, setDoc, orderBy, getDocs } from "@firebase/firestore";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import { typography } from "@mui/system";
+import { Typography, Stack, Container, Card, Box, CardContent, Button, Grid } from "@mui/material";
 import axios from "axios";
+
+import { makeStyles } from "@mui/styles";
 
 const Main = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -64,7 +58,31 @@ const Main = () => {
   const [location, setLocation] = useState("");
   const [todayCases, setTodayCases] = useState("");
 
+  const useStyles = makeStyles((theme) => ({
+    title: {
+      paddingBottom: '30px',
+      textTransform: 'uppercase',
+    },
+    box: {
+      padding: '30px',
+      borderRadius: '5px',
+      boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.4)'
+    },
+    first: {
+      backgroundColor: 'red',
+    },
+    second : {
+      backgroundColor: 'yellow'
+    },
+    third: {
+      backgroundColor: 'limegreen'
+    },
+    grid: {
+      justifyContent: 'center'
+    }
+  }));
 
+  const classes = useStyles();
   // query dataa
   const findInfoByPhoneHandler = (e) => {
     e.preventDefault();
@@ -112,7 +130,6 @@ const Main = () => {
         });
       });
     }
-    console.log(todayCases);
   };
 
   const goBackHandler = (e) => {
@@ -182,7 +199,6 @@ const Main = () => {
         });
       });
     }
-    console.log(declareRefInfo);
   }, [isLoggedIn, phone, queryId]);
 
   useEffect(() => {
@@ -192,89 +208,100 @@ const Main = () => {
   }, [cases, authInfo]);
 
   return (
-    <div className="container main">
+    <Container className="container main">
       {isLoggedIn ? (
-        <div>
+        <Card>
           {injectionInfo.numberOfInjections ? (
-            <div>
-              <div>
-                {injectionInfo && (
-                  <div>
-                    {!injectionInfo.dataSubmitted ? (
-                      <Stack>
-                        <Typography variant="h4" gutterBottom>
-                          {" "}
-                          Chưa có dữ liệu tiêm chủng của bạn
-                        </Typography>
-                        <Typography>
-                          Vui lòng bấm vào đây để gửi yêu cầu xác nhận thông tin
-                          tiêm chủng
-                        </Typography>
-                      </Stack>
-                    ) : (
-                      <Typography variant="h4" gutterBottom>
-                        {" "}
-                        Bạn đã tiêm {injectionInfo?.numberOfInjections} vaccine
+            <CardContent>
+              {injectionInfo && (
+                <>
+                  {!injectionInfo.dataSubmitted ? (
+                    <Stack>
+                      <Typography variant="h4" sx={{ textAlign: 'center' }}>
+                        Chưa có dữ liệu tiêm chủng của bạn
                       </Typography>
+                      <Typography>
+                        Vui lòng bấm vào đây để gửi yêu cầu xác nhận thông tin
+                        tiêm chủng
+                      </Typography>
+                    </Stack>
+                  ) : (
+                    <Typography variant="h2" sx={{ textAlign: 'center' }} className={classes.title}>
+                      Bạn đã tiêm {injectionInfo?.numberOfInjections} vaccine
+                    </Typography>
+                  )}
+                  <Grid container spacing={5} className={classes.grid}>
+                    {injectionInfo?.firstDose === "" ? (
+                      <></>
+                    ) : (
+                      <Grid item md={4} >
+                        <Box className={`${classes.box} ${classes.first}`}>
+                          <Typography variant="h3">
+                            Mũi số 1: {injectionInfo?.firstDose}
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            Ngày tiêm : {injectionInfo?.injectDate1}
+                          </Typography>
+                          <Typography>
+                            Đơn vị tiêm: {injectionInfo?.injectPerson1}
+                          </Typography>
+                        </Box>
+                      </Grid>
                     )}
-                    <div className="main-info">
-                      <Stack
-                        spacing={2}
-                        direction="column"
-                        sx={{ maxWidth: 400, alignItems: "center" }}
-                      >
-                        {injectionInfo?.firstDose === "" ? (
-                          <></>
-                        ) : (
-                          <Typography variant="subtitle1" gutterBottom>
-                            Mũi số 1: {injectionInfo?.firstDose} -{" "}
-                            {injectionInfo?.injectDate1} - Đơn vị tiêm:{" "}
-                            {injectionInfo?.injectPerson1}
+                    {injectionInfo.secondDose === "" ||
+                      injectionInfo.secondDose === "Chưa tiêm" ? (
+                      ""
+                    ) : (
+                      <Grid item md={4}>
+                        <Box className={`${classes.box} ${classes.second}`}>
+                          <Typography variant="h3">
+                            Mũi số 2: {injectionInfo?.secondDose}
                           </Typography>
-                        )}
-
-                        {injectionInfo.secondDose === "" ||
-                          injectionInfo.secondDose === "Chưa tiêm" ? (
-                          ""
-                        ) : (
-                          <Typography variant="subtitle1" gutterBottom>
-                            Mũi số 2: {injectionInfo?.secondDose}-{" "}
-                            {injectionInfo?.injectDate2} - Đơn vị tiêm:{" "}
-                            {injectionInfo?.injectPerson2}
+                          <Typography variant="subtitle1">
+                            Ngày tiêm : {injectionInfo?.injectDate2}
                           </Typography>
-                        )}
-                        {injectionInfo.thirdDose === "" ||
-                          injectionInfo.thirdDose === "Chưa tiêm" ? (
-                          ""
-                        ) : (
-                          <Typography variant="subtitle1" gutterBottom>
-                            Mũi số 3: {injectionInfo?.thirdDose} -{" "}
-                            {injectionInfo?.injectDate3} - Đơn vị tiêm:{" "}
-                            {injectionInfo?.injectPerson3}
+                          <Typography variant="body1">
+                            Đơn vị tiêm: {injectionInfo?.injectPerson3}
                           </Typography>
-                        )}
-                      </Stack>
-                    </div>
-                    <div>---------------------------------</div>
-                  </div>
-                )}
-              </div>
-            </div>
+                        </Box>
+                      </Grid>
+                    )}
+                    {injectionInfo.thirdDose === "" ||
+                      injectionInfo.thirdDose === "Chưa tiêm" ? (
+                      ""
+                    ) : (
+                      <Grid item md={4}>
+                        <Box className={`${classes.box} ${classes.third}`}>
+                          <Typography variant="h3">
+                            Mũi số 3: {injectionInfo?.thirdDose}
+                          </Typography>
+                          <Typography variant="subtitle1">
+                            Ngày tiêm : {injectionInfo?.injectDate3}
+                          </Typography>
+                          <Typography className={classes.host}variant="body1">
+                            Đơn vị tiêm: {injectionInfo?.injectPerson3}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                    )}
+                  </Grid>
+                </>
+              )}
+            </CardContent>
           ) : (
             <div>
-              {" "}
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h5" gutterBottom sx={{ textAlign: 'center' }}>
                 Bạn chưa có thông tin tiêm chủng
               </Typography>
             </div>
           )}
-        </div>
+        </Card>
       ) : (
         <Typography variant="h5" gutterBottom>
           Vui lòng đăng nhập để tiếp tục
         </Typography>
       )}
-    </div>
+    </Container>
   );
 };
 

@@ -34,10 +34,10 @@ const other = {
             icon: icons.IconSettings,
             children: [
                 {
-                    id: 'edit_info',
+                    id: 'add-injection-info',
                     title: 'Thông tin tiêm chủng',
                     type: 'item',
-                    url: '/icons/tabler-icons',
+                    url: '/admin/add-injection-info',
                     breadcrumbs: false
                 },
                 {
