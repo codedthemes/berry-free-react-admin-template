@@ -1,4 +1,5 @@
-import { createRoot } from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom";
 
 // third party
 import { BrowserRouter } from 'react-router-dom';
@@ -15,14 +16,13 @@ import config from './config';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
 
-const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(
+ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter basename={config.basename}>
             <App />
         </BrowserRouter>
-    </Provider>
+    </Provider>,
+      document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
