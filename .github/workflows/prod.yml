@@ -35,5 +35,5 @@ jobs:
                   SOURCE: 'build/'
                   REMOTE_HOST: 192.34.62.123
                   REMOTE_USER: berry
-                  TARGET: public_html/free
+                  TARGET: public_html/
                   EXCLUDE: '/dist/, /node_modules/'
