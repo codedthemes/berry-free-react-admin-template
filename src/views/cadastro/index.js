@@ -1,13 +1,13 @@
-//import Box from '@mui/material/Box';
-import React from 'react';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import { makeStyles } from '@mui/styles';
-import { KeyboardArrowRight } from '@mui/icons-material';
 import { useState } from 'react';
+import { KeyboardArrowRight } from '@mui/icons-material';
+import { Grid } from '@mui/material';
+
+// Para as margens
 
 const useStyles = makeStyles({
     field: {
@@ -19,6 +19,9 @@ const useStyles = makeStyles({
 
 export default function Cadastrar() {
     const classes = useStyles();
+
+    // Declaraões das Variáveis
+
     const [estado, setEstado] = useState('');
     const [cidade, setCidade] = useState('');
     const [bairro, setBairro] = useState('');
@@ -28,9 +31,63 @@ export default function Cadastrar() {
     const [hash, setHash] = useState('');
     const [desc, setDesc] = useState('');
 
+    // Variáveis auxiliares para checagem dos campos
+
+    const [estadoError, setEstadoError] = useState(false);
+    const [cidadeError, setCidadeError] = useState(false);
+    const [bairroError, setBairroError] = useState(false);
+    const [ruaError, setRuaError] = useState(false);
+    const [numeroError, setNumeroError] = useState(false);
+    const [complementoError, setComplementoError] = useState(false);
+    const [hashError, setHashError] = useState(false);
+    const [descError, setDescError] = useState(false);
+
+    // Checagens e Submissão
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (estado && cidade && bairro && rua && numero & complemento && hash && desc) {
+
+        // Recolocando as variáveis em false para campos saírem do vermelho
+
+        setEstadoError(false);
+        setCidadeError(false);
+        setBairroError(false);
+        setRuaError(false);
+        setNumeroError(false);
+        setComplementoError(false);
+        setHashError(false);
+        setDescError(false);
+
+        // Checagem: deixa vermelho os campos não preenchidos
+
+        if (estado == '') {
+            setEstadoError(true);
+        }
+        if (cidade == '') {
+            setCidadeError(true);
+        }
+        if (bairro == '') {
+            setBairroError(true);
+        }
+        if (rua == '') {
+            setRuaError(true);
+        }
+        if (numero == '') {
+            setNumeroError(true);
+        }
+        if (complemento == '') {
+            setComplementoError(true);
+        }
+        if (hash == '') {
+            setHashError(true);
+        }
+        if (desc == '') {
+            setDescError(true);
+        }
+
+        // Submissão: só prossegue com todos os campos preenchidos
+
+        if (estado && cidade && bairro && rua && numero && complemento && hash && desc) {
             console.log(estado, cidade, bairro, rua, numero, complemento, hash, desc);
         }
     };
@@ -47,6 +104,7 @@ export default function Cadastrar() {
                     id="outlined"
                     label="Estado do Brasil"
                     required
+                    error={estadoError}
                 />
                 <TextField
                     onChange={(e) => setCidade(e.target.value)}
@@ -55,6 +113,7 @@ export default function Cadastrar() {
                     label="Cidade"
                     multiline
                     required
+                    error={cidadeError}
                 />
                 <TextField
                     onChange={(e) => setBairro(e.target.value)}
@@ -63,6 +122,7 @@ export default function Cadastrar() {
                     label="Bairro ou Distrito"
                     multiline
                     required
+                    error={bairroError}
                 />
                 <TextField
                     onChange={(e) => setRua(e.target.value)}
@@ -71,6 +131,7 @@ export default function Cadastrar() {
                     label="Nome da Rua"
                     multiline
                     required
+                    error={ruaError}
                 />
                 <TextField
                     onChange={(e) => setNumero(e.target.value)}
@@ -79,6 +140,7 @@ export default function Cadastrar() {
                     label="Número"
                     multiline
                     required
+                    error={numeroError}
                 />
                 <TextField
                     onChange={(e) => setComplemento(e.target.value)}
@@ -88,6 +150,7 @@ export default function Cadastrar() {
                     multiline
                     required
                     fullWidth
+                    error={complementoError}
                 />
 
                 <Typography variant="h5" gutterBottom>
@@ -101,6 +164,7 @@ export default function Cadastrar() {
                     label="Hash Destinatário"
                     required
                     fullWidth
+                    error={hashError}
                 />
                 <TextField
                     onChange={(e) => setDesc(e.target.value)}
@@ -111,10 +175,14 @@ export default function Cadastrar() {
                     className={classes.field}
                     fullWidth
                     rows={3}
+                    error={descError}
                 />
-                <Button size="large" variant="contained" margin="normal">
-                    Cadastrar Novo Envio
-                </Button>
+                <p></p>
+                <Grid container direction="column" alignItems="center">
+                    <Button size="large" variant="contained" margin="dense" endIcon={<KeyboardArrowRight />} type="submit">
+                        Cadastrar Novo Envio
+                    </Button>
+                </Grid>
             </form>
         </Container>
     );
