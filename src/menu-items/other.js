@@ -1,8 +1,8 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons';
+import { IconBrandChrome, IconHelp, IconList } from '@tabler/icons';
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconBrandChrome, IconHelp, IconList };
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
@@ -10,6 +10,14 @@ const other = {
     id: 'sample-docs-roadmap',
     type: 'group',
     children: [
+        {
+            id: 'shipments',
+            title: 'Envios',
+            type: 'item',
+            url: '/shipments',
+            icon: icons.IconList,
+            breadcrumbs: false
+        },
         {
             id: 'sample-page',
             title: 'Sample Page',

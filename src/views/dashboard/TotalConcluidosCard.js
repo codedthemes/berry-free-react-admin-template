@@ -7,7 +7,7 @@ import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
-import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+import SkeletonConcluidosCard from 'ui-component/cards/Skeleton/SConcluidosCard';
 
 // assets
 import EarningIcon from 'assets/images/icons/earning.svg';
@@ -56,7 +56,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const EarningCard = ({ isLoading }) => {
+const TotalConcluidosCard = ({ isLoading }) => {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -72,7 +72,7 @@ const EarningCard = ({ isLoading }) => {
     return (
         <>
             {isLoading ? (
-                <SkeletonEarningCard />
+                <SkeletonConcluidosCard />
             ) : (
                 <CardWrapper border={false} content={false}>
                     <Box sx={{ p: 2.25 }}>
@@ -144,7 +144,7 @@ const EarningCard = ({ isLoading }) => {
                                 <Grid container alignItems="center">
                                     <Grid item>
                                         <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                            $500.00
+                                            500M
                                         </Typography>
                                     </Grid>
                                     <Grid item>
@@ -169,7 +169,7 @@ const EarningCard = ({ isLoading }) => {
                                         color: theme.palette.secondary[200]
                                     }}
                                 >
-                                    Total Earning
+                                    Concluídos
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -180,8 +180,8 @@ const EarningCard = ({ isLoading }) => {
     );
 };
 
-EarningCard.propTypes = {
+TotalConcluidosCard.propTypes = {
     isLoading: PropTypes.bool
 };
 
-export default EarningCard;
+export default TotalConcluidosCard;

@@ -1,8 +1,8 @@
 {
-    "name": "berry-material-react-free",
+    "name": "motion",
     "version": "3.2.0",
     "private": true,
-    "homepage": "https://berrydashboard.io/free",
+    "homepage": "https://motion-track.com",
     "dependencies": {
         "@emotion/cache": "^11.9.3",
         "@emotion/react": "^11.9.3",
@@ -13,6 +13,7 @@
         "@mui/styles": "^5.8.6",
         "@mui/system": "^5.8.6",
         "@mui/utils": "^5.8.6",
+        "@mui/x-data-grid": "^5.17.7",
         "@tabler/icons": "^1.72.0",
         "apexcharts": "^3.35.3",
         "formik": "^2.2.9",
@@ -29,6 +30,7 @@
         "react-router-dom": "6.3.0",
         "react-scripts": "^5.0.1",
         "redux": "^4.2.0",
+        "web3": "^1.8.0",
         "yup": "^0.32.11"
     },
     "scripts": {

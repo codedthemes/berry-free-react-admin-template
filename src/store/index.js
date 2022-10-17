@@ -4,6 +4,6 @@ import reducer from './reducer';
 // ==============================|| REDUX - MAIN STORE ||============================== //
 
 const store = createStore(reducer);
-const persister = 'Free';
+const persister = '/';
 
 export { store, persister };

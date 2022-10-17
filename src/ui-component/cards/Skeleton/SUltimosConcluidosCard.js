@@ -7,7 +7,7 @@ import { gridSpacing } from 'store/constant';
 
 // ==============================|| SKELETON - POPULAR CARD ||============================== //
 
-const PopularCard = () => (
+const SUltimosConcluidosCard = () => (
     <Card>
         <CardContent>
             <Grid container spacing={gridSpacing}>
@@ -152,4 +152,4 @@ const PopularCard = () => (
     </Card>
 );
 
-export default PopularCard;
+export default SUltimosConcluidosCard;

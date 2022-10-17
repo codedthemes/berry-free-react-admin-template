@@ -11,7 +11,7 @@ import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // project imports
-import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
+import SkeletonTotalStatusEnviosBarChart from 'ui-component/cards/Skeleton/STotalStatusEnviosBarChartCard';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
@@ -20,23 +20,23 @@ import chartData from './chart-data/total-growth-bar-chart';
 
 const status = [
     {
-        value: 'today',
-        label: 'Today'
+        value: 'hoje',
+        label: 'Hoje'
     },
     {
-        value: 'month',
-        label: 'This Month'
+        value: 'mes',
+        label: 'Mês'
     },
     {
-        value: 'year',
-        label: 'This Year'
+        value: 'ano',
+        label: 'Ano'
     }
 ];
 
 // ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
-const TotalGrowthBarChart = ({ isLoading }) => {
-    const [value, setValue] = useState('today');
+const TotalStatusEnviosBarChartCard = ({ isLoading }) => {
+    const [value, setValue] = useState('hoje');
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
 
@@ -91,7 +91,7 @@ const TotalGrowthBarChart = ({ isLoading }) => {
     return (
         <>
             {isLoading ? (
-                <SkeletonTotalGrowthBarChart />
+                <SkeletonTotalStatusEnviosBarChart />
             ) : (
                 <MainCard>
                     <Grid container spacing={gridSpacing}>
@@ -100,10 +100,10 @@ const TotalGrowthBarChart = ({ isLoading }) => {
                                 <Grid item>
                                     <Grid container direction="column" spacing={1}>
                                         <Grid item>
-                                            <Typography variant="subtitle2">Total Growth</Typography>
+                                            <Typography variant="subtitle2">Envios</Typography>
                                         </Grid>
                                         <Grid item>
-                                            <Typography variant="h3">$2,324.00</Typography>
+                                            <Typography variant="h3">832M</Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -133,8 +133,8 @@ const TotalGrowthBarChart = ({ isLoading }) => {
     );
 };
 
-TotalGrowthBarChart.propTypes = {
+TotalStatusEnviosBarChartCard.propTypes = {
     isLoading: PropTypes.bool
 };
 
-export default TotalGrowthBarChart;
+export default TotalStatusEnviosBarChartCard;

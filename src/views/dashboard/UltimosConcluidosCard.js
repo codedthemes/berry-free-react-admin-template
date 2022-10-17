@@ -6,9 +6,9 @@ import { useTheme } from '@mui/material/styles';
 import { Avatar, Button, CardActions, CardContent, Divider, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
-import BajajAreaChartCard from './BajajAreaChartCard';
+import UltimosConcluidosChartCard from './UltimosConcluidosChartCard';
 import MainCard from 'ui-component/cards/MainCard';
-import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
+import SkeletonUltimosConcluidosCard from 'ui-component/cards/Skeleton/SUltimosConcluidosCard';
 import { gridSpacing } from 'store/constant';
 
 // assets
@@ -19,7 +19,7 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 
 // ==============================|| DASHBOARD DEFAULT - POPULAR CARD ||============================== //
 
-const PopularCard = ({ isLoading }) => {
+const UltimosConcluidosCard = ({ isLoading }) => {
     const theme = useTheme();
 
     const [anchorEl, setAnchorEl] = useState(null);
@@ -35,7 +35,7 @@ const PopularCard = ({ isLoading }) => {
     return (
         <>
             {isLoading ? (
-                <SkeletonPopularCard />
+                <SkeletonUltimosConcluidosCard />
             ) : (
                 <MainCard content={false}>
                     <CardContent>
@@ -43,9 +43,9 @@ const PopularCard = ({ isLoading }) => {
                             <Grid item xs={12}>
                                 <Grid container alignContent="center" justifyContent="space-between">
                                     <Grid item>
-                                        <Typography variant="h4">Popular Stocks</Typography>
+                                        <Typography variant="h4">Últimos envios</Typography>
                                     </Grid>
-                                    <Grid item>
+                                    {/* <Grid item>
                                         <MoreHorizOutlinedIcon
                                             fontSize="small"
                                             sx={{
@@ -76,11 +76,11 @@ const PopularCard = ({ isLoading }) => {
                                             <MenuItem onClick={handleClose}> This Month</MenuItem>
                                             <MenuItem onClick={handleClose}> This Year </MenuItem>
                                         </Menu>
-                                    </Grid>
+                                    </Grid> */}
                                 </Grid>
                             </Grid>
                             <Grid item xs={12} sx={{ pt: '16px !important' }}>
-                                <BajajAreaChartCard />
+                                <UltimosConcluidosChartCard />
                             </Grid>
                             <Grid item xs={12}>
                                 <Grid container direction="column">
@@ -88,16 +88,16 @@ const PopularCard = ({ isLoading }) => {
                                         <Grid container alignItems="center" justifyContent="space-between">
                                             <Grid item>
                                                 <Typography variant="subtitle1" color="inherit">
-                                                    Bajaj Finery
+                                                    Smart Phone Xiaomi
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
                                                 <Grid container alignItems="center" justifyContent="space-between">
-                                                    <Grid item>
+                                                    {/* <Grid item>
                                                         <Typography variant="subtitle1" color="inherit">
-                                                            $1839.00
+                                                            1839.00
                                                         </Typography>
-                                                    </Grid>
+                                                    </Grid> */}
                                                     <Grid item>
                                                         <Avatar
                                                             variant="rounded"
@@ -119,7 +119,7 @@ const PopularCard = ({ isLoading }) => {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle2" sx={{ color: 'success.dark' }}>
-                                            10% Profit
+                                            Concluído
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -129,16 +129,16 @@ const PopularCard = ({ isLoading }) => {
                                         <Grid container alignItems="center" justifyContent="space-between">
                                             <Grid item>
                                                 <Typography variant="subtitle1" color="inherit">
-                                                    TTML
+                                                    TV Samsung 55''
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
                                                 <Grid container alignItems="center" justifyContent="space-between">
-                                                    <Grid item>
+                                                    {/* <Grid item>
                                                         <Typography variant="subtitle1" color="inherit">
                                                             $100.00
                                                         </Typography>
-                                                    </Grid>
+                                                    </Grid> */}
                                                     <Grid item>
                                                         <Avatar
                                                             variant="rounded"
@@ -160,7 +160,7 @@ const PopularCard = ({ isLoading }) => {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle2" sx={{ color: theme.palette.orange.dark }}>
-                                            10% loss
+                                            Cancelado
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -170,16 +170,16 @@ const PopularCard = ({ isLoading }) => {
                                         <Grid container alignItems="center" justifyContent="space-between">
                                             <Grid item>
                                                 <Typography variant="subtitle1" color="inherit">
-                                                    Reliance
+                                                    Notebook Acer
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
                                                 <Grid container alignItems="center" justifyContent="space-between">
-                                                    <Grid item>
+                                                    {/* <Grid item>
                                                         <Typography variant="subtitle1" color="inherit">
                                                             $200.00
                                                         </Typography>
-                                                    </Grid>
+                                                    </Grid> */}
                                                     <Grid item>
                                                         <Avatar
                                                             variant="rounded"
@@ -201,7 +201,7 @@ const PopularCard = ({ isLoading }) => {
                                     </Grid>
                                     <Grid item>
                                         <Typography variant="subtitle2" sx={{ color: theme.palette.success.dark }}>
-                                            10% Profit
+                                            Concluído
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -211,16 +211,16 @@ const PopularCard = ({ isLoading }) => {
                                         <Grid container alignItems="center" justifyContent="space-between">
                                             <Grid item>
                                                 <Typography variant="subtitle1" color="inherit">
-                                                    TTML
+                                                    HD externo 1TB STEA100040 Seagate
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
                                                 <Grid container alignItems="center" justifyContent="space-between">
-                                                    <Grid item>
+                                                    {/* <Grid item>
                                                         <Typography variant="subtitle1" color="inherit">
                                                             $189.00
                                                         </Typography>
-                                                    </Grid>
+                                                    </Grid> */}
                                                     <Grid item>
                                                         <Avatar
                                                             variant="rounded"
@@ -228,8 +228,8 @@ const PopularCard = ({ isLoading }) => {
                                                                 width: 16,
                                                                 height: 16,
                                                                 borderRadius: '5px',
-                                                                backgroundColor: theme.palette.orange.light,
-                                                                color: theme.palette.orange.dark,
+                                                                backgroundColor: theme.palette.info.light,
+                                                                color: theme.palette.info.dark,
                                                                 ml: 2
                                                             }}
                                                         >
@@ -241,8 +241,8 @@ const PopularCard = ({ isLoading }) => {
                                         </Grid>
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant="subtitle2" sx={{ color: theme.palette.orange.dark }}>
-                                            10% loss
+                                        <Typography variant="subtitle2" sx={{ color: theme.palette.info.dark }}>
+                                            Transito
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -252,16 +252,16 @@ const PopularCard = ({ isLoading }) => {
                                         <Grid container alignItems="center" justifyContent="space-between">
                                             <Grid item>
                                                 <Typography variant="subtitle1" color="inherit">
-                                                    Stolon
+                                                    Projetor Samsung Smart The Freestyle
                                                 </Typography>
                                             </Grid>
                                             <Grid item>
                                                 <Grid container alignItems="center" justifyContent="space-between">
-                                                    <Grid item>
+                                                    {/* <Grid item>
                                                         <Typography variant="subtitle1" color="inherit">
                                                             $189.00
                                                         </Typography>
-                                                    </Grid>
+                                                    </Grid> */}
                                                     <Grid item>
                                                         <Avatar
                                                             variant="rounded"
@@ -269,8 +269,8 @@ const PopularCard = ({ isLoading }) => {
                                                                 width: 16,
                                                                 height: 16,
                                                                 borderRadius: '5px',
-                                                                backgroundColor: theme.palette.orange.light,
-                                                                color: theme.palette.orange.dark,
+                                                                backgroundColor: theme.palette.warning.light,
+                                                                color: theme.palette.warning.dark,
                                                                 ml: 2
                                                             }}
                                                         >
@@ -282,8 +282,8 @@ const PopularCard = ({ isLoading }) => {
                                         </Grid>
                                     </Grid>
                                     <Grid item>
-                                        <Typography variant="subtitle2" sx={{ color: theme.palette.orange.dark }}>
-                                            10% loss
+                                        <Typography variant="subtitle2" sx={{ color: theme.palette.warning.dark }}>
+                                            Tratamento
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -292,7 +292,7 @@ const PopularCard = ({ isLoading }) => {
                     </CardContent>
                     <CardActions sx={{ p: 1.25, pt: 0, justifyContent: 'center' }}>
                         <Button size="small" disableElevation>
-                            View All
+                            Mais
                             <ChevronRightOutlinedIcon />
                         </Button>
                     </CardActions>
@@ -302,8 +302,8 @@ const PopularCard = ({ isLoading }) => {
     );
 };
 
-PopularCard.propTypes = {
+UltimosConcluidosCard.propTypes = {
     isLoading: PropTypes.bool
 };
 
-export default PopularCard;
+export default UltimosConcluidosCard;

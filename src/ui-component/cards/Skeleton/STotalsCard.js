@@ -3,7 +3,7 @@ import { Card, List, ListItem, ListItemAvatar, ListItemText, Skeleton } from '@m
 
 // ==============================|| SKELETON - TOTAL INCOME DARK/LIGHT CARD ||============================== //
 
-const TotalIncomeCard = () => (
+const STotalsCard = () => (
     <Card sx={{ p: 2 }}>
         <List sx={{ py: 0 }}>
             <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
@@ -20,4 +20,4 @@ const TotalIncomeCard = () => (
     </Card>
 );
 
-export default TotalIncomeCard;
+export default STotalsCard;

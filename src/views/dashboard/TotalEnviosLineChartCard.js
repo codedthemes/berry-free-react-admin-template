@@ -10,7 +10,7 @@ import Chart from 'react-apexcharts';
 
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
-import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard';
+import SkeletonTotalEnviosCard from 'ui-component/cards/Skeleton/SConcluidosCard';
 
 import ChartDataMonth from './chart-data/total-order-month-line-chart';
 import ChartDataYear from './chart-data/total-order-year-line-chart';
@@ -63,7 +63,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
 
-const TotalOrderLineChartCard = ({ isLoading }) => {
+const TotalEnviosLineChartCard = ({ isLoading }) => {
     const theme = useTheme();
 
     const [timeValue, setTimeValue] = useState(false);
@@ -74,7 +74,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
     return (
         <>
             {isLoading ? (
-                <SkeletonTotalOrderCard />
+                <SkeletonTotalEnviosCard />
             ) : (
                 <CardWrapper border={false} content={false}>
                     <Box sx={{ p: 2.25 }}>
@@ -103,7 +103,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                             sx={{ color: 'inherit' }}
                                             onClick={(e) => handleChangeTime(e, true)}
                                         >
-                                            Month
+                                            Mês
                                         </Button>
                                         <Button
                                             disableElevation
@@ -112,7 +112,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                             sx={{ color: 'inherit' }}
                                             onClick={(e) => handleChangeTime(e, false)}
                                         >
-                                            Year
+                                            Ano
                                         </Button>
                                     </Grid>
                                 </Grid>
@@ -124,11 +124,11 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                             <Grid item>
                                                 {timeValue ? (
                                                     <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                        $108
+                                                        108K
                                                     </Typography>
                                                 ) : (
                                                     <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
-                                                        $961
+                                                        961M
                                                     </Typography>
                                                 )}
                                             </Grid>
@@ -152,7 +152,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                                         color: theme.palette.primary[200]
                                                     }}
                                                 >
-                                                    Total Order
+                                                    Total de envios
                                                 </Typography>
                                             </Grid>
                                         </Grid>
@@ -170,8 +170,8 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
     );
 };
 
-TotalOrderLineChartCard.propTypes = {
+TotalEnviosLineChartCard.propTypes = {
     isLoading: PropTypes.bool
 };
 
-export default TotalOrderLineChartCard;
+export default TotalEnviosLineChartCard;
