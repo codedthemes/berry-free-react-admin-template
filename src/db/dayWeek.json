@@ -1,0 +1,31 @@
+[
+    
+    {   "dayWeek" : "화",
+        "thisWeekVisit" : 1000,
+        "lastWeekVisit" : 1200
+    },
+    {   "dayWeek" : "수",
+        "thisWeekVisit" : 3000,
+        "lastWeekVisit" : 3500
+    },
+    {   "dayWeek" : "목",
+        "thisWeekVisit" : 1500,
+        "lastWeekVisit" : 1600
+    },
+    {   "dayWeek" : "금",
+        "thisWeekVisit" : 2000,
+        "lastWeekVisit" : 1800
+    },
+    {   "dayWeek" : "토",
+        "thisWeekVisit" : 800,
+        "lastWeekVisit" : 300
+    },
+    {   "dayWeek" : "일",
+        "thisWeekVisit" : 190,
+        "lastWeekVisit" : 500
+    },
+    {   "dayWeek" : "월",
+        "thisWeekVisit" : 1200,
+        "lastWeekVisit" : 600
+    }
+]

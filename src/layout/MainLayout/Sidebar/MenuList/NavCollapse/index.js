@@ -43,19 +43,6 @@ const NavCollapse = ({ menu, level }) => {
         }
     });
 
-    const Icon = menu.icon;
-    const menuIcon = menu.icon ? (
-        <Icon strokeWidth={1.5} size="1.3rem" style={{ marginTop: 'auto', marginBottom: 'auto' }} />
-    ) : (
-        <FiberManualRecordIcon
-            sx={{
-                width: selected === menu.id ? 8 : 6,
-                height: selected === menu.id ? 8 : 6
-            }}
-            fontSize={level > 0 ? 'inherit' : 'medium'}
-        />
-    );
-
     return (
         <>
             <ListItemButton
@@ -70,19 +57,11 @@ const NavCollapse = ({ menu, level }) => {
                 selected={selected === menu.id}
                 onClick={handleClick}
             >
-                <ListItemIcon sx={{ my: 'auto', minWidth: !menu.icon ? 18 : 36 }}>{menuIcon}</ListItemIcon>
                 <ListItemText
                     primary={
                         <Typography variant={selected === menu.id ? 'h5' : 'body1'} color="inherit" sx={{ my: 'auto' }}>
                             {menu.title}
                         </Typography>
-                    }
-                    secondary={
-                        menu.caption && (
-                            <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-                                {menu.caption}
-                            </Typography>
-                        )
                     }
                 />
                 {open ? (

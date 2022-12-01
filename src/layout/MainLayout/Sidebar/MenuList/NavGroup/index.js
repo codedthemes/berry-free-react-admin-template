@@ -31,23 +31,7 @@ const NavGroup = ({ item }) => {
 
     return (
         <>
-            <List
-                subheader={
-                    item.title && (
-                        <Typography variant="caption" sx={{ ...theme.typography.menuCaption }} display="block" gutterBottom>
-                            {item.title}
-                            {item.caption && (
-                                <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-                                    {item.caption}
-                                </Typography>
-                            )}
-                        </Typography>
-                    )
-                }
-            >
-                {items}
-            </List>
-
+            {items}
             {/* group divider */}
             <Divider sx={{ mt: 0.25, mb: 1.25 }} />
         </>

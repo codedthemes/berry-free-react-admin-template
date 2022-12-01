@@ -10,29 +10,34 @@ const icons = {
 
 const pages = {
     id: 'pages',
-    title: 'Pages',
-    caption: 'Pages Caption',
     type: 'group',
     children: [
         {
-            id: 'authentication',
-            title: 'Authentication',
+            id: 'Report',
+            title: '보고서 생산',
             type: 'collapse',
             icon: icons.IconKey,
 
             children: [
                 {
-                    id: 'login3',
-                    title: 'Login',
+                    id: 'dailyReport',
+                    title: '일일보고서',
                     type: 'item',
-                    url: '/pages/login/login3',
+                    url: '/Report/dailyReport',
                     target: true
                 },
                 {
-                    id: 'register3',
-                    title: 'Register',
+                    id: 'summaryReport',
+                    title: '요약리포트',
                     type: 'item',
-                    url: '/pages/register/register3',
+                    url: '/Report/summaryReport',
+                    target: true
+                },
+                {
+                    id: 'csvDownload',
+                    title: 'CSV 다운로드',
+                    type: 'item',
+                    url: '/Report/csvDownload',
                     target: true
                 }
             ]
