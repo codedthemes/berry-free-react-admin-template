@@ -21,19 +21,6 @@ const NavItem = ({ item, level }) => {
     const customization = useSelector((state) => state.customization);
     const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
-    const Icon = item.icon;
-    const itemIcon = item?.icon ? (
-        <Icon stroke={1.5} size="1.3rem" />
-    ) : (
-        <FiberManualRecordIcon
-            sx={{
-                width: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6,
-                height: customization.isOpen.findIndex((id) => id === item?.id) > -1 ? 8 : 6
-            }}
-            fontSize={level > 0 ? 'inherit' : 'medium'}
-        />
-    );
-
     let itemTarget = '_self';
     if (item.target) {
         itemTarget = '_blank';
@@ -78,19 +65,11 @@ const NavItem = ({ item, level }) => {
             selected={customization.isOpen.findIndex((id) => id === item.id) > -1}
             onClick={() => itemHandler(item.id)}
         >
-            <ListItemIcon sx={{ my: 'auto', minWidth: !item?.icon ? 18 : 36 }}>{itemIcon}</ListItemIcon>
             <ListItemText
                 primary={
                     <Typography variant={customization.isOpen.findIndex((id) => id === item.id) > -1 ? 'h5' : 'body1'} color="inherit">
                         {item.title}
                     </Typography>
-                }
-                secondary={
-                    item.caption && (
-                        <Typography variant="caption" sx={{ ...theme.typography.subMenuCaption }} display="block" gutterBottom>
-                            {item.caption}
-                        </Typography>
-                    )
                 }
             />
             {item.chip && (

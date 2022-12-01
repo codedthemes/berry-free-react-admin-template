@@ -1,0 +1,38 @@
+[
+    {   "year" : 1,
+        "visit" : 60000
+    },
+    {   "year" : 2,
+        "visit" : 45000
+    },
+    {   "year" : 3,
+        "visit" : 20000
+    },
+    {   "year" : 4,
+        "visit" : 35000
+    },
+    {   "year" : 5,
+        "visit" : 64570
+    },
+    {   "year" : 6,
+        "visit" : 34510
+    },
+    {   "year" : 7,
+        "visit" : 60000
+    },
+    {   "year" : 8,
+        "visit" : 25000
+    },
+    {   "year" : 9,
+        "visit" : 14500
+    },
+    {   "year" : 10,
+        "visit" : 35000
+    },
+    {   "year" : 11,
+        "visit" : 60000
+    },
+    {   "year" : 12,
+        "visit" : 78500
+    }
+]

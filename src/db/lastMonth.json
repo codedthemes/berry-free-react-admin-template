@@ -1,0 +1,93 @@
+[
+    {   "date" : 1,
+        "visit" : 1700
+    },
+    {   "date" : 2,
+        "visit" : 1000
+    },
+    {   "date" : 3,
+        "visit" : 900
+    },
+    {   "date" : 4,
+        "visit" : 950
+    },
+    {   "date" : 5,
+        "visit" : 1500
+    },
+    {   "date" : 6,
+        "visit" : 3000
+    },
+    {   "date" : 7,
+        "visit" : 2000
+    },
+    {   "date" : 8,
+        "visit" : 1400
+    },
+    {   "date" : 9,
+        "visit" : 2000
+    },
+    {   "date" : 10,
+        "visit" : 3000
+    },
+    {   "date" : 11,
+        "visit" : 5000
+    },
+    {   "date" : 12,
+        "visit" : 700
+    },
+    {   "date" : 13,
+        "visit" : 600
+    },
+    {   "date" : 14,
+        "visit" : 800
+    },
+    {   "date" : 15,
+        "visit" : 2000
+    },
+    {   "date" : 16,
+        "visit" : 1700
+    },
+    {   "date" : 17,
+        "visit" : 1500
+    },
+    {   "date" : 18,
+        "visit" : 3000
+    },
+    {   "date" : 19,
+        "visit" : 1000
+    },
+    {   "date" : 20,
+        "visit" : 800
+    },
+    {   "date" : 21,
+        "visit" : 900
+    },
+    {   "date" : 22,
+        "visit" : 500
+    },
+    {   "date" : 23,
+        "visit" : 1000
+    },
+    {   "date" : 24,
+        "visit" : 1000
+    },
+    {   "date" : 25,
+        "visit" : 1500
+    },
+    {   "date" : 26,
+        "visit" : 800
+    },
+    {   "date" : 27,
+        "visit" : 600
+    },
+    {   "date" : 28,
+        "visit" : 1000
+    },
+    {   "date" : 29,
+        "visit" : 1500
+    },
+    {   "date" : 30,
+        "visit" : 1600
+    }
+
+]
