@@ -46,9 +46,13 @@ const MainCard = forwardRef(
                 }}
             >
                 {/* card header and action */}
-                {title && 
-                    ( <CardHeader sx={headerSX} title={ darkTitle? <Typography variant="h3">{title}</Typography> : title } action={secondary} /> )
-                } 
+                {title && (
+                    <CardHeader
+                        sx={headerSX}
+                        title={darkTitle ? <Typography variant="h3">{title}</Typography> : title}
+                        action={secondary}
+                    />
+                )}
 
                 {/* content & header divider */}
                 {title && <Divider />}
