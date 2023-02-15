@@ -1,4 +1,4 @@
-@import '~react-perfect-scrollbar/dist/css/styles.css';
+@import '../../../node_modules/react-perfect-scrollbar/dist/css/styles.css';
 :export {
   paper: #ffffff;
   primaryLight: #eef2f6;
