@@ -10,7 +10,13 @@ import { store } from "./store";
 import { Provider } from "react-redux";
 import globalStyles from "./styles/style.css";
 import scrollBarStyle from "../node_modules/react-perfect-scrollbar/dist/css/styles.css";
+import favicon from '../public/favicon.svg'
 export const links = () => [
+  {
+    rel: "icon",
+    href: favicon,
+    type: "image/svg",
+  },
   {
     rel: "stylesheet",
     href: globalStyles,

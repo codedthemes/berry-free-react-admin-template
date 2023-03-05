@@ -25,7 +25,7 @@ import {
   IconAdjustmentsHorizontal,
   IconSearch,
   IconX,
-} from "../../../../../node_modules/@tabler/icons";
+} from "../../../../../node_modules/@tabler/icons-react";
 import { shouldForwardProp } from "@mui/system";
 
 // styles
@@ -205,55 +205,18 @@ const SearchSection = () => {
           placeholder="Search"
           startAdornment={
             <InputAdornment position="start">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-search"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-                <path d="M21 21l-6 -6" />
-              </svg>
-              {/* <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} /> */}
-              {/*svg-issue*/}
+              <IconSearch
+                stroke={1.5}
+                size="1rem"
+                color={theme.palette.grey[500]}
+              />
             </InputAdornment>
           }
           endAdornment={
             <InputAdornment position="end">
               <ButtonBase sx={{ borderRadius: "12px" }}>
                 <HeaderAvatarStyle variant="rounded">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-adjustments-horizontal"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                    stroke="currentColor"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M14 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M4 6l8 0" />
-                    <path d="M16 6l4 0" />
-                    <path d="M8 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M4 12l2 0" />
-                    <path d="M10 12l10 0" />
-                    <path d="M17 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M4 18l11 0" />
-                    <path d="M19 18l1 0" />
-                  </svg>
-                  {/* <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" /> */}
-                  {/*svg-issue*/}
+                  <IconAdjustmentsHorizontal stroke={1.5} size="1.3rem" />
                 </HeaderAvatarStyle>
               </ButtonBase>
             </InputAdornment>
