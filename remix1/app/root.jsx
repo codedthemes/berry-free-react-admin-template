@@ -5,12 +5,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
 } from "@remix-run/react";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import globalStyles from "./styles/style.css";
 import scrollBarStyle from "../node_modules/react-perfect-scrollbar/dist/css/styles.css";
-import favicon from '../public/favicon.svg'
+import favicon from "../public/favicon.svg";
 export const links = () => [
   {
     rel: "icon",
@@ -102,3 +103,21 @@ export default function App() {
     </html>
   );
 }
+
+export const CatchBoundary = () => {
+  const caught = useCatch();
+  switch (caught.status) {
+    case 401:
+    case 404:
+      return (
+          <h1>
+            {caught.status} {caught.statusText}
+          </h1>
+      );
+
+    default:
+      throw new Error(
+        `Unexpected caught response with status: ${caught.status}`
+      );
+  }
+};
