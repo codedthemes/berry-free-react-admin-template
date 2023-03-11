@@ -19,7 +19,7 @@ import navigation from "../../menu-items";
 import { drawerWidth } from "../../store/constant";
 
 // assets
-import { IconChevronRight } from "../../../node_modules/@tabler/icons";
+import { IconChevronRight } from "../../../node_modules/@tabler/icons-react";
 import { SET_MENU } from "../../store/actions";
 import { Outlet } from "@remix-run/react";
 
