@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // material-ui
@@ -35,6 +34,7 @@ import { strengthColor, strengthIndicator } from '../../../../utils/password-str
 // assets
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Link } from '@remix-run/react';
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 

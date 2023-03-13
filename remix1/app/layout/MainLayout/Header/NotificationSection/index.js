@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -31,6 +30,7 @@ import NotificationList from "./NotificationList";
 
 // assets
 import { IconBell } from "../../../../../node_modules/@tabler/icons-react";
+import { Link } from "@remix-run/react";
 
 // notification status options
 const status = [

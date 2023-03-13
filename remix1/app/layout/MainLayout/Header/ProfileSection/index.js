@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // material-ui
@@ -43,6 +42,7 @@ import {
   IconSettings,
   IconUser,
 } from "../../../../../node_modules/@tabler/icons-react";
+import { useNavigate } from "@remix-run/react";
 
 // ==============================|| PROFILE MENU ||============================== //
 

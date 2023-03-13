@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
@@ -20,6 +19,7 @@ import NavItem from "../NavItem";
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { IconChevronDown, IconChevronUp } from '../../../../../../node_modules/@tabler/icons-react';
+import { useLocation } from "@remix-run/react";
 
 // ==============================|| SIDEBAR MENU LIST COLLAPSE ITEMS ||============================== //
 

@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
@@ -10,6 +8,7 @@ import AuthCardWrapper from '../authentication/AuthCardWrapper';
 import AuthLogin from '../authentication/auth-forms/AuthLogin';
 import Logo from '../../../ui-component/Logo';
 import AuthFooter from '../../../ui-component/cards/AuthFooter';
+import { Link } from '@remix-run/react';
 
 // assets
 

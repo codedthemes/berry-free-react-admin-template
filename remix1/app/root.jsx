@@ -2,16 +2,26 @@ import {
   Links,
   LiveReload,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLocation,
 } from "@remix-run/react";
 import { store } from "./store";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import globalStyles from "./styles/style.css";
 import scrollBarStyle from "../node_modules/react-perfect-scrollbar/dist/css/styles.css";
 import favicon from "../public/favicon.svg";
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  ThemeProvider,
+} from "@mui/material";
+import theme from "./themes";
+import NavigationScroll from "./layout/NavigationScroll";
+import MainLayout from "./layout/MainLayout";
+import MinimalLayout from "./layout/MinimalLayout";
+
 export const links = () => [
   {
     rel: "icon",
@@ -94,7 +104,7 @@ export default function App() {
       </head>
       <body>
         <Provider store={store}>
-          <Outlet />
+          <Free />
           <ScrollRestoration />
           <Scripts />
           <LiveReload />
@@ -120,4 +130,23 @@ export const CatchBoundary = () => {
         `Unexpected caught response with status: ${caught.status}`
       );
   }
+};
+
+export const Free = () => {
+  const location = useLocation();
+  const customization = useSelector((state) => state.customization);
+  return (
+    <StyledEngineProvider injectfirst>
+      <ThemeProvider theme={theme(customization)}>
+        <CssBaseline />
+        <NavigationScroll>
+          {location.pathname.startsWith("/pages") ? (
+            <MinimalLayout />
+          ) : (
+            <MainLayout />
+          )}
+        </NavigationScroll>
+      </ThemeProvider>
+    </StyledEngineProvider>
+  );
 };

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
@@ -12,6 +11,7 @@ import { MENU_OPEN, SET_MENU } from '../../../../../store/actions';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { Link } from '@remix-run/react';
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
