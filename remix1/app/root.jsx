@@ -21,6 +21,7 @@ import theme from "./themes";
 import NavigationScroll from "./layout/NavigationScroll";
 import MainLayout from "./layout/MainLayout";
 import MinimalLayout from "./layout/MinimalLayout";
+import Error from "./error";
 
 export const links = () => [
   {
@@ -100,7 +101,7 @@ export default function App() {
           content="https://berrydashboard.io/og-image/og-twitter.png"
         />
         <meta name="twitter:creator" content="@codedthemes" />
-        <Links /> {typeof document === "undefined" ? "__STYLES__" : null}{" "}
+        <Links /> {typeof document === "undefined" ? "__STYLES__" : null}
       </head>
       <body>
         <Provider store={store}>
@@ -114,23 +115,26 @@ export default function App() {
   );
 }
 
-export const CatchBoundary = () => {
+export function CatchBoundary() {
   const caught = useCatch();
-  switch (caught.status) {
-    case 401:
-    case 404:
-      return (
-          <h1>
-            {caught.status} {caught.statusText}
-          </h1>
-      );
 
-    default:
-      throw new Error(
-        `Unexpected caught response with status: ${caught.status}`
-      );
-  }
-};
+  return (
+    <html>
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+        {typeof document === "undefined" ? "__STYLES__" : null}
+      </head>
+      <body>
+        <Provider store={store}>
+          <Error />
+          <Scripts />
+        </Provider>
+      </body>
+    </html>
+  );
+}
 
 export const Free = () => {
   const location = useLocation();
