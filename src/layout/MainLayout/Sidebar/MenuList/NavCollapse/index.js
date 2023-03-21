@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -22,10 +22,14 @@ const NavCollapse = ({ menu, level }) => {
 
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(null);
+    const navigate = useNavigate();
 
     const handleClick = () => {
         setOpen(!open);
         setSelected(!selected ? menu.id : null);
+        if (menu?.id !== 'authentication') {
+            navigate(menu.children[0]?.url);
+        }
     };
 
     const { pathname } = useLocation();
