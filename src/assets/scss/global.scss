@@ -1,0 +1,162 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex-column {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.flex-column-space-around {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.flex-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.flex-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.flex-space-between {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.flex-space-around {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flex-no-align {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.flex-column-no-align {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ac {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.rc {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ml5 {
+    margin-left: 5px;
+}
+
+.ml10 {
+    margin-left: 10px;
+}
+
+.mt5 {
+    margin-top: 5px;
+}
+
+.mb5 {
+    margin-bottom: 5px;
+}
+
+.mr10 {
+    margin-right: 10px;
+}
+
+.mr15 {
+    margin-right: 15px;
+}
+
+.avatar-small {
+    display: flex;
+    align-items: center;
+    background-color: rgb(85, 85, 85);
+    border-radius: 50%;
+    height: 2.5rem;
+    justify-content: center;
+    width: 2.5rem;
+}
+
+.letter {
+    font-weight: 400;
+    font-family: 'FZZhengHeiS-B-GB';
+    text-align: center;
+    letter-spacing: 0.02rem;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.ib {
+    display: inline-block;
+}
+
+.img-center {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.img-contain {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.red_text {
+    color: #f16;
+}
+
+.green_text {
+    color: #00a854;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.icon-small {
+    display: inline-block;
+    cursor: pointer;
+    color: #5b5e66;
+    font-weight: 500;
+    font-size: 18px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-middle {
+    cursor: pointer;
+    color: #000;
+    font-weight: 500;
+    font-size: 1.3rem;
+    width: 18px;
+    height: 18px;
+}

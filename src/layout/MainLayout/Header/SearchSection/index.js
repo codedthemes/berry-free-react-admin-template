@@ -10,6 +10,7 @@ import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // project imports
 import Transitions from 'ui-component/extended/Transitions';
+import PcSearch from './PcSearch';
 
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
@@ -161,8 +162,12 @@ const SearchSection = () => {
                     )}
                 </PopupState>
             </Box>
+            {/* PC */}
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                <OutlineInputStyle
+                <PcSearch />
+            </Box>
+
+            {/* <OutlineInputStyle
                     id="input-search-header"
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
@@ -181,10 +186,8 @@ const SearchSection = () => {
                             </ButtonBase>
                         </InputAdornment>
                     }
-                    aria-describedby="search-helper-text"
                     inputProps={{ 'aria-label': 'weight' }}
-                />
-            </Box>
+                /> */}
         </>
     );
 };
