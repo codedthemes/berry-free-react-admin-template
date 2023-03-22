@@ -8,6 +8,7 @@ import { Avatar, Box, ButtonBase } from '@mui/material';
 import LogoSection from '../LogoSection';
 import SearchSection from './SearchSection';
 import ProfileSection from './ProfileSection';
+import LocaleSection from './LocaleSection';
 import NotificationSection from './NotificationSection';
 
 // assets
@@ -60,6 +61,7 @@ const Header = ({ handleLeftDrawerToggle }) => {
             {/* header search */}
             <SearchSection />
             {/* notification & profile */}
+            <LocaleSection />
             <NotificationSection />
             <ProfileSection />
         </>

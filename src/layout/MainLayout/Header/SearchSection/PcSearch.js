@@ -10,18 +10,19 @@ import { ReactComponent as SearchIcon } from '../../../../assets/images/search.s
 import { shouldForwardProp } from '@mui/system';
 
 const Wrap = styled(Box, { shouldForwardProp })(() => ({
-    marginLeft: 20
+    marginLeft: 10
 }));
 
 const InputStyle = styled(Input, { shouldForwardProp })(({ open }) => {
     return {
-        width: `${open ? 210 : 0}`,
         marginLeft: 10,
         // paddingLeft: 16,
         // paddingRight: 16,
         '& input': {
+            width: `${open ? 210 : 0}`,
             background: 'transparent !important',
-            paddingLeft: '2px !important'
+            paddingLeft: '2px !important',
+            transition: 'width .2s'
         }
     };
 });
