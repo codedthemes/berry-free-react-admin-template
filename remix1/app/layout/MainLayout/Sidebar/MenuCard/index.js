@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import {
@@ -15,6 +13,9 @@ import {
     Typography,
     linearProgressClasses
 } from '@mui/material';
+
+// types
+import PropTypes from 'prop-types';
 
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';

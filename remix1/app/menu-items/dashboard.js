@@ -1,5 +1,5 @@
 // assets
-import {IconDashboard} from "../../node_modules/@tabler/icons-react";
+import { IconDashboard } from '../../node_modules/@tabler/icons-react';
 
 // constant
 const icons = {
@@ -9,18 +9,18 @@ const icons = {
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
 
 const dashboard = {
-    id: "dashboard",
-    title: "Dashboard",
-    type: "group",
+    id: 'dashboard',
+    title: 'Dashboard',
+    type: 'group',
     children: [
         {
-            id: "default",
-            title: "Dashboard",
-            type: "item",
-            url: "/dashboard/default",
+            id: 'default',
+            title: 'Dashboard',
+            type: 'item',
+            url: '/dashboard/default',
             icon: icons.IconDashboard,
             breadcrumbs: false
-        },
+        }
     ]
 };
 

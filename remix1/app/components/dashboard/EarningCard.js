@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 // material-ui
@@ -6,11 +5,14 @@ import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 
 // project imports
-import MainCard from '../../ui-component/cards/MainCard';
-import SkeletonEarningCard from '../../ui-component/cards/Skeleton/EarningCard';
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+
+// types
+import PropTypes from 'prop-types';
 
 // assets
-import EarningIcon from '../../assets/images/icons/earning.svg';
+import EarningIcon from 'assets/images/icons/earning.svg';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';

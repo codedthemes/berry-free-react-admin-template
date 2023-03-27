@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { Card, Grid, Typography } from '@mui/material';
 
+// project imports
+import chartData from './chart-data/bajaj-area-chart';
+
 // third-party
 import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
-
-// project imports
-import chartData from './chart-data/bajaj-area-chart';
 
 // ===========================|| DASHBOARD DEFAULT - BAJAJ AREA CHART CARD ||=========================== //
 

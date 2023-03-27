@@ -1,9 +1,12 @@
-import PropTypes from 'prop-types';
+// material-ui
 import { useTheme } from '@mui/material/styles';
 import { ButtonBase, Link, Tooltip } from '@mui/material';
 
 // project imports
 import Avatar from '../extended/Avatar';
+
+// types
+import PropTypes from 'prop-types';
 
 // ==============================|| CARD SECONDARY ACTION ||============================== //
 

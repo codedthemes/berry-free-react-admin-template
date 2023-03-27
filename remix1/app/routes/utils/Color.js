@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import { Box, Card, Grid, Typography } from '@mui/material';
 
 // project imports
-import SubCard from '../../ui-component/cards/SubCard';
-import MainCard from '../../ui-component/cards/MainCard';
-import SecondaryAction from '../../ui-component/cards/CardSecondaryAction';
-import { gridSpacing } from '../../store/constant';
+import { gridSpacing } from 'store/constant';
+import SubCard from 'ui-component/cards/SubCard';
+import MainCard from 'ui-component/cards/MainCard';
+import SecondaryAction from 'ui-component/cards/CardSecondaryAction';
 
 // ===============================|| COLOR BOX ||=============================== //
 

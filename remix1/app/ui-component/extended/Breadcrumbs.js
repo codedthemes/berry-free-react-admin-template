@@ -1,5 +1,8 @@
-import PropTypes from 'prop-types';
+import { Link } from '@remix-run/react';
 import { useEffect, useState } from 'react';
+
+// types
+import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -8,14 +11,13 @@ import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 
 // project imports
 import config from '../../../config';
-import { gridSpacing } from '../../store/constant';
+import { gridSpacing } from 'store/constant';
 
 // assets
 import { IconTallymark1 } from '../../../node_modules/@tabler/icons-react';
 import AccountTreeTwoToneIcon from '@mui/icons-material/AccountTreeTwoTone';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
-import { Link } from '@remix-run/react';
 
 const linkSX = {
     display: 'flex',

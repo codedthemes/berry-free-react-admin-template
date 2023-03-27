@@ -1,14 +1,15 @@
+import { Link } from '@remix-run/react';
+
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
-import AuthWrapper1 from '../authentication/AuthWrapper1';
-import AuthCardWrapper from '../authentication/AuthCardWrapper';
-import Logo from '../../../ui-component/Logo';
-import AuthRegister from '../authentication/auth-forms/AuthRegister';
-import AuthFooter from '../../../ui-component/cards/AuthFooter';
-import { Link } from '@remix-run/react';
+import AuthWrapper1 from 'components/authentication/AuthWrapper1';
+import AuthCardWrapper from 'components/authentication/AuthCardWrapper';
+import AuthRegister from 'components/authentication/auth-forms/AuthRegister';
+import Logo from 'ui-component/Logo';
+import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // assets
 

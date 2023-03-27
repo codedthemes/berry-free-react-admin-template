@@ -1,5 +1,7 @@
-import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
+
+// types
+import PropTypes from 'prop-types';
 
 // material-ui
 import { Collapse, Fade, Box, Grow, Slide, Zoom } from '@mui/material';

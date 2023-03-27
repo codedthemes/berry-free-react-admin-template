@@ -1,6 +1,8 @@
-import { useLocation } from '@remix-run/react';
-import PropTypes from 'prop-types';
 import { useEffect } from 'react';
+import { useLocation } from '@remix-run/react';
+
+//types
+import PropTypes from 'prop-types';
 
 // ==============================|| NAVIGATION SCROLL TO TOP ||============================== //
 

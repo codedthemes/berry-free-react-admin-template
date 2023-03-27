@@ -1,7 +1,6 @@
-
 // project imports
 import { Outlet } from '@remix-run/react';
-import Customization from '../Customization';
+import Customization from 'layout/Customization';
 
 // ==============================|| MINIMAL LAYOUT ||============================== //
 

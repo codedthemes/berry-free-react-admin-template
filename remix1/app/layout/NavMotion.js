@@ -1,5 +1,8 @@
-import PropTypes from 'prop-types';
+// third party
 import { motion } from 'framer-motion';
+
+// types 
+import PropTypes from 'prop-types';
 
 // ==============================|| ANIMATION FOR CONTENT ||============================== //
 

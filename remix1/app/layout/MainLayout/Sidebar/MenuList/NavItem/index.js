@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import { Link } from '@remix-run/react';
 import { forwardRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,11 +7,13 @@ import { useTheme } from '@mui/material/styles';
 import { Avatar, Chip, ListItemButton, ListItemIcon, ListItemText, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
-import { MENU_OPEN, SET_MENU } from '../../../../../store/actions';
+import { MENU_OPEN, SET_MENU } from 'store/actions';
+
+// types
+import PropTypes from 'prop-types';
 
 // assets
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import { Link } from '@remix-run/react';
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 

@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
-
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import MuiAvatar from '@mui/material/Avatar';
+
+// types
+import PropTypes from 'prop-types';
 
 // ==============================|| AVATAR ||============================== //
 

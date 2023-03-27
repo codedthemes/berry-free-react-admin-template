@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -12,9 +11,12 @@ import Chart from 'react-apexcharts';
 // chart data
 import chartData from './chart-data/total-growth-bar-chart';
 
+// types
+import PropTypes from 'prop-types';
+
 // ==============================|| DASHBOARD DEFAULT - TOTAL GROWTH BAR CHART ||============================== //
 
-const TotalGrowthBarChart = ({isLoading}) => {
+const TotalGrowthBarChart = ({ isLoading }) => {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
 
@@ -64,7 +66,7 @@ const TotalGrowthBarChart = ({isLoading}) => {
         if (!isLoading) {
             ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
         }
-    }, [navType, primary200, primaryDark, secondaryMain, secondaryLight, primary, darkLight, grey200,isLoading, grey500]);
+    }, [navType, primary200, primaryDark, secondaryMain, secondaryLight, primary, darkLight, grey200, isLoading, grey500]);
 
     return (
         <>
