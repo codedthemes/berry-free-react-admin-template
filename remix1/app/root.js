@@ -15,7 +15,7 @@ import { ThemeProvider } from '@mui/material/styles';
 
 // assets
 import globalStyles from 'styles/style.css';
-import scrollBarStyle from '../node_modules/react-perfect-scrollbar/dist/css/styles.css';
+import scrollBarStyle from 'react-perfect-scrollbar/dist/css/styles.css';
 import favicon from '../public/favicon.svg';
 
 // export links

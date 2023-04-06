@@ -24,11 +24,11 @@
     "@tabler/icons": "^2.7.0",
     "@tabler/icons-react": "^2.7.0",
     "apexcharts": "^3.37.1",
+    "concurrently": "^8.0.1",
     "formik": "^2.2.9",
     "framer-motion": "^10.0.1",
     "isbot": "^3.6.5",
     "material-ui-popup-state": "^5.0.4",
-    "node-sass": "^8.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -37,8 +37,6 @@
     "react-perfect-scrollbar": "^1.5.8",
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
-    "sass": "^1.58.3",
-    "sass-loader": "^13.2.0",
     "yup": "^1.0.2"
   },
   "devDependencies": {
@@ -48,7 +46,6 @@
     "@remix-run/eslint-config": "^1.13.0",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
-    "concurrently": "^7.6.0",
     "eslint": "^8.27.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -63,7 +60,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.8.7",
-    "typescript": "^4.8.4"
+    "sass": "^1.60.0"
   },
   "engines": {
     "node": ">=14"
