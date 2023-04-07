@@ -1,4 +1,6 @@
 {
+  "name": "berry-free-material-react-remix",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "scripts": {

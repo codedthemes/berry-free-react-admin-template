@@ -7,6 +7,10 @@
 From your terminal:
 
 ```sh
+npm install
+```
+
+```sh
 npm run dev
 ```
 
