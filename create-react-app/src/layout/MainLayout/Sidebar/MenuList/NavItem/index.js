@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { forwardRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
@@ -18,6 +18,7 @@ import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 const NavItem = ({ item, level }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
+    const { pathname } = useLocation();
     const customization = useSelector((state) => state.customization);
     const matchesSM = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -61,7 +62,7 @@ const NavItem = ({ item, level }) => {
             dispatch({ type: MENU_OPEN, id: item.id });
         }
         // eslint-disable-next-line
-    }, []);
+    }, [pathname]);
 
     return (
         <ListItemButton

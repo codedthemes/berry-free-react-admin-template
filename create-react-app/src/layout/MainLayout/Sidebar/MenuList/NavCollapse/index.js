@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -19,6 +19,7 @@ import { IconChevronDown, IconChevronUp } from '@tabler/icons';
 const NavCollapse = ({ menu, level }) => {
     const theme = useTheme();
     const customization = useSelector((state) => state.customization);
+    const navigate = useNavigate();
 
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(null);
@@ -26,6 +27,9 @@ const NavCollapse = ({ menu, level }) => {
     const handleClick = () => {
         setOpen(!open);
         setSelected(!selected ? menu.id : null);
+        if (menu?.id !== 'authentication') {
+            navigate(menu.children[0]?.url);
+        }
     };
 
     const { pathname } = useLocation();
