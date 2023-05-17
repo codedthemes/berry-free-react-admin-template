@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-berryfreereactadmint-dev-121509-authRole",
+      "UnauthRoleArn": "arn:aws:iam::264361423819:role/amplify-berryfreereactadmint-dev-121509-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::264361423819:role/amplify-berryfreereactadmint-dev-121509-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-berryfreereactadmint-dev-121509-deployment",
+      "UnauthRoleName": "amplify-berryfreereactadmint-dev-121509-unauthRole",
+      "StackName": "amplify-berryfreereactadmint-dev-121509",
+      "StackId": "arn:aws:cloudformation:us-east-1:264361423819:stack/amplify-berryfreereactadmint-dev-121509/ffb5a200-f4cd-11ed-bd70-12a7c44184e3",
+      "AmplifyAppId": "d21ouuwva3bvrw"
+    }
+  }
+}
