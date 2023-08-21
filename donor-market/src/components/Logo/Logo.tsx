@@ -11,22 +11,22 @@ const Logo = () => {
       width="44"
       height="44"
       viewBox="0 0 24 24"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke="#2c3e50"
       fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path
         d="M6.801 11.003a6 6 0 1 0 10.396 -.003l-5.197 -8l-5.199 8.003z"
         stroke="#010202"
-        stroke-width="0"
+        strokeWidth="0"
         fill="currentColor"
       />
-      <path d="M12 3v17" stroke-width="0" fill="currentColor" />
-      <path d="M12 12l3.544 -3.544" stroke-width="0" fill="currentColor" />
-      <path d="M12 17.3l5.558 -5.558" stroke-width="0" fill="currentColor" />
+      <path d="M12 3v17" strokeWidth="0" fill="currentColor" />
+      <path d="M12 12l3.544 -3.544" strokeWidth="0" fill="currentColor" />
+      <path d="M12 17.3l5.558 -5.558" strokeWidth="0" fill="currentColor" />
     </svg>
   );
 };

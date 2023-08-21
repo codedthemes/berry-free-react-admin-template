@@ -16,10 +16,12 @@ import {
 import Icon from '../components/Icon/Icon';
 import { fontWeight } from '@mui/system';
 import { gridSpacing } from '../store/constant';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -39,11 +41,13 @@ const HomePage = () => {
             difference today.
           </Typography>
         </Box>
+        {/* Get Started Section */}
         <Box my={4}>
           <Button
             variant="contained"
             color="primary"
             style={{ marginRight: '10px' }}
+            onClick={() => navigate('/login')}
           >
             Get Started
           </Button>
@@ -51,6 +55,7 @@ const HomePage = () => {
             Learn More
           </Button>
         </Box>
+        {/* Hands image*/}
         <Box my={5}>
           <img
             src={donorHandsImage}
@@ -63,6 +68,7 @@ const HomePage = () => {
             }}
           />
         </Box>
+        {/* Why Section */}
         <Box display="flex" my={5} py={4}>
           <Box
             display="flex"
@@ -212,6 +218,7 @@ const HomePage = () => {
             </Box>
           </Box>
         </Box>
+        {/* Safe Section */}
         <Box
           display="flex"
           flexDirection={isMobile ? 'column' : 'row'}
@@ -377,6 +384,7 @@ const HomePage = () => {
             />
           </Box>
         </Box>
+        {/* Sponsors */}
         <Box
           display="flex"
           flexDirection="column"
@@ -463,6 +471,7 @@ const HomePage = () => {
             </Box>
           </Box>
         </Box>
+        {/* About Section */}
         <Box
           display="flex"
           flexDirection="row"

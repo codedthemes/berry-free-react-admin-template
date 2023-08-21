@@ -1,5 +1,6 @@
 import HomePage from './pages/HomePage';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import RoutesComponent from './routes/Routes';
 import './App.css';
 
 const theme = createTheme({
@@ -31,11 +32,11 @@ function App() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Learn React
+              Blood Donor Market
             </a>
           </header>
         ) : (
-          <HomePage />
+          <RoutesComponent />
         )}
       </div>
     </ThemeProvider>
