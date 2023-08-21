@@ -13,15 +13,16 @@ import {
 } from '@mui/material';
 
 // project imports
-import AuthLogin from './AuthLogin';
-import Logo from '../../components/Logo/Logo';
 import AuthWrapper from './AuthWrapper';
+import Logo from '../../components/Logo/Logo';
+import AuthRegister from './AuthRegister';
+// import AuthFooter from 'ui-component/cards/AuthFooter';
 
 // assets
 
-// ================================|| AUTH3 - LOGIN ||================================ //
+// ===============================|| AUTH3 - REGISTER ||=============================== //
 
-const Login = () => {
+const Register = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -79,9 +80,9 @@ const Login = () => {
                             <Typography
                               color={theme.palette.primary.main}
                               gutterBottom
-                              variant={matchDownSM ? 'h4' : 'h5'}
+                              variant={matchDownSM ? 'h5' : 'h4'}
                             >
-                              Hi, Welcome Back
+                              Sign up
                             </Typography>
                             <Typography
                               variant="caption"
@@ -95,7 +96,7 @@ const Login = () => {
                       </Grid>
                     </Grid>
                     <Grid item xs={12}>
-                      <AuthLogin />
+                      <AuthRegister />
                     </Grid>
                     <Grid item xs={12}>
                       <Divider />
@@ -110,11 +111,11 @@ const Login = () => {
                       >
                         <Typography
                           component={Link}
-                          to="/register"
+                          to="/login"
                           variant="subtitle1"
                           sx={{ textDecoration: 'none' }}
                         >
-                          Don&apos;t have an account?
+                          Already have an account?
                         </Typography>
                       </Grid>
                     </Grid>
@@ -124,12 +125,12 @@ const Login = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          {/* <AuthFooter /> */}
-        </Grid>
+        {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+          <AuthFooter />
+        </Grid> */}
       </Grid>
     </AuthWrapper>
   );
 };
 
-export default Login;
+export default Register;

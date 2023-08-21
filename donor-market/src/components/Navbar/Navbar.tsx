@@ -9,7 +9,12 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import Logo from '../Logo/Logo';
 
+// material-ui
+import { useTheme } from '@mui/material/styles';
+
 const Navbar = () => {
+  const theme = useTheme();
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -20,7 +25,7 @@ const Navbar = () => {
         </Hidden>
         <Hidden smDown>
           <IconButton edge="end" color="inherit" aria-label="logo">
-            <Logo />
+            <Logo color={theme.palette.common.white} />
           </IconButton>
         </Hidden>
         <Typography variant="h6" style={{ flexGrow: 1 }}>

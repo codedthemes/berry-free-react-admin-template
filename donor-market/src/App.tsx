@@ -6,10 +6,39 @@ import './App.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: 'rgba(255,0,0,1)', // your primary color
+      main: '#ff0000', // your primary color
     },
     secondary: {
-      main: '#f5f5f5', // your secondary color
+      main: 'rgb(245, 245, 245)', // your secondary color
+    },
+    common: {
+      white: '#ffffff',
+    },
+  },
+  components: {
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          marginTop: 1,
+          marginBottom: 1,
+          '& > label': {
+            top: 23,
+            left: 0,
+            '&[data-shrink="false"]': {
+              top: 5,
+            },
+          },
+          '& > div > input': {
+            padding: '30.5px 14px 11.5px !important',
+          },
+          '& legend': {
+            display: 'none',
+          },
+          '& fieldset': {
+            top: 0,
+          },
+        },
+      },
     },
   },
 });
