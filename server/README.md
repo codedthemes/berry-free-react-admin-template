@@ -1,6 +1,14 @@
-# Server Project
+## Server
 
 This is a simple server project built with Node.js, Express, and TypeORM. It includes a basic user management system with CRUD operations.
+
+- [Project Structure](#project-structure)
+- [Running the Server](#running-the-server)
+- [MySql](#mysql)
+- [Creating a MySQL User](#creating-a-mysql-user)
+- [Database Configuration](#dabase-configuration)
+- [Environment Variables](#environment-variables)
+- [References](#references)
 
 ## Project Structure
 
