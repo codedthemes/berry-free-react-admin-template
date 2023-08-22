@@ -88,8 +88,9 @@ mysql -u root -p
 Then, create a new user and grant it all privileges on the 'test' database. Replace 'testuser' and 'password' with your desired username and password:
 
 ```
+CREATE DATABASE blood_donor;
 CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON test.\* TO 'testuser'@'localhost';
+GRANT ALL PRIVILEGES ON blood_donor.* TO 'testuser'@'localhost';
 FLUSH PRIVILEGES;
 ```
 

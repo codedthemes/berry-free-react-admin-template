@@ -15,8 +15,8 @@ class App {
       port: 3306,
       username: "testuser",
       password: "password",
-      database: "test",
-      entities: ["src/entity/*.js"],
+      database: "blood_donor",
+      entities: ["src/entity/*.ts"],
       logging: true,
       synchronize: true,
     });
