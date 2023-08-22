@@ -99,6 +99,9 @@ The database connection is configured in app.ts. You will need to replace the fo
   username: "testuser",
   password: "password",
   database: "test",
+  entities: ["src/entity/*.js"],
+  logging: true,
+  synchronize: true,
 }
 ```
 
