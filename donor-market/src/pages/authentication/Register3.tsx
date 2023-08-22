@@ -80,7 +80,7 @@ const Register = () => {
                             <Typography
                               color={theme.palette.primary.main}
                               gutterBottom
-                              variant={matchDownSM ? 'h5' : 'h4'}
+                              variant={matchDownSM ? 'h4' : 'h5'}
                             >
                               Sign up
                             </Typography>
