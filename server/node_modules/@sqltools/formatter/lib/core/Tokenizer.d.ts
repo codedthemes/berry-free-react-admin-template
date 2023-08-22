@@ -1,0 +1,68 @@
+import { TokenTypes, Token, TokenizerConfig } from './types';
+export default class Tokenizer {
+    WHITESPACE_REGEX: RegExp;
+    NUMBER_REGEX: RegExp;
+    AMBIGUOS_OPERATOR_REGEX: RegExp;
+    OPERATOR_REGEX: RegExp;
+    NO_SPACE_OPERATOR_REGEX: RegExp;
+    BLOCK_COMMENT_REGEX: RegExp;
+    LINE_COMMENT_REGEX: RegExp;
+    RESERVED_TOP_LEVEL_REGEX: RegExp;
+    RESERVED_TOP_LEVEL_NO_INDENT_REGEX: RegExp;
+    RESERVED_NEWLINE_REGEX: RegExp;
+    RESERVED_PLAIN_REGEX: RegExp;
+    WORD_REGEX: RegExp;
+    STRING_REGEX: RegExp;
+    OPEN_PAREN_REGEX: RegExp;
+    CLOSE_PAREN_REGEX: RegExp;
+    INDEXED_PLACEHOLDER_REGEX: RegExp;
+    IDENT_NAMED_PLACEHOLDER_REGEX: RegExp;
+    STRING_NAMED_PLACEHOLDER_REGEX: RegExp;
+    constructor(cfg: TokenizerConfig);
+    createLineCommentRegex(lineCommentTypes: any): RegExp;
+    createReservedWordRegex(reservedWords: any): RegExp;
+    createWordRegex(specialChars: any): RegExp;
+    createStringRegex(stringTypes: any): RegExp;
+    createStringPattern(stringTypes: any): any;
+    createParenRegex(parens: any): RegExp;
+    escapeParen(paren: any): string;
+    createPlaceholderRegex(types: string[], pattern: any): RegExp;
+    tokenize(input: string): Token[];
+    getNextToken(input: string, previousToken?: Token): Token;
+    getWhitespaceToken(input: string): Token;
+    getCommentToken(input: string): Token;
+    getLineCommentToken(input: string): Token;
+    getBlockCommentToken(input: string): Token;
+    getStringToken(input: string): Token;
+    getOpenParenToken(input: string): Token;
+    getCloseParenToken(input: string): Token;
+    getPlaceholderToken(input: string): Token;
+    getServerVariableToken(input: string): Token;
+    getIdentNamedPlaceholderToken(input: string): Token;
+    getStringNamedPlaceholderToken(input: string): Token;
+    getIndexedPlaceholderToken(input: string): Token;
+    getPlaceholderTokenWithKey({ input, regex, parseKey }: {
+        input: any;
+        regex: any;
+        parseKey: any;
+    }): Token;
+    getEscapedPlaceholderKey({ key, quoteChar }: {
+        key: any;
+        quoteChar: any;
+    }): any;
+    getNumberToken(input: string): Token;
+    getOperatorToken(input: string): Token;
+    getAmbiguosOperatorToken(input: string): Token;
+    getNoSpaceOperatorToken(input: string): Token;
+    getReservedWordToken(input: any, previousToken: any): Token;
+    getToplevelReservedToken(input: string): Token;
+    getNewlineReservedToken(input: string): Token;
+    getPlainReservedToken(input: string): Token;
+    getTopLevelReservedTokenNoIndent(input: string): Token;
+    getWordToken(input: string): Token;
+    getTokenOnFirstMatch({ input, type, regex }: {
+        input: string;
+        type: TokenTypes;
+        regex: RegExp;
+    }): Token;
+}
