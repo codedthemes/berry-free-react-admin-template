@@ -4,6 +4,7 @@ This is a simple server project built with Node.js, Express, and TypeORM. It inc
 
 ## Project Structure
 
+```
 ├── src/
 │ ├── config/
 │ │ └── database.ts # TypeORM connection configuration
@@ -18,6 +19,7 @@ This is a simple server project built with Node.js, Express, and TypeORM. It inc
 ├── package.json # NPM package file
 ├── ormconfig.json # TypeORM configuration file
 └── tsconfig.json # TypeScript configuration file
+```
 
 Before running the server, make sure you have Node.js and npm installed on your machine. You can download Node.js and npm from here.
 
