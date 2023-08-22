@@ -98,20 +98,16 @@ Exit the MySQL shell with `exit`.
 
 ## Database Configuration
 
-The database connection is configured in app.ts. You will need to replace the following fields with your own MySQL credentials:
+The database connection is configured in app.ts and reads the conviguration from the `.env` file.
 
 ```
-{
-  type: "mysql",
-  host: "localhost",
-  port: 3306,
-  username: "testuser",
-  password: "password",
-  database: "test",
-  entities: ["src/entity/*.js"],
-  logging: true,
-  synchronize: true,
-}
+PORT=5001
+DB_TYPE=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_USERNAME=testuser
+DB_PASSWORD=password
+DB_DATABASE=blood_donor
 ```
 
 ## Environment Variables
