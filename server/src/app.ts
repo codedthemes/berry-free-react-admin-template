@@ -2,6 +2,8 @@ import express, { Application, Request, Response } from "express";
 import { UserController } from "./controller/UserController";
 import { BaseService } from "./service/BaseService";
 import { DataSource, EntityManager } from "typeorm";
+import dotenv from "dotenv";
+
 class App {
   public app: Application;
   public userController: UserController;
@@ -9,13 +11,15 @@ class App {
 
   constructor() {
     this.app = express();
+
+    dotenv.config();
     const myDataSource = new DataSource({
-      type: "mysql",
-      host: "localhost",
-      port: 3306,
-      username: "testuser",
-      password: "password",
-      database: "blood_donor",
+      type: process.env.DB_TYPE as any,
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       entities: ["src/entity/*.ts"],
       logging: true,
       synchronize: true,
