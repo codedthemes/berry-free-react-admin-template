@@ -1,0 +1,17 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "testuser",
+  "password": "password",
+  "database": "blood_donor",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["src/entity/**/*.ts"],
+  "migrations": ["src/migrations/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  }
+}
