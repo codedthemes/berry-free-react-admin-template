@@ -1,6 +1,5 @@
 import express, { Application, Request, Response } from "express";
 import { UserController } from "./controller/UserController";
-import { BaseService } from "./service/BaseService";
 import { DataSource, EntityManager } from "typeorm";
 import dotenv from "dotenv";
 
