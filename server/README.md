@@ -23,6 +23,8 @@ This is a simple server project built with Node.js, Express, and TypeORM. It inc
 
 Before running the server, make sure you have Node.js and npm installed on your machine. You can download Node.js and npm from here.
 
+## MySql
+
 To install the project dependencies, navigate to the project directory in your terminal and run:
 install
 
