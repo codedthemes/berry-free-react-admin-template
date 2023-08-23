@@ -1,7 +1,9 @@
 import express, { Application, Request, Response } from "express";
 import { UserController } from "./controller/UserController";
+import { UserService } from "./service/UserService";
 import { DataSource, EntityManager } from "typeorm";
 import dotenv from "dotenv";
+import cors from "cors";
 
 class App {
   public app: Application;
@@ -35,12 +37,14 @@ class App {
       });
 
     this.entityManager = myDataSource.createEntityManager();
-    this.userController = new UserController(this.entityManager);
+    const userService = new UserService(this.entityManager);
+    this.userController = new UserController(userService);
     this.initializeMiddlewares();
     this.initializeRoutes();
   }
 
   private initializeMiddlewares(): void {
+    this.app.use(cors({ origin: process.env.CORS_ORIGIN }));
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }
@@ -54,7 +58,8 @@ class App {
     this.app.delete("/users/:id", this.userController.delete);
 
     // Custom User Endpoint
-    this.app.get("/users/custom", this.userController.customUserEndpoint);
+    this.app.post("/users/register", this.userController.register);
+    this.app.get("/users/login", this.userController.login);
 
     // Catch-all for undefined routes
     this.app.all("*", (req: Request, res: Response) => {

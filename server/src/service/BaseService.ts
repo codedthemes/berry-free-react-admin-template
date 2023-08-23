@@ -25,6 +25,16 @@ export abstract class BaseService<T extends ObjectLiteral> {
     return await this.repository.findOne(id);
   }
 
+  async save(record: T): Promise<T | null> {
+    const pk = record["id"];
+
+    if (pk === undefined || pk === null) {
+      return await this.create(record);
+    }
+
+    return await this.update(pk, record);
+  }
+
   async create(entity: T): Promise<T> {
     await this.prePost(entity);
     const result = await this.repository.save(entity);

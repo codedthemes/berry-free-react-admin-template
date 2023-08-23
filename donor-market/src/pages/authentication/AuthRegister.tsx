@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { registerUser } from '../../redux/actions/userActions';
+import { useAppDispatch } from '../../redux/store';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -49,6 +51,7 @@ interface RootState {
 const FirebaseRegister = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
+  const dispatch = useAppDispatch();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state: RootState) => state.customization);
   const [showPassword, setShowPassword] = useState(false);
@@ -152,6 +155,8 @@ const FirebaseRegister = ({ ...others }) => {
         initialValues={{
           email: '',
           password: '',
+          fname: '',
+          lname: '',
           submit: null,
         }}
         validationSchema={Yup.object().shape({
@@ -163,6 +168,7 @@ const FirebaseRegister = ({ ...others }) => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
+            await dispatch(registerUser(values));
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
@@ -196,6 +202,8 @@ const FirebaseRegister = ({ ...others }) => {
                   name="fname"
                   type="text"
                   defaultValue=""
+                  value={values.fname}
+                  onChange={handleChange}
                   sx={{
                     ...((theme?.components?.MuiInput?.styleOverrides
                       ?.root as object) || {}),
@@ -208,6 +216,8 @@ const FirebaseRegister = ({ ...others }) => {
                   label="Last Name"
                   margin="normal"
                   name="lname"
+                  value={values.lname}
+                  onChange={handleChange}
                   type="text"
                   defaultValue=""
                   sx={{
