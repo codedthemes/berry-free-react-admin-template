@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { registerUser } from '../../redux/actions/userActions';
 import { useAppDispatch } from '../../redux/store';
@@ -52,6 +52,7 @@ const FirebaseRegister = ({ ...others }) => {
   const theme = useTheme();
   const scriptedRef = useScriptRef();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state: RootState) => state.customization);
   const [showPassword, setShowPassword] = useState(false);
@@ -169,9 +170,11 @@ const FirebaseRegister = ({ ...others }) => {
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             await dispatch(registerUser(values));
+            navigate('/user/profile');
             if (scriptedRef.current) {
               setStatus({ success: true });
               setSubmitting(false);
+              navigate('/user/profile');
             }
           } catch (err: any) {
             console.error(err);

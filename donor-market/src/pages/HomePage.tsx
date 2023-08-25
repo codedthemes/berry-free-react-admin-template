@@ -14,7 +14,6 @@ import {
   Card,
 } from '@mui/material';
 import Icon from '../components/Icon/Icon';
-import { fontWeight } from '@mui/system';
 import { gridSpacing } from '../store/constant';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,7 +60,7 @@ const HomePage = () => {
             src={donorHandsImage}
             alt="Donor Hands"
             style={{
-              width: isMobile ? '100%' : '1000px', // Increased width for desktop
+              width: isMobile ? '100%' : '80vw', // Changed width for desktop to vw
               height: 'auto',
               objectFit: 'cover',
               borderRadius: '15px', // Added rounded corners for all resolutions
@@ -209,7 +208,7 @@ const HomePage = () => {
                 src={womanDonorImage}
                 alt="New Section Image"
                 style={{
-                  width: isMobile ? '100%' : '650px',
+                  width: isMobile ? '100%' : '40vw', // Changed width for desktop to vw
                   height: 'auto',
                   objectFit: 'cover',
                   borderRadius: '15px',
@@ -236,7 +235,7 @@ const HomePage = () => {
               src={bloodSafeImage}
               alt="New Section Image"
               style={{
-                width: '550px',
+                width: isMobile ? '100%' : '35vw', // Changed width for desktop to vw
                 height: 'auto',
                 objectFit: 'cover',
                 borderRadius: '15px',

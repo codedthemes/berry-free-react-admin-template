@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -48,6 +49,7 @@ const FirebaseLogin = ({ ...others }) => {
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
   const customization = useSelector((state: RootState) => state.customization);
+  const navigate = useNavigate();
   const [checked, setChecked] = useState(true);
 
   const googleHandler = async () => {
@@ -284,6 +286,7 @@ const FirebaseLogin = ({ ...others }) => {
                   type="submit"
                   variant="contained"
                   color="primary"
+                  onClick={() => navigate('/user/profile')}
                 >
                   Sign in
                 </Button>
