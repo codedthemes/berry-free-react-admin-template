@@ -17,15 +17,15 @@ export function createTheme() {
         sm: 600,
         md: 900,
         lg: 1200,
-        xl: 1440
-      }
+        xl: 1440,
+      },
     },
     components,
     palette,
     shadows,
     shape: {
-      borderRadius: 8
+      borderRadius: 8,
     },
-    typography
+    typography,
   });
 }

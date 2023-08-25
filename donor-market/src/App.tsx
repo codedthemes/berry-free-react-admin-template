@@ -1,50 +1,13 @@
 import HomePage from './pages/HomePage';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import RoutesComponent from './routes/Routes';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { createTheme } from 'src/theme';
 
 import './App.css';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#ff0000', // your primary color
-    },
-    secondary: {
-      main: 'rgb(245, 245, 245)', // your secondary color
-    },
-    common: {
-      white: '#ffffff',
-    },
-  },
-  components: {
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          marginTop: 1,
-          marginBottom: 1,
-          '& > label': {
-            top: 23,
-            left: 0,
-            '&[data-shrink="false"]': {
-              top: 5,
-            },
-          },
-          '& > div > input': {
-            padding: '30.5px 14px 11.5px !important',
-          },
-          '& legend': {
-            display: 'none',
-          },
-          '& fieldset': {
-            top: 0,
-          },
-        },
-      },
-    },
-  },
-});
+const theme = createTheme();
 
 function App() {
   const user = null;
