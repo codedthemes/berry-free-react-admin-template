@@ -16,15 +16,15 @@ export class UserService extends BaseService<User> {
 
   async validateUser(email: string, password: string): Promise<User | null> {
     // Find user by email
-    const user = await this.entityManager.findOne(User, { where: { email } });
+    const existingUser = await this.getOne({ where: { email } });
 
-    if (!user) {
+    if (!existingUser) {
       // User not found
       return null;
     }
 
     // Compare provided password with stored hashed password
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = await bcrypt.compare(password, existingUser.password);
 
     if (!passwordMatch) {
       // Passwords do not match
@@ -32,6 +32,6 @@ export class UserService extends BaseService<User> {
     }
 
     // User found and password match
-    return user;
+    return existingUser;
   }
 }

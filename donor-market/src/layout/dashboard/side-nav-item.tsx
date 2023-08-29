@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Box, ButtonBase } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface SideNavItemProps {
   active?: boolean;
@@ -13,23 +13,18 @@ interface SideNavItemProps {
 
 export const SideNavItem = (props: SideNavItemProps) => {
   const { active = false, disabled, external, icon, path, title } = props;
+  const navigate = useNavigate();
 
-  const linkProps = path
-    ? external
-      ? {
-          component: 'a',
-          href: path,
-          target: '_blank',
-        }
-      : {
-          component: Link,
-          href: path,
-        }
-    : {};
+  const handleClick = () => {
+    if (path) {
+      navigate(path);
+    }
+  };
 
   return (
     <li>
       <ButtonBase
+        onClick={handleClick}
         sx={{
           alignItems: 'center',
           borderRadius: 1,
@@ -47,7 +42,6 @@ export const SideNavItem = (props: SideNavItemProps) => {
             backgroundColor: 'rgba(255, 255, 255, 0.04)',
           },
         }}
-        {...linkProps}
       >
         {icon && (
           <Box
@@ -90,7 +84,6 @@ export const SideNavItem = (props: SideNavItemProps) => {
     </li>
   );
 };
-
 SideNavItem.propTypes = {
   active: PropTypes.bool,
   disabled: PropTypes.bool,

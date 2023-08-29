@@ -4,7 +4,6 @@ import { BaseController } from "./BaseController";
 import { Request, Response } from "express";
 import { UserService } from "../service/UserService";
 import { TokenService } from "../service/TokenService";
-import { EntityManager } from "typeorm";
 import { validationResult } from "express-validator";
 
 export class UserController extends BaseController<User> {
@@ -20,6 +19,10 @@ export class UserController extends BaseController<User> {
     // Bind 'this' context for methods
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
+    this.findOne = this.findOne.bind(this);
+    this.update = this.update.bind(this);
+    this.findAll = this.findAll.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   public async register(req: Request, res: Response): Promise<Response> {
@@ -29,6 +32,14 @@ export class UserController extends BaseController<User> {
     }
 
     const { fname, lname, email, password } = req.body;
+
+    // Check if user with the same email already exists
+    const existingUser = await this.userService.validateUser(email, password);
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ message: "User with this email already exists" });
+    }
 
     const newUser = new User();
     newUser.firstName = fname;
@@ -53,6 +64,9 @@ export class UserController extends BaseController<User> {
     // If user is found and password is correct, generate a token
     const token = this.tokenService.generateToken({ userId: user.id });
 
-    return res.status(200).json({ user, token });
+    // remove password from response
+    const { password: userPassword, ...userWithoutPassword } = user;
+
+    return res.status(200).json({ userWithoutPassword, token });
   }
 }

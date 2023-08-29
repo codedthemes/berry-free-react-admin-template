@@ -3,6 +3,7 @@ import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/authentication/Login3';
 import RegisterPage from '../pages/authentication/Register3';
 import UserProfile from '../pages/user/UserProfile';
+import Customers from '../pages/donor-search/customers';
 // import NotFoundPage from './pages/NotFoundPage';
 
 const RoutesComponent = () => (
@@ -12,6 +13,7 @@ const RoutesComponent = () => (
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/user/profile" element={<UserProfile />} />
+      <Route path="/user/search" element={<Customers />} />
       {/* <Route path="*" element={<NotFoundPage />} /> */}
     </Routes>
   </Router>

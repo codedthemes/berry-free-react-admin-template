@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/features/user/userSlice'; // update the path according to your project structure
+import { AppDispatch } from '../../redux/store'; // update the path according to your project structure
+import { toast } from 'react-toastify';
+
+import { unwrapResult } from '@reduxjs/toolkit';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -48,8 +54,8 @@ const FirebaseLogin = ({ ...others }) => {
 
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const customization = useSelector((state: RootState) => state.customization);
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
   const [checked, setChecked] = useState(true);
 
   const googleHandler = async () => {
@@ -63,6 +69,26 @@ const FirebaseLogin = ({ ...others }) => {
 
   const handleMouseDownPassword = (event: React.MouseEvent) => {
     event.preventDefault();
+  };
+
+  const handleLogin = async (credentials: {
+    email: string;
+    password: string;
+  }) => {
+    console.log('credentials', credentials);
+    try {
+      const resultAction = await dispatch(loginUser(credentials));
+      const user = unwrapResult(resultAction);
+      if (loginUser.fulfilled.match(resultAction)) {
+        navigate('/user/profile');
+      } else {
+        // Handle login error
+        toast.error('Login failed. Please try again.');
+      }
+    } catch (error) {
+      toast.error('Login failed. Please try again.');
+      console.error(error);
+    }
   };
 
   return (
@@ -155,10 +181,8 @@ const FirebaseLogin = ({ ...others }) => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
+            console.log('values', values);
+            await handleLogin(values);
           } catch (err: any) {
             console.error(err);
             if (scriptedRef.current) {
@@ -286,7 +310,6 @@ const FirebaseLogin = ({ ...others }) => {
                   type="submit"
                   variant="contained"
                   color="primary"
-                  onClick={() => navigate('/user/profile')}
                 >
                   Sign in
                 </Button>

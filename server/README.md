@@ -110,6 +110,13 @@ DB_PASSWORD=password
 DB_DATABASE=blood_donor
 ```
 
+## Debug MySql
+
+code: 'ER_ACCESS_DENIED_ERROR',
+
+1. Log in to MySQL as root:
+   mysql -u root -p
+
 ## Environment Variables
 
 The server port is configured using environment variables. You can create a .env file in the root directory of the project and add the following line:

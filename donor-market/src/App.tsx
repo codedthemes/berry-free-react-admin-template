@@ -4,6 +4,8 @@ import RoutesComponent from './routes/Routes';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { createTheme } from 'src/theme';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 import './App.css';
 
@@ -35,6 +37,7 @@ function App() {
             <RoutesComponent />
           )}
         </div>
+        <ToastContainer />
       </ThemeProvider>
     </LocalizationProvider>
   );

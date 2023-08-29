@@ -21,7 +21,22 @@ import { Layout as DashboardLayout } from 'src/layout/dashboard/layout';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import faceImage from '../../assets/imgs/face/face-0.jpg';
 
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from 'src/hooks/hooks'; // Replace this with the path to your new useDispatch
+
+import { fetchUserById } from 'src/redux/features/user/userSlice';
+import { RootState } from 'src/redux/store';
+
 const UserProfile: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const user = useSelector((state: RootState) => state.user?.user);
+  console.log('user', user);
+
+  useEffect(() => {
+    dispatch(fetchUserById(user)); // Replace 'userId' with the actual id
+  }, [dispatch]);
+
   return (
     <DashboardLayout>
       <Container maxWidth="lg">
@@ -34,19 +49,20 @@ const UserProfile: React.FC = () => {
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>First Name</InputLabel>
-                      <Input type="text" />
+                      <Input type="text" defaultValue={user?.firstName} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Last Name</InputLabel>
-                      <Input type="text" />
+                      <Input type="text" defaultValue={user?.lastName} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Blood Type</InputLabel>
                       <Select
+                        defaultValue={user?.bloodType}
                         onChange={(event: SelectChangeEvent) => {
                           console.log(event.target.value);
                         }}
@@ -65,43 +81,43 @@ const UserProfile: React.FC = () => {
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       {/* <InputLabel>Date of Last Donation</InputLabel> */}
-                      <DatePicker />
+                      <DatePicker defaultValue={user?.lastDonationDate} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Location</InputLabel>
-                      <Input type="text" />
+                      <Input type="text" defaultValue={user?.location} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Contact Information</InputLabel>
-                      <Input type="text" />
+                      <Input type="text" defaultValue={user?.contactInfo} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Medical History</InputLabel>
-                      <Input type="text" />
+                      <Input type="text" defaultValue={user?.medicalHistory} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Age</InputLabel>
-                      <Input type="number" />
+                      <Input type="number" defaultValue={user?.age} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Weight</InputLabel>
-                      <Input type="number" />
+                      <Input type="number" defaultValue={user?.weight} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Gender</InputLabel>
-                      <Select>
+                      <Select defaultValue={user?.gender}>
                         {/* Add dropdown options for gender here */}
                       </Select>
                     </FormControl>
@@ -109,18 +125,25 @@ const UserProfile: React.FC = () => {
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Donation Preferences</InputLabel>
-                      <Input type="text" />
+                      <Input
+                        type="text"
+                        defaultValue={user?.donationPreferences}
+                      />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Availability</InputLabel>
-                      <Input type="text" />
+                      <Input type="text" defaultValue={user?.availability} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
                     <FormControlLabel
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          defaultChecked={user?.consentForFutureContact}
+                        />
+                      }
                       label="Consent for Future Contact"
                     />
                   </Grid>
@@ -145,8 +168,10 @@ const UserProfile: React.FC = () => {
                   src={faceImage}
                   style={{ width: '20%', height: 'auto' }}
                 />
-                <Typography variant="h5">Mike Andrew</Typography>
-                <Typography variant="subtitle1">michael24</Typography>
+                <Typography variant="h5">
+                  {user?.firstName} {user?.lastName}
+                </Typography>
+                <Typography variant="subtitle1">{user?.username}</Typography>
               </CardContent>
             </Card>
           </Grid>

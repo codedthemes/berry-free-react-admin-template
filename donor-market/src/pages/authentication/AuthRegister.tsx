@@ -154,10 +154,10 @@ const FirebaseRegister = ({ ...others }) => {
 
       <Formik
         initialValues={{
-          email: '',
-          password: '',
-          fname: '',
-          lname: '',
+          email: 'info@codedthemes.com',
+          password: '123456',
+          fname: 'Mike',
+          lname: 'Conley',
           submit: null,
         }}
         validationSchema={Yup.object().shape({
@@ -170,18 +170,20 @@ const FirebaseRegister = ({ ...others }) => {
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
             await dispatch(registerUser(values));
+            setStatus({ success: true });
+            setSubmitting(false);
             navigate('/user/profile');
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-              navigate('/user/profile');
-            }
           } catch (err: any) {
             console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
+            setStatus({ success: false });
+            setSubmitting(false);
+            if (err.response && err.response.status === 400) {
+              setErrors({
+                submit:
+                  'There was a problem with your request. Please check your input and try again.',
+              });
+            } else {
               setErrors({ submit: err.message });
-              setSubmitting(false);
             }
           }
         }}
@@ -236,6 +238,7 @@ const FirebaseRegister = ({ ...others }) => {
               sx={{
                 ...((theme?.components?.MuiInput?.styleOverrides
                   ?.root as object) || {}),
+                mb: 2, // Added margin-bottom
               }}
             >
               <InputLabel htmlFor="outlined-adornment-email-register">

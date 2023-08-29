@@ -51,7 +51,6 @@ class App {
 
   private initializeRoutes(): void {
     // User routes
-    this.app.post("/users", this.userController.create);
     this.app.get("/users", this.userController.findAll);
     this.app.get("/users/:id", this.userController.findOne);
     this.app.put("/users/:id", this.userController.update);
@@ -59,7 +58,7 @@ class App {
 
     // Custom User Endpoint
     this.app.post("/users/register", this.userController.register);
-    this.app.get("/users/login", this.userController.login);
+    this.app.post("/users/login", this.userController.login);
 
     // Catch-all for undefined routes
     this.app.all("*", (req: Request, res: Response) => {

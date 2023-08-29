@@ -140,7 +140,7 @@ export const SideNav = (props: SideNavProps) => {
             target="_blank"
             variant="contained"
           >
-            Pro Live Preview
+            Contact Support
           </Button>
         </Box>
       </Box>
