@@ -1,11 +1,18 @@
 // userSlice.tsx
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { User } from '../../../models/user';
+import { RootState } from 'src/redux/store';
 
 interface UserState {
   loading: boolean;
   user: User | null;
+  token: string | null;
   error: string | null;
+}
+
+interface UserResponse {
+  user: User;
+  token: string;
 }
 
 interface Credentials {
@@ -16,6 +23,7 @@ interface Credentials {
 const initialState: UserState = {
   loading: false,
   user: null,
+  token: null,
   error: null,
 };
 
@@ -72,6 +80,7 @@ export const loginUser = createAsyncThunk(
         return data;
       } else {
         thunkAPI.dispatch(loginUserFailure(data.message));
+        console.error('loginUserFailure', data.message);
         return thunkAPI.rejectWithValue(data.message);
       }
     } catch (err: any) {
@@ -83,14 +92,17 @@ export const loginUser = createAsyncThunk(
 
 export const fetchUserById = createAsyncThunk(
   'user/fetchUserById',
-  async (userId: string, thunkAPI) => {
+  async (_, thunkAPI) => {
+    const token =
+      (thunkAPI.getState() as RootState).user.token ||
+      localStorage.getItem('token'); // Get token from Redux state or local storage
+
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/users/${userId}`,
+        `${process.env.REACT_APP_API_BASE_URL}/users/${token}`,
       );
 
       const data = await response.json();
-
       if (response.ok) {
         return data;
       } else {
@@ -122,11 +134,12 @@ const userSlice = createSlice({
     loginUserStart: (state) => {
       state.loading = true;
     },
-    loginUserSuccess: (state, action: PayloadAction<User>) => {
+    loginUserSuccess: (state, action: PayloadAction<UserResponse>) => {
       state.loading = false;
-      state.user = action.payload;
-      console.log('state.user', state.user);
+      state.user = action.payload.user;
+      state.token = action.payload.token;
       state.error = null;
+      localStorage.setItem('token', action.payload.token); // Store token in local storage
     },
     loginUserFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;

@@ -75,7 +75,6 @@ const FirebaseLogin = ({ ...others }) => {
     email: string;
     password: string;
   }) => {
-    console.log('credentials', credentials);
     try {
       const resultAction = await dispatch(loginUser(credentials));
       const user = unwrapResult(resultAction);
@@ -181,7 +180,6 @@ const FirebaseLogin = ({ ...others }) => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            console.log('values', values);
             await handleLogin(values);
           } catch (err: any) {
             console.error(err);

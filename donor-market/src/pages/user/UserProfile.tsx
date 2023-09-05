@@ -30,11 +30,11 @@ import { RootState } from 'src/redux/store';
 
 const UserProfile: React.FC = () => {
   const dispatch = useAppDispatch();
-  const user = useSelector((state: RootState) => state.user?.user);
+  const user = useSelector((state: RootState) => state.user.user);
   console.log('user', user);
 
   useEffect(() => {
-    dispatch(fetchUserById(user)); // Replace 'userId' with the actual id
+    // dispatch(fetchUserById(user?.id ?? '')); // Replace 'userId' with the actual id
   }, [dispatch]);
 
   return (
@@ -81,7 +81,7 @@ const UserProfile: React.FC = () => {
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       {/* <InputLabel>Date of Last Donation</InputLabel> */}
-                      <DatePicker defaultValue={user?.lastDonationDate} />
+                      <DatePicker defaultValue={user?.dateOfLastDonation} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
@@ -93,7 +93,7 @@ const UserProfile: React.FC = () => {
                   <Grid item xs={12} md={4}>
                     <FormControl fullWidth>
                       <InputLabel>Contact Information</InputLabel>
-                      <Input type="text" defaultValue={user?.contactInfo} />
+                      <Input type="text" defaultValue={user?.phone} />
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={4}>
@@ -171,7 +171,7 @@ const UserProfile: React.FC = () => {
                 <Typography variant="h5">
                   {user?.firstName} {user?.lastName}
                 </Typography>
-                <Typography variant="subtitle1">{user?.username}</Typography>
+                <Typography variant="subtitle1">{user?.email}</Typography>
               </CardContent>
             </Card>
           </Grid>

@@ -19,9 +19,9 @@ export class UserController extends BaseController<User> {
     // Bind 'this' context for methods
     this.register = this.register.bind(this);
     this.login = this.login.bind(this);
-    this.findOne = this.findOne.bind(this);
+    this.get = this.get.bind(this);
     this.update = this.update.bind(this);
-    this.findAll = this.findAll.bind(this);
+    this.getAll = this.getAll.bind(this);
     this.delete = this.delete.bind(this);
   }
 
@@ -48,7 +48,6 @@ export class UserController extends BaseController<User> {
     newUser.password = await this.userService.hashPassword(password);
 
     const savedUser = await this.userService.save(newUser);
-
     return res.status(201).json(newUser);
   }
 
@@ -67,6 +66,17 @@ export class UserController extends BaseController<User> {
     // remove password from response
     const { password: userPassword, ...userWithoutPassword } = user;
 
-    return res.status(200).json({ userWithoutPassword, token });
+    return res.status(200).json({ user: userWithoutPassword, token });
+  }
+
+  public async get(req: Request, res: Response): Promise<Response> {
+    const id = req.userId;
+    const user = await this.userService.get(id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json(user);
   }
 }

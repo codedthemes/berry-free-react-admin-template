@@ -169,7 +169,14 @@ const FirebaseRegister = ({ ...others }) => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            await dispatch(registerUser(values));
+            const user = {
+              id: '', // Add appropriate id here
+              firstName: values.fname,
+              lastName: values.lname,
+              email: values.email,
+              password: values.password,
+            };
+            await dispatch(registerUser(user));
             setStatus({ success: true });
             setSubmitting(false);
             navigate('/user/profile');

@@ -39,24 +39,6 @@ export abstract class BaseController<T extends ObjectLiteral> {
     }
   }
 
-  public async findAll(req: Request, res: Response): Promise<Response> {
-    try {
-      const entities = await this._baseService.getAll();
-      return res.status(200).json(entities);
-    } catch (error: any) {
-      return res.status(400).json({ message: error.message });
-    }
-  }
-
-  public async findOne(req: Request, res: Response): Promise<Response> {
-    try {
-      const entity = await this._baseService.get(Number(req.params.id));
-      return res.status(200).json(entity);
-    } catch (error: any) {
-      return res.status(400).json({ message: error.message });
-    }
-  }
-
   public async update(req: Request, res: Response): Promise<Response> {
     try {
       const updatedEntity = await this._baseService.update(

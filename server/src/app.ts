@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import { UserController } from "./controller/UserController";
+import { authMiddleware } from "./middleware/authMiddleware";
 import { UserService } from "./service/UserService";
 import { DataSource, EntityManager } from "typeorm";
 import dotenv from "dotenv";
@@ -51,10 +52,9 @@ class App {
 
   private initializeRoutes(): void {
     // User routes
-    this.app.get("/users", this.userController.findAll);
-    this.app.get("/users/:id", this.userController.findOne);
-    this.app.put("/users/:id", this.userController.update);
-    this.app.delete("/users/:id", this.userController.delete);
+    this.app.get("/user", authMiddleware, this.userController.get);
+    this.app.put("/users/:id", authMiddleware, this.userController.update);
+    this.app.delete("/users/:id", authMiddleware, this.userController.delete);
 
     // Custom User Endpoint
     this.app.post("/users/register", this.userController.register);
