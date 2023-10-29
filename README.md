@@ -113,4 +113,4 @@ To report a bug, please submit an [issue](https://github.com/codedthemes/berry-f
 -   [CodedThemes](https://codedthemes.com)
 -   [Dribbble](https://dribbble.com/codedthemes)
 -   [Facebook](https://www.facebook.com/codedthemes)
--   [Twitter](https://twitter.com/codedthemes)
+-   [𝕏 (Twitter)](https://twitter.com/codedthemes)
