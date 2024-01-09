@@ -206,6 +206,7 @@ const Customization = () => {
                     </Typography>
                   </Grid>
                   <div>sdasdfasf</div>
+                  <div>sdafsafasf</div>
                 </Grid>
               </SubCard>
             </Grid>
