@@ -205,6 +205,8 @@ const Customization = () => {
                       24px
                     </Typography>
                   </Grid>
+                  <div>sdasdfasf</div>
+                  <div>sdafsafasf</div>
                 </Grid>
               </SubCard>
             </Grid>
