@@ -1,5 +1,5 @@
 // assets
-import { IconDashboard } from '@tabler/icons';
+import { IconDashboard } from '@tabler/icons-react';
 
 // constant
 const icons = { IconDashboard };

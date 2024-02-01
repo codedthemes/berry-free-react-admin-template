@@ -15,7 +15,7 @@ import { drawerWidth } from 'store/constant';
 import { SET_MENU } from 'store/actions';
 
 // assets
-import { IconChevronRight } from '@tabler/icons';
+import { IconChevronRight } from '@tabler/icons-react';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
