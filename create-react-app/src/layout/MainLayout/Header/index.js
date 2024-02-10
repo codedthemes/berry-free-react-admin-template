@@ -11,7 +11,7 @@ import ProfileSection from './ProfileSection';
 import NotificationSection from './NotificationSection';
 
 // assets
-import { IconMenu2 } from '@tabler/icons';
+import { IconMenu2 } from '@tabler/icons-react';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 

@@ -12,7 +12,7 @@ import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 import Transitions from 'ui-component/extended/Transitions';
 
 // assets
-import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
+import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
 import { shouldForwardProp } from '@mui/system';
 
 // styles
