@@ -1,5 +1,5 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons';
+import { IconBrandChrome, IconHelp } from '@tabler/icons-react';
 
 // constant
 const icons = { IconBrandChrome, IconHelp };

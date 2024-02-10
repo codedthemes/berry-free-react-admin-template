@@ -36,13 +36,23 @@ Berry offers everything you need to create dashboards. We have included the foll
 
 ## Free Berry React version
 
--   [Preview](https://berrydashboard.io/free/)
--   [Download from Github](https://github.com/codedthemes/berry-free-react-admin-template)
+#### Preview
+
+- [Demo](https://berrydashboard.io/free/)
+
+#### Download
+
+- [Download from GitHub](https://github.com/codedthemes/berry-free-react-admin-template)
 
 ## Berry Pro version
 
--   [Preview](https://berrydashboard.io)
--   [Purchase from MUI Store](https://material-ui.com/store/items/berry-react-material-admin/)
+#### Preview
+
+- [Demo](https://berrydashboard.io)
+
+#### Purchase
+
+- [Purchase from MUI Store](https://material-ui.com/store/items/berry-react-material-admin/)
 
 ## Table of contents
 
@@ -52,7 +62,8 @@ Berry offers everything you need to create dashboards. We have included the foll
 -   [Author](#author)
 -   [Issues?](#issues)
 -   [License](#license)
--   [More Products](#more-free-react-material-admin-templates)
+-   [More Free Angular Templates](#more-free-react-material-admin-templates)
+-   [More Pro Angular Templates](#more-premium-react-material-admin-templates)
 -   [Follow us](#follow-us)
 
 ## Getting Started
@@ -98,13 +109,13 @@ To report a bug, please submit an [issue](https://github.com/codedthemes/berry-f
 
 -   [Free Materially](https://codedthemes.com/item/materially-free-reactjs-admin-template/)
 -   [Free Mantis](https://mantisdashboard.io/free/)
-
-[![IMG_8566.jpg](https://camo.githubusercontent.com/a2364ad8c498b2a7378dae5e1a5eb5d8e1fcb2d6ceeb8b54acdc2e8bc2508775/68747470733a2f2f6d616e74697364617368626f6172642e696f2f6164762d62616e6e65722d696d616765732f6f672d736f6369616c2e706e67)](https://mantisdashboard.io/free/)
+-   [Free Datta Able](https://lite.codedthemes.com/datta-able/react/default)
 
 ## More Premium React Material Admin Templates
 
 -   [Mantis](https://mui.com/store/items/mantis-react-admin-dashboard-template/)
 -   [Materially](https://codedthemes.com/item/materially-reactjs-admin-dashboard/)
+-   [Datta Able](https://codedthemes.com/item/datta-able-react-admin-template/)
 
 ## Follow us
 
@@ -113,4 +124,4 @@ To report a bug, please submit an [issue](https://github.com/codedthemes/berry-f
 -   [CodedThemes](https://codedthemes.com)
 -   [Dribbble](https://dribbble.com/codedthemes)
 -   [Facebook](https://www.facebook.com/codedthemes)
--   [Twitter](https://twitter.com/codedthemes)
+-   [𝕏 (Twitter)](https://twitter.com/codedthemes)
