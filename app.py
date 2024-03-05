@@ -148,6 +148,18 @@ def calculate_total_amount(symbol):
             total_quantity += stock['quantity']
     return total_quantity
 
+def calculate_stock_roi(symbol):
+    total_investment = 0
+    current_value = 0
+    for stock in portfolio_details['stocks']:
+        if stock['symbol'] == symbol:
+            total_investment += stock['quantity'] * stock['purchase_price']
+            current_price = get_stock_final_price(symbol)
+            current_value += stock['quantity'] * current_price
+    roi = ((current_value - total_investment) / total_investment) * 100 if total_investment > 0 else 0
+    return roi
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
