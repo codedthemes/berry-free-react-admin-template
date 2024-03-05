@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Typography, Grid } from '@mui/material';
+import { Card, CardContent, Typography, Grid, Button } from '@mui/material';
+import axios from 'axios'; // Assuming you've installed axios
 
 // Card component to display data
 const DataCard = ({ title, value, unit }) => (
@@ -13,46 +14,75 @@ const DataCard = ({ title, value, unit }) => (
   </Card>
 );
 
-// The LandingPage component that makes an API call to fetch data
+// Time Frame Buttons - Could be replaced with select dropdown or another UI element
+const TimeFrameOptions = ({ setTimeFrame }) => {
+  const timeFrames = ['YTD', '6M', '1Y', 'ALL'];
+  return (
+    <Grid container spacing={1}>
+      {timeFrames.map((frame) => (
+        <Grid item key={frame}>
+          <Button variant="contained" onClick={() => setTimeFrame(frame)}>{frame}</Button>
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
+
 const LandingPage = () => {
-  // State for total portfolio value and ROI
   const [totalValue, setTotalValue] = useState(0);
   const [roi, setRoi] = useState(0);
-  const [graphData, setGraphData] = useState([]);
+  const [graphData, setGraphData] = useState({});
+  const [timeFrame, setTimeFrame] = useState('YTD');
 
   useEffect(() => {
-    // Function to fetch portfolio data from the backend
+    // Fetch portfolio summary
     const fetchPortfolioData = async () => {
       try {
-        const response = await fetch('/api/portfolio');
-        const data = await response.json();
+        const response = await axios.get('/api/portfolio');
+        const data = response.data;
         setTotalValue(data.total_portfolio_value);
         setRoi(data.roi);
-        setGraphData(data.graph_data);
       } catch (error) {
         console.error("Failed to fetch portfolio data:", error);
       }
     };
 
+    // Fetch stock performance based on the selected time frame
+    const fetchStockPerformance = async () => {
+      try {
+        // Adjust the URL according to your symbol requirement, might be dynamic based on user selection
+        const response = await axios.get(`/api/stock-performance?symbol=YOUR_STOCK_SYMBOL&time_frame=${timeFrame}`);
+        const data = response.data;
+        setGraphData(data);
+      } catch (error) {
+        console.error("Failed to fetch stock performance:", error);
+      }
+    };
+
     fetchPortfolioData();
-  }, []);
+    fetchStockPerformance();
+  }, [timeFrame]); // This effect runs whenever the timeFrame state changes
 
   return (
     <Grid container spacing={2} padding={2}>
-      {/* Total Portfolio Value Card */}
+      {/* Portfolio Value and ROI Cards */}
       <Grid item xs={12} sm={6} md={4}>
         <DataCard title="Total Portfolio Value" value={totalValue} unit="USD" />
       </Grid>
-
-      {/* ROI Card */}
       <Grid item xs={12} sm={6} md={4}>
         <DataCard title="ROI" value={roi.toFixed(2)} unit="%" />
       </Grid>
 
-      {/* Additional cards or components can be added here */}
+      {/* Time Frame Selection */}
+      <Grid item xs={12}>
+        <Typography variant="h6">Select Time Frame:</Typography>
+        <TimeFrameOptions setTimeFrame={setTimeFrame} />
+      </Grid>
+
+      {/* Here you'd render your graph component, passing graphData as a prop */}
+      {/* <YourGraphComponent data={graphData} /> */}
     </Grid>
   );
 };
 
 export default LandingPage;
-
