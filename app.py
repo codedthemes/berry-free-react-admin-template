@@ -50,7 +50,34 @@ def get_historical_stock_prices(symbol, api_key, base_url, start_date, end_date)
         pass
     
     return historical_prices 
+
+@app.route('/api/stock-performance', methods=['GET'])
+def get_stock_performance():
+    symbol = request.args.get('symbol')
+    time_frame = request.args.get('time_frame')  # e.g., 'YTD', '6M', '1Y', 'ALL'
+    api_key = "YOUR_API_KEY"  # Replace with your actual API key
+    base_url = "YOUR_API_BASE_URL"  # Replace with your actual API base URL
     
+    # Determine the start_date based on the requested time_frame
+    today = datetime.today()
+    if time_frame == 'YTD':
+        start_date = datetime(today.year, 1, 1)
+    elif time_frame == '6M':
+        start_date = today - timedelta(days=183)  # Approx 6 months
+    elif time_frame == '1Y':
+        start_date = today - timedelta(days=365)
+    elif time_frame == 'ALL':
+        start_date = datetime.min
+    else:
+        return jsonify({"error": "Invalid time frame"}), 400
+
+    start_date_str = start_date.strftime('%Y-%m-%d')
+    end_date_str = today.strftime('%Y-%m-%d')
+    
+    historical_prices = get_historical_stock_prices(symbol, api_key, base_url, start_date_str, end_date_str)
+    
+    return jsonify(historical_prices)
+
 # Function to calculate the total portfolio value and ROI
 def calculate_portfolio_value_and_roi(portfolio_details):
     total_value = 0
