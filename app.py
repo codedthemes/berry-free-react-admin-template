@@ -1,8 +1,8 @@
-from flask import Flask, jsonify 
+from flask import Flask, jsonify, request
 import requests
 import json
 from flask_cors import CORS
-import datetime
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 CORS(app)
@@ -55,9 +55,7 @@ def get_historical_stock_prices(symbol, api_key, base_url, start_date, end_date)
 def get_stock_performance():
     symbol = request.args.get('symbol')
     time_frame = request.args.get('time_frame')  # e.g., 'YTD', '6M', '1Y', 'ALL'
-    api_key = "YOUR_API_KEY"  # Replace with your actual API key
-    base_url = "YOUR_API_BASE_URL"  # Replace with your actual API base URL
-    
+
     # Determine the start_date based on the requested time_frame
     today = datetime.today()
     if time_frame == 'YTD':
