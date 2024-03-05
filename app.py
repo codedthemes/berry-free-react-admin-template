@@ -140,6 +140,14 @@ def get_stock_details(symbol):
         return jsonify(response)
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+    
+def calculate_total_amount(symbol):
+    total_quantity = 0
+    for stock in portfolio_details['stocks']:
+        if stock['symbol'] == symbol:
+            total_quantity += stock['quantity']
+    return total_quantity
+
 
 if __name__ == "__main__":
     app.run(debug=True)
