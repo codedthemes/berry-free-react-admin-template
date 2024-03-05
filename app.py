@@ -28,6 +28,29 @@ def get_stock_final_price(symbol, api_key, base_url):
             return "Data not available"
     else:
         return "Sorry the request failed. Please try again later."
+    
+def get_historical_stock_price(symbol, api_key, base_url, date):
+    function = "TIME_SERIES_DAILY"
+    url = f"{base_url}function={function}&symbol={symbol}&apikey={api_key}&outputsize=full"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        if "Time Series (Daily)" in data:
+            time_series = data["Time Series (Daily)"]
+            if date in time_series:
+                return float(time_series[date]["4. close"])
+            else:
+                sorted_dates = sorted(time_series.keys())
+                for sorted_date in sorted_dates:
+                    if sorted_date > date:
+                        return float(time_series[sorted_date]["4. close"])
+                
+                return None
+        else:
+            return None  
+    else:
+        return None  
 
 if __name__ == "__main__":
     app.run(debug=True)
