@@ -51,6 +51,35 @@ def get_historical_stock_price(symbol, api_key, base_url, date):
             return None  
     else:
         return None  
+    
+def calculate_portfolio_value(portfolio_details, api_key, base_url):
+    total_value = 0
+    graph_data = {}
+    errors = []
+
+    for investment in portfolio_details["investments"]:
+        symbol = investment["symbol"]
+        final_price = get_stock_final_price(symbol, api_key, base_url)
+        
+        if isinstance(final_price, float):
+            for investment_detail in investment["investments"]:
+                date = investment_detail["date"]
+                amount_invested = investment_detail["amount"]
+                historical_price = get_historical_stock_price(symbol, api_key, base_url, date)
+                
+                if isinstance(historical_price, float):
+                    shares_bought = amount_invested / historical_price
+                    current_value = shares_bought * final_price
+                    total_value += current_value
+                    if symbol not in graph_data:
+                        graph_data[symbol] = []
+                    graph_data[symbol].append({"date": date, "value": current_value})
+                else:
+                    errors.append(f"Error retrieving historical data for {symbol} on {date}: {historical_price}")
+        else:
+            errors.append(f"Error retrieving current price for {symbol}: {final_price}")
+
+    return total_value, graph_data, errors
 
 if __name__ == "__main__":
     app.run(debug=True)
