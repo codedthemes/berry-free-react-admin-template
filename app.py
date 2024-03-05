@@ -122,5 +122,24 @@ def get_portfolio_summary():
     
     return jsonify(response)
 
+@app.route('/api/stock-details/<symbol>', methods=['GET'])
+def get_stock_details(symbol):
+    try:
+        # Placeholder for actual data retrieval and calculation
+        total_amount = calculate_total_amount(symbol)
+        stock_roi = calculate_stock_roi(symbol)
+        closing_prices = get_closing_prices_for_last_12_months(symbol)
+        
+        response = {
+            "symbol": symbol,
+            "total_amount": total_amount,
+            "roi": stock_roi,
+            "closing_prices": closing_prices
+        }
+        
+        return jsonify(response)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 400
+
 if __name__ == "__main__":
     app.run(debug=True)
