@@ -55,49 +55,44 @@ def get_historical_stock_price(symbol, api_key, base_url, date):
     else:
         return None  
     
-def calculate_portfolio_value(portfolio_details, api_key, base_url):
+# Function to calculate the total portfolio value and ROI
+def calculate_portfolio_value_and_roi(portfolio_details):
     total_value = 0
+    total_investment = 0
     graph_data = {}
-    errors = []
 
-    for investment in portfolio_details["investments"]:
-        symbol = investment["symbol"]
-        final_price = get_stock_final_price(symbol, api_key, base_url)
+    for stock in portfolio_details['stocks']:
+        symbol = stock['symbol']
+        quantity = stock['quantity']
+        purchase_price = stock['purchase_price']
         
-        if isinstance(final_price, float):
-            for investment_detail in investment["investments"]:
-                date = investment_detail["date"]
-                amount_invested = investment_detail["amount"]
-                historical_price = get_historical_stock_price(symbol, api_key, base_url, date)
-                
-                if isinstance(historical_price, float):
-                    shares_bought = amount_invested / historical_price
-                    current_value = shares_bought * final_price
-                    total_value += current_value
-                    if symbol not in graph_data:
-                        graph_data[symbol] = []
-                    graph_data[symbol].append({"date": date, "value": current_value})
-                else:
-                    errors.append(f"Error retrieving historical data for {symbol} on {date}: {historical_price}")
-        else:
-            errors.append(f"Error retrieving current price for {symbol}: {final_price}")
+        # Simulate getting the final price from an external API
+        final_price = get_stock_final_price(symbol)
+        total_value += quantity * final_price
 
-    return total_value, graph_data, errors
+        # Calculate total investment
+        total_investment += quantity * purchase_price
 
-
-@app.route('/api/portfolio', methods=['GET'])
-def portfolio_value():
-
-    value, graph_data, errors = calculate_portfolio_value(portfolio_details, api_key, base_url)
-    if errors:
-        print(errors)
+        # Simulate getting historical price data for the graph
+        graph_data[symbol] = {
+            "purchase_price": purchase_price,
+            "current_price": final_price,
+            # Include other historical data points as needed
+        }
     
-    response = {
-        "total_value": value,
-        "graph_data": graph_data,
-        "errors": errors
-    }
-    return jsonify(response)
+    roi = ((total_value - total_investment) / total_investment) * 100
+    return total_value, roi, graph_data
+
+# API endpoint for the portfolio summary
+@app.route('/api/portfolio', methods=['GET'])
+def get_portfolio_summary():
+    total_value, roi, graph_data = calculate_portfolio_value_and_roi(portfolio_details)
+    
+    return jsonify({
+        "total_portfolio_value": total_value,
+        "roi": roi,
+        "graph_data": graph_data
+    })
 
 if __name__ == "__main__":
     app.run(debug=True)
