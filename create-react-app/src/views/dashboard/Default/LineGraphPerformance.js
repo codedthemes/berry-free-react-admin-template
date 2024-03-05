@@ -10,7 +10,7 @@ const LineGraph = () => {
       type: 'line',
       height: 350,
       toolbar: {
-        show: false, // If you want a cleaner look without the toolbar
+        show: false, // Hide the toolbar for a cleaner look
       },
     },
     stroke: {
@@ -24,6 +24,7 @@ const LineGraph = () => {
     },
     xaxis: {
       type: 'datetime',
+      categories: [], // This will be dynamically updated with the fetched data
     },
     tooltip: {
       theme: 'dark',
@@ -32,18 +33,21 @@ const LineGraph = () => {
       },
     },
     yaxis: {
-      // If you decide to set a min and max, it's here. Otherwise, omit or adjust.
+      labels: {
+        formatter: function (value) {
+          return "$" + value.toFixed(2);
+        }
+      }
     },
-    // Additional customization here
+    // Add more customization as needed
   });
-  
-  const [timeFrame, setTimeFrame] = useState('YTD');
+
+  const [timeFrame, setTimeFrame] = useState('YTD'); // Example time frame state
 
   useEffect(() => {
     // Function to fetch stock performance data
     const fetchStockPerformance = async () => {
       try {
-        // Example API call: adjust according to your backend API endpoint and parameters
         const response = await axios.get(`/api/stock-performance`, {
           params: {
             symbol: 'AAPL', // This should be dynamic based on user input or selection
@@ -76,3 +80,4 @@ const LineGraph = () => {
 };
 
 export default LineGraph;
+

@@ -57,9 +57,10 @@ const TotalPortfolioValueCard = ({ isLoading }) => {
     useEffect(() => {
         const fetchTotalPortfolioValue = async () => {
             try {
-                // Replace the URL with your actual endpoint URL
-                const response = await axios.get('/api/portfolio/total-value');
-                setTotalPortfolioValue(response.data.totalPortfolioValue);
+                // Use the existing endpoint to fetch portfolio summary, which includes the total portfolio value
+                const response = await axios.get('/api/portfolio');
+                const data = response.data;
+                setTotalPortfolioValue(data.total_portfolio_value); // Ensure you use the correct key as per your backend response
             } catch (error) {
                 console.error("Error fetching total portfolio value:", error);
             }
@@ -67,15 +68,6 @@ const TotalPortfolioValueCard = ({ isLoading }) => {
 
         fetchTotalPortfolioValue();
     }, []);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
     return (
         <>
             {isLoading ? (

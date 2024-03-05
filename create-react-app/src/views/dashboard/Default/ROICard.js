@@ -73,7 +73,7 @@ const ROICard = ({ isLoading }) => {
       const fetchROI = async () => {
         try {
           // Adjust this URL to your actual endpoint
-          const response = await axios.get('/api/your-roi-endpoint');
+          const response = await axios.get('/api/portfolio');
           const data = response.data;
           // Assume the backend response contains an "roi" field
           setRoi(data.roi);
