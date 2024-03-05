@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Typography, Grid, Button } from '@mui/material';
-import axios from 'axios'; // Assuming you've installed axios
+import axios from 'axios';
+import ApexCharts from 'react-apexcharts';
 
-// Card component to display data
+// Assuming you've installed apexcharts and react-apexcharts
+// npm install --save apexcharts react-apexcharts
+
+// DataCard component for Total Portfolio Value and ROI
 const DataCard = ({ title, value, unit }) => (
   <Card>
     <CardContent>
@@ -14,28 +18,71 @@ const DataCard = ({ title, value, unit }) => (
   </Card>
 );
 
-// Time Frame Buttons - Could be replaced with select dropdown or another UI element
+// TimeFrameOptions component for selecting the time frame
 const TimeFrameOptions = ({ setTimeFrame }) => {
   const timeFrames = ['YTD', '6M', '1Y', 'ALL'];
   return (
     <Grid container spacing={1}>
       {timeFrames.map((frame) => (
         <Grid item key={frame}>
-          <Button variant="contained" onClick={() => setTimeFrame(frame)}>{frame}</Button>
+          <Button variant="contained" onClick={() => setTimeFrame(frame)}>
+            {frame}
+          </Button>
         </Grid>
       ))}
     </Grid>
   );
 };
 
+// Chart component to render the line chart
+const StockPerformanceChart = ({ seriesData }) => {
+  const chartOptions = {
+    chart: {
+      type: 'line',
+      height: 350,
+      toolbar: {
+        show: false // Hide the toolbar
+      }
+    },
+    stroke: {
+      curve: 'smooth',
+      width: 2
+    },
+    markers: {
+      size: 0
+    },
+    xaxis: {
+      type: 'datetime'
+    },
+    tooltip: {
+      x: {
+        format: 'dd MMM yyyy'
+      }
+    },
+    colors: ['#556ee6']
+  };
+
+  return (
+    <div id="chart">
+      <ApexCharts
+        options={chartOptions}
+        series={[{ name: 'Stock Performance', data: seriesData }]}
+        type="line"
+        height={350}
+      />
+    </div>
+  );
+};
+
+// LandingPage component with state management and API calls
 const LandingPage = () => {
   const [totalValue, setTotalValue] = useState(0);
   const [roi, setRoi] = useState(0);
-  const [graphData, setGraphData] = useState({});
+  const [graphData, setGraphData] = useState([]);
   const [timeFrame, setTimeFrame] = useState('YTD');
 
   useEffect(() => {
-    // Fetch portfolio summary
+    // Function to fetch portfolio summary data
     const fetchPortfolioData = async () => {
       try {
         const response = await axios.get('/api/portfolio');
@@ -43,34 +90,38 @@ const LandingPage = () => {
         setTotalValue(data.total_portfolio_value);
         setRoi(data.roi);
       } catch (error) {
-        console.error("Failed to fetch portfolio data:", error);
+        console.error('Failed to fetch portfolio data:', error);
       }
     };
 
-    // Fetch stock performance based on the selected time frame
+    // Function to fetch stock performance data
     const fetchStockPerformance = async () => {
       try {
-        // Adjust the URL according to your symbol requirement, might be dynamic based on user selection
         const response = await axios.get(`/api/stock-performance?symbol=YOUR_STOCK_SYMBOL&time_frame=${timeFrame}`);
         const data = response.data;
-        setGraphData(data);
+        // Process the data to match the format ApexCharts expects, e.g. [{ x: date, y: value }, ...]
+        const seriesData = Object.entries(data).map(([date, value]) => ({
+          x: new Date(date).getTime(),
+          y: value
+        }));
+        setGraphData(seriesData);
       } catch (error) {
-        console.error("Failed to fetch stock performance:", error);
+        console.error('Failed to fetch stock performance:', error);
       }
     };
 
     fetchPortfolioData();
     fetchStockPerformance();
-  }, [timeFrame]); // This effect runs whenever the timeFrame state changes
+  }, [timeFrame]);
 
   return (
     <Grid container spacing={2} padding={2}>
-      {/* Portfolio Value and ROI Cards */}
-      <Grid item xs={12} sm={6} md={4}>
-        <DataCard title="Total Portfolio Value" value={totalValue} unit="USD" />
+      {/* Cards for Total Portfolio Value and ROI */}
+      <Grid item xs={12} sm={6}>
+        <DataCard title="Total Portfolio Value" value={`$${totalValue.toLocaleString()}`} unit="" />
       </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <DataCard title="ROI" value={roi.toFixed(2)} unit="%" />
+      <Grid item xs={12} sm={6}>
+        <DataCard title="ROI" value={`${roi.toFixed(2)}%`} unit="" />
       </Grid>
 
       {/* Time Frame Selection */}
@@ -79,10 +130,13 @@ const LandingPage = () => {
         <TimeFrameOptions setTimeFrame={setTimeFrame} />
       </Grid>
 
-      {/* Here you'd render your graph component, passing graphData as a prop */}
-      {/* <YourGraphComponent data={graphData} /> */}
+      {/* Chart for Stock Performance */}
+      <Grid item xs={12}>
+        <StockPerformanceChart seriesData={graphData} />
+      </Grid>
     </Grid>
   );
 };
 
 export default LandingPage;
+
