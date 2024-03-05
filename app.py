@@ -80,19 +80,26 @@ def calculate_portfolio_value_and_roi(portfolio_details):
             # Include other historical data points as needed
         }
     
-    roi = ((total_value - total_investment) / total_investment) * 100
+    # Calculate ROI
+    total_invested = sum(detail["amount"] for detail in portfolio_details["investments"])
+    roi = ((total_value - total_invested) / total_invested) * 100
+
+    # Return total_value, ROI, and graph_data
     return total_value, roi, graph_data
 
 # API endpoint for the portfolio summary
 @app.route('/api/portfolio', methods=['GET'])
 def get_portfolio_summary():
-    total_value, roi, graph_data = calculate_portfolio_value_and_roi(portfolio_details)
+    total_value, roi, graph_data = calculate_portfolio_value_and_roi(portfolio_details, api_key, base_url)
     
-    return jsonify({
+    # Create a response object
+    response = {
         "total_portfolio_value": total_value,
         "roi": roi,
         "graph_data": graph_data
-    })
+    }
+    
+    return jsonify(response)
 
 if __name__ == "__main__":
     app.run(debug=True)
