@@ -159,6 +159,18 @@ def calculate_stock_roi(symbol):
     roi = ((current_value - total_investment) / total_investment) * 100 if total_investment > 0 else 0
     return roi
 
+def get_closing_prices_for_last_12_months(symbol):
+    # This is a placeholder logic. You will need to fetch this data from your database or an external API.
+    closing_prices = []
+    today = datetime.today()
+    for month_delta in range(12, -1, -1):
+        target_date = today - timedelta(days=30 * month_delta)
+        target_date_str = target_date.strftime('%Y-%m-%d')
+        price_on_date = get_historical_stock_prices(symbol, api_key, base_url, target_date_str, target_date_str)
+        if price_on_date:
+            date_price_pair = list(price_on_date.items())[0]
+            closing_prices.append({"date": date_price_pair[0], "closing_price": date_price_pair[1]})
+    return closing_prices
 
 
 if __name__ == "__main__":
