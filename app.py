@@ -7,6 +7,9 @@ import datetime
 app = Flask(__name__)
 CORS(app)
 
+api_key = "OKRP7XRTHZE2LCWM"
+base_url = "https://www.alphavantage.co/query?"
+
 with open("stock_portfolio.json", "r") as file:
     portfolio = json.load(file)
 
@@ -80,6 +83,21 @@ def calculate_portfolio_value(portfolio_details, api_key, base_url):
             errors.append(f"Error retrieving current price for {symbol}: {final_price}")
 
     return total_value, graph_data, errors
+
+
+@app.route('/api/portfolio', methods=['GET'])
+def portfolio_value():
+
+    value, graph_data, errors = calculate_portfolio_value(portfolio_details, api_key, base_url)
+    if errors:
+        print(errors)
+    
+    response = {
+        "total_value": value,
+        "graph_data": graph_data,
+        "errors": errors
+    }
+    return jsonify(response)
 
 if __name__ == "__main__":
     app.run(debug=True)
