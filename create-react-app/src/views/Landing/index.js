@@ -1,70 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import axios from 'axios';
-import TotalValueCard from './TotalValueCard'; // Adjust path as needed
-import ROICard from './ROICard'; // Adjust path as needed
-import StockPerformanceChart from './StockPerformanceChart'; // Adjust path as needed
+import TotalPortfolioValueCard from './TotalPortfolioValueCard';
+import ROICard from './ROICard';
+import LineGraph from './LineGraph';
+import StockTickerDisplayCard from './StockTickerDisplayCard';
 
 const LandingPage = () => {
-  const [totalValue, setTotalValue] = useState(0);
-  const [roi, setRoi] = useState(0);
-  const [seriesData, setSeriesData] = useState([]);
-  const [selectedTimeFrame, setSelectedTimeFrame] = useState('YTD');
-  const timeFrameOptions = ['YTD', '6M', '1Y', '5Y'];
+  const [isLoading, setIsLoading] = useState(true);
+  const [portfolioSummary, setPortfolioSummary] = useState({ total_portfolio_value: 0, roi: 0 });
+  const [stockData, setStockData] = useState([]);
 
   useEffect(() => {
-    // Fetch portfolio summary
-    const fetchPortfolioData = async () => {
+    // Fetch the portfolio summary data including total value and ROI
+    const fetchPortfolioSummary = async () => {
+      setIsLoading(true);
       try {
         const response = await axios.get('/api/portfolio');
-        const data = response.data;
-        setTotalValue(data.total_portfolio_value);
-        setRoi(data.roi);
+        if (response.status === 200) {
+          setPortfolioSummary({
+            total_portfolio_value: response.data.total_portfolio_value,
+            roi: response.data.roi
+          });
+          // Assuming stock data is also returned from the /api/portfolio endpoint
+          // Adjust accordingly if it's fetched from a different endpoint
+          setStockData(response.data.stocks);
+        } else {
+          console.error('Failed to fetch data: ', response);
+        }
       } catch (error) {
-        console.error("Failed to fetch portfolio data:", error);
+        console.error('Error fetching portfolio summary: ', error);
       }
+      setIsLoading(false);
     };
 
-    fetchPortfolioData();
+    fetchPortfolioSummary();
   }, []);
 
-  useEffect(() => {
-    // Fetch stock performance data based on the selected timeframe
-    const fetchChartData = async () => {
-      try {
-        // This should be adjusted to fetch data for all stocks in the portfolio or a specific stock, as needed
-        const response = await axios.get(`/api/stock-performance?time_frame=${selectedTimeFrame}`);
-        const data = response.data;
-        // Assume data is in the correct format for the chart { x: date, y: price }
-        setSeriesData(data);
-      } catch (error) {
-        console.error("Failed to fetch stock performance data:", error);
-      }
-    };
-
-    fetchChartData();
-  }, [selectedTimeFrame]);
-
   return (
-    <Grid container spacing={2} padding={2}>
+    <Grid container spacing={3}>
       {/* Total Portfolio Value Card */}
       <Grid item xs={12} sm={6}>
-        <TotalValueCard value={totalValue} />
+        <TotalPortfolioValueCard isLoading={isLoading} totalPortfolioValue={portfolioSummary.total_portfolio_value} />
       </Grid>
 
       {/* ROI Card */}
       <Grid item xs={12} sm={6}>
-        <ROICard value={roi} />
+        <ROICard isLoading={isLoading} roi={portfolioSummary.roi} />
       </Grid>
 
-      {/* Stock Performance Chart with Time Frame Options */}
+      {/* Line Graph */}
       <Grid item xs={12}>
-        <StockPerformanceChart
-          seriesData={seriesData}
-          timeFrameOptions={timeFrameOptions}
-          setTimeFrame={setSelectedTimeFrame}
-          selectedTimeFrame={selectedTimeFrame}
-        />
+        <LineGraph />
+      </Grid>
+
+      {/* Stock Ticker Display Card */}
+      <Grid item xs={12}>
+        <StockTickerDisplayCard stockData={stockData} />
       </Grid>
     </Grid>
   );
