@@ -1,18 +1,17 @@
+// App.js
+import React from 'react';
 import { useSelector } from 'react-redux';
-
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
-// routing
-import Routes from 'routes';
+// Routing
+import MainRoutes from './routes'; // Ensure this is the correct path to your routes.js
 
-// defaultTheme
-import themes from 'themes';
+// Default theme
+import themes from './themes'; // Ensure this is the correct path to your themes
 
-// project imports
-import NavigationScroll from 'layout/NavigationScroll';
-
-// ==============================|| APP ||============================== //
+// Project imports
+import NavigationScroll from './layout/NavigationScroll'; // Ensure this is the correct path
 
 const App = () => {
   const customization = useSelector((state) => state.customization);
@@ -22,7 +21,8 @@ const App = () => {
       <ThemeProvider theme={themes(customization)}>
         <CssBaseline />
         <NavigationScroll>
-          <Routes />
+          {/* MainRoutes now doesn't have BrowserRouter wrapped around it */}
+          <MainRoutes />
         </NavigationScroll>
       </ThemeProvider>
     </StyledEngineProvider>

@@ -1,8 +1,9 @@
 const config = {
-  // basename: only at build time to set, and Don't add '/' at end off BASENAME for breadcrumbs, also Don't put only '/' use blank('') instead,
-  // like '/berry-material-react/react/default'
-  basename: '/free',
-  defaultPath: '/dashboard/default',
+  basename: '', // Update this if your app is hosted at a sub-path of your domain
+
+  // The defaultPath is where you want users to land when they visit your base URL
+  defaultPath: '/', // Update this with the path you want users to land by default
+
   fontFamily: `'Roboto', sans-serif`,
   borderRadius: 12
 };
