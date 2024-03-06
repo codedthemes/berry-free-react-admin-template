@@ -1,0 +1,24 @@
+{
+    "investments": [
+        {
+            "symbol": "MSFT",
+            "name": "Microsoft",
+            "investments": [
+                {
+                    "date": "2022-01-20",
+                    "invested": 10000
+                }
+            ]
+        },
+        {
+            "symbol": "VERA",
+            "name": "Vera Therapeutics Inc.",
+            "investments": [
+                {
+                    "date": "2022-01-20",
+                    "invested": 10000
+                }
+            ]
+        }
+    ]
+}
