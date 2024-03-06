@@ -167,22 +167,32 @@ def get_stock_details(symbol):
         return jsonify({"error": str(e)}), 400
     
 def calculate_total_amount(symbol):
-    total_quantity = 0
-    for stock in portfolio_details['stocks']:
-        if stock['symbol'] == symbol:
-            total_quantity += stock['quantity']
-    return total_quantity
+    # This function should add up all 'invested' amounts for the given symbol.
+    total_invested = 0
+    for investment in portfolio_details['investments']:
+        if investment['symbol'] == symbol:
+            for inv in investment['investments']:
+                total_invested += inv['invested']
+    return total_invested
+
 
 def calculate_stock_roi(symbol):
-    total_investment = 0
+    # This function should calculate the ROI based on the total invested amount and current value of stocks.
+    total_investment = calculate_total_amount(symbol)
     current_value = 0
-    for stock in portfolio_details['stocks']:
-        if stock['symbol'] == symbol:
-            total_investment += stock['quantity'] * stock['purchase_price']
-            current_price = get_stock_final_price(symbol)
-            current_value += stock['quantity'] * current_price
-    roi = ((current_value - total_investment) / total_investment) * 100 if total_investment > 0 else 0
-    return roi
+    # Get the current price of the stock
+    current_price = get_stock_final_price(symbol)
+    if current_price is not None:
+        for investment in portfolio_details['investments']:
+            if investment['symbol'] == symbol:
+                for inv in investment['investments']:
+                    # Calculate how many shares were bought
+                    shares_bought = inv['invested'] / get_historical_stock_prices(symbol, inv['date'])
+                    current_value += shares_bought * current_price
+        roi = ((current_value - total_investment) / total_investment) * 100 if total_investment > 0 else 0
+        return roi
+    else:
+        return None  # or handle this case as you see fit
 
 def get_closing_prices_for_last_12_months(symbol):
     start_date = (datetime.today() - timedelta(days=365)).strftime('%Y-%m-%d')
