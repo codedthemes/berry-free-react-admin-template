@@ -147,43 +147,6 @@ def get_portfolio_summary():
     
     return jsonify(response)
 
-@app.route('/api/stock-details/<symbol>', methods=['GET'])
-def get_stock_details(symbol):
-    try:
-        # Calculate the total invested amount for the symbol
-        total_invested = calculate_total_amount(symbol)
-        total_shares = 0
-        current_value = 0
-        current_price = get_stock_final_price(symbol)
-        
-        # Iterate over each investment for the symbol to calculate the total shares and current value
-        for investment in portfolio_details['investments']:
-            if investment['symbol'] == symbol:
-                for inv in investment['investments']:
-                    purchase_price = get_historical_stock_prices(symbol, inv['date'])
-                    if purchase_price:
-                        shares = inv['invested'] / purchase_price
-                        total_shares += shares
-                        current_value += shares * current_price
-        
-        # Calculate the ROI for the total investments
-        stock_roi = calculate_stock_roi(symbol)
-        
-        # Get the closing prices for the last 12 months
-        closing_prices = get_closing_prices_for_last_12_months(symbol)
-        
-        response = {
-            "symbol": symbol,
-            "total_amount": total_shares,  # This is the total shares owned based on historical investments
-            "current_value": current_value,  # This is the value of the total shares based on the current price
-            "roi": stock_roi,
-            "closing_prices": closing_prices
-        }
-        
-        return jsonify(response)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
-    
 def calculate_total_amount(symbol):
     total_shares = 0
     current_value = 0
@@ -200,94 +163,119 @@ def calculate_total_amount(symbol):
 
     return total_shares, current_value
 
+def get_last_12_months_closing_prices(symbol):
+    function = "TIME_SERIES_MONTHLY"
+    url = f"{base_url}function={function}&symbol={symbol}&apikey={api_key}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        # Extract the "Monthly Time Series" data
+        time_series = data.get("Monthly Time Series", {})
+        
+        # Extract the closing prices and dates for the last 12 months
+        closing_prices = []
+        for date, data_point in sorted(time_series.items(), reverse=True)[:12]:
+            closing_price = float(data_point["4. close"])
+            closing_prices.append({"date": date, "price": closing_price})
+
+        return closing_prices
+    else:
+        raise Exception(f"API request failed with status code {response.status_code}")
 
 
 def calculate_stock_roi(symbol):
-    # This function should calculate the ROI based on the total invested amount and current value of stocks.
-    total_investment = calculate_total_amount(symbol)
+    # This example assumes you calculate the ROI based on some logic
+    # Make sure to implement this based on your actual data and requirements
+    total_investment = 0
     current_value = 0
-    # Get the current price of the stock
     current_price = get_stock_final_price(symbol)
-    if current_price is not None:
-        for investment in portfolio_details['investments']:
-            if investment['symbol'] == symbol:
-                for inv in investment['investments']:
-                    # Calculate how many shares were bought
-                    shares_bought = inv['invested'] / get_historical_stock_prices(symbol, inv['date'])
+    
+    for investment in portfolio_details['investments']:
+        if investment['symbol'] == symbol:
+            for inv in investment['investments']:
+                purchase_price = get_historical_stock_prices(symbol, inv['date'])
+                if purchase_price is not None:
+                    shares_bought = inv['invested'] / purchase_price
+                    total_investment += inv['invested']
                     current_value += shares_bought * current_price
-        roi = ((current_value - total_investment) / total_investment) * 100 if total_investment > 0 else 0
-        return roi
-    else:
-        return None  # or handle this case as you see fit
 
-def get_closing_prices_for_last_12_months(symbol):
-    start_date = (datetime.today() - timedelta(days=365)).strftime('%Y-%m-%d')
-    end_date = datetime.today().strftime('%Y-%m-%d')
-    
-    historical_prices = get_historical_stock_prices(symbol, start_date, end_date)
-    
-    # Convert to a list of dictionaries for the expected format
-    closing_prices = [{"date": date, "price": price} for date, price in historical_prices.items() if start_date <= date <= end_date]
-    
-    # The front-end expects a sorted list by date, make sure to sort if necessary
-    closing_prices.sort(key=lambda x: x['date'])
-    
-    return closing_prices
+    roi = ((current_value - total_investment) / total_investment) * 100 if total_investment > 0 else 0
+    return roi
 
 
-
-@app.route('/api/stock-price-over-time', methods=['GET'])
-def get_stock_price_over_time():
-    # Assuming 'portfolio' is a predefined list of stocks
-    all_prices_over_time = []
-
-    # Compile data for each stock
-    for symbol in portfolio:
-        prices_over_time = {
-            "name": symbol,
-            "data": []
-        }
-        final_price = get_stock_final_price(symbol)
-        if final_price:
-            # In a production scenario, you would pull historical data for each stock
-            # Here, we assume the final_price is the price for the past year for simplicity
-            for i in range(365):
-                date = (datetime.today() - timedelta(days=i)).strftime('%Y-%m-%d')
-                prices_over_time["data"].append({"date": date, "price": final_price})
+@app.route('/api/stock-details/<symbol>', methods=['GET'])
+def get_stock_details(symbol):
+    try:
+        total_shares, current_value = calculate_total_amount(symbol)
+        roi = calculate_stock_roi(symbol)
+        closing_prices = get_last_12_months_closing_prices(symbol)
         
-        # Add the stock's price data to the overall list
-        all_prices_over_time.append(prices_over_time)
+        response = {
+            "symbol": symbol,
+            "total_shares": total_shares,
+            "current_value": current_value,
+            "roi": roi,
+            "closing_prices": closing_prices  # Updated to include the new data
+        }
+        
+        return jsonify(response), 200
+    except Exception as e:
+        app.logger.error(f"Error getting stock details for {symbol}: {e}")
+        return jsonify({"error": str(e)}), 500
+
+# @app.route('/api/stock-price-over-time', methods=['GET'])
+# def get_stock_price_over_time():
+#     # Assuming 'portfolio' is a predefined list of stocks
+#     all_prices_over_time = []
+
+#     # Compile data for each stock
+#     for symbol in portfolio:
+#         prices_over_time = {
+#             "name": symbol,
+#             "data": []
+#         }
+#         final_price = get_stock_final_price(symbol)
+#         if final_price:
+#             # In a production scenario, you would pull historical data for each stock
+#             # Here, we assume the final_price is the price for the past year for simplicity
+#             for i in range(365):
+#                 date = (datetime.today() - timedelta(days=i)).strftime('%Y-%m-%d')
+#                 prices_over_time["data"].append({"date": date, "price": final_price})
+        
+#         # Add the stock's price data to the overall list
+#         all_prices_over_time.append(prices_over_time)
     
-    # Return all stock data in the expected format
-    return jsonify(all_prices_over_time)
+#     # Return all stock data in the expected format
+#     return jsonify(all_prices_over_time)
 
 
-@app.route('/api/stocks', methods=['GET'])
-def get_stocks():
-    stock_data = []
-    for stock_info in portfolio['stocks']:
-        symbol = stock_info['symbol']
-        try:
-            final_price = get_stock_final_price(symbol)
-            if final_price is not None:
-                stock_data.append({
-                    'symbol': symbol,
-                    'price': final_price
-                })
-            else:
-                # Handle the case where final_price is None
-                stock_data.append({
-                    'symbol': symbol,
-                    'error': 'Price data is not available'
-                })
-        except Exception as e:
-            # Log the exception and return an error message for this stock
-            app.logger.error(f"Error fetching price for {symbol}: {e}")
-            stock_data.append({
-                'symbol': symbol,
-                'error': 'An error occurred while fetching the price data'
-            })
-    return jsonify(stock_data)
+# @app.route('/api/stocks', methods=['GET'])
+# def get_stocks():
+#     stock_data = []
+#     for stock_info in portfolio['stocks']:
+#         symbol = stock_info['symbol']
+#         try:
+#             final_price = get_stock_final_price(symbol)
+#             if final_price is not None:
+#                 stock_data.append({
+#                     'symbol': symbol,
+#                     'price': final_price
+#                 })
+#             else:
+#                 # Handle the case where final_price is None
+#                 stock_data.append({
+#                     'symbol': symbol,
+#                     'error': 'Price data is not available'
+#                 })
+#         except Exception as e:
+#             # Log the exception and return an error message for this stock
+#             app.logger.error(f"Error fetching price for {symbol}: {e}")
+#             stock_data.append({
+#                 'symbol': symbol,
+#                 'error': 'An error occurred while fetching the price data'
+#             })
+#     return jsonify(stock_data)
 
 
 
