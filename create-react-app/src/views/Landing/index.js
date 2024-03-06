@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Grid } from '@mui/material';
 import axios from 'axios';
-import TotalPortfolioValueCard from './TotalPortfolioValueCard';
-import ROICard from './ROICard';
-import LineGraph from './LineGraph';
-import StockTickerDisplayCard from './StockTickerDisplayCard';
+import TotalPortfolioValueCard from '../dashboard/Default/TotalPortfolioValueCard';
+import ROICard from '../dashboard/Default/ROICard';
+// import LineGraph from '../dashboard/Default/LineGraph'; // Commented out LineGraph
+import StockTickerDisplayCard from '../dashboard/Default/StockTickerDisplayCard';
 
 const LandingPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -49,10 +49,10 @@ const LandingPage = () => {
         <ROICard isLoading={isLoading} roi={portfolioSummary.roi} />
       </Grid>
 
-      {/* Line Graph */}
-      <Grid item xs={12}>
+      {/* Commented out Line Graph */}
+      {/* <Grid item xs={12}>
         <LineGraph />
-      </Grid>
+      </Grid> */}
 
       {/* Stock Ticker Display Card */}
       <Grid item xs={12}>
