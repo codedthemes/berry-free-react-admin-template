@@ -59,31 +59,6 @@ def get_historical_stock_prices(symbol, date):
         pass
 
 
-# @app.route('/api/stock-performance', methods=['GET'])
-# def get_stock_performance():
-#     symbol = request.args.get('symbol')
-#     # Default to "YTD" if time_frame is not specified
-#     time_frame = request.args.get('time_frame', 'YTD')  
-
-#     # Determine the start_date based on the requested time_frame
-#     today = datetime.today()
-#     if time_frame == 'YTD':
-#         start_date = datetime(today.year, 1, 1)
-#     elif time_frame == '6M':
-#         start_date = today - timedelta(days=183)
-#     elif time_frame == '1Y':
-#         start_date = today - timedelta(days=365)
-#     elif time_frame == 'ALL':
-#         start_date = datetime.min
-#     else:
-#         return jsonify({"error": "Invalid time frame"}), 400
-
-#     start_date_str = start_date.strftime('%Y-%m-%d')
-    
-#     # Adjusted the function call as per the previous example
-#     historical_prices = get_historical_stock_prices(symbol, start_date_str)  # No need for end_date_str
-    
-#     return jsonify(historical_prices)
 
 def calculate_portfolio_value_and_roi(portfolio_details):
     total_invested = 0
@@ -146,6 +121,33 @@ def get_portfolio_summary():
     }
     
     return jsonify(response)
+
+@app.route('/api/stocks', methods=['GET'])
+def get_stocks():
+    stock_data = []
+    for stock_info in portfolio['stocks']:
+        symbol = stock_info['symbol']
+        try:
+            final_price = get_stock_final_price(symbol)
+            if final_price is not None:
+                stock_data.append({
+                    'symbol': symbol,
+                    'price': final_price
+                })
+            else:
+                # Handle the case where final_price is None
+                stock_data.append({
+                    'symbol': symbol,
+                    'error': 'Price data is not available'
+                })
+        except Exception as e:
+            # Log the exception and return an error message for this stock
+            app.logger.error(f"Error fetching price for {symbol}: {e}")
+            stock_data.append({
+                'symbol': symbol,
+                'error': 'An error occurred while fetching the price data'
+            })
+    return jsonify(stock_data)
 
 def calculate_total_amount(symbol):
     total_shares = 0
@@ -223,61 +225,6 @@ def get_stock_details(symbol):
     except Exception as e:
         app.logger.error(f"Error getting stock details for {symbol}: {e}")
         return jsonify({"error": str(e)}), 500
-
-# @app.route('/api/stock-price-over-time', methods=['GET'])
-# def get_stock_price_over_time():
-#     # Assuming 'portfolio' is a predefined list of stocks
-#     all_prices_over_time = []
-
-#     # Compile data for each stock
-#     for symbol in portfolio:
-#         prices_over_time = {
-#             "name": symbol,
-#             "data": []
-#         }
-#         final_price = get_stock_final_price(symbol)
-#         if final_price:
-#             # In a production scenario, you would pull historical data for each stock
-#             # Here, we assume the final_price is the price for the past year for simplicity
-#             for i in range(365):
-#                 date = (datetime.today() - timedelta(days=i)).strftime('%Y-%m-%d')
-#                 prices_over_time["data"].append({"date": date, "price": final_price})
-        
-#         # Add the stock's price data to the overall list
-#         all_prices_over_time.append(prices_over_time)
-    
-#     # Return all stock data in the expected format
-#     return jsonify(all_prices_over_time)
-
-
-# @app.route('/api/stocks', methods=['GET'])
-# def get_stocks():
-#     stock_data = []
-#     for stock_info in portfolio['stocks']:
-#         symbol = stock_info['symbol']
-#         try:
-#             final_price = get_stock_final_price(symbol)
-#             if final_price is not None:
-#                 stock_data.append({
-#                     'symbol': symbol,
-#                     'price': final_price
-#                 })
-#             else:
-#                 # Handle the case where final_price is None
-#                 stock_data.append({
-#                     'symbol': symbol,
-#                     'error': 'Price data is not available'
-#                 })
-#         except Exception as e:
-#             # Log the exception and return an error message for this stock
-#             app.logger.error(f"Error fetching price for {symbol}: {e}")
-#             stock_data.append({
-#                 'symbol': symbol,
-#                 'error': 'An error occurred while fetching the price data'
-#             })
-#     return jsonify(stock_data)
-
-
 
 if __name__ == "__main__":
     # This enables better error messages in development.
