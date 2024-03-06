@@ -1,11 +1,7 @@
 {
     "stocks": [
       {"symbol": "MSFT", "name": "Microsoft"},
-      {"symbol": "VERA", "name": "Vera Therapeutics Inc."},
-      {"symbol": "NU", "name": "Nu Bank"},
-      {"symbol": "NVO", "name": "Novo Nordisk"},
-      {"symbol": "LMT", "name": "Lockheed Martin"},
-      {"symbol": "JPM", "name": "Chase (JPMorgan Chase & Co.)"}
+      {"symbol": "VERA", "name": "Vera Therapeutics Inc."}
     ]
   }
   

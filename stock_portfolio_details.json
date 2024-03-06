@@ -6,11 +6,7 @@
             "investments": [
                 {
                     "date": "2022-01-20",
-                    "amount": 10000
-                },
-                {
-                    "date": "2022-12-21",
-                    "amount": 7000
+                    "invested": 10000
                 }
             ]
         },
@@ -20,67 +16,7 @@
             "investments": [
                 {
                     "date": "2022-01-20",
-                    "amount": 10000
-                },
-                {
-                    "date": "2022-12-21",
-                    "amount": 7000
-                }
-            ]
-        },
-        {
-            "symbol": "NU",
-            "name": "Nu Bank",
-            "investments": [
-                {
-                    "date": "2022-01-20",
-                    "amount": 10000
-                },
-                {
-                    "date": "2022-12-21",
-                    "amount": 7000
-                }
-            ]
-        },
-        {
-            "symbol": "NVO",
-            "name": "Novo Nordisk",
-            "investments": [
-                {
-                    "date": "2022-01-20",
-                    "amount": 10000
-                },
-                {
-                    "date": "2022-12-21",
-                    "amount": 7000
-                }
-            ]
-        },
-        {
-            "symbol": "LMT",
-            "name": "Lockheed Martin",
-            "investments": [
-                {
-                    "date": "2022-01-20",
-                    "amount": 10000
-                },
-                {
-                    "date": "2022-12-21",
-                    "amount": 7000
-                }
-            ]
-        },
-        {
-            "symbol": "JPM",
-            "name": "Chase (JPMorgan Chase & Co.)",
-            "investments": [
-                {
-                    "date": "2022-01-20",
-                    "amount": 10000
-                },
-                {
-                    "date": "2022-12-21",
-                    "amount": 7000
+                    "invested": 10000
                 }
             ]
         }
