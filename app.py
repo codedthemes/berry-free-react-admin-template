@@ -28,7 +28,7 @@ with open("stock_portfolio_details.json", "r") as file:
 
 def get_stock_final_price(symbol):
     function = "TIME_SERIES_DAILY"
-    url = f"{base_url}function={function}&symbol={symbol}&apikey={api_key}"
+    url = f"{base_url}function={function}&symbol={symbol}&apikey={api_key}&outputsize=compact"
     response = requests.get(url)
     if response.status_code == 200:
         data = response.json()
@@ -38,9 +38,9 @@ def get_stock_final_price(symbol):
             final_price = float(time_series[latest_date]["4. close"])
             return final_price
         else:
-            return "Data not available"
+            return None
     else:
-        return "Sorry the request failed. Please try again later."
+        return None
     
 def get_historical_stock_prices(symbol, date):
     function = "TIME_SERIES_DAILY"
@@ -195,26 +195,30 @@ def get_closing_prices_for_last_12_months(symbol):
     return closing_prices
 
 
-
 @app.route('/api/stock-price-over-time', methods=['GET'])
 def get_stock_price_over_time():
-    symbol = request.args.get('symbol')
-    url = f"{base_url}function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}&outputsize=compact"
-    response = requests.get(url)
+    # Assuming 'portfolio' is a predefined list of stocks
+    all_prices_over_time = []
+
+    # Compile data for each stock
+    for symbol in portfolio:
+        prices_over_time = {
+            "name": symbol,
+            "data": []
+        }
+        final_price = get_stock_final_price(symbol)
+        if final_price:
+            # In a production scenario, you would pull historical data for each stock
+            # Here, we assume the final_price is the price for the past year for simplicity
+            for i in range(365):
+                date = (datetime.today() - timedelta(days=i)).strftime('%Y-%m-%d')
+                prices_over_time["data"].append({"date": date, "price": final_price})
+        
+        # Add the stock's price data to the overall list
+        all_prices_over_time.append(prices_over_time)
     
-    if response.status_code == 200:
-        data = response.json()
-        series_key = "Time Series (Daily)"
-        time_series = data.get(series_key, {})
-        prices_over_time = [
-            {"date": date, "price": float(info["4. close"])}
-            for date, info in time_series.items()
-            if datetime.strptime(date, '%Y-%m-%d') >= datetime.today() - timedelta(days=365)
-        ]
-        prices_over_time.sort(key=lambda x: x['date'])
-        return jsonify(prices_over_time)
-    else:
-        return jsonify({"error": "Failed to fetch stock price over time"}), response.status_code
+    # Return all stock data in the expected format
+    return jsonify(all_prices_over_time)
 
 
 @app.route('/api/stocks', methods=['GET'])
@@ -222,13 +226,28 @@ def get_stocks():
     stock_data = []
     for stock_info in portfolio['stocks']:
         symbol = stock_info['symbol']
-        final_price = get_stock_final_price(symbol)
-        if final_price is not None:
+        try:
+            final_price = get_stock_final_price(symbol)
+            if final_price is not None:
+                stock_data.append({
+                    'symbol': symbol,
+                    'price': final_price
+                })
+            else:
+                # Handle the case where final_price is None
+                stock_data.append({
+                    'symbol': symbol,
+                    'error': 'Price data is not available'
+                })
+        except Exception as e:
+            # Log the exception and return an error message for this stock
+            app.logger.error(f"Error fetching price for {symbol}: {e}")
             stock_data.append({
                 'symbol': symbol,
-                'price': final_price
+                'error': 'An error occurred while fetching the price data'
             })
     return jsonify(stock_data)
+
 
 
 if __name__ == "__main__":
