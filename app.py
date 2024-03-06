@@ -150,14 +150,32 @@ def get_portfolio_summary():
 @app.route('/api/stock-details/<symbol>', methods=['GET'])
 def get_stock_details(symbol):
     try:
-        # Placeholder for actual data retrieval and calculation
-        total_amount = calculate_total_amount(symbol)
+        # Calculate the total invested amount for the symbol
+        total_invested = calculate_total_amount(symbol)
+        total_shares = 0
+        current_value = 0
+        current_price = get_stock_final_price(symbol)
+        
+        # Iterate over each investment for the symbol to calculate the total shares and current value
+        for investment in portfolio_details['investments']:
+            if investment['symbol'] == symbol:
+                for inv in investment['investments']:
+                    purchase_price = get_historical_stock_prices(symbol, inv['date'])
+                    if purchase_price:
+                        shares = inv['invested'] / purchase_price
+                        total_shares += shares
+                        current_value += shares * current_price
+        
+        # Calculate the ROI for the total investments
         stock_roi = calculate_stock_roi(symbol)
+        
+        # Get the closing prices for the last 12 months
         closing_prices = get_closing_prices_for_last_12_months(symbol)
         
         response = {
             "symbol": symbol,
-            "total_amount": total_amount,
+            "total_amount": total_shares,  # This is the total shares owned based on historical investments
+            "current_value": current_value,  # This is the value of the total shares based on the current price
             "roi": stock_roi,
             "closing_prices": closing_prices
         }
@@ -167,13 +185,21 @@ def get_stock_details(symbol):
         return jsonify({"error": str(e)}), 400
     
 def calculate_total_amount(symbol):
-    # This function should add up all 'invested' amounts for the given symbol.
-    total_invested = 0
+    total_shares = 0
+    current_value = 0
+    current_price = get_stock_final_price(symbol)  # Get the current price only once for efficiency
+
     for investment in portfolio_details['investments']:
         if investment['symbol'] == symbol:
             for inv in investment['investments']:
-                total_invested += inv['invested']
-    return total_invested
+                purchase_price = get_historical_stock_prices(symbol, inv['date'])
+                if purchase_price is not None:
+                    shares_bought = inv['invested'] / purchase_price
+                    total_shares += shares_bought
+                    current_value += shares_bought * current_price
+
+    return total_shares, current_value
+
 
 
 def calculate_stock_roi(symbol):
@@ -200,9 +226,14 @@ def get_closing_prices_for_last_12_months(symbol):
     
     historical_prices = get_historical_stock_prices(symbol, start_date, end_date)
     
-    # Filter out the prices to keep only the last 12 months
-    closing_prices = {date: price for date, price in historical_prices.items() if start_date <= date <= end_date}
+    # Convert to a list of dictionaries for the expected format
+    closing_prices = [{"date": date, "price": price} for date, price in historical_prices.items() if start_date <= date <= end_date]
+    
+    # The front-end expects a sorted list by date, make sure to sort if necessary
+    closing_prices.sort(key=lambda x: x['date'])
+    
     return closing_prices
+
 
 
 @app.route('/api/stock-price-over-time', methods=['GET'])
