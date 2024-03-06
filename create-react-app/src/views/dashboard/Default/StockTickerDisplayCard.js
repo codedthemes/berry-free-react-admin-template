@@ -3,54 +3,62 @@ import { Card, CardContent, Grid, Typography, Link } from '@mui/material';
 import axios from 'axios';
 import { gridSpacing } from 'store/constant';
 
-// ==============================|| STOCK TICKER DISPLAY CARD ||============================== //
-
 const StockTickerDisplayCard = () => {
   const [stockData, setStockData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        // Update the URL and parameters as needed to match your backend API
         const response = await axios.get('/api/stocks');
-        setStockData(response.data.stocks);
+        if (response.data && Array.isArray(response.data)) {
+          setStockData(response.data);
+        } else {
+          setError('Unexpected API response structure');
+        }
       } catch (error) {
         console.error('Failed to fetch stock data:', error);
-        // Handle errors or set some default state as needed
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchStockData();
   }, []);
 
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
+
+  if (error) {
+    return <Typography>Error: {error}</Typography>;
+  }
+
   return (
     <Card>
       <CardContent>
         <Grid container spacing={gridSpacing}>
-          {/* Header for the card */}
-          <Grid item xs={12}>
-            <Typography variant="h4">Stock Details</Typography>
+          {/* Column titles */}
+          <Grid item xs={6}>
+            <Typography variant="h6">Stock Ticker</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <Typography variant="h6">Last Closing Price</Typography>
           </Grid>
           {/* Stock Items */}
           {stockData.map((stock, index) => (
-            <Grid item xs={12} key={index}>
-              <Grid container alignItems="center" justifyContent="space-between">
-                {/* Ticker Symbol */}
-                <Grid item>
+            <React.Fragment key={index}>
+              <Grid item xs={6}>
+                <Link href={`/stock-details/${stock.symbol}`} target="_blank" style={{ textDecoration: 'none' }}>
                   <Typography variant="subtitle1">{stock.symbol}</Typography>
-                </Grid>
-                {/* Last Closing Price */}
-                <Grid item>
-                  <Typography variant="subtitle1">{`$${stock.price.toFixed(2)}`}</Typography>
-                </Grid>
-                {/* Placeholder for link to stock's detail page */}
-                <Grid item>
-                  <Link href="#" onClick={(e) => e.preventDefault()}>
-                    View Details
-                  </Link>
-                </Grid>
+                </Link>
               </Grid>
-            </Grid>
+              <Grid item xs={6}>
+                <Typography variant="subtitle1">{`$${stock.price.toFixed(2)}`}</Typography>
+              </Grid>
+            </React.Fragment>
           ))}
         </Grid>
       </CardContent>

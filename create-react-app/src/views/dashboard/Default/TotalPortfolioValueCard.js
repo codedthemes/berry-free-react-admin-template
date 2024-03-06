@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Avatar, Box, Grid, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
-import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
-import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
-import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
-import EarningIcon from 'assets/images/icons/earning.svg';
 import axios from 'axios'; // Assuming axios is installed for API requests
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -52,15 +45,13 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 const TotalPortfolioValueCard = ({ isLoading }) => {
     const theme = useTheme();
     const [totalPortfolioValue, setTotalPortfolioValue] = useState(0);
-    const [anchorEl, setAnchorEl] = useState(null);
 
     useEffect(() => {
         const fetchTotalPortfolioValue = async () => {
             try {
-                // Use the existing endpoint to fetch portfolio summary, which includes the total portfolio value
                 const response = await axios.get('/api/portfolio');
                 const data = response.data;
-                setTotalPortfolioValue(data.total_portfolio_value); // Ensure you use the correct key as per your backend response
+                setTotalPortfolioValue(data.total_portfolio_value);
             } catch (error) {
                 console.error("Error fetching total portfolio value:", error);
             }
@@ -74,12 +65,8 @@ const TotalPortfolioValueCard = ({ isLoading }) => {
                 <SkeletonEarningCard />
             ) : (
                 <CardWrapper border={false} content={false}>
-                    {/* Card content here, including the totalPortfolioValue variable */}
-                    {/* Example usage: */}
                     <Box sx={{ p: 2.25 }}>
-                        {/* Card content like avatar, title, and amount */}
                         <Grid container direction="column">
-                            {/* Avatar and actions */}
                             <Grid item>
                                 <Grid container justifyContent="space-between">
                                     <Grid item>
@@ -92,19 +79,16 @@ const TotalPortfolioValueCard = ({ isLoading }) => {
                                                 mt: 1
                                             }}
                                         >
-                                            <img src={EarningIcon} alt="Total Portfolio Value" />
+                                            {/* Assuming you have EarningIcon defined elsewhere */}
                                         </Avatar>
                                     </Grid>
-                                    {/* Other elements like MoreHorizIcon and Menu */}
                                 </Grid>
                             </Grid>
-                            {/* Total Portfolio Value */}
                             <Grid item>
                                 <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mt: 1.75, mb: 0.75 }}>
                                     ${totalPortfolioValue.toLocaleString()}
                                 </Typography>
                             </Grid>
-                            {/* Subtitle */}
                             <Grid item>
                                 <Typography
                                     sx={{

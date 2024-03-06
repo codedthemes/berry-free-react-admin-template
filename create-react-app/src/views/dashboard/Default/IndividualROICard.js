@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useTheme, styled } from '@mui/material/styles';
 import { Avatar, Box, Grid, Typography } from '@mui/material';
 import MainCard from 'ui-component/cards/MainCard'; // Adjust import path as necessary
-import SkeletonTotalOrderCard from 'ui-component/cards/Skeleton/EarningCard'; // Adjust import path as necessary
+import CircularProgress from '@mui/material/CircularProgress'; // Import CircularProgress for loading indicator
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
@@ -48,14 +48,17 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
     },
 }));
 
-const IndividualROICard = ({ symbol, isLoading }) => {
+const IndividualROICard = ({ symbol }) => {
     const theme = useTheme();
     const [roi, setRoi] = useState(0);
+    const [isLoading, setIsLoading] = useState(true); // Initialize isLoading state
 
     useEffect(() => {
         const fetchROI = async () => {
+            setIsLoading(true); // Set loading to true when the request starts
             try {
-                const response = await axios.get(`/api/stock-details/${symbol}`);
+                console.log(`Symbol before API call: ${symbol}`);
+                const response = await axios.get(`/api/stock-details/${encodeURIComponent(symbol)}`);
                 if (response.status === 200) {
                     setRoi(response.data.roi);
                 } else {
@@ -63,13 +66,13 @@ const IndividualROICard = ({ symbol, isLoading }) => {
                 }
             } catch (error) {
                 console.error("Failed to fetch ROI:", error);
+            } finally {
+                setIsLoading(false); // Set loading to false when the request is complete
             }
         };
 
-        if (!isLoading) {
-            fetchROI();
-        }
-    }, [symbol, isLoading]);
+        fetchROI();
+    }, [symbol]);
 
     return (
         <CardWrapper border={false} content={false}>
@@ -87,9 +90,13 @@ const IndividualROICard = ({ symbol, isLoading }) => {
                         </Avatar>
                     </Grid>
                     <Grid item sx={{ mb: 0.75 }}>
-                        <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mt: 1.75, mb: 0.75 }}>
-                            ROI: {isLoading ? "Loading..." : `${roi.toFixed(2)}%`}
-                        </Typography>
+                        {isLoading ? (
+                            <CircularProgress color="inherit" />
+                        ) : (
+                            <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mt: 1.75, mb: 0.75 }}>
+                                ROI: {`${roi.toFixed(2)}%`}
+                            </Typography>
+                        )}
                     </Grid>
                 </Grid>
             </Box>
@@ -99,7 +106,6 @@ const IndividualROICard = ({ symbol, isLoading }) => {
 
 IndividualROICard.propTypes = {
     symbol: PropTypes.string.isRequired,
-    isLoading: PropTypes.bool,
 };
 
 export default IndividualROICard;

@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, Grid, Typography } from '@mui/material';
+import { Card, CardContent, Grid, Typography, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { gridSpacing } from 'store/constant';
 
-// ==============================|| STOCK PRICE HISTORY CARD ||============================== //
-
 const StockPriceHistoryCard = ({ symbol }) => {
   const [closingPrices, setClosingPrices] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchClosingPrices = async () => {
+      setIsLoading(true);
+      setError('');
       try {
-        // Adjust the URL to target the specific stock's endpoint
-        const response = await axios.get(`/api/stock-details/${symbol}`);
-        if(response.status === 200) {
-          // Assuming the response includes a 'closing_prices' field with an array of { date, price } objects
+        const response = await axios.get(`/api/stock-details/${encodeURIComponent(symbol)}`);
+        if (response.status === 200) {
           setClosingPrices(response.data.closing_prices);
         } else {
-          console.error('Failed to fetch closing prices:', response);
+          setError('Failed to fetch closing prices');
         }
       } catch (error) {
         console.error('Error fetching closing prices:', error);
+        setError('Error fetching closing prices');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -30,25 +33,31 @@ const StockPriceHistoryCard = ({ symbol }) => {
   return (
     <Card>
       <CardContent>
-        <Grid container spacing={gridSpacing}>
-          {/* Header for the card */}
-          <Grid item xs={12}>
-            <Typography variant="h4">Price History for {symbol}</Typography>
+        {isLoading ? (
+          <Grid container justifyContent="center">
+            <CircularProgress />
           </Grid>
-          {/* Closing Prices for the last 12 months */}
-          {closingPrices.map((priceData, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <Grid container alignItems="center" justifyContent="space-between">
-                <Grid item>
-                  <Typography variant="subtitle1">{priceData.date}</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="subtitle1">{`$${priceData.price.toFixed(2)}`}</Typography>
+        ) : error ? (
+          <Typography color="error">{error}</Typography>
+        ) : (
+          <Grid container spacing={gridSpacing}>
+            <Grid item xs={12}>
+              <Typography variant="h4">Price History for {symbol}</Typography>
+            </Grid>
+            {closingPrices.map((priceData, index) => (
+              <Grid item xs={12} md={6} key={index}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                  <Grid item>
+                    <Typography variant="subtitle1">{priceData.date}</Typography>
+                  </Grid>
+                  <Grid item>
+                    <Typography variant="subtitle1">{`$${priceData.price.toFixed(2)}`}</Typography>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          ))}
-        </Grid>
+            ))}
+          </Grid>
+        )}
       </CardContent>
     </Card>
   );

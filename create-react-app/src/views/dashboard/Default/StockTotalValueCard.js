@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Avatar, Box, Grid, Typography } from '@mui/material';
 import { styled, useTheme } from '@mui/material/styles';
-import MainCard from 'ui-component/cards/MainCard'; // Adjust the import path as necessary
-import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard'; // Adjust the import path as necessary
-import axios from 'axios'; // Assuming axios is installed for API requests
-import EarningIcon from 'assets/images/icons/earning.svg'; // Adjust the import path as necessary
-
+import MainCard from 'ui-component/cards/MainCard';
+import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
+import axios from 'axios';
+import EarningIcon from 'assets/images/icons/earning.svg';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.dark,
@@ -14,69 +13,72 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
     overflow: 'hidden',
     position: 'relative',
     '&:after': {
-      content: '""',
-      position: 'absolute',
-      width: 210,
-      height: 210,
-      background: theme.palette.secondary[800],
-      borderRadius: '50%',
-      top: -85,
-      right: -95,
-      [theme.breakpoints.down('sm')]: {
-        top: -105,
-        right: -140
-      }
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: theme.palette.secondary[800],
+        borderRadius: '50%',
+        top: -85,
+        right: -95,
+        [theme.breakpoints.down('sm')]: {
+            top: -105,
+            right: -140
+        }
     },
     '&:before': {
-      content: '""',
-      position: 'absolute',
-      width: 210,
-      height: 210,
-      background: theme.palette.secondary[800],
-      borderRadius: '50%',
-      top: -125,
-      right: -15,
-      opacity: 0.5,
-      [theme.breakpoints.down('sm')]: {
-        top: -155,
-        right: -70
-      }
+        content: '""',
+        position: 'absolute',
+        width: 210,
+        height: 210,
+        background: theme.palette.secondary[800],
+        borderRadius: '50%',
+        top: -125,
+        right: -15,
+        opacity: 0.5,
+        [theme.breakpoints.down('sm')]: {
+            top: -155,
+            right: -70
+        }
     }
-  }));
+}));
 
-
-
-const StockTotalValueCard = ({ symbol, isLoading }) => {
+const StockTotalValueCard = ({ symbol }) => {
     const theme = useTheme();
-    const [stockDetails, setStockDetails] = useState({
-        totalAmount: 0,
-        currentValue: 0,
-    });
+    const [stockDetails, setStockDetails] = useState({ totalAmount: 0, currentValue: 0 });
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         const fetchStockDetails = async () => {
+            setIsLoading(true);
+            setError('');
             try {
-                const response = await axios.get(`/api/stock-details/${symbol}`);
+                console.log(`Symbol before API call: ${symbol}`);
+                const response = await axios.get(`/api/stock-details/${encodeURIComponent(symbol)}`);
                 if (response.status === 200) {
                     const { total_amount, current_value } = response.data;
                     setStockDetails({ totalAmount: total_amount, currentValue: current_value });
                 } else {
-                    console.error('Failed to fetch stock details: ', response);
+                    setError('Failed to fetch stock details');
                 }
             } catch (error) {
-                console.error('Error fetching stock details: ', error);
+                console.error('Error fetching stock details:', error);
+                setError('Error fetching stock details');
+            } finally {
+                setIsLoading(false);
             }
         };
 
-        if (!isLoading) {
-            fetchStockDetails();
-        }
-    }, [symbol, isLoading]);
+        fetchStockDetails();
+    }, [symbol]);
 
     return (
         <>
             {isLoading ? (
                 <SkeletonEarningCard />
+            ) : error ? (
+                <Typography color="error">{error}</Typography>
             ) : (
                 <CardWrapper border={false} content={false}>
                     <Box sx={{ p: 2.25 }}>
@@ -112,7 +114,6 @@ const StockTotalValueCard = ({ symbol, isLoading }) => {
 
 StockTotalValueCard.propTypes = {
     symbol: PropTypes.string.isRequired,
-    isLoading: PropTypes.bool,
 };
 
 export default StockTotalValueCard;
