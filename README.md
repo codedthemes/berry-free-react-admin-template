@@ -84,7 +84,7 @@ git clone https://github.com/codedthemes/berry-free-react-admin-template.git
 -   Built with React Hooks API
 -   Redux & React Context API for State Management
 -   React Router for Navigation Routing
--   Support of react-script
+-   Support of vite
 -   Code Splitting
 -   CSS-in-JS where CSS is composed using JavaScript instead of defined in external files
 
