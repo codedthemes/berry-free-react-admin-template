@@ -20,12 +20,12 @@ jobs:
 
     steps:
         - name: 🚚 Get latest code
-          uses: actions/checkout@v2
+          uses: actions/checkout@v4
 
-        - name: Use Node.js 18
-          uses: actions/setup-node@v2-beta
+        - name: Use Node.js 20
+          uses: actions/setup-node@v4
           with:
-              node-version: '18'
+              node-version: '20'
 
         - name: 🔨 Build Project
           run: |
@@ -34,12 +34,12 @@ jobs:
               yarn build
 
         - name: 📂 Deploy to Server
-          uses: easingthemes/ssh-deploy@v2.1.5
+          uses: easingthemes/ssh-deploy@v4
           env:
               SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
               # ARGS: "-rltgoDzvO --delete"
-              SOURCE: 'create-react-app/build/'
+              SOURCE: 'create-react-app/dist/'
               REMOTE_HOST: 192.34.62.123
               REMOTE_USER: berry
               TARGET: public_html/free
-              EXCLUDE: '/create-react-app/dist/, /create-react-app/node_modules/'
+              EXCLUDE: '/vite/node_modules/'
