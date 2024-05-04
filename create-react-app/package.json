@@ -2,7 +2,20 @@
   "name": "berry-free-material-react",
   "version": "3.5.0",
   "private": true,
+  "author": {
+    "name": "CodedThemes",
+    "email": "CodedThemes@gmail.com",
+    "url": "https://codedthemes.com/"
+  },
   "homepage": "https://berrydashboard.io/free",
+  "scripts": {
+    "start": "env-cmd -f .env vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+  },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
@@ -39,14 +52,6 @@
     "vite-jsconfig-paths": "^2.0.1",
     "web-vitals": "^3.5.2",
     "yup": "^1.3.3"
-  },
-  "scripts": {
-    "start": "env-cmd -f .env vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
-    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "eslintConfig": {
     "extends": [
