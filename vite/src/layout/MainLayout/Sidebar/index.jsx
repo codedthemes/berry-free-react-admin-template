@@ -44,7 +44,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           <MenuList />
           <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label={import.meta.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
+            <Chip label={import.meta.env.VITE_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
           </Stack>
         </PerfectScrollbar>
       </BrowserView>
@@ -53,7 +53,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
           <MenuList />
           <MenuCard />
           <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label={import.meta.env.REACT_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
+            <Chip label={import.meta.env.VITE_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
           </Stack>
         </Box>
       </MobileView>
