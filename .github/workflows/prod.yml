@@ -29,7 +29,7 @@ jobs:
 
         - name: 🔨 Build Project
           run: |
-              cd create-react-app
+              cd vite
               yarn
               yarn build
 
