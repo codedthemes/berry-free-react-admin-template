@@ -12,7 +12,7 @@ import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
@@ -70,7 +70,7 @@ const AuthRegister = ({ ...others }) => {
   return (
     <>
       <Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <AnimateButton>
             <Button
               variant="outlined"
@@ -90,7 +90,7 @@ const AuthRegister = ({ ...others }) => {
             </Button>
           </AnimateButton>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Box sx={{ alignItems: 'center', display: 'flex' }}>
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
             <Button
@@ -113,13 +113,12 @@ const AuthRegister = ({ ...others }) => {
             <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
           </Box>
         </Grid>
-        <Grid item xs={12} container alignItems="center" justifyContent="center">
+        <Grid size={12} container alignItems="center" justifyContent="center">
           <Box sx={{ mb: 2 }}>
             <Typography variant="subtitle1">Sign up with Email address</Typography>
           </Box>
         </Grid>
       </Grid>
-
       <Formik
         initialValues={{
           email: '',
@@ -134,7 +133,7 @@ const AuthRegister = ({ ...others }) => {
         {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
             <Grid container spacing={matchDownSM ? 0 : 2}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="First Name"
@@ -145,7 +144,7 @@ const AuthRegister = ({ ...others }) => {
                   sx={{ ...theme.typography.customInput }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
                   fullWidth
                   label="Last Name"
@@ -214,10 +213,10 @@ const AuthRegister = ({ ...others }) => {
               <FormControl fullWidth>
                 <Box sx={{ mb: 2 }}>
                   <Grid container spacing={2} alignItems="center">
-                    <Grid item>
+                    <Grid>
                       <Box style={{ backgroundColor: level?.color }} sx={{ width: 85, height: 8, borderRadius: '7px' }} />
                     </Grid>
-                    <Grid item>
+                    <Grid>
                       <Typography variant="subtitle1" fontSize="0.75rem">
                         {level?.label}
                       </Typography>
@@ -228,7 +227,7 @@ const AuthRegister = ({ ...others }) => {
             )}
 
             <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item>
+              <Grid>
                 <FormControlLabel
                   control={
                     <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />
