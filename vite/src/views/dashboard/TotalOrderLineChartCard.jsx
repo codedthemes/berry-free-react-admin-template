@@ -114,7 +114,7 @@ const TotalOrderLineChartCard = ({ isLoading }) => {
                                 </Grid>
                             </Grid>
                             <Grid sx={{ mb: 0.75 }}>
-                                <Grid container alignItems="center">
+                                <Grid container spacing={0} alignItems="center">
                                     <Grid size={6}>
                                         <Grid container alignItems="center">
                                             <Grid>

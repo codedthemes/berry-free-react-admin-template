@@ -20,57 +20,67 @@ import AuthFooter from 'ui-component/cards/AuthFooter';
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const Register = () => {
-  const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
+    const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
-  return (
-    <AuthWrapper1>
-      <Stack justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
-        <Stack justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
-          <Box sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-            <AuthCardWrapper>
-              <Grid container spacing={2} alignItems="center" justifyContent="center">
-                <Grid sx={{ mb: 3 }}>
-                  <Link to="#" aria-label="theme logo">
-                    <Logo />
-                  </Link>
-                </Grid>
-                <Grid size={12}>
-                  <Grid container direction={{ xs: 'column-reverse', md: 'row' }} alignItems="center" justifyContent="center">
-                    <Grid>
-                      <Stack alignItems="center" justifyContent="center" spacing={1}>
-                        <Typography color="secondary.main" gutterBottom variant={downMD ? 'h3' : 'h2'}>
-                          Sign up
-                        </Typography>
-                        <Typography variant="caption" fontSize="16px" textAlign={{ xs: 'center', md: 'inherit' }}>
-                          Enter your credentials to continue
-                        </Typography>
-                      </Stack>
-                    </Grid>
-                  </Grid>
-                </Grid>
-                <Grid size={12}>
-                  <AuthRegister />
-                </Grid>
-                <Grid size={12}>
-                  <Divider />
-                </Grid>
-                <Grid size={12}>
-                  <Grid container direction="column" alignItems="center" size={12}>
-                    <Typography component={Link} to="/pages/login/login3" variant="subtitle1" sx={{ textDecoration: 'none' }}>
-                      Already have an account?
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </AuthCardWrapper>
-          </Box>
-        </Stack>
-        <Box sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
-        </Box>
-      </Stack>
-    </AuthWrapper1>
-  );
+    return (
+        <AuthWrapper1>
+            <Stack justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
+                <Stack justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
+                    <Box sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
+                        <AuthCardWrapper>
+                            <Grid container spacing={2} alignItems="center" justifyContent="center">
+                                <Grid sx={{ mb: 3 }}>
+                                    <Link to="#" aria-label="theme logo">
+                                        <Logo />
+                                    </Link>
+                                </Grid>
+                                <Grid size={12}>
+                                    <Grid
+                                        container
+                                        direction={{ xs: 'column-reverse', md: 'row' }}
+                                        alignItems="center"
+                                        justifyContent="center"
+                                    >
+                                        <Grid>
+                                            <Stack alignItems="center" justifyContent="center" spacing={1}>
+                                                <Typography color="secondary.main" gutterBottom variant={downMD ? 'h3' : 'h2'}>
+                                                    Sign up
+                                                </Typography>
+                                                <Typography variant="caption" fontSize="16px" textAlign={{ xs: 'center', md: 'inherit' }}>
+                                                    Enter your credentials to continue
+                                                </Typography>
+                                            </Stack>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                                <Grid size={12}>
+                                    <AuthRegister />
+                                </Grid>
+                                <Grid size={12}>
+                                    <Divider />
+                                </Grid>
+                                <Grid size={12}>
+                                    <Grid container direction="column" alignItems="center" size={12}>
+                                        <Typography
+                                            component={Link}
+                                            to="/pages/login/login3"
+                                            variant="subtitle1"
+                                            sx={{ textDecoration: 'none' }}
+                                        >
+                                            Already have an account?
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </AuthCardWrapper>
+                    </Box>
+                </Stack>
+                <Box sx={{ m: 3, mt: 1 }}>
+                    <AuthFooter />
+                </Box>
+            </Stack>
+        </AuthWrapper1>
+    );
 };
 
 export default Register;

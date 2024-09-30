@@ -16,7 +16,6 @@ import Typography from '@mui/material/Typography';
 import BajajAreaChartCard from './BajajAreaChartCard';
 import MainCard from 'ui-component/cards/MainCard';
 import SkeletonPopularCard from 'ui-component/cards/Skeleton/PopularCard';
-import { gridSpacing } from 'store/constant';
 
 // assets
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
@@ -44,7 +43,7 @@ const PopularCard = ({ isLoading }) => {
             ) : (
                 <MainCard content={false}>
                     <CardContent>
-                        <Grid container spacing={gridSpacing}>
+                        <Grid container spacing={2}>
                             <Grid size={12}>
                                 <Grid container alignContent="center" justifyContent="space-between">
                                     <Grid>
@@ -87,7 +86,7 @@ const PopularCard = ({ isLoading }) => {
                             <Grid size={12}>
                                 <BajajAreaChartCard />
                             </Grid>
-                            <Grid size={12}>
+                            <Grid size={12} pt={1}>
                                 <Grid container direction="column">
                                     <Grid>
                                         <Grid container alignItems="center" justifyContent="space-between">
