@@ -2026,18 +2026,17 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.10.2.tgz#053f1540703faa81dea2966b768ee5581c66aeda"
   integrity sha512-hw437iINopmQuxWPSUEvqE56NCPsiU8N4AYtfHmJFckclktzK9YQJieD3XkDCDH4OjL+C7zgPUh73R/nrcHrqw==
 
-"@tabler/icons-react@^2.47.0":
-  version "2.47.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-2.47.0.tgz#b704e7ae98f95be8bd6e938b4b2e84cd20b0cf31"
-  integrity sha512-iqly2FvCF/qUbgmvS8E40rVeYY7laltc5GUjRxQj59DuX0x/6CpKHTXt86YlI2whg4czvd/c8Ce8YR08uEku0g==
+"@tabler/icons-react@^3.19.0":
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-3.19.0.tgz#9b5a421bf69875677fde52e7de73b4e6b5571e57"
+  integrity sha512-AqEWGI0tQWgqo6ZjMO5yJ9sYT8oXLuAM/up0hN9iENS6IdtNZryKrkNSiMgpwweNTpl8wFFG/dAZ959S91A/uQ==
   dependencies:
-    "@tabler/icons" "2.47.0"
-    prop-types "^15.7.2"
+    "@tabler/icons" "3.19.0"
 
-"@tabler/icons@2.47.0":
-  version "2.47.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.47.0.tgz#c41c680d1947e3ab2d60af3febc4132287c60596"
-  integrity sha512-4w5evLh+7FUUiA1GucvGj2ReX2TvOjEr4ejXdwL/bsjoSkof6r1gQmzqI+VHrE2CpJpB3al7bCTulOkFa/RcyA==
+"@tabler/icons@3.19.0":
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.19.0.tgz#5998b0557ef34572e003f2d75ac95e7c04f88c81"
+  integrity sha512-A4WEWqpdbTfnpFEtwXqwAe9qf9sp1yRPvzppqAuwcoF0q5YInqB+JkJtSFToCyBpPVeLxJUxxkapLvt2qQgnag==
 
 "@types/babel__core@^7.20.5":
   version "7.20.5"
@@ -5367,10 +5366,10 @@ vite@^5.4.9:
   optionalDependencies:
     fsevents "~2.3.3"
 
-web-vitals@^3.5.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-3.5.2.tgz#5bb58461bbc173c3f00c2ddff8bfe6e680999ca9"
-  integrity sha512-c0rhqNcHXRkY/ogGDJQxZ9Im9D19hDihbzSQJrsioex+KnFgmMzBiy57Z1EjkhX/+OjyBpclDCzz2ITtjokFmg==
+web-vitals@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-4.2.3.tgz#270c4baecfbc6ec6fc15da1989e465e5f9b94fb7"
+  integrity sha512-/CFAm1mNxSmOj6i0Co+iGFJ58OS4NRGVP+AWS/l509uIK5a1bSoIVaHz/ZumpHTfHSZBpgrJ+wjfpAOrTHok5Q==
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
