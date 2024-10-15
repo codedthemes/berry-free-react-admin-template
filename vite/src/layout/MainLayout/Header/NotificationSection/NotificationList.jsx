@@ -113,7 +113,7 @@ const NotificationList = () => {
                     </ListItemAvatar>
                     <ListItemText primary="John Doe" />
                 </ListItem>
-                <Grid container direction="column" className="list-container" sec>
+                <Grid container direction="column" className="list-container">
                     <Grid size={12} sx={{ pb: 2 }}>
                         <Typography variant="subtitle2">It is a long established fact that a reader will be distracted</Typography>
                     </Grid>
