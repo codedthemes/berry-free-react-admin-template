@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 
 // material-ui
 import { useTheme } from '@mui/material';
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
+import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Box from '@mui/material/Box';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -15,7 +16,6 @@ import { BrowserView, MobileView } from 'react-device-detect';
 import MenuCard from './MenuCard';
 import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
-import Chip from 'ui-component/extended/Chip';
 
 import { drawerWidth } from 'store/constant';
 
@@ -44,13 +44,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     <MenuList />
                     <MenuCard />
                     <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-                        <Chip
-                            label={import.meta.env.VITE_APP_VERSION}
-                            disabled
-                            chipcolor="secondary"
-                            size="small"
-                            sx={{ cursor: 'pointer' }}
-                        />
+                        <Chip label={import.meta.env.VITE_APP_VERSION} size="small" color="default" />
                     </Stack>
                 </PerfectScrollbar>
             </BrowserView>
@@ -59,13 +53,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
                     <MenuList />
                     <MenuCard />
                     <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-                        <Chip
-                            label={import.meta.env.VITE_APP_VERSION}
-                            disabled
-                            chipcolor="secondary"
-                            size="small"
-                            sx={{ cursor: 'pointer' }}
-                        />
+                        <Chip label={import.meta.env.VITE_APP_VERSION} size="small" color="default" />
                     </Stack>
                 </Box>
             </MobileView>

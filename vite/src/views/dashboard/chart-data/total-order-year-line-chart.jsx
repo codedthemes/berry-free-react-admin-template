@@ -23,10 +23,12 @@ const chartData = {
         },
         yaxis: {
             min: 0,
-            max: 100
+            max: 100,
+            labels: {
+                show: false
+            }
         },
         tooltip: {
-            theme: 'dark',
             fixed: {
                 enabled: false
             },
@@ -35,7 +37,8 @@ const chartData = {
             },
             y: {
                 title: {
-                    formatter: () => 'Total Order'
+                    // eslint-disable-next-line
+                    formatter: (seriesName) => 'Total Order'
                 }
             },
             marker: {

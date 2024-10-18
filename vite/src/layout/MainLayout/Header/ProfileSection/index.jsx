@@ -25,9 +25,6 @@ import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 
-// third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
-
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
@@ -92,17 +89,6 @@ const ProfileSection = () => {
                     height: '48px',
                     alignItems: 'center',
                     borderRadius: '27px',
-                    transition: 'all .2s ease-in-out',
-                    borderColor: theme.palette.primary.light,
-                    backgroundColor: theme.palette.primary.light,
-                    '&[aria-controls="menu-list-grow"], &:hover': {
-                        borderColor: theme.palette.primary.main,
-                        background: `${theme.palette.primary.main}!important`,
-                        color: theme.palette.primary.light,
-                        '& svg': {
-                            stroke: theme.palette.primary.light
-                        }
-                    },
                     '& .MuiChip-label': {
                         lineHeight: 0
                     }
@@ -122,7 +108,6 @@ const ProfileSection = () => {
                     />
                 }
                 label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
-                variant="outlined"
                 ref={anchorRef}
                 aria-controls={open ? 'menu-list-grow' : undefined}
                 aria-haspopup="true"
@@ -180,7 +165,16 @@ const ProfileSection = () => {
                                         />
                                         <Divider />
                                     </Box>
-                                    <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
+                                    <Box
+                                        sx={{
+                                            p: 2,
+                                            py: 0,
+                                            height: '100%',
+                                            maxHeight: 'calc(100vh - 250px)',
+                                            overflowX: 'hidden',
+                                            '&::-webkit-scrollbar': { width: 5 }
+                                        }}
+                                    >
                                         <Box sx={{ p: 2, pt: 0 }}>
                                             <UpgradePlanCard />
                                             <Divider />
@@ -293,7 +287,7 @@ const ProfileSection = () => {
                                                 </ListItemButton>
                                             </List>
                                         </Box>
-                                    </PerfectScrollbar>
+                                    </Box>
                                 </MainCard>
                             </ClickAwayListener>
                         </Paper>

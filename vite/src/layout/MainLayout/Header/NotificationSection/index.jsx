@@ -19,9 +19,6 @@ import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ButtonBase from '@mui/material/ButtonBase';
 
-// third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
-
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
@@ -168,8 +165,13 @@ const NotificationSection = () => {
                                             </Grid>
                                         </Grid>
                                         <Grid size={12}>
-                                            <PerfectScrollbar
-                                                style={{ height: '100%', maxHeight: 'calc(100vh - 205px)', overflowX: 'hidden' }}
+                                            <Box
+                                                sx={{
+                                                    height: '100%',
+                                                    maxHeight: 'calc(100vh - 205px)',
+                                                    overflowX: 'hidden',
+                                                    '&::-webkit-scrollbar': { width: 5 }
+                                                }}
                                             >
                                                 <Grid container direction="column" spacing={2}>
                                                     <Grid size={12}>
@@ -199,7 +201,7 @@ const NotificationSection = () => {
                                                     </Grid>
                                                 </Grid>
                                                 <NotificationList />
-                                            </PerfectScrollbar>
+                                            </Box>
                                         </Grid>
                                     </Grid>
                                     <Divider />

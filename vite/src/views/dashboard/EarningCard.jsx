@@ -58,8 +58,8 @@ const EarningCard = ({ isLoading }) => {
                             height: 210,
                             background: theme.palette.secondary[800],
                             borderRadius: '50%',
-                            top: { xs: -105, sm: -85 },
-                            right: { xs: -140, sm: -95 }
+                            top: { xs: -85 },
+                            right: { xs: -95 }
                         },
                         '&:before': {
                             content: '""',
@@ -68,8 +68,8 @@ const EarningCard = ({ isLoading }) => {
                             height: 210,
                             background: theme.palette.secondary[800],
                             borderRadius: '50%',
-                            top: { xs: -155, sm: -125 },
-                            right: { xs: -70, sm: -15 },
+                            top: { xs: -125 },
+                            right: { xs: -15 },
                             opacity: 0.5
                         }
                     }}

@@ -178,6 +178,8 @@ export default function componentStyleOverrides(theme) {
         MuiTooltip: {
             styleOverrides: {
                 tooltip: {
+                    margin: 0,
+                    lineHeight: 1.4,
                     color: theme.paper,
                     background: theme.colors?.grey700
                 }

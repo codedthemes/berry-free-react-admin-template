@@ -139,7 +139,7 @@ const NavCollapse = ({ menu, level }) => {
                         '&:after': {
                             content: "''",
                             position: 'absolute',
-                            left: '32px',
+                            left: '25px',
                             top: 0,
                             height: '100%',
                             width: '1px',
