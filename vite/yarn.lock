@@ -2951,7 +2951,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"apexcharts@npm:^3.46.0":
+"apexcharts@npm:^3.54.0":
   version: 3.54.1
   resolution: "apexcharts@npm:3.54.1"
   dependencies:
@@ -3230,7 +3230,7 @@ __metadata:
     "@reduxjs/toolkit": "npm:^2.3.0"
     "@tabler/icons-react": "npm:^3.19.0"
     "@vitejs/plugin-react": "npm:^4.3.2"
-    apexcharts: "npm:^3.46.0"
+    apexcharts: "npm:^3.54.0"
     env-cmd: "npm:^10.1.0"
     eslint: "npm:^8.57.0"
     eslint-config-prettier: "npm:^9.1.0"

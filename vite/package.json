@@ -31,7 +31,7 @@
         "@reduxjs/toolkit": "^2.3.0",
         "@tabler/icons-react": "^3.19.0",
         "@vitejs/plugin-react": "^4.3.2",
-        "apexcharts": "^3.46.0",
+        "apexcharts": "^3.54.0",
         "env-cmd": "^10.1.0",
         "formik": "^2.4.6",
         "framer-motion": "^11.11.8",
