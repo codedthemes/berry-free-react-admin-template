@@ -3,27 +3,11 @@
 export const chartOptions = {
     chart: {
         type: 'bar',
-
         stacked: true,
         toolbar: {
             show: true
-        },
-        zoom: {
-            enabled: true
         }
     },
-    responsive: [
-        {
-            breakpoint: 480,
-            options: {
-                legend: {
-                    position: 'bottom',
-                    offsetX: -10,
-                    offsetY: 0
-                }
-            }
-        }
-    ],
     plotOptions: {
         bar: {
             horizontal: false,
@@ -31,23 +15,18 @@ export const chartOptions = {
         }
     },
     xaxis: {
-        type: 'category',
         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     },
     legend: {
         show: true,
         fontFamily: `'Roboto', sans-serif`,
         position: 'bottom',
-        offsetX: 20,
-        labels: {
-            useSeriesColors: false
-        },
-        markers: {
-            shape: 'circle'
-        },
         itemMargin: {
             horizontal: 15,
             vertical: 8
+        },
+        markers: {
+            shape: 'circle'
         }
     },
     fill: {

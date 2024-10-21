@@ -1,3 +1,6 @@
+// project imports
+import componentsOverrides from './overrides';
+
 export default function componentStyleOverrides(theme) {
     const bgColor = theme.colors?.grey50;
     return {
@@ -184,6 +187,7 @@ export default function componentStyleOverrides(theme) {
                     background: theme.colors?.grey700
                 }
             }
-        }
+        },
+        ...componentsOverrides(theme)
     };
 }

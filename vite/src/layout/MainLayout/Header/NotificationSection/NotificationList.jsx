@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -22,6 +22,8 @@ import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@t
 import User1 from 'assets/images/users/user-round.svg';
 
 const ListItemWrapper = ({ children }) => {
+    const theme = useTheme();
+
     return (
         <Box
             sx={{
@@ -30,7 +32,7 @@ const ListItemWrapper = ({ children }) => {
                 borderColor: 'divider',
                 cursor: 'pointer',
                 '&:hover': {
-                    bgcolor: 'primary.light'
+                    bgcolor: alpha(theme.palette.grey[200], 0.3)
                 }
             }}
         >
@@ -47,6 +49,7 @@ ListItemWrapper.propTypes = {
 
 const NotificationList = () => {
     const theme = useTheme();
+    const containerSX = { pl: 7 };
 
     return (
         <List
@@ -57,6 +60,9 @@ const NotificationList = () => {
                 borderRadius: '10px',
                 [theme.breakpoints.down('md')]: {
                     maxWidth: 300
+                },
+                '& .MuiListItem-root': {
+                    p: 0
                 },
                 '& .MuiListItemSecondaryAction-root': {
                     top: 22
@@ -87,21 +93,13 @@ const NotificationList = () => {
                     </ListItemAvatar>
                     <ListItemText primary="John Doe" />
                 </ListItem>
-                <Grid container direction="column" className="list-container">
-                    <Grid size={12} sx={{ pb: 2 }}>
-                        <Typography variant="subtitle2">It is a long established fact that a reader will be distracted</Typography>
-                    </Grid>
-                    <Grid size={12}>
-                        <Grid container>
-                            <Grid>
-                                <Chip label="Unread" color="error" size="small" sx={{ width: 'min-content' }} />
-                            </Grid>
-                            <Grid>
-                                <Chip label="New" color="warning" size="small" sx={{ width: 'min-content' }} />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
+                <Stack spacing={2} sx={containerSX}>
+                    <Typography variant="subtitle2">It is a long established fact that a reader will be distracted</Typography>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                        <Chip label="Unread" color="error" size="small" sx={{ width: 'min-content' }} />
+                        <Chip label="New" color="warning" size="small" sx={{ width: 'min-content' }} />
+                    </Stack>
+                </Stack>
             </ListItemWrapper>
             <Divider />
             <ListItemWrapper>
@@ -137,9 +135,7 @@ const NotificationList = () => {
                     </Grid>
                     <Grid size={12}>
                         <Grid container>
-                            <Grid>
-                                <Chip label="Unread" color="error" size="small" sx={{ width: 'min-content' }} />
-                            </Grid>
+                            <Chip label="Unread" color="error" size="small" sx={{ width: 'min-content' }} />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -150,11 +146,9 @@ const NotificationList = () => {
                     alignItems="center"
                     secondaryAction={
                         <Grid container justifyContent="flex-end">
-                            <Grid>
-                                <Typography variant="caption" display="block" gutterBottom>
-                                    2 min ago
-                                </Typography>
-                            </Grid>
+                            <Typography variant="caption" display="block" gutterBottom>
+                                2 min ago
+                            </Typography>
                         </Grid>
                     }
                 >
@@ -178,11 +172,9 @@ const NotificationList = () => {
                     </Grid>
                     <Grid size={12}>
                         <Grid container>
-                            <Grid>
-                                <Button variant="contained" disableElevation endIcon={<IconBrandTelegram stroke={1.5} size="1.3rem" />}>
-                                    Mail
-                                </Button>
-                            </Grid>
+                            <Button variant="contained" disableElevation endIcon={<IconBrandTelegram stroke={1.5} size="1.3rem" />}>
+                                Mail
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -256,9 +248,7 @@ const NotificationList = () => {
                     </Grid>
                     <Grid size={12}>
                         <Grid container>
-                            <Grid>
-                                <Chip label="Confirmation of Account." color="success" size="small" sx={{ width: 'min-content' }} />
-                            </Grid>
+                            <Chip label="Confirmation of Account." color="success" size="small" sx={{ width: 'min-content' }} />
                         </Grid>
                     </Grid>
                 </Grid>
