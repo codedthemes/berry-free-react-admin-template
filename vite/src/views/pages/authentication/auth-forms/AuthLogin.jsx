@@ -139,7 +139,6 @@ const AuthLogin = ({ ...others }) => {
                                     disabled={isSubmitting}
                                     fullWidth
                                     size="large"
-                                    type="submit"
                                     variant="contained"
                                     color="secondary"
                                 >
