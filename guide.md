@@ -1,9 +1,10 @@
 Run project:
 1. enter vite directory
-2. run: yarn start
+2. run: `yarn start`
 
 This will start your local server at http://localhost:3000
  Also, your terminal shows the following.
+ ```
 yarn run v1.22.22
 $ env-cmd -f .env vite
 
@@ -15,4 +16,4 @@ $ env-cmd -f .env vite
 Browserslist: caniuse-lite is outdated. Please run:
   npx update-browserslist-db@latest
   Why you should do it regularly: https://github.com/browserslist/update-db#readme
- 
+ ```
