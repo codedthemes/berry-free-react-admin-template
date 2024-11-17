@@ -14,8 +14,11 @@ const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 // const UtilsMaterialIcons = Loadable(lazy(() => import('views/utilities/MaterialIcons')));
 // const UtilsTablerIcons = Loadable(lazy(() => import('views/utilities/TablerIcons')));
 
-// sample page routing
+// page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+const ProfilePage = Loadable(lazy(() => import('views/profile-page')));
+const JobPage = Loadable(lazy(() => import('views/job-page')));
+const SkillPage = Loadable(lazy(() => import('views/skill-page')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -84,6 +87,18 @@ const MainRoutes = {
     {
       path: 'sample-page',
       element: <SamplePage />
+    },
+    {
+      path: 'profile-page',
+      element: <ProfilePage />
+    },
+    {
+      path: 'job-page',
+      element: <JobPage />
+    },
+    {
+      path: 'skill-page',
+      element: <SkillPage />
     }
   ]
 };
