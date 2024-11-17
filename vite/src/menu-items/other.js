@@ -1,8 +1,8 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons-react';
+import { IconBrandChrome, IconBriefcase, IconHelp, IconTool, IconUserSquareRounded } from '@tabler/icons-react';
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconBrandChrome, IconHelp, IconUserSquareRounded, IconBriefcase, IconTool };
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
@@ -11,11 +11,11 @@ const other = {
   type: 'group',
   children: [
     {
-      id: 'rofile-page',
+      id: 'profile-page',
       title: 'Profile',
       type: 'item',
       url: '/profile-page',
-      icon: icons.IconBrandChrome,
+      icon: icons.IconUserSquareRounded,
       breadcrumbs: false
     },
     {
@@ -23,7 +23,7 @@ const other = {
       title: 'Job',
       type: 'item',
       url: '/job-page',
-      icon: icons.IconBrandChrome,
+      icon: icons.IconBriefcase,
       breadcrumbs: false
     },
     {
@@ -31,7 +31,7 @@ const other = {
       title: 'Skill',
       type: 'item',
       url: '/skill-page',
-      icon: icons.IconBrandChrome,
+      icon: icons.IconTool,
       breadcrumbs: false
     },
   ]
