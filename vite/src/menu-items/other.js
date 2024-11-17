@@ -11,22 +11,29 @@ const other = {
   type: 'group',
   children: [
     {
-      id: 'sample-page',
-      title: 'Sample Page',
+      id: 'rofile-page',
+      title: 'Profile',
       type: 'item',
-      url: '/sample-page',
+      url: '/profile-page',
       icon: icons.IconBrandChrome,
       breadcrumbs: false
     },
     {
-      id: 'documentation',
-      title: 'Documentation',
+      id: 'job-page',
+      title: 'Job',
       type: 'item',
-      url: 'https://codedthemes.gitbook.io/berry/',
-      icon: icons.IconHelp,
-      external: true,
-      target: true
-    }
+      url: '/job-page',
+      icon: icons.IconBrandChrome,
+      breadcrumbs: false
+    },
+    {
+      id: 'skill-page',
+      title: 'Skill',
+      type: 'item',
+      url: '/skill-page',
+      icon: icons.IconBrandChrome,
+      breadcrumbs: false
+    },
   ]
 };
 
