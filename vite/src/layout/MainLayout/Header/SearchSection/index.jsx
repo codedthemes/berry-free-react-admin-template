@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
-import { useState, forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Popper from '@mui/material/Popper';
+import Box from '@mui/material/Box';
 
-// third-party
+// third party
 import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 
 // project imports
@@ -20,7 +20,7 @@ import Transitions from 'ui-component/extended/Transitions';
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
 
-const HeaderAvatar = forwardRef(({ children, ...others }, ref) => {
+function HeaderAvatarComponent({ children, ...others }, ref) {
   const theme = useTheme();
 
   return (
@@ -42,15 +42,13 @@ const HeaderAvatar = forwardRef(({ children, ...others }, ref) => {
       {children}
     </Avatar>
   );
-});
+}
 
-HeaderAvatar.propTypes = {
-  children: PropTypes.node
-};
+const HeaderAvatar = forwardRef(HeaderAvatarComponent);
 
 // ==============================|| SEARCH INPUT - MOBILE||============================== //
 
-const MobileSearch = ({ value, setValue, popupState }) => {
+function MobileSearch({ value, setValue, popupState }) {
   const theme = useTheme();
 
   return (
@@ -94,17 +92,11 @@ const MobileSearch = ({ value, setValue, popupState }) => {
       sx={{ width: '100%', ml: 0.5, px: 2, bgcolor: 'background.paper' }}
     />
   );
-};
-
-MobileSearch.propTypes = {
-  value: PropTypes.string,
-  setValue: PropTypes.func,
-  popupState: PopupState
-};
+}
 
 // ==============================|| SEARCH INPUT ||============================== //
 
-const SearchSection = () => {
+export default function SearchSection() {
   const [value, setValue] = useState('');
 
   return (
@@ -128,8 +120,8 @@ const SearchSection = () => {
                     <Transitions type="zoom" {...TransitionProps} sx={{ transformOrigin: 'center left' }}>
                       <Card sx={{ bgcolor: 'background.default', border: 0, boxShadow: 'none' }}>
                         <Box sx={{ p: 2 }}>
-                          <Grid container alignItems="center" justifyContent="space-between">
-                            <Grid item xs>
+                          <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Grid size="grow">
                               <MobileSearch value={value} setValue={setValue} popupState={popupState} />
                             </Grid>
                           </Grid>
@@ -168,6 +160,8 @@ const SearchSection = () => {
       </Box>
     </>
   );
-};
+}
 
-export default SearchSection;
+HeaderAvatarComponent.propTypes = { children: PropTypes.node, others: PropTypes.any };
+
+MobileSearch.propTypes = { value: PropTypes.string, setValue: PropTypes.func, popupState: PropTypes.any };

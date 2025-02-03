@@ -12,6 +12,7 @@ const pages = {
   id: 'pages',
   title: 'Pages',
   caption: 'Pages Caption',
+  icon: icons.IconKey,
   type: 'group',
   children: [
     {
@@ -19,20 +20,19 @@ const pages = {
       title: 'Authentication',
       type: 'collapse',
       icon: icons.IconKey,
-
       children: [
         {
-          id: 'login3',
-          title: 'Login',
+          id: 'login',
+          title: 'login',
           type: 'item',
-          url: '/pages/login/login3',
+          url: '/pages/login',
           target: true
         },
         {
-          id: 'register3',
-          title: 'Register',
+          id: 'register',
+          title: 'register',
           type: 'item',
-          url: '/pages/register/register3',
+          url: '/pages/register',
           target: true
         }
       ]

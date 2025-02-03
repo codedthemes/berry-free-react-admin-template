@@ -1,11 +1,26 @@
-export default function componentStyleOverrides(theme) {
-  const bgColor = theme.colors?.grey50;
+// project imports
+import componentsOverrides from './overrides';
+
+export default function componentStyleOverrides(theme, borderRadius, outlinedFilled) {
+  const bgColor = theme.palette.grey[50];
+  const menuSelectedBack = theme.palette.secondary.light;
+  const menuSelected = theme.palette.secondary.dark;
+
   return {
     MuiButton: {
       styleOverrides: {
         root: {
           fontWeight: 500,
           borderRadius: '4px'
+        }
+      }
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          '& + .MuiFormControlLabel-label': {
+            marginTop: 2
+          }
         }
       }
     },
@@ -18,14 +33,14 @@ export default function componentStyleOverrides(theme) {
           backgroundImage: 'none'
         },
         rounded: {
-          borderRadius: `${theme?.customization?.borderRadius}px`
+          borderRadius: `${borderRadius}px`
         }
       }
     },
     MuiCardHeader: {
       styleOverrides: {
         root: {
-          color: theme.colors?.textDark,
+          color: theme.palette.text.dark,
           padding: '24px'
         },
         title: {
@@ -47,27 +62,37 @@ export default function componentStyleOverrides(theme) {
         }
       }
     },
+    MuiAlert: {
+      styleOverrides: {
+        root: {
+          alignItems: 'center'
+        },
+        outlined: {
+          border: '1px dashed'
+        }
+      }
+    },
     MuiListItemButton: {
       styleOverrides: {
         root: {
-          color: theme.darkTextPrimary,
+          color: theme.palette.text.primary,
           paddingTop: '10px',
           paddingBottom: '10px',
           '&.Mui-selected': {
-            color: theme.menuSelected,
-            backgroundColor: theme.menuSelectedBack,
+            color: menuSelected,
+            backgroundColor: menuSelectedBack,
             '&:hover': {
-              backgroundColor: theme.menuSelectedBack
+              backgroundColor: menuSelectedBack
             },
             '& .MuiListItemIcon-root': {
-              color: theme.menuSelected
+              color: menuSelected
             }
           },
           '&:hover': {
-            backgroundColor: theme.menuSelectedBack,
-            color: theme.menuSelected,
+            backgroundColor: menuSelectedBack,
+            color: menuSelected,
             '& .MuiListItemIcon-root': {
-              color: theme.menuSelected
+              color: menuSelected
             }
           }
         }
@@ -76,7 +101,7 @@ export default function componentStyleOverrides(theme) {
     MuiListItemIcon: {
       styleOverrides: {
         root: {
-          color: theme.darkTextPrimary,
+          color: theme.palette.text.primary,
           minWidth: '36px'
         }
       }
@@ -84,16 +109,16 @@ export default function componentStyleOverrides(theme) {
     MuiListItemText: {
       styleOverrides: {
         primary: {
-          color: theme.textDark
+          color: theme.palette.text.dark
         }
       }
     },
     MuiInputBase: {
       styleOverrides: {
         input: {
-          color: theme.textDark,
+          color: theme.palette.text.dark,
           '&::placeholder': {
-            color: theme.darkTextSecondary,
+            color: theme.palette.text.secondary,
             fontSize: '0.875rem'
           }
         }
@@ -102,13 +127,13 @@ export default function componentStyleOverrides(theme) {
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          background: bgColor,
-          borderRadius: `${theme?.customization?.borderRadius}px`,
+          background: outlinedFilled ? bgColor : 'transparent',
+          borderRadius: `${borderRadius}px`,
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.colors?.grey400
+            borderColor: theme.palette.grey[400]
           },
           '&:hover $notchedOutline': {
-            borderColor: theme.colors?.primaryLight
+            borderColor: theme.palette.primary.light
           },
           '&.MuiInputBase-multiline': {
             padding: 1
@@ -116,9 +141,9 @@ export default function componentStyleOverrides(theme) {
         },
         input: {
           fontWeight: 500,
-          background: bgColor,
+          background: outlinedFilled ? bgColor : 'transparent',
           padding: '15.5px 14px',
-          borderRadius: `${theme?.customization?.borderRadius}px`,
+          borderRadius: `${borderRadius}px`,
           '&.MuiInputBase-inputSizeSmall': {
             padding: '10px 14px',
             '&.MuiInputBase-inputAdornedStart': {
@@ -130,7 +155,7 @@ export default function componentStyleOverrides(theme) {
           paddingLeft: 4
         },
         notchedOutline: {
-          borderRadius: `${theme?.customization?.borderRadius}px`
+          borderRadius: `${borderRadius}px`
         }
       }
     },
@@ -138,50 +163,224 @@ export default function componentStyleOverrides(theme) {
       styleOverrides: {
         root: {
           '&.Mui-disabled': {
-            color: theme.colors?.grey300
+            color: theme.palette.grey[300]
           }
         },
         mark: {
-          backgroundColor: theme.paper,
+          backgroundColor: theme.palette.background.paper,
           width: '4px'
         },
         valueLabel: {
-          color: theme?.colors?.primaryLight
+          color: theme.palette.primary.light
+        }
+      }
+    },
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          '& .MuiAutocomplete-tag': {
+            background: theme.palette.secondary.light,
+            borderRadius: 4,
+            color: theme.palette.text.dark,
+            '.MuiChip-deleteIcon': {
+              color: theme.palette.secondary[200]
+            }
+          }
+        },
+        popper: {
+          borderRadius: `${borderRadius}px`,
+          boxShadow: '0px 8px 10px -5px rgb(0 0 0 / 20%), 0px 16px 24px 2px rgb(0 0 0 / 14%), 0px 6px 30px 5px rgb(0 0 0 / 12%)'
         }
       }
     },
     MuiDivider: {
       styleOverrides: {
         root: {
-          borderColor: theme.divider,
-          opacity: 1
+          borderColor: theme.palette.divider
+        }
+      }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          '&:focus': {
+            backgroundColor: 'transparent'
+          }
         }
       }
     },
     MuiAvatar: {
       styleOverrides: {
         root: {
-          color: theme.colors?.primaryDark,
-          background: theme.colors?.primary200
+          color: theme.palette.primary.dark,
+          background: theme.palette.primary[200]
         }
       }
     },
-    MuiChip: {
+    MuiTimelineContent: {
       styleOverrides: {
         root: {
-          '&.MuiChip-deletable .MuiChip-deleteIcon': {
-            color: 'inherit'
+          color: theme.palette.text.dark,
+          fontSize: '16px'
+        }
+      }
+    },
+    MuiTreeItem: {
+      styleOverrides: {
+        label: {
+          marginTop: 14,
+          marginBottom: 14
+        }
+      }
+    },
+    MuiTimelineDot: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none'
+        }
+      }
+    },
+    MuiInternalDateTimePickerTabs: {
+      styleOverrides: {
+        tabs: {
+          backgroundColor: theme.palette.primary.light,
+          '& .MuiTabs-flexContainer': {
+            borderColor: theme.palette.primary[200]
+          },
+          '& .MuiTab-root': {
+            color: theme.palette.text.dark
+          },
+          '& .MuiTabs-indicator': {
+            backgroundColor: theme.palette.primary.dark
+          },
+          '& .Mui-selected': {
+            color: theme.palette.primary.dark
           }
+        }
+      }
+    },
+    MuiTabs: {
+      styleOverrides: {
+        flexContainer: {
+          borderBottom: '1px solid',
+          borderColor: theme.palette.grey[200]
+        }
+      }
+    },
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          padding: '12px 0 12px 0'
+        }
+      }
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderColor: theme.palette.grey[200],
+          '&.MuiTableCell-head': {
+            fontSize: '0.875rem',
+            color: theme.palette.grey[900],
+            fontWeight: 500
+          }
+        }
+      }
+    },
+    MuiDateTimePickerToolbar: {
+      styleOverrides: {
+        timeDigitsContainer: {
+          alignItems: 'center'
         }
       }
     },
     MuiTooltip: {
       styleOverrides: {
         tooltip: {
-          color: theme.paper,
-          background: theme.colors?.grey700
+          margin: 0,
+          lineHeight: 1.4,
+          color: theme.palette.background.paper,
+          background: theme.palette.text.primary
         }
       }
-    }
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          fontSize: '1.25rem'
+        }
+      }
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          margin: '3px'
+        }
+      }
+    },
+    MuiDataGrid: {
+      defaultProps: {
+        rowHeight: 54
+      },
+      styleOverrides: {
+        root: {
+          borderWidth: 0,
+          '& .MuiDataGrid-columnHeader--filledGroup': {
+            borderBottomWidth: 0
+          },
+          '& .MuiDataGrid-columnHeader--emptyGroup': {
+            borderBottomWidth: 0
+          },
+          '& .MuiFormControl-root>.MuiInputBase-root': {
+            backgroundColor: `${theme.palette.background.default} !important`,
+            borderColor: `${theme.palette.divider} !important`
+          }
+        },
+        withBorderColor: {
+          borderColor: theme.palette.divider
+        },
+        toolbarContainer: {
+          '& .MuiButton-root': {
+            paddingLeft: '16px !important',
+            paddingRight: '16px !important'
+          }
+        },
+        columnHeader: {
+          color: theme.palette.grey[600],
+          paddingLeft: 24,
+          paddingRight: 24
+        },
+        footerContainer: {
+          '&.MuiDataGrid-withBorderColor': {
+            borderBottom: 'none'
+          }
+        },
+        columnHeaderCheckbox: {
+          paddingLeft: 0,
+          paddingRight: 0
+        },
+        cellCheckbox: {
+          paddingLeft: 0,
+          paddingRight: 0
+        },
+        cell: {
+          borderWidth: 1,
+          paddingLeft: 24,
+          paddingRight: 24,
+          borderColor: theme.palette.divider,
+          '&.MuiDataGrid-cell--withRenderer > div ': {
+            ' > .high': {
+              background: theme.palette.success.light
+            },
+            '& > .medium': {
+              background: theme.palette.warning.light
+            },
+            '& > .low': {
+              background: theme.palette.error.light
+            }
+          }
+        }
+      }
+    },
+    ...componentsOverrides(theme)
   };
 }

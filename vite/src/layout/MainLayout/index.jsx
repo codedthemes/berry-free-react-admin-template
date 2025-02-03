@@ -1,100 +1,69 @@
+import { useEffect, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
 
 // project imports
-import { CssBaseline, styled, useTheme } from '@mui/material';
+import Footer from './Footer';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import MainContentStyled from './MainContentStyled';
 import Customization from '../Customization';
+import Loader from 'ui-component/Loader';
 import Breadcrumbs from 'ui-component/extended/Breadcrumbs';
-import { SET_MENU } from 'store/actions';
-import { drawerWidth } from 'store/constant';
 
-// assets
-import { IconChevronRight } from '@tabler/icons-react';
-
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' && prop !== 'theme' })(({ theme, open }) => ({
-  ...theme.typography.mainContent,
-  borderBottomLeftRadius: 0,
-  borderBottomRightRadius: 0,
-  transition: theme.transitions.create(
-    'margin',
-    open
-      ? {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen
-        }
-      : {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen
-        }
-  ),
-  [theme.breakpoints.up('md')]: {
-    marginLeft: open ? 0 : -(drawerWidth - 20),
-    width: `calc(100% - ${drawerWidth}px)`
-  },
-  [theme.breakpoints.down('md')]: {
-    marginLeft: '20px',
-    width: `calc(100% - ${drawerWidth}px)`,
-    padding: '16px'
-  },
-  [theme.breakpoints.down('sm')]: {
-    marginLeft: '10px',
-    width: `calc(100% - ${drawerWidth}px)`,
-    padding: '16px',
-    marginRight: '10px'
-  }
-}));
+import useConfig from 'hooks/useConfig';
+import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = () => {
+export default function MainLayout() {
   const theme = useTheme();
-  const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
-  // Handle left drawer
-  const leftDrawerOpened = useSelector((state) => state.customization.opened);
-  const dispatch = useDispatch();
-  const handleLeftDrawerToggle = () => {
-    dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
-  };
+  const downMD = useMediaQuery(theme.breakpoints.down('md'));
+
+  const { borderRadius, miniDrawer } = useConfig();
+  const { menuMaster, menuMasterLoading } = useGetMenuMaster();
+  const drawerOpen = menuMaster?.isDashboardDrawerOpened;
+
+  useEffect(() => {
+    handlerDrawerOpen(!miniDrawer);
+  }, [miniDrawer]);
+
+  useEffect(() => {
+    downMD && handlerDrawerOpen(false);
+  }, [downMD]);
+
+  // horizontal menu-list bar : drawer
+
+  if (menuMasterLoading) return <Loader />;
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       {/* header */}
-      <AppBar
-        enableColorOnDark
-        position="fixed"
-        color="inherit"
-        elevation={0}
-        sx={{
-          bgcolor: theme.palette.background.default,
-          transition: leftDrawerOpened ? theme.transitions.create('width') : 'none'
-        }}
-      >
-        <Toolbar>
-          <Header handleLeftDrawerToggle={handleLeftDrawerToggle} />
+      <AppBar enableColorOnDark position="fixed" color="inherit" elevation={0} sx={{ bgcolor: 'background.default' }}>
+        <Toolbar sx={{ p: 2 }}>
+          <Header />
         </Toolbar>
       </AppBar>
 
-      {/* drawer */}
-      <Sidebar drawerOpen={!matchDownMd ? leftDrawerOpened : !leftDrawerOpened} drawerToggle={handleLeftDrawerToggle} />
+      {/* menu / drawer */}
+      <Sidebar />
 
       {/* main content */}
-      <Main theme={theme} open={leftDrawerOpened}>
-        {/* breadcrumb */}
-        <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
-        <Outlet />
-      </Main>
+      <MainContentStyled {...{ borderRadius, open: drawerOpen }}>
+        <Box sx={{ ...{ px: { xs: 0 } }, minHeight: 'calc(100vh - 128px)', display: 'flex', flexDirection: 'column' }}>
+          {/* breadcrumb */}
+          <Breadcrumbs />
+          <Outlet />
+          <Footer />
+        </Box>
+      </MainContentStyled>
       <Customization />
     </Box>
   );
-};
-
-export default MainLayout;
+}

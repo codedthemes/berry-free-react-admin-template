@@ -4,14 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
+import Box from '@mui/material/Box';
 
-// project import
+// project imports
 import navigation from 'menu-items';
 
 // assets
@@ -22,23 +22,17 @@ import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 
 // ==============================|| BREADCRUMBS TITLE ||============================== //
 
-const BTitle = ({ title }) => {
+function BTitle({ title }) {
   return (
-    <Grid item>
-      <Typography variant="h3" sx={{ fontWeight: 500 }}>
+    <Grid>
+      <Typography variant="h4" sx={{ fontWeight: 500 }}>
         {title}
       </Typography>
     </Grid>
   );
-};
+}
 
-BTitle.propTypes = {
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-};
-
-// ==============================|| BREADCRUMBS ||============================== //
-
-const Breadcrumbs = ({
+export default function Breadcrumbs({
   card,
   custom = false,
   divider = false,
@@ -53,7 +47,7 @@ const Breadcrumbs = ({
   titleBottom,
   sx,
   ...others
-}) => {
+}) {
   const theme = useTheme();
   const location = useLocation();
   const [main, setMain] = useState();
@@ -129,11 +123,19 @@ const Breadcrumbs = ({
     mainContent = (
       <Typography
         {...(main.url && { component: Link, to: main.url })}
-        variant="subtitle1"
-        sx={linkSX}
+        variant="h6"
+        noWrap
+        sx={{
+          overflow: 'hidden',
+          lineHeight: 1.5,
+          mb: -0.625,
+          textOverflow: 'ellipsis',
+          maxWidth: { xs: 102, sm: 'unset' },
+          display: 'inline-block'
+        }}
         color={window.location.pathname === main.url ? 'text.primary' : 'text.secondary'}
       >
-        {icons && <CollapseIcon style={iconSX} />}
+        {icons && <CollapseIcon style={{ ...iconSX }} />}
         {main.title}
       </Typography>
     );
@@ -142,7 +144,7 @@ const Breadcrumbs = ({
   if (!custom && main && main.type === 'collapse' && main.breadcrumbs === true) {
     breadcrumbContent = (
       <Card sx={card === false ? { mb: 3, bgcolor: 'transparent', ...sx } : { mb: 3, bgcolor: 'background.default', ...sx }} {...others}>
-        <Box sx={{ p: 2, pl: card === false ? 0 : 2 }}>
+        <Box sx={{ p: 1.25, px: card === false ? 0 : 2 }}>
           <Grid
             container
             direction={rightAlign ? 'row' : 'column'}
@@ -151,14 +153,14 @@ const Breadcrumbs = ({
             spacing={1}
           >
             {title && !titleBottom && <BTitle title={main.title} />}
-            <Grid item>
+            <Grid>
               <MuiBreadcrumbs
                 aria-label="breadcrumb"
                 maxItems={maxItems || 8}
                 separator={separatorIcon}
                 sx={{ '& .MuiBreadcrumbs-separator': { width: 16, ml: 1.25, mr: 1.25 } }}
               >
-                <Typography component={Link} to="/" color="textSecondary" variant="subtitle1" sx={linkSX}>
+                <Typography component={Link} to="/" color="textSecondary" variant="h6" sx={linkSX}>
                   {icons && <HomeTwoToneIcon style={iconSX} />}
                   {icon && !icons && <HomeIcon style={{ ...iconSX, marginRight: 0 }} />}
                   {(!icon || icons) && 'Dashboard'}
@@ -180,8 +182,21 @@ const Breadcrumbs = ({
 
     ItemIcon = item?.icon ? item.icon : AccountTreeTwoToneIcon;
     itemContent = (
-      <Typography variant="subtitle1" sx={{ ...linkSX, color: 'text.secondary' }}>
-        {icons && <ItemIcon style={iconSX} />}
+      <Typography
+        variant="h6"
+        noWrap
+        sx={{
+          ...linkSX,
+          color: 'text.secondary',
+          display: 'inline-block',
+          overflow: 'hidden',
+          lineHeight: 1.5,
+          mb: -0.625,
+          textOverflow: 'ellipsis',
+          maxWidth: { xs: 102, sm: 'unset' }
+        }}
+      >
+        {icons && <ItemIcon style={{ ...iconSX }} />}
         {itemTitle}
       </Typography>
     );
@@ -191,10 +206,10 @@ const Breadcrumbs = ({
         aria-label="breadcrumb"
         maxItems={maxItems || 8}
         separator={separatorIcon}
-        sx={{ '& .MuiBreadcrumbs-separator': { width: 16, ml: 1.25, mr: 1.25 } }}
+        sx={{ '& .MuiBreadcrumbs-separator': { width: 16, mx: 0.75 } }}
       >
-        <Typography component={Link} to="/" color="textSecondary" variant="subtitle1" sx={linkSX}>
-          {icons && <HomeTwoToneIcon style={iconSX} />}
+        <Typography component={Link} to="/" color="textSecondary" variant="h6" sx={linkSX}>
+          {icons && <HomeTwoToneIcon style={{ ...iconSX }} />}
           {icon && !icons && <HomeIcon style={{ ...iconSX, marginRight: 0 }} />}
           {(!icon || icons) && 'Dashboard'}
         </Typography>
@@ -218,7 +233,7 @@ const Breadcrumbs = ({
               <Typography
                 key={index}
                 {...(link.to && { component: Link, to: link.to })}
-                variant="subtitle1"
+                variant="h6"
                 sx={linkSX}
                 color={!link.to ? 'text.primary' : 'text.secondary'}
               >
@@ -235,7 +250,7 @@ const Breadcrumbs = ({
     if (item?.breadcrumbs !== false || custom) {
       breadcrumbContent = (
         <Card sx={card === false ? { mb: 3, bgcolor: 'transparent', ...sx } : { mb: 3, bgcolor: 'background.default', ...sx }} {...others}>
-          <Box sx={{ p: 2, pl: card === false ? 0 : 2 }}>
+          <Box sx={{ p: 1.25, px: card === false ? 0 : 2 }}>
             <Grid
               container
               direction={rightAlign ? 'row' : 'column'}
@@ -244,7 +259,7 @@ const Breadcrumbs = ({
               spacing={1}
             >
               {title && !titleBottom && <BTitle title={custom ? heading : item?.title} />}
-              <Grid item>{tempContent}</Grid>
+              <Grid>{tempContent}</Grid>
               {title && titleBottom && <BTitle title={custom ? heading : item?.title} />}
             </Grid>
           </Box>
@@ -255,23 +270,24 @@ const Breadcrumbs = ({
   }
 
   return breadcrumbContent;
-};
+}
+
+BTitle.propTypes = { title: PropTypes.string };
 
 Breadcrumbs.propTypes = {
-  sx: PropTypes.object,
-  custom: PropTypes.bool,
-  heading: PropTypes.string,
   card: PropTypes.bool,
+  custom: PropTypes.bool,
   divider: PropTypes.bool,
+  heading: PropTypes.string,
   icon: PropTypes.bool,
   icons: PropTypes.bool,
+  links: PropTypes.array,
   maxItems: PropTypes.number,
-  navigation: PropTypes.object,
   rightAlign: PropTypes.bool,
-  separator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  separator: PropTypes.any,
+  IconChevronRight: PropTypes.any,
   title: PropTypes.bool,
   titleBottom: PropTypes.bool,
-  links: PropTypes.array
+  sx: PropTypes.any,
+  others: PropTypes.any
 };
-
-export default Breadcrumbs;

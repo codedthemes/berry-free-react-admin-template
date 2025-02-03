@@ -1,12 +1,13 @@
 import { createRoot } from 'react-dom/client';
 
-// third party
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
-
 // project imports
-import App from './App';
-import reducer from './store/reducer';
+import App from 'App';
+import * as serviceWorker from 'serviceWorker';
+import reportWebVitals from 'reportWebVitals';
+import { ConfigProvider } from 'contexts/ConfigContext';
+
+// style + assets
+import 'assets/scss/style.scss';
 
 // google-fonts
 import '@fontsource/roboto/400.css';
@@ -24,23 +25,22 @@ import '@fontsource/poppins/500.css';
 import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
 
-// style + assets
-import 'assets/scss/style.scss';
-import reportWebVitals from 'reportWebVitals';
+// ==============================|| REACT DOM RENDER ||============================== //
 
 const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-const store = configureStore({ reducer });
-
-// ==============================|| REACT DOM RENDER  ||============================== //
-
+const root = createRoot(container);
 root.render(
-  <Provider store={store}>
+  <ConfigProvider>
     <App />
-  </Provider>
+  </ConfigProvider>
 );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

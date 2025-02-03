@@ -1,18 +1,14 @@
-import { useState, useRef, useEffect } from 'react';
-
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import InputAdornment from '@mui/material/InputAdornment';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -24,56 +20,44 @@ import Popper from '@mui/material/Popper';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-
-// third-party
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import Box from '@mui/material/Box';
 
 // project imports
+import UpgradePlanCard from './UpgradePlanCard';
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import UpgradePlanCard from './UpgradePlanCard';
-import User1 from 'assets/images/users/user-round.svg';
+import useConfig from 'hooks/useConfig';
 
 // assets
+import User1 from 'assets/images/users/user-round.svg';
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
 
 // ==============================|| PROFILE MENU ||============================== //
 
-const ProfileSection = () => {
+export default function ProfileSection() {
   const theme = useTheme();
-  const customization = useSelector((state) => state.customization);
-  const navigate = useNavigate();
-
+  const { borderRadius } = useConfig();
   const [sdm, setSdm] = useState(true);
   const [value, setValue] = useState('');
   const [notification, setNotification] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [selectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
+
   /**
-   * anchorRef is used on different componets and specifying one type leads to other components throwing an error
+   * anchorRef is used on different components and specifying one type leads to other components throwing an error
    * */
   const anchorRef = useRef(null);
-  const handleLogout = async () => {
-    console.log('Logout');
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
+
     setOpen(false);
-  };
-
-  const handleListItemClick = (event, index, route = '') => {
-    setSelectedIndex(index);
-    handleClose(event);
-
-    if (route && route !== '') {
-      navigate(route);
-    }
-  };
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
   };
 
   const prevOpen = useRef(open);
@@ -89,20 +73,10 @@ const ProfileSection = () => {
     <>
       <Chip
         sx={{
+          ml: 2,
           height: '48px',
           alignItems: 'center',
           borderRadius: '27px',
-          transition: 'all .2s ease-in-out',
-          borderColor: theme.palette.primary.light,
-          backgroundColor: theme.palette.primary.light,
-          '&[aria-controls="menu-list-grow"], &:hover': {
-            borderColor: theme.palette.primary.main,
-            background: `${theme.palette.primary.main}!important`,
-            color: theme.palette.primary.light,
-            '& svg': {
-              stroke: theme.palette.primary.light
-            }
-          },
           '& .MuiChip-label': {
             lineHeight: 0
           }
@@ -110,6 +84,7 @@ const ProfileSection = () => {
         icon={
           <Avatar
             src={User1}
+            alt="user-images"
             sx={{
               ...theme.typography.mediumAvatar,
               margin: '8px 0 8px 8px !important',
@@ -121,83 +96,85 @@ const ProfileSection = () => {
             color="inherit"
           />
         }
-        label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
-        variant="outlined"
+        label={<IconSettings stroke={1.5} size="24px" />}
         ref={anchorRef}
         aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
         color="primary"
+        aria-label="user-account"
       />
       <Popper
-        placement="bottom-end"
+        placement="bottom"
         open={open}
         anchorEl={anchorRef.current}
         role={undefined}
         transition
         disablePortal
-        popperOptions={{
-          modifiers: [
-            {
-              name: 'offset',
-              options: {
-                offset: [0, 14]
-              }
+        modifiers={[
+          {
+            name: 'offset',
+            options: {
+              offset: [0, 14]
             }
-          ]
-        }}
+          }
+        ]}
       >
         {({ TransitionProps }) => (
-          <Transitions in={open} {...TransitionProps}>
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
-                  <Box sx={{ p: 2, pb: 0 }}>
-                    <Stack>
-                      <Stack direction="row" spacing={0.5} alignItems="center">
-                        <Typography variant="h4">Good Morning,</Typography>
-                        <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
-                          Johne Doe
-                        </Typography>
+          <ClickAwayListener onClickAway={handleClose}>
+            <Transitions in={open} {...TransitionProps}>
+              <Paper>
+                {open && (
+                  <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
+                    <Box sx={{ p: 2, pb: 0 }}>
+                      <Stack>
+                        <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center' }}>
+                          <Typography variant="h4">Good Morning,</Typography>
+                          <Typography component="span" variant="h4" sx={{ fontWeight: 400 }}>
+                            Johne Doe
+                          </Typography>
+                        </Stack>
+                        <Typography variant="subtitle2">Project Admin</Typography>
                       </Stack>
-                      <Typography variant="subtitle2">Project Admin</Typography>
-                    </Stack>
-                    <OutlinedInput
-                      sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
-                      id="input-search-profile"
-                      value={value}
-                      onChange={(e) => setValue(e.target.value)}
-                      placeholder="Search profile options"
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <IconSearch stroke={1.5} size="1rem" color={theme.palette.grey[500]} />
-                        </InputAdornment>
-                      }
-                      aria-describedby="search-helper-text"
-                      inputProps={{
-                        'aria-label': 'weight'
+                      <OutlinedInput
+                        sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
+                        id="input-search-profile"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        placeholder="Search profile options"
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <IconSearch stroke={1.5} size="16px" />
+                          </InputAdornment>
+                        }
+                        aria-describedby="search-helper-text"
+                        inputProps={{
+                          'aria-label': 'weight'
+                        }}
+                      />
+                      <Divider />
+                    </Box>
+                    <Box
+                      sx={{
+                        p: 2,
+                        py: 0,
+                        height: '100%',
+                        maxHeight: 'calc(100vh - 250px)',
+                        overflowX: 'hidden',
+                        '&::-webkit-scrollbar': { width: 5 }
                       }}
-                    />
-                    <Divider />
-                  </Box>
-                  <PerfectScrollbar style={{ height: '100%', maxHeight: 'calc(100vh - 250px)', overflowX: 'hidden' }}>
-                    <Box sx={{ p: 2, pt: 0 }}>
+                    >
                       <UpgradePlanCard />
                       <Divider />
-                      <Card
-                        sx={{
-                          bgcolor: theme.palette.primary.light,
-                          my: 2
-                        }}
-                      >
+                      <Card sx={{ bgcolor: 'primary.light', my: 2 }}>
                         <CardContent>
                           <Grid container spacing={3} direction="column">
-                            <Grid item>
-                              <Grid item container alignItems="center" justifyContent="space-between">
-                                <Grid item>
+                            <Grid>
+                              <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Grid>
                                   <Typography variant="subtitle1">Start DND Mode</Typography>
                                 </Grid>
-                                <Grid item>
+                                <Grid>
                                   <Switch
                                     color="primary"
                                     checked={sdm}
@@ -208,12 +185,12 @@ const ProfileSection = () => {
                                 </Grid>
                               </Grid>
                             </Grid>
-                            <Grid item>
-                              <Grid item container alignItems="center" justifyContent="space-between">
-                                <Grid item>
+                            <Grid>
+                              <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
+                                <Grid>
                                   <Typography variant="subtitle1">Allow Notifications</Typography>
                                 </Grid>
-                                <Grid item>
+                                <Grid>
                                   <Switch
                                     checked={notification}
                                     onChange={(e) => setNotification(e.target.checked)}
@@ -233,75 +210,54 @@ const ProfileSection = () => {
                           width: '100%',
                           maxWidth: 350,
                           minWidth: 300,
-                          backgroundColor: theme.palette.background.paper,
-                          borderRadius: '10px',
-                          [theme.breakpoints.down('md')]: {
-                            minWidth: '100%'
-                          },
-                          '& .MuiListItemButton-root': {
-                            mt: 0.5
-                          }
+                          borderRadius: `${borderRadius}px`,
+                          '& .MuiListItemButton-root': { mt: 0.5 }
                         }}
                       >
-                        <ListItemButton
-                          sx={{ borderRadius: `${customization.borderRadius}px` }}
-                          selected={selectedIndex === 0}
-                          onClick={(event) => handleListItemClick(event, 0, '#')}
-                        >
+                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }} selected={selectedIndex === 0}>
                           <ListItemIcon>
-                            <IconSettings stroke={1.5} size="1.3rem" />
+                            <IconSettings stroke={1.5} size="20px" />
                           </ListItemIcon>
                           <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
                         </ListItemButton>
-                        <ListItemButton
-                          sx={{ borderRadius: `${customization.borderRadius}px` }}
-                          selected={selectedIndex === 1}
-                          onClick={(event) => handleListItemClick(event, 1, '#')}
-                        >
+                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }} selected={selectedIndex === 1}>
                           <ListItemIcon>
-                            <IconUser stroke={1.5} size="1.3rem" />
+                            <IconUser stroke={1.5} size="20px" />
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Grid container spacing={1} justifyContent="space-between">
-                                <Grid item>
+                              <Grid container spacing={1} sx={{ justifyContent: 'space-between' }}>
+                                <Grid>
                                   <Typography variant="body2">Social Profile</Typography>
                                 </Grid>
-                                <Grid item>
+                                <Grid>
                                   <Chip
                                     label="02"
+                                    variant="filled"
                                     size="small"
-                                    sx={{
-                                      bgcolor: theme.palette.warning.dark,
-                                      color: theme.palette.background.default
-                                    }}
+                                    color="warning"
+                                    sx={{ '& .MuiChip-label': { mt: 0.25 } }}
                                   />
                                 </Grid>
                               </Grid>
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton
-                          sx={{ borderRadius: `${customization.borderRadius}px` }}
-                          selected={selectedIndex === 4}
-                          onClick={handleLogout}
-                        >
+                        <ListItemButton sx={{ borderRadius: `${borderRadius}px` }} selected={selectedIndex === 4}>
                           <ListItemIcon>
-                            <IconLogout stroke={1.5} size="1.3rem" />
+                            <IconLogout stroke={1.5} size="20px" />
                           </ListItemIcon>
                           <ListItemText primary={<Typography variant="body2">Logout</Typography>} />
                         </ListItemButton>
                       </List>
                     </Box>
-                  </PerfectScrollbar>
-                </MainCard>
-              </ClickAwayListener>
-            </Paper>
-          </Transitions>
+                  </MainCard>
+                )}
+              </Paper>
+            </Transitions>
+          </ClickAwayListener>
         )}
       </Popper>
     </>
   );
-};
-
-export default ProfileSection;
+}
