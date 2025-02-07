@@ -1,99 +1,107 @@
-import PropTypes from 'prop-types';
+import { memo, useMemo } from 'react';
 
-// material-ui
-import { useTheme } from '@mui/material';
-import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Chip from '@mui/material/Chip';
 import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import Box from '@mui/material/Box';
 
-// third-party
+// third party
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { BrowserView, MobileView } from 'react-device-detect';
 
 // project imports
 import MenuCard from './MenuCard';
-import MenuList from './MenuList';
+import MenuList from '../MenuList';
 import LogoSection from '../LogoSection';
-import Chip from 'ui-component/extended/Chip';
+import MiniDrawerStyled from './MiniDrawerStyled';
 
+import useConfig from 'hooks/useConfig';
 import { drawerWidth } from 'store/constant';
+
+import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
-const Sidebar = ({ drawerOpen, drawerToggle, window }) => {
-  const theme = useTheme();
-  const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
+function Sidebar() {
+  const downMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
-  const drawer = (
-    <>
-      <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-        <Box sx={{ display: 'flex', p: 2, mx: 'auto' }}>
-          <LogoSection />
-        </Box>
+  const { menuMaster } = useGetMenuMaster();
+  const drawerOpen = menuMaster.isDashboardDrawerOpened;
+
+  const { miniDrawer, mode } = useConfig();
+
+  const logo = useMemo(
+    () => (
+      <Box sx={{ display: 'flex', p: 2 }}>
+        <LogoSection />
       </Box>
-      <BrowserView>
-        <PerfectScrollbar
-          component="div"
-          style={{
-            height: !matchUpMd ? 'calc(100vh - 56px)' : 'calc(100vh - 88px)',
-            paddingLeft: '16px',
-            paddingRight: '16px'
-          }}
-        >
-          <MenuList />
-          <MenuCard />
-          <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label={import.meta.env.VITE_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
-          </Stack>
-        </PerfectScrollbar>
-      </BrowserView>
-      <MobileView>
-        <Box sx={{ px: 2 }}>
-          <MenuList />
-          <MenuCard />
-          <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
-            <Chip label={import.meta.env.VITE_APP_VERSION} disabled chipcolor="secondary" size="small" sx={{ cursor: 'pointer' }} />
-          </Stack>
-        </Box>
-      </MobileView>
-    </>
+    ),
+    []
   );
 
-  const container = window !== undefined ? () => window.document.body : undefined;
+  const drawer = useMemo(() => {
+    const drawerContent = (
+      <>
+        <MenuCard />
+        <Stack direction="row" sx={{ justifyContent: 'center', mb: 2 }}>
+          <Chip label={import.meta.env.VITE_APP_VERSION} size="small" color="default" />
+        </Stack>
+      </>
+    );
+
+    let drawerSX = { paddingLeft: '0px', paddingRight: '0px', marginTop: '20px' };
+    if (drawerOpen) drawerSX = { paddingLeft: '16px', paddingRight: '16px', marginTop: '0px' };
+
+    return (
+      <>
+        {downMD ? (
+          <Box sx={drawerSX}>
+            <MenuList />
+            {drawerOpen && drawerContent}
+          </Box>
+        ) : (
+          <PerfectScrollbar style={{ height: 'calc(100vh - 88px)', ...drawerSX }}>
+            <MenuList />
+            {drawerOpen && drawerContent}
+          </PerfectScrollbar>
+        )}
+      </>
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [downMD, drawerOpen, mode]);
 
   return (
-    <Box component="nav" sx={{ flexShrink: { md: 0 }, width: matchUpMd ? drawerWidth : 'auto' }} aria-label="mailbox folders">
-      <Drawer
-        container={container}
-        variant={matchUpMd ? 'persistent' : 'temporary'}
-        anchor="left"
-        open={drawerOpen}
-        onClose={drawerToggle}
-        sx={{
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            background: theme.palette.background.default,
-            color: theme.palette.text.primary,
-            borderRight: 'none',
-            [theme.breakpoints.up('md')]: {
-              top: '88px'
+    <Box component="nav" sx={{ flexShrink: { md: 0 }, width: { xs: 'auto', md: drawerWidth } }} aria-label="mailbox folders">
+      {downMD || (miniDrawer && drawerOpen) ? (
+        <Drawer
+          variant={downMD ? 'temporary' : 'persistent'}
+          anchor="left"
+          open={drawerOpen}
+          onClose={() => handlerDrawerOpen(!drawerOpen)}
+          sx={{
+            '& .MuiDrawer-paper': {
+              mt: downMD ? 0 : 11,
+              zIndex: 1099,
+              width: drawerWidth,
+              bgcolor: 'background.default',
+              color: 'text.primary',
+              borderRight: 'none'
             }
-          }
-        }}
-        ModalProps={{ keepMounted: true }}
-        color="inherit"
-      >
-        {drawer}
-      </Drawer>
+          }}
+          ModalProps={{ keepMounted: true }}
+          color="inherit"
+        >
+          {downMD && logo}
+          {drawer}
+        </Drawer>
+      ) : (
+        <MiniDrawerStyled variant="permanent" open={drawerOpen}>
+          {logo}
+          {drawer}
+        </MiniDrawerStyled>
+      )}
     </Box>
   );
-};
+}
 
-Sidebar.propTypes = {
-  drawerOpen: PropTypes.bool,
-  drawerToggle: PropTypes.func,
-  window: PropTypes.object
-};
-
-export default Sidebar;
+export default memo(Sidebar);

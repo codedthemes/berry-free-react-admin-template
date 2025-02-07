@@ -1,18 +1,38 @@
 // color variants
-@import 'themes-vars.module.scss';
+@use 'themes-vars.module.scss' as *;
 
-// third-party
-@import 'react-perfect-scrollbar/dist/css/styles.css';
+// third party
+@use 'react-perfect-scrollbar/dist/css/styles.css';
 
-// ==============================|| LIGHT BOX ||============================== //
-.fullscreen .react-images__blanket {
-  z-index: 1200;
+// ==============================|| TAP HIGHLIGHT ||============================== //
+
+* {
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 // ==============================|| APEXCHART ||============================== //
 
 .apexcharts-legend-series .apexcharts-legend-marker {
-  margin-right: 8px;
+  left: -4px !important;
+  right: -4px !important;
+}
+
+.apexcharts-legend.apx-legend-position-bottom .apexcharts-legend-series,
+.apexcharts-legend.apx-legend-position-top .apexcharts-legend-series {
+  gap: 8px;
+}
+
+.apexcharts-canvas {
+  .apexcharts-tooltip-series-group.apexcharts-active,
+  .apexcharts-tooltip-series-group:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.apexcharts-legend-series {
+  align-items: center;
+  display: flex;
+  gap: 8px;
 }
 
 // ==============================|| PERFECT SCROLLBAR ||============================== //

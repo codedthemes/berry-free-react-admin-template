@@ -4,15 +4,17 @@ import { memo } from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import Grid from '@mui/material/Grid2';
+import LinearProgress from '@mui/material/LinearProgress';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
+import { linearProgressClasses } from '@mui/material/LinearProgress';
 
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
@@ -22,19 +24,19 @@ import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 function LinearProgressWithLabel({ value, ...others }) {
   return (
     <Grid container direction="column" spacing={1} sx={{ mt: 1.5 }}>
-      <Grid item>
-        <Grid container justifyContent="space-between">
-          <Grid item>
+      <Grid>
+        <Grid container sx={{ justifyContent: 'space-between' }}>
+          <Grid>
             <Typography variant="h6" sx={{ color: 'primary.800' }}>
               Progress
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid>
             <Typography variant="h6" color="inherit">{`${Math.round(value)}%`}</Typography>
           </Grid>
         </Grid>
       </Grid>
-      <Grid item>
+      <Grid>
         <LinearProgress
           aria-label="progress of theme"
           variant="determinate"
@@ -57,13 +59,9 @@ function LinearProgressWithLabel({ value, ...others }) {
   );
 }
 
-LinearProgressWithLabel.propTypes = {
-  value: PropTypes.number
-};
-
 // ==============================|| SIDEBAR - MENU CARD ||============================== //
 
-const MenuCard = () => {
+function MenuCard() {
   const theme = useTheme();
 
   return (
@@ -86,7 +84,7 @@ const MenuCard = () => {
       }}
     >
       <Box sx={{ p: 2 }}>
-        <List disablePadding sx={{ m: 0 }}>
+        <List disablePadding sx={{ pb: 1 }}>
           <ListItem alignItems="flex-start" disableGutters disablePadding>
             <ListItemAvatar sx={{ mt: 0 }}>
               <Avatar
@@ -118,6 +116,8 @@ const MenuCard = () => {
       </Box>
     </Card>
   );
-};
+}
 
 export default memo(MenuCard);
+
+LinearProgressWithLabel.propTypes = { value: PropTypes.number, others: PropTypes.any };

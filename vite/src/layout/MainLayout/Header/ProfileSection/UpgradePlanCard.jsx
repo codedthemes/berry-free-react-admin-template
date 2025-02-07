@@ -2,7 +2,7 @@
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -12,7 +12,7 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 
 // ==============================|| PROFILE MENU - UPGRADE PLAN CARD ||============================== //
 
-const UpgradePlanCard = () => {
+export default function UpgradePlanCard() {
   const cardSX = {
     content: '""',
     position: 'absolute',
@@ -46,16 +46,16 @@ const UpgradePlanCard = () => {
     >
       <CardContent>
         <Grid container direction="column" spacing={2}>
-          <Grid item>
+          <Grid>
             <Typography variant="h4">Upgrade your plan</Typography>
           </Grid>
-          <Grid item>
+          <Grid>
             <Typography variant="subtitle2" color={'grey.900'} sx={{ opacity: 0.6 }}>
               70% discount for 1 years <br />
               subscriptions.
             </Typography>
           </Grid>
-          <Grid item>
+          <Grid>
             <Stack direction="row">
               <Link sx={{ textDecoration: 'none' }} href="https://links.codedthemes.com/hsqll" target="_blank">
                 <AnimateButton>
@@ -70,6 +70,4 @@ const UpgradePlanCard = () => {
       </CardContent>
     </Card>
   );
-};
-
-export default UpgradePlanCard;
+}

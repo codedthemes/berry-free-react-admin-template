@@ -9,9 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 // project imports
 import Avatar from '../extended/Avatar';
 
-// ==============================|| CARD SECONDARY ACTION ||============================== //
-
-const CardSecondaryAction = ({ title, link, icon }) => {
+export default function CardSecondaryAction({ title, link, icon }) {
   const theme = useTheme();
 
   return (
@@ -48,12 +46,10 @@ const CardSecondaryAction = ({ title, link, icon }) => {
       </ButtonBase>
     </Tooltip>
   );
-};
+}
 
 CardSecondaryAction.propTypes = {
-  icon: PropTypes.node,
+  title: PropTypes.string,
   link: PropTypes.string,
-  title: PropTypes.string
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.string])
 };
-
-export default CardSecondaryAction;
