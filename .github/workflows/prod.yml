@@ -19,27 +19,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - name: 🚚 Get latest code
-          uses: actions/checkout@v4
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
 
-        - name: Use Node.js 20
-          uses: actions/setup-node@v4
-          with:
-              node-version: '20'
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-        - name: 🔨 Build Project
-          run: |
-              cd vite
-              yarn
-              yarn build
+      - name: 🔨 Build Project
+        run: |
+          cd vite
+          corepack enable
+          yarn set version 4.6.0
+          yarn
+          yarn build
 
-        - name: 📂 Deploy to Server
-          uses: easingthemes/ssh-deploy@v4
-          env:
-              SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-              # ARGS: "-rltgoDzvO --delete"
-              SOURCE: 'vite/dist/'
-              REMOTE_HOST: 192.34.62.123
-              REMOTE_USER: berry
-              TARGET: public_html/free
-              EXCLUDE: '/vite/node_modules/'
+      - name: 📂 Deploy to Server
+        uses: easingthemes/ssh-deploy@v4
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          # ARGS: "-rltgoDzvO --delete"
+          SOURCE: "vite/dist/"
+          REMOTE_HOST: 192.34.62.123
+          REMOTE_USER: berry
+          TARGET: public_html/free
+          EXCLUDE: "/vite/node_modules/"
