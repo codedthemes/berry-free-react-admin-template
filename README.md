@@ -101,7 +101,7 @@ Berry offers everything you need to create dashboards. We have included the foll
     <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma_Free_Berry.png" width="450" alt="Figma Free">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://codedthemes.com/item/berry-figma-ui-kit/">
-    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma_Pro_Berry.png" width="450" alt="Figma Pro">
+    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma-Pro-Berry.png" width="450" alt="Figma Pro">
   </a>
 </div>
 
