@@ -62,7 +62,7 @@ Berry offers everything you need to create dashboards. We have included the foll
 
 ## What's included in Premium Version?
 
-[Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Next.js Seed versions, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
+[Pro version](https://berrydashboard.io) of Berry react template contains features like TypeScript, Next.js Seed versions, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase, AWS, Supabase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
 
 | [Berry Free](https://berrydashboard.io/free/) | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
 | --------------------------------------------- | :----------------------------------------------------------------------- |
@@ -73,12 +73,12 @@ Berry offers everything you need to create dashboards. We have included the foll
 | -                                             | ✓ Design files (Figma)                                                   |
 | -                                             | ✓ 6+ color Options                                                       |
 | -                                             | ✓ RTL                                                                    |
-| -                                             | ✓ JWT, Firebase, Auth0 authentications                                   |
+| -                                             | ✓ JWT, Firebase, Auth0, AWS, Supabase authentications                                   |
 | -                                             | ✓ [More components](https://berrydashboard.io/components/autocomplete)   |
 
 ## Documentation
 
-[Berry documentation](https://codedthemes.gitbook.io/berry/) helps you with installation, deployment, and troubleshooting.
+[Berry Documentation](https://codedthemes.gitbook.io/berry/) helps you with installation, deployment, and troubleshooting.
 
 ## Browser support
 
@@ -86,7 +86,7 @@ Berry offers everything you need to create dashboards. We have included the foll
 
 ## Technology Stack
 
-- [Material UI V5](https://material-ui.com/)
+- [Material UI V6](https://material-ui.com/)
 - Built with React Hooks API
 - Redux & React Context API for State Management
 - React Router for Navigation Routing
