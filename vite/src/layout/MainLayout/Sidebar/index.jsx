@@ -96,8 +96,7 @@ function Sidebar() {
         </Drawer>
       ) : (
         <MiniDrawerStyled variant="permanent" open={drawerOpen}>
-          {logo}
-          {drawer}
+          <Box sx={{ mt: 10 }}>{drawer}</Box>
         </MiniDrawerStyled>
       )}
     </Box>
