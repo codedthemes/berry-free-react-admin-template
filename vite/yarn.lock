@@ -1685,7 +1685,7 @@ __metadata:
     sass: "npm:1.81.1"
     slick-carousel: "npm:1.8.1"
     swr: "npm:2.2.5"
-    vite: "npm:6.0.2"
+    vite: "npm:6.0.14"
     vite-jsconfig-paths: "npm:2.0.1"
     web-vitals: "npm:4.2.4"
     yup: "npm:1.4.0"
@@ -2247,7 +2247,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.24.0":
+"esbuild@npm:^0.24.2":
   version: 0.24.2
   resolution: "esbuild@npm:0.24.2"
   dependencies:
@@ -5145,11 +5145,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:6.0.2":
-  version: 6.0.2
-  resolution: "vite@npm:6.0.2"
+"vite@npm:6.0.14":
+  version: 6.0.14
+  resolution: "vite@npm:6.0.14"
   dependencies:
-    esbuild: "npm:^0.24.0"
+    esbuild: "npm:^0.24.2"
     fsevents: "npm:~2.3.3"
     postcss: "npm:^8.4.49"
     rollup: "npm:^4.23.0"
@@ -5193,7 +5193,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/45fc609f2bc5fb5beb5a8e2cad9ad6c2edce229a922f6fc1270ea2a9d75819482edcc0f77c85b4a7abdad7eb69ce6a4f26131925d47cdc0778fc15d1bbc3b6a2
+  checksum: 10c0/b8f56a855f3907b6667173c1f16f714fffb89560069d04509363859fd6dde6d3f77c28e310be12ee06c8929259d59e7d41b26c678aa8b38308112641063d05cb
   languageName: node
   linkType: hard
 
