@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { forwardRef } from 'react';
+import React from 'react';
 
 // material-ui
 import Collapse from '@mui/material/Collapse';
@@ -9,7 +9,7 @@ import Slide from '@mui/material/Slide';
 import Zoom from '@mui/material/Zoom';
 import Box from '@mui/material/Box';
 
-function Transitions({ children, position = 'top-left', sx, type = 'grow', direction = 'up', ...others }, ref) {
+function Transitions({ children, position = 'top-left', sx, type = 'grow', direction = 'up', ref, ...others }) {
   let positionSX = {
     transformOrigin: '0 0 0'
   };
@@ -94,7 +94,7 @@ function Transitions({ children, position = 'top-left', sx, type = 'grow', direc
   );
 }
 
-export default forwardRef(Transitions);
+export default Transitions;
 
 Transitions.propTypes = {
   children: PropTypes.node,

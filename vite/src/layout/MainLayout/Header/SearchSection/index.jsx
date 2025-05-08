@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { forwardRef, useState } from 'react';
+import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Popper from '@mui/material/Popper';
@@ -20,7 +20,7 @@ import Transitions from 'ui-component/extended/Transitions';
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
 
-function HeaderAvatarComponent({ children, ...others }, ref) {
+function HeaderAvatarComponent({ children, ref, ...others }) {
   const theme = useTheme();
 
   return (
@@ -44,7 +44,7 @@ function HeaderAvatarComponent({ children, ...others }, ref) {
   );
 }
 
-const HeaderAvatar = forwardRef(HeaderAvatarComponent);
+const HeaderAvatar = HeaderAvatarComponent;
 
 // ==============================|| SEARCH INPUT - MOBILE||============================== //
 
@@ -88,7 +88,7 @@ function MobileSearch({ value, setValue, popupState }) {
         </InputAdornment>
       }
       aria-describedby="search-helper-text"
-      inputProps={{ 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } }}
+      slotProps={{ input: { 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } } }}
       sx={{ width: '100%', ml: 0.5, px: 2, bgcolor: 'background.paper' }}
     />
   );
@@ -154,7 +154,7 @@ export default function SearchSection() {
             </InputAdornment>
           }
           aria-describedby="search-helper-text"
-          inputProps={{ 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } }}
+          slotProps={{ input: { 'aria-label': 'weight', sx: { bgcolor: 'transparent', pl: 0.5 } } }}
           sx={{ width: { md: 250, lg: 434 }, ml: 2, px: 2 }}
         />
       </Box>

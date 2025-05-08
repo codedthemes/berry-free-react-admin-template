@@ -86,7 +86,8 @@ Berry offers everything you need to create dashboards. We have included the foll
 
 ## Technology Stack
 
-- [Material UI V6](https://material-ui.com/)
+- [Material UI V7](https://material-ui.com/)
+- [React 19](https://react.dev/)
 - Built with React Hooks API
 - Redux & React Context API for State Management
 - React Router for Navigation Routing

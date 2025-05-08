@@ -3,7 +3,7 @@ import React from 'react';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 // third party

@@ -1,5 +1,5 @@
 // material-ui
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import MuiTypography from '@mui/material/Typography';
 

@@ -76,10 +76,6 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, currentItem]);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   // menu list collapse & items
   const items = currentItem.children?.map((menu) => {
     switch (menu?.type) {
