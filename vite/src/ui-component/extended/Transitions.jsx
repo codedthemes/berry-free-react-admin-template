@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 
 // material-ui
 import Collapse from '@mui/material/Collapse';

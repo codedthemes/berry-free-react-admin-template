@@ -1,5 +1,3 @@
-import React from 'react';
-
 // material-ui
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';

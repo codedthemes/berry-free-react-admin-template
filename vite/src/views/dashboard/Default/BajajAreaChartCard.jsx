@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -7,7 +7,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 // third party
-import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // project imports
@@ -17,16 +16,19 @@ import chartData from './chart-data/bajaj-area-chart';
 
 export default function BajajAreaChartCard() {
   const theme = useTheme();
-
   const orangeDark = theme.palette.secondary[800];
 
-  React.useEffect(() => {
-    const newSupportChart = {
-      ...chartData.options,
-      colors: [orangeDark],
-      tooltip: { theme: 'light' }
-    };
-    ApexCharts.exec(`support-chart`, 'updateOptions', newSupportChart);
+  const [chartConfig, setChartConfig] = useState(chartData);
+
+  useEffect(() => {
+    setChartConfig((prevState) => ({
+      ...prevState,
+      options: {
+        ...prevState.options,
+        colors: [orangeDark],
+        tooltip: { ...prevState?.options?.tooltip, theme: 'light' }
+      }
+    }));
   }, [orangeDark]);
 
   return (
@@ -52,7 +54,7 @@ export default function BajajAreaChartCard() {
           </Typography>
         </Grid>
       </Grid>
-      <Chart {...chartData} />
+      <Chart {...chartConfig} />
     </Card>
   );
 }

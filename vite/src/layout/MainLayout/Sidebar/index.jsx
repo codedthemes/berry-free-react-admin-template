@@ -85,7 +85,8 @@ function Sidebar() {
               width: drawerWidth,
               bgcolor: 'background.default',
               color: 'text.primary',
-              borderRight: 'none'
+              borderRight: 'none',
+              height: 'auto'
             }
           }}
           ModalProps={{ keepMounted: true }}

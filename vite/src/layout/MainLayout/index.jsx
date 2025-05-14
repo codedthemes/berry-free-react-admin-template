@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
 // material-ui

@@ -151,8 +151,7 @@ export default function TotalOrderLineChartCard({ isLoading }) {
                     sx={{
                       '.apexcharts-tooltip.apexcharts-theme-light': {
                         color: theme.palette.text.primary,
-                        background: theme.palette.background.default,
-                        ...theme.applyStyles('dark', { border: 'none' })
+                        background: theme.palette.background.default
                       }
                     }}
                   >

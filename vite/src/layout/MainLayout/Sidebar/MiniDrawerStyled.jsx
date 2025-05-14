@@ -27,6 +27,7 @@ function closedMixin(theme) {
     background: theme.palette.background.default,
     overflowX: 'hidden',
     width: 72,
+    height: 'auto',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen + 200

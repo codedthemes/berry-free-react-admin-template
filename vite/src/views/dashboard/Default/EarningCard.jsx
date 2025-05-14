@@ -45,7 +45,6 @@ export default function EarningCard({ isLoading }) {
         <MainCard
           border={false}
           content={false}
-          aria-hidden={Boolean(anchorEl)}
           sx={{
             bgcolor: 'secondary.dark',
             color: '#fff',

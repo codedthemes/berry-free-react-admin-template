@@ -56,6 +56,7 @@ export default function PopularCard({ isLoading }) {
                         sx={{ cursor: 'pointer' }}
                         aria-controls="menu-popular-card"
                         aria-haspopup="true"
+                        onClick={handleClick}
                       />
                     </IconButton>
                     <Menu
