@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -56,6 +56,7 @@ export default function PopularCard({ isLoading }) {
                         sx={{ cursor: 'pointer' }}
                         aria-controls="menu-popular-card"
                         aria-haspopup="true"
+                        onClick={handleClick}
                       />
                     </IconButton>
                     <Menu

@@ -1,5 +1,5 @@
 // material-ui
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Slider from '@mui/material/Slider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -13,7 +13,7 @@ function valueText(value) {
 }
 
 export default function BorderRadius() {
-  const { mode, borderRadius, onChangeBorderRadius } = useConfig();
+  const { borderRadius, onChangeBorderRadius } = useConfig();
 
   return (
     <Stack spacing={2.5} sx={{ pl: 2, pb: 2, pr: 4 }}>
