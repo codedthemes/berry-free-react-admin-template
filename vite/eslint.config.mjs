@@ -32,26 +32,52 @@ export default [
       sourceType: 'module',
       parserOptions: {
         ecmaFeatures: {
-          jsx: true // ✅ Enable JSX parsing
+          jsx: true
         }
       }
     },
 
     settings: {
       react: {
-        version: 'detect' // ✅ Detect the installed React version
+        version: 'detect'
       }
     },
 
     rules: {
-      'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
-      'react/react-in-jsx-scope': 'off',
+      'react/jsx-filename-extension': 'off',
+      'no-param-reassign': 'off',
       'react/prop-types': 'off',
+      'react/require-default-props': 'off',
+      'react/no-array-index-key': 'off',
+      'react/react-in-jsx-scope': 'off',
       'react/jsx-props-no-spreading': 'off',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
+      'import/order': 'off',
+      'no-console': 'off',
+      'no-shadow': 'off',
+      'import/no-cycle': 'off',
+      'import/no-extraneous-dependencies': 'off',
       'jsx-a11y/label-has-associated-control': 'off',
       'jsx-a11y/no-autofocus': 'off',
+      'react/jsx-uses-react': 'off',
+      'react/jsx-uses-vars': 'error',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
+      'no-unused-vars': 'off',
+
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['@mui/*/*/*', '!@mui/material/test-utils/*']
+        }
+      ],
+
+      'no-unused-vars': [
+        'error',
+        {
+          vars: 'all',
+          args: 'none'
+        }
+      ],
 
       'prettier/prettier': [
         'warn',

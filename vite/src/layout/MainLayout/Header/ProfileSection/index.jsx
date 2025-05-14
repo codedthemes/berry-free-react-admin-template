@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import InputAdornment from '@mui/material/InputAdornment';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -148,9 +148,7 @@ export default function ProfileSection() {
                           </InputAdornment>
                         }
                         aria-describedby="search-helper-text"
-                        inputProps={{
-                          'aria-label': 'weight'
-                        }}
+                        slotProps={{ input: { 'aria-label': 'weight' } }}
                       />
                       <Divider />
                     </Box>

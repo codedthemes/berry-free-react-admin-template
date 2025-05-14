@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Fab from '@mui/material/Fab';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 
@@ -61,7 +61,7 @@ export default function Customization() {
           </AnimateButton>
         </Fab>
       </Tooltip>
-      <Drawer anchor="right" onClose={handleToggle} open={open} PaperProps={{ sx: { width: 280 } }}>
+      <Drawer anchor="right" onClose={handleToggle} open={open} slotProps={{ paper: { sx: { width: 280 } } }}>
         <PerfectScrollbar>
           <Grid container spacing={2}>
             <Grid size={12}>

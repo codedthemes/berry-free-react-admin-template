@@ -1,48 +1,44 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
 // third party
-import ApexCharts from 'apexcharts';
 import Chart from 'react-apexcharts';
 
 // project imports
-import useConfig from 'hooks/useConfig';
 import SkeletonTotalGrowthBarChart from 'ui-component/cards/Skeleton/TotalGrowthBarChart';
 import MainCard from 'ui-component/cards/MainCard';
 import { gridSpacing } from 'store/constant';
 
 // chart data
-import chartData from './chart-data/total-growth-bar-chart';
+import barChartOptions from './chart-data/total-growth-bar-chart';
 
 const status = [
-  {
-    value: 'today',
-    label: 'Today'
-  },
-  {
-    value: 'month',
-    label: 'This Month'
-  },
-  {
-    value: 'year',
-    label: 'This Year'
-  }
+  { value: 'today', label: 'Today' },
+  { value: 'month', label: 'This Month' },
+  { value: 'year', label: 'This Year' }
+];
+
+const series = [
+  { name: 'Investment', data: [35, 125, 35, 35, 35, 80, 35, 20, 35, 45, 15, 75] },
+  { name: 'Loss', data: [35, 15, 15, 35, 65, 40, 80, 25, 15, 85, 25, 75] },
+  { name: 'Profit', data: [35, 145, 35, 35, 20, 105, 100, 10, 65, 45, 30, 10] },
+  { name: 'Maintenance', data: [0, 0, 75, 0, 0, 115, 0, 0, 0, 0, 150, 0] }
 ];
 
 export default function TotalGrowthBarChart({ isLoading }) {
-  const [value, setValue] = React.useState('today');
   const theme = useTheme();
-  const { mode } = useConfig();
+
+  const [value, setValue] = useState('today');
+  const [chartOptions, setChartOptions] = useState(barChartOptions);
 
   const { primary } = theme.palette.text;
-  const darkLight = theme.palette.dark.light;
   const divider = theme.palette.divider;
   const grey500 = theme.palette.grey[500];
 
@@ -51,34 +47,26 @@ export default function TotalGrowthBarChart({ isLoading }) {
   const secondaryMain = theme.palette.secondary.main;
   const secondaryLight = theme.palette.secondary.light;
 
-  React.useEffect(() => {
-    const newChartData = {
-      ...chartData.options,
+  useEffect(() => {
+    setChartOptions((prev) => ({
+      ...prev,
       colors: [primary200, primaryDark, secondaryMain, secondaryLight],
       xaxis: {
-        labels: {
-          style: {
-            style: { colors: primary }
-          }
-        }
+        ...prev.xaxis,
+        labels: { style: { colors: primary } }
       },
       yaxis: {
-        labels: {
-          style: {
-            style: { colors: primary }
-          }
-        }
+        labels: { style: { colors: primary } }
       },
-      grid: { borderColor: divider },
-      tooltip: { theme: mode },
-      legend: { labels: { colors: grey500 } }
-    };
-
-    // do not load chart when loading
-    if (!isLoading) {
-      ApexCharts.exec(`bar-chart`, 'updateOptions', newChartData);
-    }
-  }, [mode, primary200, primaryDark, secondaryMain, secondaryLight, primary, darkLight, divider, isLoading, grey500]);
+      grid: { ...prev.grid, borderColor: divider },
+      tooltip: { theme: 'light' },
+      legend: {
+        ...prev.legend,
+        labels: { ...prev.legend?.labels, colors: grey500 }
+      }
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme.palette]);
 
   return (
     <>
@@ -123,7 +111,7 @@ export default function TotalGrowthBarChart({ isLoading }) {
                   bgcolor: 'background.paper'
                 },
                 '.apexcharts-theme-light .apexcharts-menu-item:hover': {
-                  bgcolor: 'dark.main'
+                  bgcolor: 'grey.200'
                 },
                 '& .apexcharts-theme-light .apexcharts-menu-icon:hover svg, .apexcharts-theme-light .apexcharts-reset-icon:hover svg, .apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg, .apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg, .apexcharts-theme-light .apexcharts-zoomin-icon:hover svg, .apexcharts-theme-light .apexcharts-zoomout-icon:hover svg':
                   {
@@ -131,7 +119,7 @@ export default function TotalGrowthBarChart({ isLoading }) {
                   }
               }}
             >
-              <Chart {...chartData} />
+              <Chart options={chartOptions} series={series} type="bar" height={480} />
             </Grid>
           </Grid>
         </MainCard>

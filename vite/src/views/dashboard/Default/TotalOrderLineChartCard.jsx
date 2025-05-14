@@ -5,7 +5,7 @@ import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
@@ -151,8 +151,7 @@ export default function TotalOrderLineChartCard({ isLoading }) {
                     sx={{
                       '.apexcharts-tooltip.apexcharts-theme-light': {
                         color: theme.palette.text.primary,
-                        background: theme.palette.background.default,
-                        ...theme.applyStyles('dark', { border: 'none' })
+                        background: theme.palette.background.default
                       }
                     }}
                   >

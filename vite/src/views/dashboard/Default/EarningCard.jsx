@@ -5,7 +5,7 @@ import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import CardMedia from '@mui/material/CardMedia';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
@@ -45,7 +45,6 @@ export default function EarningCard({ isLoading }) {
         <MainCard
           border={false}
           content={false}
-          aria-hidden={Boolean(anchorEl)}
           sx={{
             bgcolor: 'secondary.dark',
             color: '#fff',
