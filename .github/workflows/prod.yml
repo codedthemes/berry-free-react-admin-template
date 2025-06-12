@@ -40,7 +40,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           # ARGS: "-rltgoDzvO --delete"
-          REMOTE_HOST: 82.25.126.213
+          REMOTE_HOST: 145.79.3.173
           REMOTE_USER: u965251139
           REMOTE_PORT: "65002"
           TARGET: domains/berrydashboard.com/public_html/free
