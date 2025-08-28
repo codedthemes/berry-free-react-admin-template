@@ -1,11 +1,11 @@
 import { fixupConfigRules } from '@eslint/compat';
 import prettier from 'eslint-plugin-prettier';
-import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import js from '@eslint/js';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,24 +22,31 @@ export default [
   {
     plugins: {
       prettier,
-      react,
-      'react-hooks': reactHooks,
-      'jsx-a11y': jsxA11y
+      '@typescript-eslint': typescriptEslint,
+      'react-hooks': reactHooks
     },
 
     languageOptions: {
+      parser: tsParser,
       ecmaVersion: 2020,
       sourceType: 'module',
+
       parserOptions: {
-        ecmaFeatures: {
-          jsx: true
-        }
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
+        warnOnUnsupportedTypeScriptVersion: false
       }
     },
 
     settings: {
-      react: {
-        version: 'detect'
+      'import/resolver': {
+        node: {
+          moduleDirectory: ['node_modules', 'src/']
+        },
+
+        typescript: {
+          alwaysTryTypes: true
+        }
       }
     },
 
@@ -54,15 +61,14 @@ export default [
       'import/order': 'off',
       'no-console': 'off',
       'no-shadow': 'off',
+      '@typescript-eslint/naming-convention': 'off',
+      '@typescript-eslint/no-shadow': 'off',
       'import/no-cycle': 'off',
       'import/no-extraneous-dependencies': 'off',
       'jsx-a11y/label-has-associated-control': 'off',
       'jsx-a11y/no-autofocus': 'off',
-      'react/jsx-uses-react': 'off',
-      'react/jsx-uses-vars': 'error',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      'no-unused-vars': 'off',
+      'react-hooks/rules-of-hooks': 'error', // Enforces rules of Hooks
+      'react-hooks/exhaustive-deps': 'warn', // Enforces effect dependencies
 
       'no-restricted-imports': [
         'error',
@@ -71,7 +77,7 @@ export default [
         }
       ],
 
-      'no-unused-vars': [
+      '@typescript-eslint/no-unused-vars': [
         'error',
         {
           vars: 'all',
@@ -93,7 +99,7 @@ export default [
     }
   },
   {
-    ignores: ['node_modules/**'],
-    files: ['src/**/*.{js,jsx}']
+    ignores: ['node_modules/**'], // Make sure this doesn't match your files.
+    files: ['src/**/*.{js,jsx,ts,tsx}']
   }
 ];
