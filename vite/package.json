@@ -24,7 +24,7 @@
     "react-router-dom": "7.5.3",
     "slick-carousel": "1.8.1",
     "swr": "2.3.3",
-    "vite": "6.3.5",
+    "vite": "6.3.6",
     "vite-jsconfig-paths": "2.0.1",
     "web-vitals": "5.0.0",
     "yup": "1.6.1"
