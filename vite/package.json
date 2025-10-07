@@ -30,6 +30,7 @@
     "yup": "1.6.1"
   },
   "scripts": {
+    "dev": "vite",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",

@@ -15,6 +15,8 @@ const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
+import FastApiDemo from '../views/pages/FastApiDemo'; // Add this import
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -49,6 +51,10 @@ const MainRoutes = {
     {
       path: '/sample-page',
       element: <SamplePage />
+    },
+    {
+      path: 'fastapi-demo', // This will be available at /fastapi-demo
+      element: <FastApiDemo />
     }
   ]
 };
