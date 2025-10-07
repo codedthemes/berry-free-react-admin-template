@@ -5,7 +5,9 @@ This is a FastAPI backend that provides API endpoints for the Berry React Admin 
 ## Features
 
 - **GET /api/hello** - Returns a greeting message
+- **POST /api/hello** - Accepts a message and echoes it back
 - **GET /api/users** - Returns a list of sample users
+- **POST /api/users** - Creates a new user and adds it to the in-memory list
 - CORS support for `http://localhost:3000` (React frontend)
 
 ## Prerequisites
@@ -68,6 +70,31 @@ Returns a greeting message.
 curl http://localhost:8000/api/hello
 ```
 
+### POST /api/hello
+
+Accepts a message and echoes it back.
+
+**Request Body:**
+```json
+{
+  "message": "Your custom message"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "Your custom message"
+}
+```
+
+**Example:**
+```bash
+curl -X POST http://localhost:8000/api/hello \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Hello from the client!"}'
+```
+
 ### GET /api/users
 
 Returns a list of sample users.
@@ -83,6 +110,32 @@ Returns a list of sample users.
 **Example:**
 ```bash
 curl http://localhost:8000/api/users
+```
+
+### POST /api/users
+
+Creates a new user and adds it to the in-memory list.
+
+**Request Body:**
+```json
+{
+  "name": "John Doe"
+}
+```
+
+**Response:**
+```json
+{
+  "id": 3,
+  "name": "John Doe"
+}
+```
+
+**Example:**
+```bash
+curl -X POST http://localhost:8000/api/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "John Doe"}'
 ```
 
 ## Interactive API Documentation
