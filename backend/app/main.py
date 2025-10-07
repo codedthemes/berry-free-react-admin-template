@@ -66,3 +66,4 @@ async def create_user(request: UserRequest):
     users_db.append(new_user)
     return new_user
 
+
