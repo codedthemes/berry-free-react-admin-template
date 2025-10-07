@@ -12,6 +12,14 @@ const fastapi = {
       url: '/fastapi-demo',
       icon: IconApi,
       breadcrumbs: false
+    },
+    {
+      id: 'fastapi-demo-post',
+      title: 'FastAPI Demo POST',
+      type: 'item',
+      url: '/fastapi-demo-post',
+      icon: IconApi,
+      breadcrumbs: false
     }
   ]
 };

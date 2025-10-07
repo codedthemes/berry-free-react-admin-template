@@ -16,6 +16,7 @@ const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
 import FastApiDemo from '../views/pages/FastApiDemo'; // Add this import
+import FastApiDemoPost from '../views/pages/fastapi/FastApiDemoPost'; // Add FastAPI POST demo import
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -55,6 +56,10 @@ const MainRoutes = {
     {
       path: 'fastapi-demo', // This will be available at /fastapi-demo
       element: <FastApiDemo />
+    },
+    {
+      path: 'fastapi-demo-post', // This will be available at /fastapi-demo-post
+      element: <FastApiDemoPost />
     }
   ]
 };
