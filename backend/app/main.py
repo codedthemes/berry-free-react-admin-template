@@ -4,25 +4,32 @@ from pydantic import BaseModel
 from typing import List, Optional
 from sqlalchemy.orm import Session
 from app.database import get_db, engine
-from app.models import Hello, Base, Sample
+from app.models import Hello, Base, Sample, User  # SQLAlchemy models only!
 
-# Create all tables in the database (will not recreate existing tables)
+# Create tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Pydantic models for request validation
+# --- Pydantic schemas (for request/response only!) ---
 class MessageRequest(BaseModel):
     message: str
+
+class HelloResponse(BaseModel):
+    id: int
+    message: str
+    class Config:
+        orm_mode = True
 
 class UserRequest(BaseModel):
     name: str
 
-class User(BaseModel):
+class UserResponse(BaseModel):
     id: int
     name: str
+    class Config:
+        orm_mode = True
 
-# --- Pydantic schemas (define BEFORE endpoints!) ---
 class SampleSchema(BaseModel):
     name: str
     description: Optional[str] = None
@@ -31,12 +38,6 @@ class SampleResponse(SampleSchema):
     id: int
     class Config:
         orm_mode = True
-
-# In-memory user storage
-users_db: List[User] = [
-    User(id=1, name="Alice"),
-    User(id=2, name="Bob")
-]
 
 # CORS setup
 app.add_middleware(
@@ -47,34 +48,33 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api/hello")
-async def get_hello():
-    return {"message": "Hello from FastAPI!"}
+@app.get("/api/hello", response_model=List[HelloResponse])
+async def get_hellos(db: Session = Depends(get_db)):
+    return db.query(Hello).all()
 
-@app.get("/api/users")
-async def get_users():
-    return users_db
+@app.get("/api/users", response_model=List[UserResponse])
+async def get_users(db: Session = Depends(get_db)):
+    return db.query(User).all()
 
-from fastapi import HTTPException
-
-@app.patch("/api/hello")
-async def patch_hello(request: MessageRequest, db: Session = Depends(get_db)):
+@app.post("/api/hello", response_model=HelloResponse)
+async def post_hello(request: MessageRequest, db: Session = Depends(get_db)):
     hello = db.query(Hello).first()
     if not hello:
-        return {"detail": "No hello message to update."}
-    hello.message = request.message
+        hello = Hello(message=request.message)
+        db.add(hello)
+    else:
+        hello.message = request.message
     db.commit()
     db.refresh(hello)
-    return {"id": hello.id, "message": hello.message}
+    return hello
 
-@app.post("/api/users")
-async def create_user(request: UserRequest):
-    new_id = max([u.id for u in users_db], default=0) + 1
-    new_user = User(id=new_id, name=request.name)
-    users_db.append(new_user)
-    return new_user
-
-
+@app.post("/api/users", response_model=UserResponse)
+async def create_user(request: UserRequest, db: Session = Depends(get_db)):
+    user = User(name=request.name)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
 
 @app.post("/api/samples/", response_model=SampleResponse)
 async def create_sample(sample: SampleSchema, db: Session = Depends(get_db)):

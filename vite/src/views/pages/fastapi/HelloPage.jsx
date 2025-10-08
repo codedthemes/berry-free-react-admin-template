@@ -9,7 +9,7 @@ const HelloPage = () => {
     fetch('http://localhost:8000/api/hello')
       .then(res => res.json())
       .then(data => {
-        setHello(data.message || 'No message');
+        setHello((data[0]?.message) || 'No message');
         setLoading(false);
       })
       .catch(() => {
