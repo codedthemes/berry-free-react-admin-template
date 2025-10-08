@@ -8,6 +8,7 @@ services:
       - "8000:8000"
     volumes:
       - ./backend/app:/app/app
+      - ./backend/.env:/app/.env
       - ./backend/requirements.txt:/app/requirements.txt
     environment:
       - PYTHONUNBUFFERED=1

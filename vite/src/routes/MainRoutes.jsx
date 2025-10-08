@@ -21,6 +21,8 @@ import FastApiDemoPost from '../views/pages/fastapi/FastApiDemoPost'; // Add Fas
 import HelloPage from '../views/pages/fastapi/HelloPage';
 import UsersPage from '../views/pages/fastapi/UsersPage';
 import FastAPISamplePage from '../views/pages/fastapi/SamplePage';
+import AuthLogin from '../views/pages/fastapi/AuthLogin';
+import AuthRegister from '../views/pages/fastapi/AuthRegister';
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -76,6 +78,14 @@ const MainRoutes = {
     {
         path: '/samples',
         element: <FastAPISamplePage />
+    },
+    {
+      path: '/login',
+      element: <AuthLogin />
+    },
+    {
+      path: '/register',
+      element: <AuthRegister />
     }
   ]
 };

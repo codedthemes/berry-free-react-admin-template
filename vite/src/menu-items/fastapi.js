@@ -1,3 +1,6 @@
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+
 import { IconApi, IconUser, IconHome, IconDashboard } from '@tabler/icons-react';
 
 // constant
@@ -44,6 +47,22 @@ const fastapi = {
         type: 'item',
         url: '/samples',
         icon: icons.IconList // or a suitable icon you have
+    },
+    {
+        id: 'login-page',
+        title: 'Login',
+        type: 'item',
+        url: '/login',
+        icon: LoginIcon,
+        breadcrumbs: false
+    },
+    {
+        id: 'register-page',
+        title: 'Register',
+        type: 'item',
+        url: '/register',
+        icon: PersonAddIcon,
+        breadcrumbs: false
     }
   ]
 };

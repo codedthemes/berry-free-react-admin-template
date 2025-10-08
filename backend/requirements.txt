@@ -1,4 +1,7 @@
 fastapi
-uvicorn[standard]
 sqlalchemy
+python-jose
+passlib[bcrypt]
+uvicorn[standard]
 pydantic
+python-dotenv
