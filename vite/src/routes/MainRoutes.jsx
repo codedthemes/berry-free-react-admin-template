@@ -15,6 +15,15 @@ const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 
+import FastApiDemo from '../views/pages/FastApiDemo'; // Add this import
+import FastApiDemoPost from '../views/pages/fastapi/FastApiDemoPost'; // Add FastAPI POST demo import
+
+import HelloPage from '../views/pages/fastapi/HelloPage';
+import UsersPage from '../views/pages/fastapi/UsersPage';
+import FastAPISamplePage from '../views/pages/fastapi/SamplePage';
+import AuthLogin from '../views/pages/fastapi/AuthLogin';
+import AuthRegister from '../views/pages/fastapi/AuthRegister';
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -49,6 +58,34 @@ const MainRoutes = {
     {
       path: '/sample-page',
       element: <SamplePage />
+    },
+    {
+      path: 'fastapi-demo', // This will be available at /fastapi-demo
+      element: <FastApiDemo />
+    },
+    {
+      path: 'fastapi-demo-post', // This will be available at /fastapi-demo-post
+      element: <FastApiDemoPost />
+    },
+    {
+      path: '/hello',
+      element: <HelloPage />
+    },
+    {
+      path: '/users',
+      element: <UsersPage />
+    },
+    {
+        path: '/samples',
+        element: <FastAPISamplePage />
+    },
+    {
+      path: '/login',
+      element: <AuthLogin />
+    },
+    {
+      path: '/register',
+      element: <AuthRegister />
     }
   ]
 };

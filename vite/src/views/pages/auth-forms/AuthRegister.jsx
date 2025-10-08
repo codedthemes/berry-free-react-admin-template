@@ -28,8 +28,15 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 export default function AuthRegister() {
   const theme = useTheme();
 
+  // Add state for all fields
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(true);
+  const [firstName, setFirstName] = useState('Jhones');
+  const [lastName, setLastName] = useState('Doe');
+  const [email, setEmail] = useState('jones@doe.com');
+  const [password, setPassword] = useState('Jhones@123');
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState('');
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -39,10 +46,32 @@ export default function AuthRegister() {
     event.preventDefault();
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setResult('');
+    try {
+      const response = await fetch('http://localhost:8000/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email, password, agreeTerms: checked }),
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        setResult(data.message || 'Registration failed.');
+      } else {
+        setResult('Registration successful!');
+      }
+    } catch (err) {
+      setResult('Error during registration.');
+    }
+    setLoading(false);
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <Grid container direction="column" spacing={2} sx={{ justifyContent: 'center' }}>
-        <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }} size={12}>
+        <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }}>
           <Box sx={{ mb: 2 }}>
             <Typography variant="subtitle1">Sign up with Email address</Typography>
           </Box>
@@ -75,7 +104,13 @@ export default function AuthRegister() {
       </Grid>
       <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
         <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
-        <OutlinedInput id="outlined-adornment-email-register" type="email" value="jones@doe.com" name="email" />
+        <OutlinedInput
+          id="outlined-adornment-email-register"
+          type="email"
+          value={email}
+          name="email"
+          onChange={e => setEmail(e.target.value)}
+        />
       </FormControl>
 
       <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
@@ -83,9 +118,10 @@ export default function AuthRegister() {
         <OutlinedInput
           id="outlined-adornment-password-register"
           type={showPassword ? 'text' : 'password'}
-          value="Jhones@123"
+          value={password}
           name="password"
           label="Password"
+          onChange={e => setPassword(e.target.value)}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
@@ -105,7 +141,14 @@ export default function AuthRegister() {
       <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Grid>
           <FormControlLabel
-            control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
+            control={
+              <Checkbox
+                checked={checked}
+                onChange={(event) => setChecked(event.target.checked)}
+                name="checked"
+                color="primary"
+              />
+            }
             label={
               <Typography variant="subtitle1">
                 Agree with &nbsp;
@@ -118,13 +161,29 @@ export default function AuthRegister() {
         </Grid>
       </Grid>
 
+      {result && (
+        <Box sx={{ mt: 2 }}>
+          <Typography color={result.includes('successful') ? 'primary' : 'error'}>
+            {result}
+          </Typography>
+        </Box>
+      )}
+
       <Box sx={{ mt: 2 }}>
         <AnimateButton>
-          <Button disableElevation fullWidth size="large" type="submit" variant="contained" color="secondary">
-            Sign up
+          <Button
+            disableElevation
+            fullWidth
+            size="large"
+            type="submit"
+            variant="contained"
+            color="secondary"
+            disabled={loading}
+          >
+            {loading ? 'Signing up...' : 'Sign up'}
           </Button>
         </AnimateButton>
       </Box>
-    </>
+    </form>
   );
 }
