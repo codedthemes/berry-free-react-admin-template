@@ -3,6 +3,7 @@ services:
   backend:
     build:
       context: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     ports:
       - "8000:8000"
     volumes:
@@ -14,6 +15,7 @@ services:
   frontend:
     build:
       context: ./vite
+    command: npm run dev -- --host 0.0.0.0
     ports:
       - "3000:3000"
     volumes:

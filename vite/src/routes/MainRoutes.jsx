@@ -18,6 +18,10 @@ const SamplePage = Loadable(lazy(() => import('views/sample-page')));
 import FastApiDemo from '../views/pages/FastApiDemo'; // Add this import
 import FastApiDemoPost from '../views/pages/fastapi/FastApiDemoPost'; // Add FastAPI POST demo import
 
+import HelloPage from '../views/pages/fastapi/HelloPage';
+import UsersPage from '../views/pages/fastapi/UsersPage';
+import FastAPISamplePage from '../views/pages/fastapi/SamplePage';
+
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -60,6 +64,18 @@ const MainRoutes = {
     {
       path: 'fastapi-demo-post', // This will be available at /fastapi-demo-post
       element: <FastApiDemoPost />
+    },
+    {
+      path: '/hello',
+      element: <HelloPage />
+    },
+    {
+      path: '/users',
+      element: <UsersPage />
+    },
+    {
+        path: '/samples',
+        element: <FastAPISamplePage />
     }
   ]
 };
