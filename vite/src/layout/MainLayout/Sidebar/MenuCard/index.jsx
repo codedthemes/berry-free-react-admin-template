@@ -5,16 +5,14 @@ import { memo } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
-import { linearProgressClasses } from '@mui/material/LinearProgress';
 
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
@@ -23,39 +21,36 @@ import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 
 function LinearProgressWithLabel({ value, ...others }) {
   return (
-    <Grid container direction="column" spacing={1} sx={{ mt: 1.5 }}>
-      <Grid>
-        <Grid container sx={{ justifyContent: 'space-between' }}>
-          <Grid>
-            <Typography variant="h6" sx={{ color: 'primary.800' }}>
-              Progress
-            </Typography>
-          </Grid>
-          <Grid>
-            <Typography variant="h6" color="inherit">{`${Math.round(value)}%`}</Typography>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid>
-        <LinearProgress
-          aria-label="progress of theme"
-          variant="determinate"
-          value={value}
-          {...others}
+    <Stack sx={{ gap: 1 }}>
+      <Stack direction="row" sx={{ justifyContent: 'space-between', mt: 1.5 }}>
+        <Typography
+          variant="h6"
           sx={{
-            height: 10,
-            borderRadius: 30,
-            [`&.${linearProgressClasses.colorPrimary}`]: {
-              bgcolor: 'background.paper'
-            },
-            [`& .${linearProgressClasses.bar}`]: {
-              borderRadius: 5,
-              bgcolor: 'primary.dark'
-            }
+            color: 'primary.800'
           }}
-        />
-      </Grid>
-    </Grid>
+        >
+          Progress
+        </Typography>
+        <Typography variant="h6" sx={{ color: 'inherit' }}>{`${Math.round(value)}%`}</Typography>
+      </Stack>
+      <LinearProgress
+        aria-label="progress of theme"
+        variant="determinate"
+        value={value}
+        {...others}
+        sx={{
+          height: 10,
+          borderRadius: 30,
+          [`&.${linearProgressClasses.colorPrimary}`]: {
+            bgcolor: 'background.paper'
+          },
+          [`& .${linearProgressClasses.bar}`]: {
+            borderRadius: 5,
+            bgcolor: 'primary.dark'
+          }
+        }}
+      />
+    </Stack>
   );
 }
 
@@ -90,11 +85,10 @@ function MenuCard() {
               <Avatar
                 variant="rounded"
                 sx={{
-                  ...theme.typography.commonAvatar,
                   ...theme.typography.largeAvatar,
+                  borderRadius: 2,
                   color: 'primary.main',
                   border: 'none',
-                  borderColor: 'primary.main',
                   bgcolor: 'background.paper'
                 }}
               >
@@ -104,7 +98,12 @@ function MenuCard() {
             <ListItemText
               sx={{ mt: 0 }}
               primary={
-                <Typography variant="subtitle1" sx={{ color: 'primary.800' }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: 'primary.800'
+                  }}
+                >
                   Get Extra Space
                 </Typography>
               }

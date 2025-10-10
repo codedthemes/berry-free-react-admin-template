@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { alpha, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -13,6 +13,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+
+// project imports
+import { withAlpha } from 'utils/colorUtils';
 
 // assets
 import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
@@ -29,7 +32,7 @@ function ListItemWrapper({ children }) {
         borderColor: 'divider',
         cursor: 'pointer',
         '&:hover': {
-          bgcolor: alpha(theme.palette.grey[200], 0.3)
+          bgcolor: withAlpha(theme.palette.grey[200], 0.3)
         }
       }}
     >
@@ -41,7 +44,7 @@ function ListItemWrapper({ children }) {
 // ==============================|| NOTIFICATION LIST ITEM ||============================== //
 
 export default function NotificationList() {
-  const containerSX = { pl: 7 };
+  const containerSX = { gap: 2, pl: 7 };
 
   return (
     <List sx={{ width: '100%', maxWidth: { xs: 300, md: 330 }, py: 0 }}>
@@ -60,9 +63,9 @@ export default function NotificationList() {
           </ListItemAvatar>
           <ListItemText primary="John Doe" />
         </ListItem>
-        <Stack spacing={2} sx={containerSX}>
+        <Stack sx={containerSX}>
           <Typography variant="subtitle2">It is a long established fact that a reader will be distracted</Typography>
-          <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
+          <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>
             <Chip label="Unread" color="error" size="small" sx={{ width: 'min-content' }} />
             <Chip label="New" color="warning" size="small" sx={{ width: 'min-content' }} />
           </Stack>
@@ -90,7 +93,7 @@ export default function NotificationList() {
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">Store Verification Done</Typography>} />
         </ListItem>
-        <Stack spacing={2} sx={containerSX}>
+        <Stack sx={containerSX}>
           <Typography variant="subtitle2">We have successfully received your request.</Typography>
           <Chip label="Unread" color="error" size="small" sx={{ width: 'min-content' }} />
         </Stack>
@@ -117,7 +120,7 @@ export default function NotificationList() {
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">Check Your Mail.</Typography>} />
         </ListItem>
-        <Stack spacing={2} sx={containerSX}>
+        <Stack sx={containerSX}>
           <Typography variant="subtitle2">All done! Now check your inbox as you&apos;re in for a sweet treat!</Typography>
           <Button variant="contained" endIcon={<IconBrandTelegram stroke={1.5} size={20} />} sx={{ width: 'min-content' }}>
             Mail
@@ -139,7 +142,7 @@ export default function NotificationList() {
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
         </ListItem>
-        <Stack spacing={2} sx={containerSX}>
+        <Stack sx={containerSX}>
           <Typography component="span" variant="subtitle2">
             Uploaded two file on &nbsp;
             <Typography component="span" variant="h6">
@@ -147,7 +150,7 @@ export default function NotificationList() {
             </Typography>
           </Typography>
           <Card sx={{ bgcolor: 'secondary.light' }}>
-            <Stack direction="row" spacing={2} sx={{ p: 2.5 }}>
+            <Stack direction="row" sx={{ p: 2.5, gap: 2 }}>
               <IconPhoto stroke={1.5} size="20px" />
               <Typography variant="subtitle1">demo.jpg</Typography>
             </Stack>
@@ -169,7 +172,7 @@ export default function NotificationList() {
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">John Doe</Typography>} />
         </ListItem>
-        <Stack spacing={2} sx={containerSX}>
+        <Stack sx={containerSX}>
           <Typography variant="subtitle2">It is a long established fact that a reader will be distracted</Typography>
           <Chip label="Confirmation of Account." color="success" size="small" sx={{ width: 'min-content' }} />
         </Stack>

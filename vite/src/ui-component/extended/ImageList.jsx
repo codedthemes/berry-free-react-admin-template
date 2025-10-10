@@ -17,7 +17,9 @@ function srcset(image, width, height, rows = 1, cols = 1) {
 }
 
 export default function ImageList({ itemData }) {
-  const { borderRadius } = useConfig();
+  const {
+    state: { borderRadius }
+  } = useConfig();
 
   return (
     <MImageList

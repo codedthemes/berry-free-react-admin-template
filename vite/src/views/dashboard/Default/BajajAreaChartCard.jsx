@@ -10,29 +10,43 @@ import Typography from '@mui/material/Typography';
 import Chart from 'react-apexcharts';
 
 // project imports
-import chartData from './chart-data/bajaj-area-chart';
+import bajajChartOptions from './chart-data/bajaj-area-chart';
+import useConfig from 'hooks/useConfig';
 
 // ===========================|| DASHBOARD DEFAULT - BAJAJ AREA CHART CARD ||=========================== //
 
 export default function BajajAreaChartCard() {
   const theme = useTheme();
-  const orangeDark = theme.palette.secondary[800];
+  const {
+    state: { fontFamily }
+  } = useConfig();
 
-  const [chartConfig, setChartConfig] = useState(chartData);
+  const secondary800 = theme.vars.palette.secondary[800];
+
+  const [chartOptions, setChartOptions] = useState(bajajChartOptions);
+  const [series] = useState([{ data: [0, 15, 10, 50, 30, 40, 25] }]);
 
   useEffect(() => {
-    setChartConfig((prevState) => ({
-      ...prevState,
-      options: {
-        ...prevState.options,
-        colors: [orangeDark],
-        tooltip: { ...prevState?.options?.tooltip, theme: 'light' }
-      }
-    }));
-  }, [orangeDark]);
+    setChartOptions({
+      ...bajajChartOptions,
+      chart: { ...bajajChartOptions.chart, fontFamily: fontFamily },
+      colors: [secondary800],
+      fill: {
+        gradient: {
+          colorStops: [
+            [
+              { offset: 0, color: secondary800, opacity: 0.4 },
+              { offset: 100, color: secondary800, opacity: 0.1 }
+            ]
+          ]
+        }
+      },
+      theme: { mode: 'light' }
+    });
+  }, [fontFamily, secondary800]);
 
   return (
-    <Card sx={{ bgcolor: 'secondary.light' }}>
+    <Card sx={{ bgcolor: 'secondary.light', mt: -1 }}>
       <Grid container sx={{ p: 2, pb: 0, color: '#fff' }}>
         <Grid size={12}>
           <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
@@ -54,7 +68,7 @@ export default function BajajAreaChartCard() {
           </Typography>
         </Grid>
       </Grid>
-      <Chart {...chartConfig} />
+      <Chart options={chartOptions} series={series} type="area" height={95} />
     </Card>
   );
 }

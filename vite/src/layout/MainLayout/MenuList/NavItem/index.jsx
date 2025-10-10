@@ -27,7 +27,9 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
   const ref = useRef(null);
 
   const { pathname } = useLocation();
-  const { borderRadius } = useConfig();
+  const {
+    state: { borderRadius }
+  } = useConfig();
 
   const { menuMaster } = useGetMenuMaster();
   const drawerOpen = menuMaster.isDashboardDrawerOpened;
@@ -66,8 +68,6 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
     }
   };
 
-  const iconSelectedColor = 'secondary.main';
-
   return (
     <>
       <ListItemButton
@@ -82,29 +82,11 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           mb: 0.5,
           ...(drawerOpen && level !== 1 && { ml: `${level * 18}px` }),
           ...(!drawerOpen && { pl: 1.25 }),
-          ...(drawerOpen &&
-            level === 1 && {
-              '&:hover': {
-                bgcolor: 'secondary.light'
-              },
-              '&.Mui-selected': {
-                bgcolor: 'secondary.light',
-                color: iconSelectedColor,
-                '&:hover': {
-                  color: iconSelectedColor,
-                  bgcolor: 'secondary.light'
-                }
-              }
-            }),
           ...((!drawerOpen || level !== 1) && {
             py: level === 1 ? 0 : 1,
-            '&:hover': {
-              bgcolor: 'transparent'
-            },
+            '&:hover': { bgcolor: 'transparent' },
             '&.Mui-selected': {
-              '&:hover': {
-                bgcolor: 'transparent'
-              },
+              '&:hover': { bgcolor: 'transparent' },
               bgcolor: 'transparent'
             }
           })
@@ -116,7 +98,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           <ListItemIcon
             sx={{
               minWidth: level === 1 ? 36 : 18,
-              color: isSelected ? iconSelectedColor : 'text.primary',
+              color: isSelected ? 'secondary.main' : 'text.primary',
               ...(!drawerOpen &&
                 level === 1 && {
                   borderRadius: `${borderRadius}px`,
@@ -124,14 +106,10 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   height: 46,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  '&:hover': {
-                    bgcolor: 'secondary.light'
-                  },
+                  '&:hover': { bgcolor: 'secondary.light' },
                   ...(isSelected && {
                     bgcolor: 'secondary.light',
-                    '&:hover': {
-                      bgcolor: 'secondary.light'
-                    }
+                    '&:hover': { bgcolor: 'secondary.light' }
                   })
                 })
             }}
@@ -148,11 +126,11 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   ref={ref}
                   noWrap
                   variant={isSelected ? 'h5' : 'body1'}
-                  color="inherit"
                   sx={{
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
-                    width: 102
+                    width: 102,
+                    color: 'inherit'
                   }}
                 >
                   {item.title}
@@ -160,7 +138,18 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
               }
               secondary={
                 item.caption && (
-                  <Typography variant="caption" gutterBottom sx={{ display: 'block', ...theme.typography.subMenuCaption }}>
+                  <Typography
+                    variant="caption"
+                    gutterBottom
+                    sx={{
+                      display: 'block',
+                      fontSize: '0.6875rem',
+                      fontWeight: 500,
+                      color: 'text.secondary',
+                      textTransform: 'capitalize',
+                      lineHeight: 1.66
+                    }}
+                  >
                     {item.caption}
                   </Typography>
                 )

@@ -13,10 +13,17 @@ function valueText(value) {
 }
 
 export default function BorderRadius() {
-  const { borderRadius, onChangeBorderRadius } = useConfig();
+  const {
+    state: { borderRadius },
+    setField
+  } = useConfig();
+
+  const handleChange = (_event, newValue) => {
+    setField('borderRadius', newValue);
+  };
 
   return (
-    <Stack spacing={2.5} sx={{ pl: 2, pb: 2, pr: 4 }}>
+    <Stack sx={{ pl: 2, pb: 2, pr: 4, gap: 2.5 }}>
       <Typography variant="h5">BORDER RADIUS</Typography>
       <Grid container spacing={1.25} sx={{ pt: 2, alignItems: 'center', justifyContent: 'center' }}>
         <Grid>
@@ -26,18 +33,16 @@ export default function BorderRadius() {
           <Slider
             size="small"
             value={borderRadius}
-            onChange={onChangeBorderRadius}
+            onChange={handleChange}
             getAriaValueText={valueText}
             valueLabelDisplay="on"
             aria-labelledby="discrete-slider-small-steps"
             min={4}
             max={24}
             color="primary"
-            sx={{
-              '& .MuiSlider-valueLabel': {
-                color: 'primary.light'
-              }
-            }}
+            sx={(theme) => ({
+              '& .MuiSlider-valueLabel': { color: 'primary.light' }
+            })}
           />
         </Grid>
         <Grid>

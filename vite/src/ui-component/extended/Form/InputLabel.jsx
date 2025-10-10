@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 // material-ui
-import { experimentalStyled as styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MuiInputLabel from '@mui/material/InputLabel';
 
 const BInputLabel = styled((props) => <MuiInputLabel {...props} />, {
   shouldForwardProp: (prop) => prop !== 'horizontal'
 })(({ theme, horizontal }) => ({
-  color: theme.palette.text.primary,
+  color: theme.vars.palette.text.primary,
   fontWeight: 500,
   marginBottom: horizontal ? 0 : 8
 }));

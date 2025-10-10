@@ -1,60 +1,22 @@
 import PropTypes from 'prop-types';
-import { createContext } from 'react';
+import { createContext, useMemo } from 'react';
 
 // project imports
-import defaultConfig from 'config';
-import useLocalStorage from 'hooks/useLocalStorage';
+import config from 'config';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 
-// initial state
-const initialState = {
-  ...defaultConfig,
-  onChangeFontFamily: () => {},
-  onChangeBorderRadius: () => {},
-  onReset: () => {}
-};
+// ==============================|| CONFIG CONTEXT ||============================== //
 
-// ==============================|| CONFIG CONTEXT & PROVIDER ||============================== //
+export const ConfigContext = createContext(undefined);
 
-const ConfigContext = createContext(initialState);
+// ==============================|| CONFIG PROVIDER ||============================== //
 
-function ConfigProvider({ children }) {
-  const [config, setConfig] = useLocalStorage('berry-config-vite-ts', {
-    fontFamily: initialState.fontFamily,
-    borderRadius: initialState.borderRadius
-  });
+export function ConfigProvider({ children }) {
+  const { state, setState, setField, resetState } = useLocalStorage('berry-config-vite-js', config);
 
-  const onChangeFontFamily = (fontFamily) => {
-    setConfig({
-      ...config,
-      fontFamily
-    });
-  };
+  const memoizedValue = useMemo(() => ({ state, setState, setField, resetState }), [state, setField, setState, resetState]);
 
-  const onChangeBorderRadius = (event, newValue) => {
-    setConfig({
-      ...config,
-      borderRadius: newValue
-    });
-  };
-
-  const onReset = () => {
-    setConfig({ ...defaultConfig });
-  };
-
-  return (
-    <ConfigContext.Provider
-      value={{
-        ...config,
-        onChangeFontFamily,
-        onChangeBorderRadius,
-        onReset
-      }}
-    >
-      {children}
-    </ConfigContext.Provider>
-  );
+  return <ConfigContext.Provider value={memoizedValue}>{children}</ConfigContext.Provider>;
 }
-
-export { ConfigProvider, ConfigContext };
 
 ConfigProvider.propTypes = { children: PropTypes.node };

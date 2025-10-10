@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -17,6 +15,7 @@ import Box from '@mui/material/Box';
 
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import CustomFormControl from 'ui-component/extended/Form/CustomFormControl';
 
 // assets
 import Visibility from '@mui/icons-material/Visibility';
@@ -25,8 +24,6 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // ===============================|| JWT - LOGIN ||=============================== //
 
 export default function AuthLogin() {
-  const theme = useTheme();
-
   const [checked, setChecked] = useState(true);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -40,12 +37,12 @@ export default function AuthLogin() {
 
   return (
     <>
-      <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
+      <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
         <OutlinedInput id="outlined-adornment-email-login" type="email" value="info@codedthemes.com" name="email" />
-      </FormControl>
+      </CustomFormControl>
 
-      <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
+      <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password-login"
@@ -67,7 +64,7 @@ export default function AuthLogin() {
           }
           label="Password"
         />
-      </FormControl>
+      </CustomFormControl>
 
       <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
         <Grid>
@@ -77,7 +74,7 @@ export default function AuthLogin() {
           />
         </Grid>
         <Grid>
-          <Typography variant="subtitle1" component={Link} to="/forgot-password" color="secondary" sx={{ textDecoration: 'none' }}>
+          <Typography variant="subtitle1" component={Link} to="#!" sx={{ textDecoration: 'none', color: 'secondary.main' }}>
             Forgot Password?
           </Typography>
         </Grid>

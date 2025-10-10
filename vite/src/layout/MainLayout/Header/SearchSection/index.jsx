@@ -20,7 +20,7 @@ import Transitions from 'ui-component/extended/Transitions';
 // assets
 import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons-react';
 
-function HeaderAvatarComponent({ children, ref, ...others }) {
+function HeaderAvatar({ children, ref, ...others }) {
   const theme = useTheme();
 
   return (
@@ -30,11 +30,11 @@ function HeaderAvatarComponent({ children, ref, ...others }) {
       sx={{
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
-        bgcolor: 'secondary.light',
-        color: 'secondary.dark',
+        color: theme.vars.palette.secondary.dark,
+        background: theme.vars.palette.secondary.light,
         '&:hover': {
-          bgcolor: 'secondary.dark',
-          color: 'secondary.light'
+          color: theme.vars.palette.secondary.light,
+          background: theme.vars.palette.secondary.dark
         }
       }}
       {...others}
@@ -43,8 +43,6 @@ function HeaderAvatarComponent({ children, ref, ...others }) {
     </Avatar>
   );
 }
-
-const HeaderAvatar = HeaderAvatarComponent;
 
 // ==============================|| SEARCH INPUT - MOBILE||============================== //
 
@@ -75,10 +73,7 @@ function MobileSearch({ value, setValue, popupState }) {
                 ...theme.typography.mediumAvatar,
                 bgcolor: 'orange.light',
                 color: 'orange.dark',
-                '&:hover': {
-                  bgcolor: 'orange.dark',
-                  color: 'orange.light'
-                }
+                '&:hover': { bgcolor: 'orange.dark', color: 'orange.light' }
               }}
               {...bindToggle(popupState)}
             >
@@ -162,6 +157,6 @@ export default function SearchSection() {
   );
 }
 
-HeaderAvatarComponent.propTypes = { children: PropTypes.node, others: PropTypes.any };
+HeaderAvatar.propTypes = { children: PropTypes.node, ref: PropTypes.any, others: PropTypes.any };
 
 MobileSearch.propTypes = { value: PropTypes.string, setValue: PropTypes.func, popupState: PropTypes.any };

@@ -147,22 +147,22 @@ export default function UtilitiesShadow() {
           <SubCard title="Color Shadow">
             <Grid container spacing={gridSpacing}>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-                <CustomShadowBox color="primary.main" shadow={theme.customShadows.primary} label="primary" />
+                <CustomShadowBox color="primary.main" shadow={theme.vars.customShadows.primary} label="primary" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-                <CustomShadowBox color="secondary.main" shadow={theme.customShadows.secondary} label="secondary" />
+                <CustomShadowBox color="secondary.main" shadow={theme.vars.customShadows.secondary} label="secondary" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-                <CustomShadowBox color="orange.main" shadow={theme.customShadows.orange} label="orange" />
+                <CustomShadowBox color="orange.main" shadow={theme.vars.customShadows.orange} label="orange" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-                <CustomShadowBox color="success.main" shadow={theme.customShadows.success} label="success" />
+                <CustomShadowBox color="success.main" shadow={theme.vars.customShadows.success} label="success" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-                <CustomShadowBox color="warning.main" shadow={theme.customShadows.warning} label="warning" />
+                <CustomShadowBox color="warning.main" shadow={theme.vars.customShadows.warning} label="warning" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-                <CustomShadowBox color="error.main" shadow={theme.customShadows.error} label="error" />
+                <CustomShadowBox color="error.main" shadow={theme.vars.customShadows.error} label="error" />
               </Grid>
             </Grid>
           </SubCard>
