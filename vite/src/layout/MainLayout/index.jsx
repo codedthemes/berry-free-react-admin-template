@@ -26,7 +26,9 @@ export default function MainLayout() {
   const theme = useTheme();
   const downMD = useMediaQuery(theme.breakpoints.down('md'));
 
-  const { borderRadius, miniDrawer } = useConfig();
+  const {
+    state: { borderRadius, miniDrawer }
+  } = useConfig();
   const { menuMaster, menuMasterLoading } = useGetMenuMaster();
   const drawerOpen = menuMaster?.isDashboardDrawerOpened;
 

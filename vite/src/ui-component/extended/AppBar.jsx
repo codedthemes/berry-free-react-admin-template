@@ -16,8 +16,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 
 // project imports
@@ -38,8 +38,8 @@ function ElevationScroll({ children, window }) {
   return cloneElement(children, {
     elevation: trigger ? 1 : 0,
     style: {
-      backgroundColor: theme.palette.background.default,
-      color: theme.palette.text.dark
+      backgroundColor: theme.vars.palette.background.default,
+      color: theme.vars.palette.text.dark
     }
   });
 }
@@ -64,7 +64,7 @@ export default function AppBar({ ...others }) {
             <Typography component={RouterLink} to="/" sx={{ flexGrow: 1, textAlign: 'left' }}>
               <Logo />
             </Typography>
-            <Stack direction="row" sx={{ display: { xs: 'none', sm: 'block' } }} spacing={{ xs: 1.5, md: 2.5 }}>
+            <Stack direction="row" sx={{ gap: { xs: 1.5, md: 2.5 }, display: { xs: 'none', sm: 'flex' } }}>
               <Button color="inherit" component={Link} href="#">
                 Home
               </Button>

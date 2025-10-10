@@ -3,10 +3,8 @@ import { useEffect, useState } from 'react';
 import { matchPath, useLocation } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
-
 import Typography from '@mui/material/Typography';
 
 // project imports
@@ -18,7 +16,6 @@ import { useGetMenuMaster } from 'api/menu';
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 
 export default function NavGroup({ item, lastItem, remItems, lastItemId, setSelectedID }) {
-  const theme = useTheme();
   const { pathname } = useLocation();
 
   const { menuMaster } = useGetMenuMaster();
@@ -85,7 +82,7 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
         return <NavItem key={menu.id} item={menu} level={1} />;
       default:
         return (
-          <Typography key={menu?.id} variant="h6" color="error" align="center">
+          <Typography key={menu?.id} variant="h6" align="center" sx={{ color: 'error.main' }}>
             Menu Items Error
           </Typography>
         );
@@ -99,10 +96,32 @@ export default function NavGroup({ item, lastItem, remItems, lastItemId, setSele
         subheader={
           currentItem.title &&
           drawerOpen && (
-            <Typography variant="caption" gutterBottom sx={{ display: 'block', ...theme.typography.menuCaption }}>
+            <Typography
+              variant="caption"
+              gutterBottom
+              sx={{
+                display: 'block',
+                fontSize: '0.875rem',
+                fontWeight: 500,
+                color: 'text.heading',
+                padding: 0.75,
+                textTransform: 'capitalize',
+                marginTop: 1.25
+              }}
+            >
               {currentItem.title}
               {currentItem.caption && (
-                <Typography variant="caption" gutterBottom sx={{ display: 'block', ...theme.typography.subMenuCaption }}>
+                <Typography
+                  gutterBottom
+                  sx={{
+                    display: 'block',
+                    fontSize: '0.6875rem',
+                    fontWeight: 500,
+                    color: 'text.secondary',
+                    textTransform: 'capitalize',
+                    lineHeight: 1.66
+                  }}
+                >
                   {currentItem.caption}
                 </Typography>
               )}

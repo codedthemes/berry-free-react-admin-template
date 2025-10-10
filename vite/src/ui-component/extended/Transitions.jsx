@@ -8,7 +8,7 @@ import Slide from '@mui/material/Slide';
 import Zoom from '@mui/material/Zoom';
 import Box from '@mui/material/Box';
 
-function Transitions({ children, position = 'top-left', sx, type = 'grow', direction = 'up', ref, ...others }) {
+export default function Transitions({ children, position = 'top-left', sx, type = 'grow', direction = 'up', ...others }) {
   let positionSX = {
     transformOrigin: '0 0 0'
   };
@@ -48,7 +48,7 @@ function Transitions({ children, position = 'top-left', sx, type = 'grow', direc
   }
 
   return (
-    <Box ref={ref}>
+    <Box>
       {type === 'grow' && (
         <Grow {...others}>
           <Box sx={positionSX}>{children}</Box>
@@ -92,8 +92,6 @@ function Transitions({ children, position = 'top-left', sx, type = 'grow', direc
     </Box>
   );
 }
-
-export default Transitions;
 
 Transitions.propTypes = {
   children: PropTypes.node,

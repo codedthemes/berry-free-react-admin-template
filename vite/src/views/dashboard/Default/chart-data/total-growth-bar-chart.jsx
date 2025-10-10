@@ -22,22 +22,12 @@ const chartOptions = {
   fill: { type: 'solid' },
   legend: {
     show: true,
-    fontFamily: 'Roboto, sans-serif',
     position: 'bottom',
     offsetX: 20,
-    labels: {
-      useSeriesColors: false
-    },
-    markers: {
-      size: 8,
-      shape: 'square'
-    },
-    itemMargin: {
-      horizontal: 15,
-      vertical: 8
-    }
-  },
-  grid: { show: true }
+    labels: { useSeriesColors: false },
+    markers: { size: 8, shape: 'square', strokeWidth: 0 },
+    itemMargin: { horizontal: 15, vertical: 8 }
+  }
 };
 
 export default chartOptions;

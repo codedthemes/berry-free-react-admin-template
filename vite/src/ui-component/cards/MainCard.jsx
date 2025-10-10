@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 // material-ui
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,7 +12,7 @@ const headerStyle = {
   '& .MuiCardHeader-action': { mr: 0 }
 };
 
-const MainCard = function MainCard({
+export default function MainCard({
   border = false,
   boxShadow,
   children,
@@ -32,14 +34,14 @@ const MainCard = function MainCard({
     <Card
       ref={ref}
       {...others}
-      sx={{
+      sx={(theme) => ({
         border: border ? '1px solid' : 'none',
         borderColor: 'divider',
         ':hover': {
           boxShadow: boxShadow ? shadow || defaultShadow : 'inherit'
         },
-        ...sx
-      }}
+        ...(typeof sx === 'function' ? sx(theme) : sx || {})
+      })}
     >
       {/* card header and action */}
       {!darkTitle && title && <CardHeader sx={{ ...headerStyle, ...headerSX }} title={title} action={secondary} />}
@@ -59,6 +61,21 @@ const MainCard = function MainCard({
       {!content && children}
     </Card>
   );
-};
+}
 
-export default MainCard;
+MainCard.propTypes = {
+  border: PropTypes.bool,
+  boxShadow: PropTypes.bool,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  content: PropTypes.bool,
+  contentClass: PropTypes.string,
+  contentSX: PropTypes.object,
+  headerSX: PropTypes.object,
+  darkTitle: PropTypes.bool,
+  secondary: PropTypes.any,
+  shadow: PropTypes.string,
+  sx: PropTypes.object,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  ref: PropTypes.object,
+  others: PropTypes.any
+};

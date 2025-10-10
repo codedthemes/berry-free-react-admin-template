@@ -63,7 +63,7 @@ function MenuList() {
         );
       default:
         return (
-          <Typography key={item.id} variant="h6" color="error" align="center">
+          <Typography key={item.id} variant="h6" align="center" sx={{ color: 'error.main' }}>
             Menu Items Error
           </Typography>
         );

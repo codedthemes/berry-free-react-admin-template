@@ -38,15 +38,14 @@ export default function Header() {
             ...theme.typography.mediumAvatar,
             overflow: 'hidden',
             transition: 'all .2s ease-in-out',
-            bgcolor: 'secondary.light',
-            color: 'secondary.dark',
+            color: theme.vars.palette.secondary.dark,
+            background: theme.vars.palette.secondary.light,
             '&:hover': {
-              bgcolor: 'secondary.dark',
-              color: 'secondary.light'
+              color: theme.vars.palette.secondary.light,
+              background: theme.vars.palette.secondary.dark
             }
           }}
           onClick={() => handlerDrawerOpen(!drawerOpen)}
-          color="inherit"
         >
           <IconMenu2 stroke={1.5} size="20px" />
         </Avatar>

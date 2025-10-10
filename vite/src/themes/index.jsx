@@ -6,25 +6,27 @@ import { createTheme, ThemeProvider, StyledEngineProvider } from '@mui/material/
 import CssBaseline from '@mui/material/CssBaseline';
 
 // project imports
+import { CSS_VAR_PREFIX, DEFAULT_THEME_MODE } from 'config';
+import CustomShadows from './custom-shadows';
 import useConfig from 'hooks/useConfig';
-import Palette from './palette';
+import { buildPalette } from './palette';
 import Typography from './typography';
+import componentsOverrides from './overrides';
 
-import componentStyleOverrides from './compStyleOverride';
-import customShadows from './shadows';
+// ==============================|| DEFAULT THEME - MAIN ||============================== //
 
 export default function ThemeCustomization({ children }) {
-  const { borderRadius, fontFamily, mode, outlinedFilled, presetColor } = useConfig();
+  const {
+    state: { borderRadius, fontFamily, outlinedFilled, presetColor }
+  } = useConfig();
 
-  const theme = useMemo(() => Palette(mode, presetColor), [mode, presetColor]);
+  const palette = useMemo(() => buildPalette(presetColor), [presetColor]);
 
-  const themeTypography = useMemo(() => Typography(theme, borderRadius, fontFamily), [theme, borderRadius, fontFamily]);
-  const themeCustomShadows = useMemo(() => customShadows(mode, theme), [mode, theme]);
+  const themeTypography = useMemo(() => Typography(fontFamily), [fontFamily]);
 
   const themeOptions = useMemo(
     () => ({
       direction: 'ltr',
-      palette: theme.palette,
       mixins: {
         toolbar: {
           minHeight: '48px',
@@ -35,17 +37,26 @@ export default function ThemeCustomization({ children }) {
         }
       },
       typography: themeTypography,
-      customShadows: themeCustomShadows
+      colorSchemes: {
+        light: {
+          palette: palette.light,
+          customShadows: CustomShadows(palette.light, 'light')
+        }
+      },
+      cssVariables: {
+        cssVarPrefix: CSS_VAR_PREFIX,
+        colorSchemeSelector: 'data-color-scheme'
+      }
     }),
-    [theme, themeCustomShadows, themeTypography]
+    [themeTypography, palette]
   );
 
   const themes = createTheme(themeOptions);
-  themes.components = useMemo(() => componentStyleOverrides(themes, borderRadius, outlinedFilled), [themes, borderRadius, outlinedFilled]);
+  themes.components = useMemo(() => componentsOverrides(themes, borderRadius, outlinedFilled), [themes, borderRadius, outlinedFilled]);
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={themes}>
+      <ThemeProvider disableTransitionOnChange theme={themes} modeStorageKey="theme-mode" defaultMode={DEFAULT_THEME_MODE}>
         <CssBaseline enableColorScheme />
         {children}
       </ThemeProvider>

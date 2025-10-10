@@ -10,7 +10,7 @@ function openedMixin(theme) {
     width: drawerWidth,
     borderRight: 'none',
     zIndex: 1099,
-    background: theme.palette.background.default,
+    background: theme.vars.palette.background.default,
     overflowX: 'hidden',
     boxShadow: 'none',
     transition: theme.transitions.create('width', {
@@ -24,10 +24,9 @@ function closedMixin(theme) {
   return {
     borderRight: 'none',
     zIndex: 1099,
-    background: theme.palette.background.default,
+    background: theme.vars.palette.background.default,
     overflowX: 'hidden',
     width: 72,
-    height: 'auto',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen + 200

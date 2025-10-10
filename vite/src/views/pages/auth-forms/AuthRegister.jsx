@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
@@ -12,12 +11,14 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 // project imports
 import AnimateButton from 'ui-component/extended/AnimateButton';
+import CustomFormControl from 'ui-component/extended/Form/CustomFormControl';
+import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
 // assets
 import Visibility from '@mui/icons-material/Visibility';
@@ -26,10 +27,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 // ===========================|| JWT - REGISTER ||=========================== //
 
 export default function AuthRegister() {
-  const theme = useTheme();
-
   const [showPassword, setShowPassword] = useState(false);
   const [checked, setChecked] = useState(true);
+
+  const [strength, setStrength] = useState(0);
+  const [level, setLevel] = useState();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -39,46 +41,42 @@ export default function AuthRegister() {
     event.preventDefault();
   };
 
+  const changePassword = (value) => {
+    const temp = strengthIndicator(value);
+    setStrength(temp);
+    setLevel(strengthColor(temp));
+  };
+
+  useEffect(() => {
+    changePassword('123456');
+  }, []);
+
   return (
     <>
-      <Grid container direction="column" spacing={2} sx={{ justifyContent: 'center' }}>
-        <Grid container sx={{ alignItems: 'center', justifyContent: 'center' }} size={12}>
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">Sign up with Email address</Typography>
-          </Box>
-        </Grid>
-      </Grid>
+      <Stack sx={{ mb: 2, alignItems: 'center' }}>
+        <Typography variant="subtitle1">Sign up with Email address </Typography>
+      </Stack>
 
       <Grid container spacing={{ xs: 0, sm: 2 }}>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <TextField
-            fullWidth
-            label="First Name"
-            margin="normal"
-            name="firstName"
-            type="text"
-            value="Jhones"
-            sx={{ ...theme.typography.customInput }}
-          />
+          <CustomFormControl fullWidth>
+            <InputLabel htmlFor="outlined-adornment-first-register">First Name</InputLabel>
+            <OutlinedInput id="outlined-adornment-first-register" type="text" name="firstName" value="Jhones" />
+          </CustomFormControl>
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <TextField
-            fullWidth
-            label="Last Name"
-            margin="normal"
-            name="lastName"
-            type="text"
-            value="Doe"
-            sx={{ ...theme.typography.customInput }}
-          />
+          <CustomFormControl fullWidth>
+            <InputLabel htmlFor="outlined-adornment-last-register">Last Name</InputLabel>
+            <OutlinedInput id="outlined-adornment-last-register" type="text" name="lastName" value="Doe" />
+          </CustomFormControl>
         </Grid>
       </Grid>
-      <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
+      <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-email-register">Email Address / Username</InputLabel>
         <OutlinedInput id="outlined-adornment-email-register" type="email" value="jones@doe.com" name="email" />
-      </FormControl>
+      </CustomFormControl>
 
-      <FormControl fullWidth sx={{ ...theme.typography.customInput }}>
+      <CustomFormControl fullWidth>
         <InputLabel htmlFor="outlined-adornment-password-register">Password</InputLabel>
         <OutlinedInput
           id="outlined-adornment-password-register"
@@ -100,23 +98,32 @@ export default function AuthRegister() {
             </InputAdornment>
           }
         />
-      </FormControl>
+      </CustomFormControl>
 
-      <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
-        <Grid>
-          <FormControlLabel
-            control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
-            label={
-              <Typography variant="subtitle1">
-                Agree with &nbsp;
-                <Typography variant="subtitle1" component={Link} to="#">
-                  Terms & Condition.
-                </Typography>
+      {strength !== 0 && (
+        <FormControl fullWidth>
+          <Box sx={{ mb: 2 }}>
+            <Stack direction="row" sx={{ gap: 2, alignItems: 'center' }}>
+              <Box sx={{ width: 85, height: 8, borderRadius: '7px', bgcolor: level?.color }} />
+              <Typography variant="subtitle1" sx={{ fontSize: '0.75rem' }}>
+                {level?.label}
               </Typography>
-            }
-          />
-        </Grid>
-      </Grid>
+            </Stack>
+          </Box>
+        </FormControl>
+      )}
+
+      <FormControlLabel
+        control={<Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} name="checked" color="primary" />}
+        label={
+          <Typography variant="subtitle1">
+            Agree with &nbsp;
+            <Typography variant="subtitle1" component={Link} to="#">
+              Terms & Condition.
+            </Typography>
+          </Typography>
+        }
+      />
 
       <Box sx={{ mt: 2 }}>
         <AnimateButton>

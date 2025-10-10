@@ -13,10 +13,13 @@ import MainCard from 'ui-component/cards/MainCard';
 // ==============================|| CUSTOMIZATION - FONT FAMILY ||============================== //
 
 export default function FontFamilyPage() {
-  const { fontFamily, onChangeFontFamily } = useConfig();
+  const {
+    state: { fontFamily },
+    setField
+  } = useConfig();
 
   const handleFontChange = (event) => {
-    onChangeFontFamily(event.target.value);
+    setField('fontFamily', event.target.value);
   };
 
   const fonts = [
@@ -37,17 +40,20 @@ export default function FontFamilyPage() {
     }
   ];
 
-  const bgColor = 'grey.50';
-  const bgActiveColor = 'primary.light';
-
   return (
-    <Stack spacing={2.5} sx={{ p: 2, width: '100%' }}>
+    <Stack sx={{ p: 2, gap: 2.5 }}>
       <Typography variant="h5">FONT STYLE</Typography>
       <RadioGroup aria-label="payment-card" name="payment-card" value={fontFamily} onChange={handleFontChange}>
         <Grid container spacing={1.25}>
           {fonts.map((item, index) => (
             <Grid key={index} size={12}>
-              <MainCard content={false} sx={{ p: 0.75, bgcolor: fontFamily === item.value ? bgActiveColor : bgColor }}>
+              <MainCard
+                content={false}
+                sx={(theme) => ({
+                  p: 0.75,
+                  bgcolor: fontFamily === item.value ? 'primary.light' : 'grey.50'
+                })}
+              >
                 <MainCard
                   content={false}
                   border

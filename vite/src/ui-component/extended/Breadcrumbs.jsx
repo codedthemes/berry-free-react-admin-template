@@ -58,12 +58,11 @@ export default function Breadcrumbs({
     marginTop: -2,
     width: '1rem',
     height: '1rem',
-    color: theme.palette.secondary.main
+    color: theme.vars.palette.secondary.main
   };
 
   const linkSX = {
     display: 'flex',
-    color: 'grey.900',
     textDecoration: 'none',
     alignContent: 'center',
     alignItems: 'center'
@@ -148,8 +147,7 @@ export default function Breadcrumbs({
           <Grid
             container
             direction={rightAlign ? 'row' : 'column'}
-            justifyContent={rightAlign ? 'space-between' : 'flex-start'}
-            alignItems={rightAlign ? 'center' : 'flex-start'}
+            sx={{ justifyContent: rightAlign ? 'space-between' : 'flex-start', alignItems: rightAlign ? 'center' : 'flex-start' }}
             spacing={1}
           >
             {title && !titleBottom && <BTitle title={main.title} />}
@@ -160,7 +158,7 @@ export default function Breadcrumbs({
                 separator={separatorIcon}
                 sx={{ '& .MuiBreadcrumbs-separator': { width: 16, ml: 1.25, mr: 1.25 } }}
               >
-                <Typography component={Link} to="/" color="textSecondary" variant="h6" sx={linkSX}>
+                <Typography component={Link} to="/" variant="h6" sx={{ ...linkSX, color: 'text.secondary' }}>
                   {icons && <HomeTwoToneIcon style={iconSX} />}
                   {icon && !icons && <HomeIcon style={{ ...iconSX, marginRight: 0 }} />}
                   {(!icon || icons) && 'Dashboard'}
@@ -208,7 +206,7 @@ export default function Breadcrumbs({
         separator={separatorIcon}
         sx={{ '& .MuiBreadcrumbs-separator': { width: 16, mx: 0.75 } }}
       >
-        <Typography component={Link} to="/" color="textSecondary" variant="h6" sx={linkSX}>
+        <Typography component={Link} to="/" variant="h6" sx={{ ...linkSX, color: 'text.secondary' }}>
           {icons && <HomeTwoToneIcon style={{ ...iconSX }} />}
           {icon && !icons && <HomeIcon style={{ ...iconSX, marginRight: 0 }} />}
           {(!icon || icons) && 'Dashboard'}
@@ -234,8 +232,7 @@ export default function Breadcrumbs({
                 key={index}
                 {...(link.to && { component: Link, to: link.to })}
                 variant="h6"
-                sx={linkSX}
-                color={!link.to ? 'text.primary' : 'text.secondary'}
+                sx={{ ...linkSX, color: 'text.secondary' }}
               >
                 {link.icon && <CollapseIcon style={iconSX} />}
                 {link.title}
@@ -249,13 +246,23 @@ export default function Breadcrumbs({
     // main
     if (item?.breadcrumbs !== false || custom) {
       breadcrumbContent = (
-        <Card sx={card === false ? { mb: 3, bgcolor: 'transparent', ...sx } : { mb: 3, bgcolor: 'background.default', ...sx }} {...others}>
+        <Card
+          sx={
+            card === false
+              ? { mb: 3, bgcolor: 'transparent', ...sx }
+              : {
+                  mb: 3,
+                  bgcolor: 'background.default',
+                  ...sx
+                }
+          }
+          {...others}
+        >
           <Box sx={{ p: 1.25, px: card === false ? 0 : 2 }}>
             <Grid
               container
               direction={rightAlign ? 'row' : 'column'}
-              justifyContent={rightAlign ? 'space-between' : 'flex-start'}
-              alignItems={rightAlign ? 'center' : 'flex-start'}
+              sx={{ justifyContent: rightAlign ? 'space-between' : 'flex-start', alignItems: rightAlign ? 'center' : 'flex-start' }}
               spacing={1}
             >
               {title && !titleBottom && <BTitle title={custom ? heading : item?.title} />}

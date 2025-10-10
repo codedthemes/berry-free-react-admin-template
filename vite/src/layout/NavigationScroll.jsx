@@ -15,4 +15,4 @@ export default function NavigationScroll({ children }) {
   return children || null;
 }
 
-NavigationScroll.propTypes = { children: PropTypes.oneOfType([PropTypes.any, PropTypes.node]) };
+NavigationScroll.propTypes = { children: PropTypes.oneOfType([PropTypes.node, PropTypes.any]) };
