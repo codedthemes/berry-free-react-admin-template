@@ -31,7 +31,7 @@ jobs:
         run: |
           cd vite
           corepack enable
-          yarn set version 4.9.1
+          yarn set version 4.10.3
           yarn
           yarn build
 
