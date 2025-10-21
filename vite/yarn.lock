@@ -2026,7 +2026,7 @@ __metadata:
     simplebar-react: "npm:3.3.2"
     slick-carousel: "npm:1.8.1"
     swr: "npm:2.3.6"
-    vite: "npm:7.1.9"
+    vite: "npm:7.1.11"
     vite-jsconfig-paths: "npm:2.0.1"
     web-vitals: "npm:5.1.0"
     yup: "npm:1.7.1"
@@ -6036,9 +6036,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:7.1.9":
-  version: 7.1.9
-  resolution: "vite@npm:7.1.9"
+"vite@npm:7.1.11":
+  version: 7.1.11
+  resolution: "vite@npm:7.1.11"
   dependencies:
     esbuild: "npm:^0.25.0"
     fdir: "npm:^6.5.0"
@@ -6087,7 +6087,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/f628f903a137c1410232558bde99c223ea00a090bda6af77752c61f912955f0050aac12d3cfe024d08a0f150ff6fab61b3d0be75d634a59b94d49f525392e1f7
+  checksum: 10c0/c4aa7f47b1fb07f734ed6f4f605d73e5acf7ff9754d75b4adbfbdddf0e520413019834620c1f7b4a207bce7e1d20a2636c584db2b1b17f5a3ba2cd23d47e50ab
   languageName: node
   linkType: hard
 
