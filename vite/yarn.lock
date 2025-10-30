@@ -861,11 +861,11 @@ __metadata:
   linkType: hard
 
 "@messageformat/runtime@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@messageformat/runtime@npm:3.0.1"
+  version: 3.0.2
+  resolution: "@messageformat/runtime@npm:3.0.2"
   dependencies:
     make-plural: "npm:^7.0.0"
-  checksum: 10c0/a236279da66a138f7860d4a190070b00d752cc5b5aed877ec3b0f6dce708e7e3bd5b290e4f4ec30b97a4213f069fb70dbda9af49f849a106da227d41a9e19581
+  checksum: 10c0/5efb037fab20ab9529da220553f868f857be9ee7c3dd58b12eb96ee16c7d3b32e3bc1f88821e458a4e35fce71ed93e8846818532d97f5e933b442c4b56b1d176
   languageName: node
   linkType: hard
 
