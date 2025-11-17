@@ -17,23 +17,23 @@ export default function Footer() {
       <Stack direction="row" sx={{ gap: 1.5, alignItems: 'center', justifyContent: 'space-between' }}>
         <Link
           component={RouterLink}
-          to="https://x.com/codedthemes"
+          to="https://github.com/codedthemes/berry-free-react-admin-template"
           underline="hover"
           target="_blank"
           variant="caption"
           color="text.primary"
         >
-          Twitter
+          GitHub
         </Link>
         <Link
           component={RouterLink}
-          to="https://discord.com/invite/p2E2WhCb6s"
+          to="https://www.figma.com/community/file/1468460364009262125/berry-free-dashboard-ui-kit"
           underline="hover"
           target="_blank"
           variant="caption"
           color="text.primary"
         >
-          Discord
+          Figma UI Kit
         </Link>
       </Stack>
     </Stack>
