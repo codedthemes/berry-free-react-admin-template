@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Activity, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
@@ -119,7 +119,7 @@ export default function NotificationSection() {
           <ClickAwayListener onClickAway={handleClose}>
             <Transitions position={downMD ? 'top' : 'top-right'} in={open} {...TransitionProps}>
               <Paper>
-                {open && (
+                <Activity mode={open ? 'visible' : 'hidden'}>
                   <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]} sx={{ maxWidth: 330 }}>
                     <Stack sx={{ gap: 2 }}>
                       <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', pt: 2, px: 2 }}>
@@ -158,7 +158,7 @@ export default function NotificationSection() {
                       </Button>
                     </CardActions>
                   </MainCard>
-                )}
+                </Activity>
               </Paper>
             </Transitions>
           </ClickAwayListener>

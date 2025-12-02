@@ -17,23 +17,43 @@ export default function Footer() {
       <Stack direction="row" sx={{ gap: 1.5, alignItems: 'center', justifyContent: 'space-between' }}>
         <Link
           component={RouterLink}
-          to="https://x.com/codedthemes"
+          to="https://mui.com/store/license/"
           underline="hover"
           target="_blank"
           variant="caption"
           color="text.primary"
         >
-          Twitter
+          License
         </Link>
         <Link
           component={RouterLink}
-          to="https://discord.com/invite/p2E2WhCb6s"
+          to="https://codedthemes.com/hire-us/"
           underline="hover"
           target="_blank"
           variant="caption"
           color="text.primary"
         >
-          Discord
+          Hire us
+        </Link>
+        <Link
+          component={RouterLink}
+          to="https://mui.com/store/terms/"
+          underline="hover"
+          target="_blank"
+          variant="caption"
+          color="text.primary"
+        >
+          Terms
+        </Link>
+        <Link
+          component={RouterLink}
+          to="https://links.codedthemes.com/dAAOP"
+          underline="hover"
+          target="_blank"
+          variant="caption"
+          color="text.primary"
+        >
+          Figma Design System
         </Link>
       </Stack>
     </Stack>
