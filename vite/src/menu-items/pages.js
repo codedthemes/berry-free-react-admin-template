@@ -23,14 +23,14 @@ const pages = {
       children: [
         {
           id: 'login',
-          title: 'login',
+          title: 'Login',
           type: 'item',
           url: '/pages/login',
           target: true
         },
         {
           id: 'register',
-          title: 'register',
+          title: 'Register',
           type: 'item',
           url: '/pages/register',
           target: true

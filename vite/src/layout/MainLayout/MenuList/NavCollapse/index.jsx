@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { Activity, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // material-ui
@@ -152,7 +152,7 @@ export default function NavCollapse({ menu, level, parentId }) {
         className={anchorEl ? 'Mui-selected' : ''}
         onClick={handleClickMini}
       >
-        {menuIcon && (
+        <Activity mode={menuIcon ? 'visible' : 'hidden'}>
           <ListItemIcon
             sx={{
               minWidth: level === 1 ? 36 : 18,
@@ -175,7 +175,7 @@ export default function NavCollapse({ menu, level, parentId }) {
           >
             {menuIcon}
           </ListItemIcon>
-        )}
+        </Activity>
         {(drawerOpen || (!drawerOpen && level !== 1)) && (
           <Tooltip title={menu.title} disableHoverListener={!hoverStatus}>
             <ListItemText
@@ -217,7 +217,7 @@ export default function NavCollapse({ menu, level, parentId }) {
 
         {openMini || open ? collapseIcon : <IconChevronDown stroke={1.5} size="16px" style={{ marginTop: 'auto', marginBottom: 'auto' }} />}
 
-        {!drawerOpen && (
+        <Activity mode={!drawerOpen ? 'visible' : 'hidden'}>
           <Popper
             open={openMini}
             anchorEl={anchorEl}
@@ -261,11 +261,11 @@ export default function NavCollapse({ menu, level, parentId }) {
               </Transitions>
             )}
           </Popper>
-        )}
+        </Activity>
       </ListItemButton>
-      {drawerOpen && (
+      <Activity mode={drawerOpen ? 'visible' : 'hidden'}>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          {open && (
+          <Activity mode={open ? 'visible' : 'hidden'}>
             <List
               disablePadding
               sx={{
@@ -284,9 +284,9 @@ export default function NavCollapse({ menu, level, parentId }) {
             >
               {menus}
             </List>
-          )}
+          </Activity>
         </Collapse>
-      )}
+      </Activity>
     </>
   );
 }
