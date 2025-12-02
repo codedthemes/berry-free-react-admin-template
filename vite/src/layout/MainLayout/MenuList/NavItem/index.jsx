@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useRef, useState } from 'react';
+import { Activity, useEffect, useRef, useState } from 'react';
 import { Link, matchPath, useLocation } from 'react-router-dom';
 
 // material-ui
@@ -158,15 +158,19 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
           </Tooltip>
         )}
 
-        {drawerOpen && item.chip && (
+        <Activity mode={drawerOpen && item.chip ? 'visible' : 'hidden'}>
           <Chip
-            color={item.chip.color}
-            variant={item.chip.variant}
-            size={item.chip.size}
-            label={item.chip.label}
-            avatar={item.chip.avatar && <Avatar>{item.chip.avatar}</Avatar>}
+            color={item.chip?.color}
+            variant={item.chip?.variant}
+            size={item.chip?.size}
+            label={item.chip?.label}
+            avatar={
+              <Activity mode={item.chip?.avatar ? 'visible' : 'hidden'}>
+                <Avatar>{item.chip?.avatar}</Avatar>
+              </Activity>
+            }
           />
-        )}
+        </Activity>
       </ListItemButton>
     </>
   );

@@ -2,7 +2,7 @@
 import { extendPaletteWithChannels } from 'utils/colorUtils';
 
 // assets
-import defaultColor from 'assets/scss/_themes-vars.module.scss';
+import defaultColor from './theme/default';
 
 // ==============================|| DEFAULT THEME - PALETTE ||============================== //
 
