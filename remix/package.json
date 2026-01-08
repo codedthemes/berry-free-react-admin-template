@@ -21,7 +21,7 @@
     "@mui/system": "^5.11.11",
     "@mui/utils": "^5.11.11",
     "@remix-run/node": "^1.13.0",
-    "@remix-run/react": "^1.13.0",
+    "@remix-run/react": "^2.17.3",
     "@remix-run/serve": "^1.13.0",
     "@tabler/icons": "^2.7.0",
     "@tabler/icons-react": "^2.7.0",
