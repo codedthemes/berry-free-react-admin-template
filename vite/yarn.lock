@@ -2045,7 +2045,7 @@ __metadata:
     react-apexcharts: "npm:1.9.0"
     react-device-detect: "npm:2.2.3"
     react-dom: "npm:19.2.0"
-    react-router: "npm:7.9.6"
+    react-router: "npm:7.12.0"
     react-router-dom: "npm:7.9.6"
     sass: "npm:1.94.2"
     simplebar-react: "npm:3.3.2"
@@ -5029,6 +5029,22 @@ __metadata:
     react: ">=18"
     react-dom: ">=18"
   checksum: 10c0/63984c46385da232655b9e3a8a99f6dd7b94c36827be6e954f246c362f83740b5f59b1de99cae81da3b0cef2220d701dcc22e4fafb4a84600541e1c0450b9d57
+  languageName: node
+  linkType: hard
+
+"react-router@npm:7.12.0":
+  version: 7.12.0
+  resolution: "react-router@npm:7.12.0"
+  dependencies:
+    cookie: "npm:^1.0.1"
+    set-cookie-parser: "npm:^2.6.0"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+  checksum: 10c0/abde366f716cb3961a5a390c278375c0591bace5773e1b4420001f0a913b4dd53d490e7dea866acebcac2c0fa07378aa83702769d449449027406ed517a8ea00
   languageName: node
   linkType: hard
 
