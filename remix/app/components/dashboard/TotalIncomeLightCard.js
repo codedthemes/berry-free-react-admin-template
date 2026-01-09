@@ -80,7 +80,7 @@ const TotalIncomeLightCard = ({ isLoading }) => {
                                                 mt: 0.5
                                             }}
                                         >
-                                            Total Income
+                                            Total Incomes
                                         </Typography>
                                     }
                                 />
