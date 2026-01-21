@@ -14,7 +14,7 @@
     "@vitejs/plugin-react": "5.1.1",
     "apexcharts": "5.3.6",
     "framer-motion": "12.23.25",
-    "lodash-es": "4.17.21",
+    "lodash-es": "4.17.23",
     "material-ui-popup-state": "5.3.6",
     "react": "19.2.0",
     "react-apexcharts": "1.9.0",
