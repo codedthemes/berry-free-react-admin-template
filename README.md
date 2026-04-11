@@ -1,174 +1,178 @@
-# Berry Free React Material UI Admin Template [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Get%20Berry%20React%20-%20The%20most%20beautiful%20Material%20designed%20Admin%20Dashboard%20Template%20&url=https://berrydashboard.com&via=codedthemes&hashtags=reactjs,webdev,developers,javascript)
+# FinanceLog
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)](https://github.com/codedthemes/berry-free-react-admin-template/blob/main/LICENSE)
-[![GitHub package version](https://img.shields.io/github/package-json/v/codedthemes/mantis-free-react-admin-template)](https://github.com/codedthemes/berry-free-react-admin-template/)
-[![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue?style=flat-square&logo=github)](https://codedthemes.com/item/berry-mui-free-react-admin-template/)
-[![Join Discord](https://img.shields.io/badge/Join-Discord-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.com/invite/p2E2WhCb6s)
+A personal finance app that turns your PDF statements into a queryable, dashboardable ledger.
 
-Berry is a free Material UI admin dashboard template built with React. It is meant to provide the best possible User Experience with highly customizable feature-rich pages. It is a complete Dashboard Template that has easy and intuitive responsive design whether it is viewed on retina screens or laptops.
+- **Upload** PDF bank or credit-card statements.
+- Statements are SHA-256 hashed on the worker so **duplicate PDFs never get processed twice**.
+- **[Mistral](https://mistral.ai)** OCRs each page and extracts a strict JSON object: statement metadata, APRs, minimum payment, credit limit, and every line-item transaction.
+- Everything persists to **Cloudflare D1** (SQL) and the raw PDF is stored in **Cloudflare R2**.
+- A single dashboard ([Berry](https://github.com/codedthemes/berry-free-react-admin-template) React template) shows cashflow charts, category breakdowns, upcoming payments, and a unified searchable ledger of every expense/income line.
 
-✨ Support us! If you like this theme, click the ⭐ (Top right) and let it shine
+---
 
-![IMG_8566.jpg](https://berrydashboard.com/imp-images/berry-github-free-repo-1.jpg)
-
-## Table of contents
-
-- [Getting Started](#getting-started)
-- [Download](#download)
-- [Why Berry?](#why-berry)
-- [What's included in Premium Version?](#whats-included-in-premium-version)
-- [Documentation](#documentation)
-- [Browser support](#browser-support)
-- [Technology Stack](#technology-stack)
-- [Berry Figma UI Kit](#berry-figma-ui-kit)
-- [Other Technologies](#other-technologies)
-- 💰[Save more with Big Bundle](#save-more-with-big-bundle)💰
-- [More React Dashboard Templates](#more-react-dashboard-templates)
-- [Issues?](#issues)
-- [License](#license)
-- [Contributor](#contributor)
-- [Useful Resources](#useful-resources)
-- [Community](#community)
-- [Follow us](#follow-us)
-
-## Getting Started
-
-Clone from Github
+## Architecture
 
 ```
-git clone https://github.com/codedthemes/berry-free-react-admin-template.git
+┌───────────────┐  multipart     ┌────────────────────┐        ┌──────────────┐
+│  React / Vite │ ─────────────▶ │  Cloudflare Worker │ ─────▶ │  Mistral API │
+│   (Berry UI)  │ ◀───── JSON ── │   /api/*           │        │  OCR + chat  │
+└───────────────┘                └─────┬───────┬──────┘        └──────────────┘
+                                       │       │
+                                       ▼       ▼
+                                   ┌─────┐  ┌─────┐
+                                   │  D1 │  │  R2 │
+                                   │ SQL │  │ PDFs│
+                                   └─────┘  └─────┘
 ```
 
-## Download
+- `vite/` — React 19 + MUI 7 + SWR frontend. The original Berry template with the dashboard replaced by finance views.
+- `worker/` — Cloudflare Worker API. D1 + R2 + Mistral integration.
 
-- Berry Free
-  - [Live Preview](https://berrydashboard.com/free/)
-  - [Download](https://github.com/codedthemes/berry-free-react-admin-template)
-- Berry
-  - [Live Preview](https://berrydashboard.com)
-  - [Download](https://material-ui.com/store/items/berry-react-material-admin/)
+---
 
-## Why Berry?
+## 1. Backend — Cloudflare Worker
 
-Berry offers everything you need to create dashboards. We have included the following high-end features in our initial release:
+```
+cd worker
+npm install
+```
 
-- Modern aesthetics UI design
-- Material-UI components
-- Fully Responsive, all modern browser supported
-- Easy to use code structure
-- Flexible & High-Performance code
-- Easy Documentation Guide
+### Create the D1 database and R2 bucket
 
-## What's included in Premium Version?
+```bash
+# 1. D1
+npx wrangler d1 create financelog
+# Paste the returned `database_id` into worker/wrangler.toml
 
-[Pro version](https://berrydashboard.com) of Berry react template contains features like TypeScript, Next.js Seed versions, Apps, Authentication Methods (i.e. JWT, Auth0, Firebase, AWS, Supabase), Advance Components, Form Plugins, Layouts, Widgets, and many more.
+# 2. R2
+npx wrangler r2 bucket create financelog-statements
 
-| [Berry Free](https://berrydashboard.com/free/) | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
-| ---------------------------------------------- | :----------------------------------------------------------------------- |
-| **9** Demo pages                               | **45+** demo pages                                                       |
-| -                                              | ✓ Multi-language                                                         |
-| -                                              | ✓ Dark/Light Mode 🌓                                                     |
-| -                                              | ✓ TypeScript version                                                     |
-| -                                              | ✓ Design files (Figma)                                                   |
-| -                                              | ✓ 6+ color Options                                                       |
-| -                                              | ✓ RTL                                                                    |
-| -                                              | ✓ JWT, Firebase, Auth0, AWS, Supabase authentications                    |
-| -                                              | ✓ [More components](https://berrydashboard.com/components/autocomplete)  |
+# 3. Apply the schema (local + remote)
+npm run db:init           # local dev DB
+npm run db:init:remote    # production D1
+```
 
-## Documentation
+### Set secrets
 
-[Berry Documentation](https://codedthemes.gitbook.io/berry/) helps you with installation, deployment, and troubleshooting.
+```bash
+npx wrangler secret put MISTRAL_API_KEY
+# optional: lock the API down so only you can hit it
+npx wrangler secret put API_TOKEN
+```
 
-## Browser support
+For local dev, create `worker/.dev.vars` (see `.dev.vars.example`) with those values.
 
-<img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/chrome.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/edge.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/safari.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/firefox.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/opera.png" width="45" height="45" >
+### Run locally
 
-## Technology Stack
+```bash
+npm run dev       # http://localhost:8787
+```
 
-- [Material UI V7](https://material-ui.com/)
-- [React 19.2](https://react.dev/)
-- Built with React Hooks API
-- Redux & React Context API for State Management
-- React Router for Navigation Routing
-- Support of vite
-- Code Splitting
-- CSS-in-JS where CSS is composed using JavaScript instead of defined in external files
+### Deploy
 
-## Berry Figma UI Kit
+```bash
+npm run deploy    # pushes to https://financelog-api.<you>.workers.dev
+```
 
-<div>
-  <a href="https://codedthemes.com/item/berry-free-figma-ui-kit/">
-    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma_Free_Berry.png" width="450" alt="Figma Free">
-  </a>&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://codedthemes.com/item/berry-figma-ui-kit/">
-    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma-Pro-Berry.png" width="450" alt="Figma Pro">
-  </a>
-</div>
+### Endpoints
 
-## Other Technologies
+| Method | Path                         | Purpose                                                 |
+|--------|------------------------------|---------------------------------------------------------|
+| GET    | `/api/health`                | Liveness check                                          |
+| GET    | `/api/summary`               | Totals, monthly cashflow, category breakdown, upcoming  |
+| POST   | `/api/statements/upload`     | multipart/form-data `file` — hash, dedupe, extract      |
+| GET    | `/api/statements`            | List all statements                                     |
+| GET    | `/api/statements/:id`        | One statement + its transactions                        |
+| GET    | `/api/statements/:id/pdf`    | Stream the original PDF from R2                         |
+| DELETE | `/api/statements/:id`        | Remove statement, transactions, and R2 object           |
+| GET    | `/api/transactions`          | Unified ledger. Filters: `q`, `category`, `from`, `to`  |
+| GET    | `/api/accounts`              | Known accounts                                          |
+| GET    | `/api/categories`            | Category usage counts                                   |
 
-| Technology                                                                                                                        | Free                                                                              | Pro                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| <p align="center"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Angular.png" width="25" height="25"></p>   | [**Free**](https://codedthemes.com/item/berry-angular-free-admin-template/)       | [**Pro**](https://codedthemes.com/item/berry-angular-admin-dashboard-template/) |
-| <p align="center"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Bootstrap.png" width="30" height="30"></p> | [**Free**](https://codedthemes.com/item/berry-bootstrap-free-admin-template/)     | [**Pro**](https://codedthemes.com/item/berry-bootstrap-5-admin-template/)       |
-| <p align="center"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Vue.png" width="25" height="25"></p>       | [**Free**](https://codedthemes.com/item/berry-free-vuetify-vuejs-admin-template/) | [**Pro**](https://codedthemes.com/item/berry-vue-admin-dashboard/)              |
+All endpoints except `/api/health` require `Authorization: Bearer <API_TOKEN>` when the secret is set.
 
-## Save more with Big Bundle
+### How duplicate detection works
 
-[![bundle-image](https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Bundle+banner.png)](https://links.codedthemes.com/jhFBJ)
+On upload the worker:
+1. Reads the PDF bytes and computes `sha256(bytes)`.
+2. Looks up `statements.pdf_hash` (which has a `UNIQUE` constraint).
+3. If it's already there, responds `409 Conflict` with the existing row and skips everything else — **no Mistral tokens are spent**.
+4. Otherwise it stores the PDF at `statements/<sha256>.pdf` in R2 and runs extraction.
 
-## More React Dashboard Templates
+R2 keys use the hash too, so the object store is automatically de-duplicated.
 
-| Dashboard                                                                                                                                                          | FREE                                                                                | PRO                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Mantis%20with%20name.png"  height="30" style="display:inline-block; vertical-align:middle;">  | [**Free**](https://mantisdashboard.com/free/)                                       | [**Pro**](https://mui.com/store/items/mantis-react-admin-dashboard-template/)</span>  |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Datta%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;">    | [**Free**](https://codedthemes.com/item/datta-able-react-free-admin-template/)      | [**Pro**](https://codedthemes.com/item/datta-able-react-admin-template/)</span>       |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Gradient%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;"> | [**Free**](https://codedthemes.com/item/gradient-able-reactjs-free-admin-template/) | [**Pro**](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard/)</span> |
+### How extraction works
 
-## Issues
+`worker/src/mistral.js` runs a two-step pipeline:
 
-To report a bug, please submit an [issue](https://github.com/codedthemes/berry-free-react-admin-template/issues) on Github. We will respond as soon as possible to resolve the issue.
+1. **OCR** — `POST /v1/ocr` with `mistral-ocr-latest`. Returns clean markdown for every page.
+2. **Structured extraction** — `POST /v1/chat/completions` with `mistral-large-latest` and `response_format: json_object`. A system prompt + an explicit JSON schema force the model to return the statement fields and every transaction. Direction is normalized so positive amounts are always money out.
 
-## License
+If you want to swap models (e.g. `mistral-small-latest` to save cost), change `MISTRAL_MODEL` / `MISTRAL_OCR_MODEL` in `wrangler.toml`.
 
-- Licensed cover under [MIT](https://github.com/codedthemes/berry-free-react-admin-template/blob/main/LICENSE)
+### Schema
 
-## Contributor
+See `worker/schema.sql`. Tables: `accounts`, `statements`, `transactions`. Every transaction links back to its statement, so deleting a statement cascades to its line items.
 
-**CodedThemes Team**
+---
 
-- https://x.com/codedthemes
-- https://github.com/codedthemes
+## 2. Frontend — Vite React app
 
-**Rakesh Nakrani**
+```
+cd vite
+yarn install     # or npm install
+yarn start       # http://localhost:3000
+```
 
-- https://x.com/rakesh_nakrani
+Open **Settings** from the sidebar and set:
 
-**Brijesh Dobariya**
+- **API URL** — e.g. `http://localhost:8787` for local dev or `https://financelog-api.<you>.workers.dev` in production.
+- **API token** — the bearer token you set via `wrangler secret put API_TOKEN` (leave blank if you didn't set one).
 
-- https://x.com/dobaria_brijesh
+Both values live in browser `localStorage` only; no secrets ship in the build.
 
-## Useful Resources
+You can also bake a default API URL into the build with a `.env`:
 
-- [More Admin Templates From CodedThemes](https://codedthemes.com/item/category/admin-templates/)
-- [Freebies From CodedThemes](https://codedthemes.com/item/category/free-templates/)
-- [Big Bundles](https://codedthemes.com/item/big-bundle/)
-- [Figma UI Kits](https://codedthemes.com/item/category/templates/figma/)
-- [Affiliate Program](https://codedthemes.com/affiliate/)
-- [Blogs](https://blog.codedthemes.com/)
+```
+VITE_FINANCE_API=https://financelog-api.<you>.workers.dev
+```
 
-## Community
+### Pages
 
-- 👥Follow [@codedthemes](https://x.com/codedthemes)
-- 🔗Join [Discord](https://discord.com/invite/p2E2WhCb6s)
-- 🔔Subscribe to [Codedtheme Blogs](https://blog.codedthemes.com/)
+- **Overview** — totals, 12-month cashflow area chart, category donut, upcoming payments, account list with live APR / credit-limit info.
+- **Upload PDFs** — drag-and-drop queue. Duplicates are called out inline.
+- **Transactions** — unified ledger. Search, filter by category, date range. Running totals and net at the top.
+- **Statements** — every imported statement with details dialog, link to the original PDF in R2, and a delete button.
+- **Settings** — point the app at your Worker and test the connection.
 
-## Follow us
+### Build for production
 
-- [Twitter](https://twitter.com/codedthemes) 🐦
-- [Dribbble](https://dribbble.com/codedthemes) 🏀
-- [Github](https://github.com/codedthemes) 🐙
-- [LinkedIn](https://www.linkedin.com/company/codedthemes/) 💼
-- [Instagram](https://www.instagram.com/codedthemes/) 📷
-- [Facebook](https://www.facebook.com/codedthemes) 🟦
+```
+yarn build
+# dist/ is ready to deploy to Cloudflare Pages, Workers Assets, Netlify, etc.
+```
+
+Cloudflare Pages deploy:
+
+```bash
+cd vite
+npx wrangler pages deploy dist --project-name financelog
+```
+
+---
+
+## Costs & limits
+
+- **Cloudflare D1 / R2 / Workers** — free tiers are plenty for a personal finance log.
+- **Mistral** — OCR + chat call per statement. A typical 2-page credit card PDF runs well under $0.01 on `mistral-large-latest`; the dedup step means you only pay once per unique PDF.
+- **Max upload size** — the worker refuses anything larger than 25 MB.
+
+## Development tips
+
+- `wrangler d1 execute financelog --command="select * from statements"` is the fastest way to inspect what the extractor did.
+- Each row's `raw_extraction_json` stores a truncated OCR excerpt + the extracted JSON — great for debugging a misparsed statement.
+- Reset everything with `npm run db:reset` in `worker/`.
+
+---
+
+This repository started from the [Berry Free React Admin template](https://github.com/codedthemes/berry-free-react-admin-template); see `remix/` for the (untouched) remix variant.

@@ -1,0 +1,31 @@
+name = "financelog-api"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# D1 database binding
+# Create with: wrangler d1 create financelog
+[[d1_databases]]
+binding = "DB"
+database_name = "financelog"
+database_id = "REPLACE_WITH_YOUR_D1_ID"
+
+# R2 bucket for raw PDFs
+# Create with: wrangler r2 bucket create financelog-statements
+[[r2_buckets]]
+binding = "PDFS"
+bucket_name = "financelog-statements"
+
+# Mistral API key - set via: wrangler secret put MISTRAL_API_KEY
+# [vars]
+# MISTRAL_MODEL = "mistral-large-latest"
+
+[vars]
+MISTRAL_MODEL = "mistral-large-latest"
+MISTRAL_OCR_MODEL = "mistral-ocr-latest"
+# Lock down the API to a single shared secret. Set via:
+#   wrangler secret put API_TOKEN
+# Clients must send Authorization: Bearer <token>
+
+[observability]
+enabled = true

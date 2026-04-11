@@ -1,19 +1,16 @@
 import { lazy } from 'react';
+import { Navigate } from 'react-router-dom';
 
 // project imports
 import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
-// dashboard routing
-const DashboardDefault = Loadable(lazy(() => import('views/dashboard/Default')));
-
-// utilities routing
-const UtilsTypography = Loadable(lazy(() => import('views/utilities/Typography')));
-const UtilsColor = Loadable(lazy(() => import('views/utilities/Color')));
-const UtilsShadow = Loadable(lazy(() => import('views/utilities/Shadow')));
-
-// sample page routing
-const SamplePage = Loadable(lazy(() => import('views/sample-page')));
+// finance routing
+const FinanceOverview = Loadable(lazy(() => import('views/finance/Overview')));
+const FinanceUpload = Loadable(lazy(() => import('views/finance/Upload')));
+const FinanceTransactions = Loadable(lazy(() => import('views/finance/Transactions')));
+const FinanceStatements = Loadable(lazy(() => import('views/finance/Statements')));
+const FinanceSettings = Loadable(lazy(() => import('views/finance/Settings')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -21,34 +18,18 @@ const MainRoutes = {
   path: '/',
   element: <MainLayout />,
   children: [
+    { path: '/', element: <Navigate to="/finance/overview" replace /> },
+    { path: 'dashboard/default', element: <Navigate to="/finance/overview" replace /> },
     {
-      path: '/',
-      element: <DashboardDefault />
-    },
-    {
-      path: 'dashboard',
+      path: 'finance',
       children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
+        { index: true, element: <Navigate to="/finance/overview" replace /> },
+        { path: 'overview', element: <FinanceOverview /> },
+        { path: 'upload', element: <FinanceUpload /> },
+        { path: 'transactions', element: <FinanceTransactions /> },
+        { path: 'statements', element: <FinanceStatements /> },
+        { path: 'settings', element: <FinanceSettings /> }
       ]
-    },
-    {
-      path: 'typography',
-      element: <UtilsTypography />
-    },
-    {
-      path: 'color',
-      element: <UtilsColor />
-    },
-    {
-      path: 'shadow',
-      element: <UtilsShadow />
-    },
-    {
-      path: '/sample-page',
-      element: <SamplePage />
     }
   ]
 };

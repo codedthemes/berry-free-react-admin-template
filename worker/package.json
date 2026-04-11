@@ -1,0 +1,16 @@
+{
+  "name": "financelog-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute financelog --file=./schema.sql",
+    "db:init:remote": "wrangler d1 execute financelog --remote --file=./schema.sql",
+    "db:reset": "wrangler d1 execute financelog --command=\"DROP TABLE IF EXISTS transactions; DROP TABLE IF EXISTS statements; DROP TABLE IF EXISTS accounts;\" && npm run db:init"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

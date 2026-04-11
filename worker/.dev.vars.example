@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local `wrangler dev`.
+# For production, use: wrangler secret put MISTRAL_API_KEY
+MISTRAL_API_KEY="your-mistral-api-key"
+# Optional: require this bearer token on every request
+# API_TOKEN="some-long-random-string"
