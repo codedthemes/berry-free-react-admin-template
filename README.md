@@ -12,7 +12,7 @@ Berry is a free Material UI admin dashboard template built with React. It is mea
 
 ✨ Support us! If you like this theme, click the ⭐ (Top right) and let it shine
 
-![IMG_8566.jpg](https://berrydashboard.com/imp-images/berry-github-free-repo-1.jpg)
+![IMG_8566.jpg](https://org-public-assets.s3.us-west-2.amazonaws.com/Free-Version-Banners/GITHUB-FREE-REACT-REPO-Berry.png)
 
 ## Table of contents
 
@@ -71,7 +71,7 @@ Berry offers everything you need to create dashboards. We include the following 
 | -                                              | ✓ Multi-language                                                         |
 | -                                              | ✓ Dark/Light Mode 🌓                                                     |
 | -                                              | ✓ TypeScript version                                                     |
-| -                                              | ✓ NextJS 16                                                             |
+| -                                              | ✓ NextJS 16                                                              |
 | -                                              | ✓ Design files (Figma)                                                   |
 | -                                              | ✓ Multiple color options                                                 |
 | -                                              | ✓ RTL                                                                    |
