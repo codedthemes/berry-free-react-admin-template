@@ -67,22 +67,22 @@ Berry offers everything you need to create dashboards. We include the following 
 
 | [Berry Free](https://berrydashboard.com/free/) | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
 | ---------------------------------------------- | :----------------------------------------------------------------------- |
-| **7** Demo pages                                                                                     | **100+** demo pages                                                                   |
-| -                                                                                                    | ✓ Multi-language                                                                      |
-| -                                                                                                    | ✓ Dark/Light Mode 🌓                                                                  |
-| -                                                                                                    | ✓ TypeScript version                                                                  |
-| -                                                                                                    | ✓ Next JS                                                                             |
-| -                                                                                                    | ✓ Design files (Figma)                                                                |
-| -                                                                                                    | ✓ Multiple color options                                                              |
-| -                                                                                                    | ✓ RTL                                                                                 |
-| -                                                                                                    | ✓ **5+** Applications                                                                 |
-| -                                                                                                    | ✓ Form Validation                                                                     |
-| -                                                                                                    | ✓ **11+** Layout                                                                      |
-| -                                                                                                    | ✓ **9+** Plugins                                                                      |
-| -                                                                                                    | ✓ **21+** React Table                                                                 |
-| -                                                                                                    | ✓ ApexChart + MUI Chart                                                               |
-| -                                                                                                    | ✓ Authentications ( JWT, Auth0, Supabase, AWS, Firebase )                             |
-| -                                                                                                    | ✓ [**299+** components](https://berrydashboard.com/components/autocomplete) |
+| **7** Demo pages                               | demo pages (100+)                                                        |
+| -                                              | ✓ Multi-language                                                         |
+| -                                              | ✓ Dark/Light Mode 🌓                                                     |
+| -                                              | ✓ TypeScript version                                                     |
+| -                                              | ✓ NextJS 16                                                             |
+| -                                              | ✓ Design files (Figma)                                                   |
+| -                                              | ✓ Multiple color options                                                 |
+| -                                              | ✓ RTL                                                                    |
+| -                                              | Applications (5+)                                                        |
+| -                                              | ✓ Form Validation                                                        |
+| -                                              | Layout (11+)                                                             |
+| -                                              | Plugins (9+)                                                             |
+| -                                              | React Table (21+)                                                        |
+| -                                              | ✓ ApexChart + MUI Chart                                                  |
+| -                                              | ✓ Authentications ( JWT, Auth0, Supabase, AWS, Firebase )                |
+| -                                              | [ components](https://berrydashboard.com/components/autocomplete) (299+) |
 
 ## Documentation
 
@@ -90,30 +90,27 @@ Berry offers everything you need to create dashboards. We include the following 
 
 ## Browser support
 
-<img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/chrome.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/edge.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/safari.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/firefox.png" width="45" height="45" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/opera.png" width="45" height="45" >
+<p>
+<img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/chrome.png" width="45" height="45" style="margin-right:10px" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/edge.png" width="45" height="45" style="margin-right:10px"  > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/safari.png" width="45" height="45" style="margin-right:10px" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/firefox.png" width="45" height="45" style="margin-right:10px" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/opera.png" width="45" height="45">
+</p>
 
 ## Technology Stack
 
-- [Material UI V7](https://material-ui.com/)
+- [Material UI V9](https://material-ui.com/)
 - [React 19.2](https://react.dev/)
+- [NextJS 16](https://nextjs.org/)
 - Built with React Hooks API
 - Redux & React Context API for State Management
 - React Router for Navigation Routing
 - Support of vite
 - Code Splitting
 - CSS-in-JS where CSS is composed using JavaScript instead of defined in external files
-- Next JS
 
 ## Berry Figma UI Kit
 
-<div style="display:flex">
-  <a href="https://codedthemes.com/item/berry-free-figma-ui-kit/">
-    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma_Free_Berry.png" width="450" alt="Figma Free">
-  </a>&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://codedthemes.com/item/berry-figma-ui-kit/">
-    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma-Pro-Berry.png" width="450" alt="Figma Pro">
-  </a>
-</div>
+| FREE                                                                                                                                                                                                           | PRO                                                                                                                                                                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a href="https://codedthemes.com/item/berry-free-figma-ui-kit/" traget="_blank"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma_Free_Berry.png" width="450" alt="Figma Free"></a> | <a href="https://codedthemes.com/item/berry-figma-ui-kit/" traget="_blank"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/Banners/Figma-Pro-Berry.png" width="450" alt="Figma Pro"></a> |
 
 ## Other Technologies
 
@@ -125,11 +122,11 @@ Berry offers everything you need to create dashboards. We include the following 
 
 ## More React Dashboard from CodedThemes
 
-| Dashboard                                                                                                                                                          | FREE                                                                                | PRO                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Mantis%20with%20name.png"  height="30" style="display:inline-block; vertical-align:middle;">  | [**Free**](https://github.com/codedthemes/mantis-free-react-admin-template)                                       | [**Pro**](https://mui.com/store/items/mantis-react-admin-dashboard-template/)</span>  |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Datta%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;">    | [**Free**](https://codedthemes.com/item/datta-able-react-free-admin-template/)      | [**Pro**](https://codedthemes.com/item/datta-able-react-admin-template/)</span>       |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Gradient%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;"> | [**Free**](https://codedthemes.com/item/gradient-able-reactjs-free-admin-template/) | [**Pro**](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard/)</span> |
+| Dashboard                                                                                                                                                          | FREE                                                                                | PRO                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Mantis%20with%20name.png"  height="30" style="display:inline-block; vertical-align:middle;">  | [**Free**](https://github.com/codedthemes/mantis-free-react-admin-template)         | [**Pro**](https://mui.com/store/items/mantis-react-admin-dashboard-template/)  |
+| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Datta%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;">    | [**Free**](https://codedthemes.com/item/datta-able-react-free-admin-template/)      | [**Pro**](https://codedthemes.com/item/datta-able-react-admin-template/)       |
+| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Gradient%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;"> | [**Free**](https://codedthemes.com/item/gradient-able-reactjs-free-admin-template/) | [**Pro**](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard/) |
 
 ## Issues
 
