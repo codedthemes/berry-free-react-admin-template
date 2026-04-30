@@ -67,7 +67,7 @@ Berry offers everything you need to create dashboards. We include the following 
 
 | [Berry Free](https://berrydashboard.com/free/) | [Berry](https://material-ui.com/store/items/berry-react-material-admin/) |
 | ---------------------------------------------- | :----------------------------------------------------------------------- |
-| **7** Demo pages                               | demo pages (100+)                                                        |
+| **7** Demo pages                               | Demo pages (100+)                                                        |
 | -                                              | ✓ Multi-language                                                         |
 | -                                              | ✓ Dark/Light Mode 🌓                                                     |
 | -                                              | ✓ TypeScript version                                                     |
@@ -82,7 +82,7 @@ Berry offers everything you need to create dashboards. We include the following 
 | -                                              | React Table (21+)                                                        |
 | -                                              | ✓ ApexChart + MUI Chart                                                  |
 | -                                              | ✓ Authentications ( JWT, Auth0, Supabase, AWS, Firebase )                |
-| -                                              | [ components](https://berrydashboard.com/components/autocomplete) (299+) |
+| -                                              | [Components](https://berrydashboard.com/components/autocomplete) (299+)  |
 
 ## Documentation
 
