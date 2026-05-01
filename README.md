@@ -89,8 +89,26 @@ Berry offers everything you need to create dashboards. We include the following 
 
 ## Browser support
 
-<p>
-<img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/chrome.png" width="45" height="45" style="margin-right:10px" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/edge.png" width="45" height="45" style="margin-right:10px"  > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/safari.png" width="45" height="45" style="margin-right:10px" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/firefox.png" width="45" height="45" style="margin-right:10px" > <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/opera.png" width="45" height="45">
+<p align="left">
+  <picture>
+    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/chrome.png" width="45" alt="Chrome">
+  </picture>
+  &nbsp;
+  <picture>
+    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/edge.png" width="45" alt="Edge">
+  </picture>
+  &nbsp;
+  <picture>
+    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/safari.png" width="45" alt="Safari">
+  </picture>
+  &nbsp;
+  <picture>
+    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/firefox.png" width="45" alt="Firefox">
+  </picture>
+  &nbsp;
+  <picture>
+    <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/opera.png" width="45" alt="Opera">
+  </picture>
 </p>
 
 ## Technology Stack
