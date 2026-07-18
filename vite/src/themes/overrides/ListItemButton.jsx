@@ -11,9 +11,9 @@ export default function ListItemButton(theme) {
 
           '&.Mui-selected': {
             color: theme.vars.palette.secondary.dark,
-            backgroundColor: theme.vars.palette.secondary.light,
+            backgroundColor: theme.vars.palette.secondary.lighter,
             '&:hover': {
-              backgroundColor: theme.vars.palette.secondary.light
+              backgroundColor: theme.vars.palette.secondary.lighter
             },
             '& .MuiListItemIcon-root': {
               color: theme.vars.palette.secondary.dark
@@ -21,7 +21,7 @@ export default function ListItemButton(theme) {
           },
 
           '&:hover': {
-            backgroundColor: theme.vars.palette.secondary.light,
+            backgroundColor: theme.vars.palette.secondary.lighter,
             color: theme.vars.palette.secondary.dark,
             '& .MuiListItemIcon-root': {
               color: theme.vars.palette.secondary.dark

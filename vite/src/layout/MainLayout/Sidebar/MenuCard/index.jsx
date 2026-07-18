@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { memo } from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
@@ -23,12 +22,7 @@ function LinearProgressWithLabel({ value, ...others }) {
   return (
     <Stack sx={{ gap: 1 }}>
       <Stack direction="row" sx={{ justifyContent: 'space-between', mt: 1.5 }}>
-        <Typography
-          variant="h6"
-          sx={{
-            color: 'primary.800'
-          }}
-        >
+        <Typography variant="h6" sx={{ color: 'primary.darker' }}>
           Progress
         </Typography>
         <Typography variant="h6" sx={{ color: 'inherit' }}>{`${Math.round(value)}%`}</Typography>
@@ -38,17 +32,7 @@ function LinearProgressWithLabel({ value, ...others }) {
         variant="determinate"
         value={value}
         {...others}
-        sx={{
-          height: 10,
-          borderRadius: 30,
-          [`&.${linearProgressClasses.colorPrimary}`]: {
-            bgcolor: 'background.paper'
-          },
-          [`& .${linearProgressClasses.bar}`]: {
-            borderRadius: 5,
-            bgcolor: 'primary.dark'
-          }
-        }}
+        sx={{ height: 10, borderRadius: 30, [`& .${linearProgressClasses.bar}`]: { borderRadius: 5 } }}
       />
     </Stack>
   );
@@ -57,12 +41,10 @@ function LinearProgressWithLabel({ value, ...others }) {
 // ==============================|| SIDEBAR - MENU CARD ||============================== //
 
 function MenuCard() {
-  const theme = useTheme();
-
   return (
     <Card
       sx={{
-        bgcolor: 'primary.light',
+        bgcolor: 'primary.lighter',
         mb: 2.75,
         overflow: 'hidden',
         position: 'relative',
@@ -71,7 +53,7 @@ function MenuCard() {
           position: 'absolute',
           width: 157,
           height: 157,
-          bgcolor: 'primary.200',
+          bgcolor: 'primary.light',
           borderRadius: '50%',
           top: -105,
           right: -96
@@ -85,14 +67,13 @@ function MenuCard() {
               <Avatar
                 variant="rounded"
                 sx={{
-                  ...theme.typography.largeAvatar,
                   borderRadius: 2,
                   color: 'primary.main',
                   border: 'none',
                   bgcolor: 'background.paper'
                 }}
               >
-                <TableChartOutlinedIcon fontSize="inherit" />
+                <TableChartOutlinedIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
@@ -101,7 +82,7 @@ function MenuCard() {
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    color: 'primary.800'
+                    color: 'primary.darker'
                   }}
                 >
                   Get Extra Space

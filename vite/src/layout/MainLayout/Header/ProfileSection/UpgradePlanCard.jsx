@@ -23,7 +23,7 @@ export default function UpgradePlanCard() {
   return (
     <Card
       sx={{
-        bgcolor: 'warning.light',
+        bgcolor: 'warning.lighter',
         my: 2,
         overflow: 'hidden',
         position: 'relative',

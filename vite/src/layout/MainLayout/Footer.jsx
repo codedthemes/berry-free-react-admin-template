@@ -17,23 +17,43 @@ export default function Footer() {
       <Stack direction="row" sx={{ gap: 1.5, alignItems: 'center', justifyContent: 'space-between' }}>
         <Link
           component={RouterLink}
-          to="https://github.com/codedthemes/berry-free-react-admin-template"
+          to="https://mui.com/store/license/"
           underline="hover"
           target="_blank"
           variant="caption"
-          color="text.primary"
+          sx={{ color: 'text.primary' }}
         >
-          GitHub
+          License
         </Link>
         <Link
           component={RouterLink}
-          to="https://www.figma.com/community/file/1468460364009262125/berry-free-dashboard-ui-kit"
+          to="https://codedthemes.com/hire-us/"
           underline="hover"
           target="_blank"
           variant="caption"
-          color="text.primary"
+          sx={{ color: 'text.primary' }}
         >
-          Figma UI Kit
+          Hire us
+        </Link>
+        <Link
+          component={RouterLink}
+          to="https://mui.com/store/terms/"
+          underline="hover"
+          target="_blank"
+          variant="caption"
+          sx={{ color: 'text.primary' }}
+        >
+          Terms
+        </Link>
+        <Link
+          component={RouterLink}
+          to="https://links.codedthemes.com/dAAOP"
+          underline="hover"
+          target="_blank"
+          variant="caption"
+          sx={{ color: 'text.primary' }}
+        >
+          Figma Design System
         </Link>
       </Stack>
     </Stack>

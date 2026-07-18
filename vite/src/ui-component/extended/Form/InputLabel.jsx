@@ -11,6 +11,8 @@ const BInputLabel = styled((props) => <MuiInputLabel {...props} />, {
   marginBottom: horizontal ? 0 : 8
 }));
 
+// ==============================|| FORM - INPUT LABEL ||============================== //
+
 export default function InputLabel({ children, horizontal = false, ...others }) {
   return (
     <BInputLabel horizontal={horizontal} {...others}>

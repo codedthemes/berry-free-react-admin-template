@@ -2,7 +2,7 @@
 import { styled } from '@mui/material/styles';
 
 // project imports
-import { drawerWidth } from 'store/constant';
+import { drawerWidth, HEADER_HEIGHT } from 'store/constant';
 
 // ==============================|| MAIN LAYOUT - STYLED ||============================== //
 
@@ -12,10 +12,10 @@ const MainContentStyled = styled('main', {
   backgroundColor: theme.vars.palette.grey[100],
   minWidth: '1%',
   width: '100%',
-  minHeight: 'calc(100vh - 88px)',
+  minHeight: `calc(100vh - ${HEADER_HEIGHT}px)`,
   flexGrow: 1,
   padding: 20,
-  marginTop: 88,
+  marginTop: HEADER_HEIGHT,
   marginRight: 20,
   borderRadius: `${borderRadius}px`,
   borderBottomLeftRadius: 0,
@@ -28,7 +28,7 @@ const MainContentStyled = styled('main', {
     [theme.breakpoints.up('md')]: {
       marginLeft: -(drawerWidth - 72),
       width: `calc(100% - ${drawerWidth}px)`,
-      marginTop: 88
+      marginTop: HEADER_HEIGHT
     }
   }),
   ...(open && {
@@ -37,16 +37,16 @@ const MainContentStyled = styled('main', {
       duration: theme.transitions.duration.shorter + 200
     }),
     marginLeft: 0,
-    marginTop: 88,
+    marginTop: HEADER_HEIGHT,
     width: `calc(100% - ${drawerWidth}px)`,
     [theme.breakpoints.up('md')]: {
-      marginTop: 88
+      marginTop: HEADER_HEIGHT
     }
   }),
   [theme.breakpoints.down('md')]: {
     marginLeft: 20,
     padding: 16,
-    marginTop: 88,
+    marginTop: HEADER_HEIGHT,
     ...(!open && {
       width: `calc(100% - ${drawerWidth}px)`
     })

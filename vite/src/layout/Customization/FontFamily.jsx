@@ -51,7 +51,7 @@ export default function FontFamilyPage() {
                 content={false}
                 sx={(theme) => ({
                   p: 0.75,
-                  bgcolor: fontFamily === item.value ? 'primary.light' : 'grey.50'
+                  bgcolor: fontFamily === item.value ? 'primary.lighter' : 'grey.50'
                 })}
               >
                 <MainCard

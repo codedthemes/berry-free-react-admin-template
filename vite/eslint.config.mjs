@@ -79,7 +79,7 @@ export default [
         }
       ],
 
-      'prettier/prettier': 'warn',
+      'prettier/prettier': 'warn'
     }
   },
   {

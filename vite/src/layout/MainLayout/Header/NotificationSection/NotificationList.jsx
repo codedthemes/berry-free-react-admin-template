@@ -18,7 +18,10 @@ import Box from '@mui/material/Box';
 import { withAlpha } from 'utils/colorUtils';
 
 // assets
-import { IconBrandTelegram, IconBuildingStore, IconMailbox, IconPhoto } from '@tabler/icons-react';
+import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
+import MarkunreadMailboxOutlinedIcon from '@mui/icons-material/MarkunreadMailboxOutlined';
+import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
 import User1 from 'assets/images/users/user-round.svg';
 
 function ListItemWrapper({ children }) {
@@ -84,11 +87,11 @@ export default function NotificationList() {
           <ListItemAvatar>
             <Avatar
               sx={{
-                color: 'success.dark',
-                bgcolor: 'success.light'
+                color: 'success.main',
+                bgcolor: 'success.lighter'
               }}
             >
-              <IconBuildingStore stroke={1.5} size="20px" />
+              <StorefrontOutlinedIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">Store Verification Done</Typography>} />
@@ -112,17 +115,17 @@ export default function NotificationList() {
             <Avatar
               sx={{
                 color: 'primary.dark',
-                bgcolor: 'primary.light'
+                bgcolor: 'primary.lighter'
               }}
             >
-              <IconMailbox stroke={1.5} size="20px" />
+              <MarkunreadMailboxOutlinedIcon />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={<Typography variant="subtitle1">Check Your Mail.</Typography>} />
         </ListItem>
         <Stack sx={containerSX}>
           <Typography variant="subtitle2">All done! Now check your inbox as you&apos;re in for a sweet treat!</Typography>
-          <Button variant="contained" endIcon={<IconBrandTelegram stroke={1.5} size={20} />} sx={{ width: 'min-content' }}>
+          <Button variant="contained" endIcon={<SendOutlinedIcon />} sx={{ width: 'min-content' }}>
             Mail
           </Button>
         </Stack>
@@ -149,9 +152,9 @@ export default function NotificationList() {
               21 Jan 2020
             </Typography>
           </Typography>
-          <Card sx={{ bgcolor: 'secondary.light' }}>
-            <Stack direction="row" sx={{ p: 2.5, gap: 2 }}>
-              <IconPhoto stroke={1.5} size="20px" />
+          <Card sx={{ bgcolor: 'secondary.lighter' }}>
+            <Stack direction="row" sx={{ p: 2, gap: 1 }}>
+              <ImageOutlinedIcon />
               <Typography variant="subtitle1">demo.jpg</Typography>
             </Stack>
           </Card>

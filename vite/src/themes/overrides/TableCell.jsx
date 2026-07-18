@@ -5,14 +5,16 @@ export default function TableCell(theme) {
     MuiTableCell: {
       styleOverrides: {
         root: {
-          borderColor: theme.vars.palette.grey[200],
-
-          '&.MuiTableCell-head': {
-            fontSize: '0.875rem',
-            color: theme.vars.palette.grey[900],
-            fontWeight: 500
+          borderColor: theme.vars.palette.grey[200]
+        },
+        head: {
+          color: theme.vars.palette.grey[900],
+          ':has(.MuiCheckbox-root)': {
+            paddingTop: 7,
+            paddingBottom: 7
           }
-        }
+        },
+        body: { paddingTop: 14, paddingBottom: 14 }
       }
     }
   };

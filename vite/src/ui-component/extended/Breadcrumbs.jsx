@@ -146,8 +146,11 @@ export default function Breadcrumbs({
         <Box sx={{ p: 1.25, px: card === false ? 0 : 2 }}>
           <Grid
             container
-            direction={rightAlign ? 'row' : 'column'}
-            sx={{ justifyContent: rightAlign ? 'space-between' : 'flex-start', alignItems: rightAlign ? 'center' : 'flex-start' }}
+            sx={{
+              flexDirection: rightAlign ? 'row' : 'column',
+              justifyContent: rightAlign ? 'space-between' : 'flex-start',
+              alignItems: rightAlign ? 'center' : 'flex-start'
+            }}
             spacing={1}
           >
             {title && !titleBottom && <BTitle title={main.title} />}
@@ -261,8 +264,11 @@ export default function Breadcrumbs({
           <Box sx={{ p: 1.25, px: card === false ? 0 : 2 }}>
             <Grid
               container
-              direction={rightAlign ? 'row' : 'column'}
-              sx={{ justifyContent: rightAlign ? 'space-between' : 'flex-start', alignItems: rightAlign ? 'center' : 'flex-start' }}
+              sx={{
+                flexDirection: rightAlign ? 'row' : 'column',
+                justifyContent: rightAlign ? 'space-between' : 'flex-start',
+                alignItems: rightAlign ? 'center' : 'flex-start'
+              }}
               spacing={1}
             >
               {title && !titleBottom && <BTitle title={custom ? heading : item?.title} />}

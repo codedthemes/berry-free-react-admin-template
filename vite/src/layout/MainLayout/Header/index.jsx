@@ -38,16 +38,15 @@ export default function Header() {
             ...theme.typography.mediumAvatar,
             overflow: 'hidden',
             transition: 'all .2s ease-in-out',
-            color: theme.vars.palette.secondary.dark,
-            background: theme.vars.palette.secondary.light,
-            '&:hover': {
-              color: theme.vars.palette.secondary.light,
-              background: theme.vars.palette.secondary.dark
-            }
+            bgcolor: 'secondary.lighter',
+            color: 'secondary.dark',
+            '&:hover': { color: 'secondary.lighter', bgcolor: 'secondary.dark' },
+
+            svg: { width: 20, height: 20 }
           }}
           onClick={() => handlerDrawerOpen(!drawerOpen)}
         >
-          <IconMenu2 stroke={1.5} size="20px" />
+          <IconMenu2 stroke={1.5} />
         </Avatar>
       </Box>
 

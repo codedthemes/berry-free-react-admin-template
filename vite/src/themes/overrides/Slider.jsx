@@ -14,7 +14,8 @@ export default function Slider(theme) {
           width: '4px'
         },
         valueLabel: {
-          color: theme.vars.palette.primary.light
+          backgroundColor: theme.vars.palette.grey[700],
+          color: theme.vars.palette.primary.lighter
         }
       }
     }

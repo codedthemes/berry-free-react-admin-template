@@ -164,11 +164,11 @@ export default function NavCollapse({ menu, level, parentId }) {
                   height: 46,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  '&:hover': { bgcolor: 'secondary.light' },
+                  '&:hover': { bgcolor: 'secondary.lighter' },
 
                   ...((isSelected || anchorEl) && {
-                    bgcolor: 'secondary.light',
-                    '&:hover': { bgcolor: 'secondary.light' }
+                    bgcolor: 'secondary.lighter',
+                    '&:hover': { bgcolor: 'secondary.lighter' }
                   })
                 })
             }}
@@ -278,7 +278,7 @@ export default function NavCollapse({ menu, level, parentId }) {
                   height: '100%',
                   width: '1px',
                   opacity: 1,
-                  bgcolor: 'primary.light'
+                  bgcolor: 'primary.lighter'
                 }
               }}
             >

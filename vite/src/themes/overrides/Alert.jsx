@@ -63,11 +63,16 @@ export default function Alert(theme) {
           alignItems: 'center',
           variants: [
             { props: { variant: 'standard' }, style: standardVariant },
-            { props: { variant: 'outlined' }, style: outlinedVariant },
+            {
+              props: { variant: 'outlined' },
+              style: (args) => ({
+                ...outlinedVariant(args),
+                border: '1px dashed'
+              })
+            },
             { props: { variant: 'filled' }, style: filledVariant }
           ]
-        },
-        outlined: { border: '1px dashed' }
+        }
       }
     }
   };

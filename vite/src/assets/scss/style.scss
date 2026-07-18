@@ -60,6 +60,31 @@
   background-color: var(--palette-grey-200);
 }
 
+.apexcharts-tooltip {
+  border: none !important;
+  border-radius: 5px !important;
+  background-color: var(--palette-background-paper) !important;
+  color: var(--palette-text-primary) !important;
+  padding: 0 !important;
+}
+
+.apexcharts-tooltip-arrow {
+  display: none !important;
+}
+
+.apexcharts-tooltip-series-group {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.apexcharts-tooltip-title {
+  border-radius: 5px 5px 0 0 !important;
+  background-color: var(--palette-grey-200) !important;
+  border-bottom: 1px solid var(--palette-grey-300) !important;
+  color: var(--palette-text-primary) !important;
+  font-weight: 400 !important;
+}
+
 // ==============================|| ANIMATION KEYFRAMES ||============================== //
 
 @keyframes wings {

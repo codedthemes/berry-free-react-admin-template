@@ -1,82 +1,91 @@
 // ==============================|| DEFAULT THEME COLORS ||============================== //
 
 const defaultColor = {
-  // paper & background
-  paper: '#ffffff',
-
-  // primary
-  primaryLight: '#e3f2fd',
-  primary200: '#90caf9',
-  primaryMain: '#2196f3',
-  primaryDark: '#1e88e5',
-  primary800: '#1565c0',
-
-  // secondary
-  secondaryLight: '#ede7f6',
-  secondary200: '#b39ddb',
-  secondaryMain: '#673ab7',
-  secondaryDark: '#5e35b1',
-  secondary800: '#4527a0',
-
-  // success
-  successLight: '#b9f6ca',
-  success200: '#69f0ae',
-  successMain: '#00e676',
-  successDark: '#00c853',
-
-  // error
-  errorLight: '#ef9a9a',
-  errorMain: '#f44336',
-  errorDark: '#c62828',
-
-  // orange
-  orangeLight: '#fbe9e7',
-  orangeMain: '#ffab91',
-  orangeDark: '#d84315',
-
-  // warning
-  warningLight: '#fff8e1',
-  warningMain: '#ffe57f',
-  warningDark: '#ffc107',
-
-  // grey
-  grey50: '#f8fafc',
-  grey100: '#eef2f6',
-  grey200: '#e3e8ef',
-  grey300: '#cdd5df',
-  grey500: '#697586',
-  grey600: '#4b5565',
-  grey700: '#364152',
-  grey900: '#121926',
-
-  // ==============================|| DARK THEME VARIANTS ||============================== //
-
-  // paper & background
-  darkPaper: '#111936',
-  darkBackground: '#1a223f',
-
-  // dark 800 & 900
-  darkLevel1: '#29314f',
-  darkLevel2: '#212946',
-
-  // text variants
-  darkTextTitle: '#d7dcec',
-  darkTextPrimary: '#bdc8f0',
-  darkTextSecondary: '#8492c4',
-
-  // primary dark
-  darkPrimaryLight: '#e3f2fd',
-  darkPrimaryMain: '#2196f3',
-  darkPrimaryDark: '#1e88e5',
-  darkPrimary200: '#90caf9',
-  darkPrimary800: '#1565c0',
-
-  // secondary dark
-  darkSecondaryLight: '#d1c4e9',
-  darkSecondaryMain: '#7c4dff',
-  darkSecondaryDark: '#651fff',
-  darkSecondary200: '#b39ddb',
-  darkSecondary800: '#6200ea'
+  light: {
+    primary: {
+      lighter: '#E3F2FD',
+      light: '#90CAF9',
+      main: '#2196F3',
+      dark: '#1E88E5',
+      darker: '#1565C0'
+    },
+    secondary: {
+      lighter: '#EDE7F6',
+      light: '#B39DDB',
+      main: '#673AB7',
+      dark: '#5E35B1',
+      darker: '#4527A0'
+    },
+    success: {
+      lighter: '#D4FFE0',
+      light: '#61FFB2',
+      main: '#11C86F',
+      dark: '#00B44B',
+      darker: '#04923F',
+      contrastText: '#FFFFFF'
+    },
+    error: {
+      lighter: '#FFE3E3',
+      light: '#EF9A9A',
+      main: '#F44336',
+      dark: '#C62828',
+      darker: '#A21313'
+    },
+    orange: {
+      lighter: '#FFEBD5',
+      light: '#FFB266',
+      main: '#FF8000',
+      dark: '#CC6600',
+      darker: '#AE5802'
+    },
+    warning: {
+      lighter: '#FFF6D7',
+      light: '#FFE479',
+      main: '#F8BB05',
+      dark: '#E6AD00',
+      darker: '#C29614',
+      contrastText: '#FFFFFF'
+    },
+    info: {
+      lighter: '#DFF4F9',
+      light: '#B0E1ED',
+      main: '#0AA0C4',
+      dark: '#08809D',
+      darker: '#066076'
+    },
+    grey: {
+      50: '#F8FAFC',
+      100: '#EEF2F6',
+      200: '#E3E8EF',
+      300: '#C3CCD8',
+      400: '#95A4B8',
+      500: '#8492A4',
+      600: '#697586',
+      700: '#4B5565',
+      800: '#364152',
+      900: '#121926'
+    },
+    dark: {
+      light: '#BDC8F0',
+      main: '#29314F',
+      dark: '#212946',
+      800: '#1A223F',
+      900: '#111936'
+    },
+    text: {
+      primary: '#364152',
+      secondary: '#697586',
+      dark: '#121926',
+      hint: '#EEF2F6',
+      heading: '#121926',
+      disabled: '#C3CCD8'
+    },
+    divider: '#E3E8EF',
+    background: {
+      paper: '#FFFFFF',
+      default: '#FFFFFF'
+    }
+  }
 };
 
 export default defaultColor;

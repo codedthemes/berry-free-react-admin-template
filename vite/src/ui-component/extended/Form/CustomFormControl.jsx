@@ -12,7 +12,7 @@ const CustomFormControl = styled(FormControl)(() => ({
     }
   },
   '& > div > input': {
-    padding: '30.5px 14px 11.5px !important'
+    padding: '30.5px 14px 11.5px 0px !important'
   },
   '& legend': {
     display: 'none'

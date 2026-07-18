@@ -22,7 +22,7 @@ function ShadowBox({ shadow }) {
           justifyContent: 'center',
           alignItems: 'center',
           py: 4.5,
-          bgcolor: 'primary.light',
+          bgcolor: 'primary.lighter',
           color: 'grey.800'
         }}
       >

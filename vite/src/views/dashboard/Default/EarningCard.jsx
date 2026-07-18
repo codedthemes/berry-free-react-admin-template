@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -27,7 +27,7 @@ import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 export default function EarningCard({ isLoading }) {
   const theme = useTheme();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,7 +55,7 @@ export default function EarningCard({ isLoading }) {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.vars.palette.secondary[800],
+              bgcolor: theme.vars.palette.secondary.darker,
               borderRadius: '50%',
               top: { xs: -85 },
               right: { xs: -95 }
@@ -65,7 +65,7 @@ export default function EarningCard({ isLoading }) {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.vars.palette.secondary[800],
+              bgcolor: theme.vars.palette.secondary.darker,
               borderRadius: '50%',
               top: { xs: -125 },
               right: { xs: -15 },
@@ -78,28 +78,25 @@ export default function EarningCard({ isLoading }) {
               <Avatar
                 variant="rounded"
                 sx={{
-                  ...theme.typography.largeAvatar,
-                  borderRadius: 2,
-                  bgcolor: 'secondary.800',
+                  bgcolor: 'secondary.darker',
                   mt: 1
                 }}
               >
-                <CardMedia sx={{ width: 30, height: 30 }} component="img" src={EarningIcon} alt="Notification" />
+                <CardMedia sx={{ width: 28, height: 28 }} component="img" src={EarningIcon} alt="Notification" />
               </Avatar>
               <Avatar
                 variant="rounded"
                 sx={{
-                  ...theme.typography.commonAvatar,
-                  ...theme.typography.mediumAvatar,
                   bgcolor: 'secondary.dark',
-                  color: 'secondary.200',
-                  zIndex: 1
+                  color: 'secondary.light',
+                  zIndex: 1,
+                  cursor: 'pointer'
                 }}
                 aria-controls="menu-earning-card"
                 aria-haspopup="true"
                 onClick={handleClick}
               >
-                <MoreHorizIcon fontSize="inherit" />
+                <MoreHorizIcon />
               </Avatar>
             </Stack>
             <Menu
@@ -108,7 +105,6 @@ export default function EarningCard({ isLoading }) {
               keepMounted
               open={Boolean(anchorEl)}
               onClose={handleClose}
-              variant="selectedMenu"
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right'
@@ -133,8 +129,8 @@ export default function EarningCard({ isLoading }) {
             </Menu>
             <Stack direction="row" sx={{ alignItems: 'center' }}>
               <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>$500.00</Typography>
-              <Avatar sx={{ ...theme.typography.smallAvatar, bgcolor: 'secondary.200', color: 'secondary.dark' }}>
-                <ArrowUpwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
+              <Avatar sx={{ width: 22, height: 22, bgcolor: 'secondary.light', color: 'secondary.darker', svg: { width: 16, height: 16 } }}>
+                <ArrowUpwardIcon sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
               </Avatar>
             </Stack>
             <Typography
@@ -142,7 +138,7 @@ export default function EarningCard({ isLoading }) {
                 mb: 1.25,
                 fontSize: '1rem',
                 fontWeight: 500,
-                color: 'secondary.200'
+                color: 'secondary.light'
               }}
             >
               Total Earning

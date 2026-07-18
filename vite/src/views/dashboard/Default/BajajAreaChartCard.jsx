@@ -21,7 +21,7 @@ export default function BajajAreaChartCard() {
     state: { fontFamily }
   } = useConfig();
 
-  const secondary800 = theme.vars.palette.secondary[800];
+  const secondary800 = theme.vars.palette.secondary['darker'];
 
   const [chartOptions, setChartOptions] = useState(bajajChartOptions);
   const [series] = useState([{ data: [0, 15, 10, 50, 30, 40, 25] }]);
@@ -46,7 +46,7 @@ export default function BajajAreaChartCard() {
   }, [fontFamily, secondary800]);
 
   return (
-    <Card sx={{ bgcolor: 'secondary.light', mt: -1 }}>
+    <Card sx={{ bgcolor: 'secondary.lighter', mt: -1 }}>
       <Grid container sx={{ p: 2, pb: 0, color: '#fff' }}>
         <Grid size={12}>
           <Grid container sx={{ alignItems: 'center', justifyContent: 'space-between' }}>

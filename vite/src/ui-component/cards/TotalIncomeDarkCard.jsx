@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 // material-ui
-import { styled, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -16,34 +16,6 @@ import TotalIncomeCard from 'ui-component/cards/Skeleton/TotalIncomeCard';
 // assets
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 
-// styles
-const CardWrapper = styled(MainCard)(({ theme }) => ({
-  backgroundColor: theme.vars.palette.primary.dark,
-  color: theme.vars.palette.primary.light,
-  overflow: 'hidden',
-  position: 'relative',
-  '&:after': {
-    content: '""',
-    position: 'absolute',
-    width: 210,
-    height: 210,
-    background: `linear-gradient(210.04deg, ${theme.vars.palette.primary[200]} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
-    borderRadius: '50%',
-    top: -30,
-    right: -180
-  },
-  '&:before': {
-    content: '""',
-    position: 'absolute',
-    width: 210,
-    height: 210,
-    background: `linear-gradient(140.9deg, ${theme.vars.palette.primary[200]} -14.02%, rgba(144, 202, 249, 0) 77.58%)`,
-    borderRadius: '50%',
-    top: -160,
-    right: -130
-  }
-}));
-
 export default function TotalIncomeDarkCard({ isLoading }) {
   const theme = useTheme();
 
@@ -52,21 +24,42 @@ export default function TotalIncomeDarkCard({ isLoading }) {
       {isLoading ? (
         <TotalIncomeCard />
       ) : (
-        <CardWrapper border={false} content={false}>
+        <MainCard
+          border={false}
+          content={false}
+          sx={{
+            bgcolor: 'primary.dark',
+            color: 'primary.lighter',
+            overflow: 'hidden',
+            position: 'relative',
+            '&:after': {
+              content: '""',
+              position: 'absolute',
+              width: 210,
+              height: 210,
+              background: `linear-gradient(210.04deg, ${theme.vars.palette.primary['lighter']} -50.94%, rgba(144, 202, 249, 0) 83.49%)`,
+              borderRadius: '50%',
+              top: -30,
+              right: -180
+            },
+            '&:before': {
+              content: '""',
+              position: 'absolute',
+              width: 210,
+              height: 210,
+              background: `linear-gradient(140.9deg, ${theme.vars.palette.primary['lighter']} -14.02%, rgba(144, 202, 249, 0) 75.58%)`,
+              borderRadius: '50%',
+              top: -160,
+              right: -130
+            }
+          }}
+        >
           <Box sx={{ p: 2 }}>
             <List sx={{ py: 0 }}>
               <ListItem alignItems="center" disableGutters sx={{ py: 0 }}>
                 <ListItemAvatar>
-                  <Avatar
-                    variant="rounded"
-                    sx={{
-                      ...theme.typography.largeAvatar,
-                      borderRadius: 2,
-                      bgcolor: 'primary.800',
-                      color: 'common.white'
-                    }}
-                  >
-                    <TableChartOutlinedIcon fontSize="inherit" />
+                  <Avatar variant="rounded" sx={{ bgcolor: 'primary.darker' }}>
+                    <TableChartOutlinedIcon />
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
@@ -81,7 +74,7 @@ export default function TotalIncomeDarkCard({ isLoading }) {
                     </Typography>
                   }
                   secondary={
-                    <Typography variant="subtitle2" sx={{ color: 'primary.light', mt: 0.25 }}>
+                    <Typography variant="subtitle2" sx={{ color: 'primary.lighter', mt: 0.25 }}>
                       Total Income
                     </Typography>
                   }
@@ -89,7 +82,7 @@ export default function TotalIncomeDarkCard({ isLoading }) {
               </ListItem>
             </List>
           </Box>
-        </CardWrapper>
+        </MainCard>
       )}
     </>
   );

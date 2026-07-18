@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -23,18 +22,18 @@ import Box from '@mui/material/Box';
 
 // project imports
 import UpgradePlanCard from './UpgradePlanCard';
+import useConfig from 'hooks/useConfig';
 import MainCard from 'ui-component/cards/MainCard';
 import Transitions from 'ui-component/extended/Transitions';
-import useConfig from 'hooks/useConfig';
 
 // assets
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { IconLogout, IconSettings, IconUser } from '@tabler/icons-react';
 import User1 from 'assets/images/users/user-round.svg';
-import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons-react';
 
 // ==============================|| PROFILE MENU ||============================== //
 
 export default function ProfileSection() {
-  const theme = useTheme();
   const {
     state: { borderRadius }
   } = useConfig();
@@ -83,7 +82,6 @@ export default function ProfileSection() {
             ref={anchorRef}
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
-            color="inherit"
           />
         }
         label={<IconSettings stroke={1.5} size="24px" />}
@@ -115,7 +113,7 @@ export default function ProfileSection() {
             <Transitions in={open} {...TransitionProps}>
               <Paper>
                 {open && (
-                  <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]}>
+                  <MainCard border={false} elevation={16} content={false}>
                     <Box sx={{ p: 2, pb: 0 }}>
                       <Stack>
                         <Stack direction="row" sx={{ alignItems: 'center', gap: 0.5 }}>
@@ -127,18 +125,19 @@ export default function ProfileSection() {
                         <Typography variant="subtitle2">Project Admin</Typography>
                       </Stack>
                       <OutlinedInput
-                        sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
+                        fullWidth
                         id="input-search-profile"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                         placeholder="Search profile options"
                         startAdornment={
                           <InputAdornment position="start">
-                            <IconSearch stroke={1.5} size="16px" />
+                            <SearchOutlinedIcon />
                           </InputAdornment>
                         }
+                        sx={{ my: 2 }}
                         aria-describedby="search-helper-text"
-                        slotProps={{ input: { 'aria-label': 'weight' } }}
+                        slotProps={{ input: { 'aria-label': 'profile options' } }}
                       />
                       <Divider />
                     </Box>
@@ -154,7 +153,7 @@ export default function ProfileSection() {
                     >
                       <UpgradePlanCard />
                       <Divider />
-                      <Card sx={{ bgcolor: 'primary.light', my: 2 }}>
+                      <Card sx={{ bgcolor: 'primary.lighter', my: 2 }}>
                         <CardContent>
                           <Stack sx={{ gap: 3 }}>
                             <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>

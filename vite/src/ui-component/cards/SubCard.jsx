@@ -24,16 +24,15 @@ export default function SubCard({
   actions,
   ...others
 }) {
-  const defaultShadow = '0 2px 14px 0 rgb(32 40 45 / 8%)';
-
   return (
     <Card
-      sx={(theme) => ({
-        border: '1px solid',
-        borderColor: 'divider',
-        ':hover': { boxShadow: defaultShadow },
-        ...(typeof sx === 'function' ? sx(theme) : sx || {})
-      })}
+      sx={[
+        {
+          border: '1px solid',
+          borderColor: 'divider'
+        },
+        ...(Array.isArray(sx) ? sx : [sx])
+      ]}
       {...others}
     >
       {/* card header and action */}
@@ -60,7 +59,7 @@ export default function SubCard({
 }
 
 SubCard.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.any]),
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.any, PropTypes.node]),
   className: PropTypes.string,
   content: PropTypes.bool,
   contentClass: PropTypes.string,

@@ -8,10 +8,10 @@ import MUIFormControl from '@mui/material/FormControl';
 
 export default function FormControl({ captionLabel, formState, iconPrimary, iconSecondary, placeholder, textPrimary, textSecondary }) {
   const IconPrimary = iconPrimary;
-  const primaryIcon = iconPrimary ? <IconPrimary fontSize="small" sx={{ color: 'grey.700' }} /> : null;
+  const primaryIcon = iconPrimary ? <IconPrimary fontSize="small" /> : null;
 
   const IconSecondary = iconSecondary;
-  const secondaryIcon = iconSecondary ? <IconSecondary fontSize="small" sx={{ color: 'grey.700' }} /> : null;
+  const secondaryIcon = iconSecondary ? <IconSecondary fontSize="small" /> : null;
 
   const errorState = formState === 'error';
 
