@@ -1,0 +1,37 @@
+@supports (-webkit-appearance: none) {
+  *::-webkit-scrollbar-track {
+    background: transparent; /* track color */
+  }
+
+  /* target the scrollbar track (background) */
+  *::-webkit-scrollbar {
+    width: 8px; /* Adjust for desired thinness */
+    height: 4px;
+    background: transparent;
+    overflow-x: hidden;
+  }
+
+  /* target the scrollbar thumb for light mode */
+  *::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #697586;
+  }
+
+  /* remove buttons */
+  *::-webkit-scrollbar-button {
+    display: none;
+  }
+}
+
+@supports (-moz-appearance: none) {
+  /* firefox specific styles */
+
+  /* adjust scrollbar width */
+  * {
+    scrollbar-width: thin; /* "auto" or "thin" for Firefox */
+  }
+}
