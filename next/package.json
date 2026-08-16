@@ -1,0 +1,46 @@
+{
+  "name": "berry-free-react-material-next-js",
+  "version": "5.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+  },
+  "dependencies": {
+    "@emotion/cache": "11.14.0",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
+    "@mui/icons-material": "9.1.1",
+    "@mui/material": "9.1.2",
+    "@mui/utils": "9.1.1",
+    "@tabler/icons-react": "3.44.0",
+    "apexcharts": "5.15.2",
+    "framer-motion": "12.42.0",
+    "lodash-es": "4.18.1",
+    "material-ui-popup-state": "5.3.7",
+    "next": "16.0.4",
+    "react": "19.2.7",
+    "react-apexcharts": "2.1.1",
+    "react-device-detect": "2.2.3",
+    "react-dom": "19.2.7",
+    "simplebar-react": "3.3.2",
+    "swr": "2.4.2",
+    "yup": "1.7.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@next/eslint-plugin-next": "16.0.4",
+    "eslint": "10.7.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.6",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.7.0",
+    "prettier": "3.8.5",
+    "sass": "1.101.0"
+  },
+  "packageManager": "yarn@4.17.1"
+}

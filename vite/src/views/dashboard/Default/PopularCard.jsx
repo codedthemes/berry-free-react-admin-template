@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import { useState } from 'react';
 
 // material-ui
 import Avatar from '@mui/material/Avatar';
@@ -26,8 +26,16 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import KeyboardArrowUpOutlinedIcon from '@mui/icons-material/KeyboardArrowUpOutlined';
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
 
+const stockData = [
+  { id: 1, company: 'Bajaj Finserv', type: 'Profit', percentage: 10, price: 1839 },
+  { id: 2, company: 'TTML', type: 'Loss', percentage: 10, price: 100 },
+  { id: 3, company: 'Reliance', type: 'Profit', percentage: 10, price: 200 },
+  { id: 4, company: 'TTML', type: 'Loss', percentage: 10, price: 189 },
+  { id: 5, company: 'Stolon', type: 'Loss', percentage: 10, price: 189 }
+];
+
 export default function PopularCard({ isLoading }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -63,7 +71,6 @@ export default function PopularCard({ isLoading }) {
                 keepMounted
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
-                variant="selectedMenu"
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
               >
@@ -74,145 +81,43 @@ export default function PopularCard({ isLoading }) {
 
               <BajajAreaChartCard />
               <Box>
-                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                    Bajaj Finery
-                  </Typography>
-                  <Stack direction="row" sx={{ alignItems: 'center' }}>
-                    <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                      $1839.00
-                    </Typography>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        width: 16,
-                        height: 16,
-                        borderRadius: '5px',
-                        bgcolor: 'success.light',
-                        color: 'success.dark',
-                        ml: 2
-                      }}
-                    >
-                      <KeyboardArrowUpOutlinedIcon fontSize="small" color="inherit" />
-                    </Avatar>
-                  </Stack>
-                </Stack>
-                <Typography variant="subtitle2" sx={{ color: 'success.dark' }}>
-                  10% Profit
-                </Typography>
-                <Divider sx={{ my: 1.5 }} />
-                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                    TTML
-                  </Typography>
-                  <Stack direction="row" sx={{ alignItems: 'center' }}>
-                    <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                      $100.00
-                    </Typography>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        width: 16,
-                        height: 16,
-                        borderRadius: '5px',
-                        bgcolor: 'orange.light',
-                        color: 'orange.dark',
-                        marginLeft: 1.875
-                      }}
-                    >
-                      <KeyboardArrowDownOutlinedIcon fontSize="small" color="inherit" />
-                    </Avatar>
-                  </Stack>
-                </Stack>
-                <Typography variant="subtitle2" sx={{ color: 'orange.dark' }}>
-                  10% loss
-                </Typography>
-                <Divider sx={{ my: 1.5 }} />
-                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                    Reliance
-                  </Typography>
-                  <Stack direction="row" sx={{ alignItems: 'center' }}>
-                    <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                      $200.00
-                    </Typography>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        width: 16,
-                        height: 16,
-                        borderRadius: '5px',
-                        bgcolor: 'success.light',
-                        color: 'success.dark',
-                        ml: 2
-                      }}
-                    >
-                      <KeyboardArrowUpOutlinedIcon fontSize="small" color="inherit" />
-                    </Avatar>
-                  </Stack>
-                </Stack>
-                <Typography variant="subtitle2" sx={{ color: 'success.dark' }}>
-                  10% Profit
-                </Typography>
-                <Divider sx={{ my: 1.5 }} />
-                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                    TTML
-                  </Typography>
-                  <Stack direction="row" sx={{ alignItems: 'center' }}>
-                    <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                      $189.00
-                    </Typography>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        width: 16,
-                        height: 16,
-                        borderRadius: '5px',
-                        bgcolor: 'orange.light',
-                        color: 'orange.dark',
-                        ml: 2
-                      }}
-                    >
-                      <KeyboardArrowDownOutlinedIcon fontSize="small" color="inherit" />
-                    </Avatar>
-                  </Stack>
-                </Stack>
-                <Typography variant="subtitle2" sx={{ color: 'orange.dark' }}>
-                  10% loss
-                </Typography>
-                <Divider sx={{ my: 1.5 }} />
-                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
-                  <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                    Stolon
-                  </Typography>
-                  <Stack direction="row" sx={{ alignItems: 'center' }}>
-                    <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
-                      $189.00
-                    </Typography>
-                    <Avatar
-                      variant="rounded"
-                      sx={{
-                        width: 16,
-                        height: 16,
-                        borderRadius: '5px',
-                        bgcolor: 'orange.light',
-                        color: 'orange.dark',
-                        ml: 2
-                      }}
-                    >
-                      <KeyboardArrowDownOutlinedIcon fontSize="small" color="inherit" />
-                    </Avatar>
-                  </Stack>
-                </Stack>
-                <Typography variant="subtitle2" sx={{ color: 'orange.dark' }}>
-                  10% loss
-                </Typography>
+                {stockData.map((item, index) => (
+                  <Box key={item.id}>
+                    <Stack direction="row" sx={{ gap: 1, justifyContent: 'space-between', alignItems: 'start' }}>
+                      <Box>
+                        <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
+                          {item.company}
+                        </Typography>
+                        <Typography variant="subtitle2" sx={{ color: item.type === 'Loss' ? 'error.main' : 'success.main' }}>
+                          {item.percentage}% {item.type}
+                        </Typography>
+                      </Box>
+                      <Stack direction="row" sx={{ alignItems: 'center', gap: 2 }}>
+                        <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
+                          ${item.price.toFixed(2)}
+                        </Typography>
+                        <Avatar
+                          variant="rounded"
+                          color={item.type === 'Loss' ? 'error' : 'success'}
+                          sx={{ width: 18, height: 18, borderRadius: '5px' }}
+                          data-soft
+                        >
+                          {item.type === 'Loss' ? (
+                            <KeyboardArrowDownOutlinedIcon color="inherit" />
+                          ) : (
+                            <KeyboardArrowUpOutlinedIcon color="inherit" />
+                          )}
+                        </Avatar>
+                      </Stack>
+                    </Stack>
+                    {index < stockData.length - 1 && <Divider sx={{ my: 1.5 }} />}
+                  </Box>
+                ))}
               </Box>
             </Stack>
           </CardContent>
           <CardActions sx={{ p: 1.25, pt: 0, justifyContent: 'center' }}>
-            <Button size="small" disableElevation>
+            <Button disableElevation>
               View All
               <ChevronRightOutlinedIcon />
             </Button>

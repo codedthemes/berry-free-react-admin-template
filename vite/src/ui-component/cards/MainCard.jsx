@@ -14,7 +14,6 @@ const headerStyle = {
 
 export default function MainCard({
   border = false,
-  boxShadow,
   children,
   content = true,
   contentClass = '',
@@ -22,26 +21,22 @@ export default function MainCard({
   headerSX = {},
   darkTitle,
   secondary,
-  shadow,
   sx = {},
   title,
   ref,
   ...others
 }) {
-  const defaultShadow = '0 2px 14px 0 rgb(32 40 45 / 8%)';
-
   return (
     <Card
       ref={ref}
       {...others}
-      sx={(theme) => ({
-        border: border ? '1px solid' : 'none',
-        borderColor: 'divider',
-        ':hover': {
-          boxShadow: boxShadow ? shadow || defaultShadow : 'inherit'
+      sx={[
+        {
+          border: border ? '1px solid' : 'none',
+          borderColor: 'divider'
         },
-        ...(typeof sx === 'function' ? sx(theme) : sx || {})
-      })}
+        ...(Array.isArray(sx) ? sx : [sx])
+      ]}
     >
       {/* card header and action */}
       {!darkTitle && title && <CardHeader sx={{ ...headerStyle, ...headerSX }} title={title} action={secondary} />}
@@ -65,7 +60,6 @@ export default function MainCard({
 
 MainCard.propTypes = {
   border: PropTypes.bool,
-  boxShadow: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   content: PropTypes.bool,
   contentClass: PropTypes.string,
@@ -73,7 +67,6 @@ MainCard.propTypes = {
   headerSX: PropTypes.object,
   darkTitle: PropTypes.bool,
   secondary: PropTypes.any,
-  shadow: PropTypes.string,
   sx: PropTypes.object,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   ref: PropTypes.object,

@@ -1,3 +1,6 @@
+// project imports
+import { withAlpha } from 'utils/colorUtils';
+
 // ==============================|| OVERRIDES - DATA GRID ||============================== //
 
 export default function DataGrid(theme) {
@@ -19,12 +22,16 @@ export default function DataGrid(theme) {
           },
 
           '& .MuiFormControl-root>.MuiInputBase-root': {
-            backgroundColor: `${theme.vars.palette.background.default} !important`,
+            backgroundColor: `${theme.vars.palette.background.default} !important`
+          },
+
+          '--DataGrid-rowBorderColor': `${theme.vars.palette.divider} !important`,
+          '& .MuiDataGrid-filler, & .MuiDataGrid-toolbar': {
             borderColor: `${theme.vars.palette.divider} !important`
           }
         },
         withBorderColor: {
-          borderColor: theme.vars.palette.divider
+          borderColor: `${withAlpha(theme.vars.palette.divider, 0.5)} !important`
         },
         toolbarContainer: {
           '& .MuiButton-root': {
@@ -34,10 +41,14 @@ export default function DataGrid(theme) {
         },
         columnHeader: {
           color: theme.vars.palette.grey[600],
+          borderColor: `${theme.vars.palette.divider} !important`,
+
           paddingLeft: 24,
           paddingRight: 24
         },
         footerContainer: {
+          paddingLeft: 24,
+          paddingRight: 24,
           '&.MuiDataGrid-withBorderColor': {
             borderBottom: 'none'
           }
@@ -54,17 +65,17 @@ export default function DataGrid(theme) {
           borderWidth: 1,
           paddingLeft: 24,
           paddingRight: 24,
-          borderColor: theme.vars.palette.divider,
+          borderColor: `${withAlpha(theme.vars.palette.divider, 0.5)} !important`,
 
           '&.MuiDataGrid-cell--withRenderer > div': {
             ' > .high': {
-              background: theme.vars.palette.success.light
+              background: theme.vars.palette.success.lighter
             },
             '& > .medium': {
-              background: theme.vars.palette.warning.light
+              background: theme.vars.palette.warning.lighter
             },
             '& > .low': {
-              background: theme.vars.palette.error.light
+              background: theme.vars.palette.error.lighter
             }
           }
         }

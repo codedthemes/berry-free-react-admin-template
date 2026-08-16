@@ -30,12 +30,11 @@ function HeaderAvatar({ children, ref, ...others }) {
       sx={{
         ...theme.typography.commonAvatar,
         ...theme.typography.mediumAvatar,
-        color: theme.vars.palette.secondary.dark,
-        background: theme.vars.palette.secondary.light,
-        '&:hover': {
-          color: theme.vars.palette.secondary.light,
-          background: theme.vars.palette.secondary.dark
-        }
+        color: 'secondary.dark',
+        bgcolor: 'secondary.lighter',
+        '&:hover': { color: 'secondary.lighter', bgcolor: 'secondary.dark' },
+
+        svg: { width: 20, height: 20 }
       }}
       {...others}
     >
@@ -71,9 +70,9 @@ function MobileSearch({ value, setValue, popupState }) {
               sx={{
                 ...theme.typography.commonAvatar,
                 ...theme.typography.mediumAvatar,
-                bgcolor: 'orange.light',
-                color: 'orange.dark',
-                '&:hover': { bgcolor: 'orange.dark', color: 'orange.light' }
+                bgcolor: 'error.lighter',
+                color: 'error.dark',
+                '&:hover': { bgcolor: 'error.dark', color: 'error.lighter' }
               }}
               {...bindToggle(popupState)}
             >

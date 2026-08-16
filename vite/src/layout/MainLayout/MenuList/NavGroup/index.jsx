@@ -145,6 +145,5 @@ NavGroup.propTypes = {
   lastItem: PropTypes.number,
   remItems: PropTypes.array,
   lastItemId: PropTypes.string,
-  selectedID: PropTypes.oneOfType([PropTypes.any, PropTypes.string]),
   setSelectedID: PropTypes.oneOfType([PropTypes.any, PropTypes.func])
 };

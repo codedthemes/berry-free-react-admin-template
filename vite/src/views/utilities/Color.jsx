@@ -13,7 +13,7 @@ import { gridSpacing } from 'store/constant';
 
 // ===============================|| COLOR BOX ||=============================== //
 
-const ColorBox = ({ bgcolor, title, data, dark }) => (
+const ColorBox = ({ bgcolor, title, data, dark, color }) => (
   <>
     <Card sx={{ mb: 3 }}>
       <Box
@@ -27,7 +27,7 @@ const ColorBox = ({ bgcolor, title, data, dark }) => (
         }}
       >
         {title && (
-          <Typography variant="subtitle1" sx={{ color: 'inherit' }}>
+          <Typography variant="subtitle1" sx={{ color: color || 'inherit' }}>
             {title}
           </Typography>
         )}
@@ -68,17 +68,17 @@ export default function UIColor() {
             <Grid container spacing={gridSpacing}>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
-                  bgcolor="primary.light"
-                  data={{ label: 'Blue-50', color: currentPalette.primary.light }}
-                  title="primary.light"
+                  bgcolor="primary.lighter"
+                  data={{ label: 'Blue-50', color: currentPalette.primary.lighter }}
+                  title="primary.lighter"
                   dark
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
-                  bgcolor="primary.200"
-                  data={{ label: 'Blue-200', color: currentPalette.primary[200] }}
-                  title="primary[200]"
+                  bgcolor="primary.light"
+                  data={{ label: 'Blue-200', color: currentPalette.primary.light }}
+                  title="primary.light"
                   dark
                 />
               </Grid>
@@ -86,10 +86,20 @@ export default function UIColor() {
                 <ColorBox bgcolor="primary.main" data={{ label: 'Blue-500', color: currentPalette.primary.main }} title="primary.main" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="primary.dark" data={{ label: 'Blue-600', color: currentPalette.primary.dark }} title="primary.dark" />
+                <ColorBox
+                  bgcolor="primary.dark"
+                  color="background.paper"
+                  data={{ label: 'Blue-600', color: currentPalette.primary.dark }}
+                  title="primary.dark"
+                />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="primary.800" data={{ label: 'Blue-800', color: currentPalette.primary[800] }} title="primary[800]" />
+                <ColorBox
+                  bgcolor="primary.darker"
+                  color="background.paper"
+                  data={{ label: 'Blue-800', color: currentPalette.primary.darker }}
+                  title="primary.darker"
+                />
               </Grid>
             </Grid>
           </SubCard>
@@ -99,17 +109,17 @@ export default function UIColor() {
             <Grid container spacing={gridSpacing}>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
-                  bgcolor="secondary.light"
-                  data={{ label: 'DeepPurple-50', color: currentPalette.secondary.light }}
-                  title="secondary.light"
+                  bgcolor="secondary.lighter"
+                  data={{ label: 'DeepPurple-50', color: currentPalette.secondary.lighter }}
+                  title="secondary.lighter"
                   dark
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
-                  bgcolor="secondary.200"
-                  data={{ label: 'DeepPurple-200', color: currentPalette.secondary[200] }}
-                  title="secondary[200]"
+                  bgcolor="secondary.light"
+                  data={{ label: 'DeepPurple-200', color: currentPalette.secondary.light }}
+                  title="secondary.light"
                   dark
                 />
               </Grid>
@@ -124,14 +134,16 @@ export default function UIColor() {
                 <ColorBox
                   bgcolor="secondary.dark"
                   data={{ label: 'DeepPurple-600', color: currentPalette.secondary.dark }}
+                  color="background.paper"
                   title="secondary.dark"
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
-                  bgcolor="secondary.800"
-                  data={{ label: 'DeepPurple-800', color: currentPalette.secondary[800] }}
-                  title="secondary[800]"
+                  bgcolor="secondary.darker"
+                  data={{ label: 'DeepPurple-800', color: currentPalette.secondary.darker }}
+                  color="background.paper"
+                  title="secondary.darker"
                 />
               </Grid>
             </Grid>
@@ -142,20 +154,38 @@ export default function UIColor() {
             <Grid container spacing={gridSpacing}>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
+                  bgcolor="success.lighter"
+                  data={{ label: 'Green-A100', color: currentPalette.success.lighter }}
+                  title="success.lighter"
+                  dark
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
                   bgcolor="success.light"
-                  data={{ label: 'Green-A100', color: currentPalette.success.light }}
+                  data={{ label: 'Green-A200', color: currentPalette.success.light }}
                   title="success.light"
                   dark
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="success.200" data={{ label: 'Green-A200', color: currentPalette.success[200] }} title="success[200]" />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox bgcolor="success.main" data={{ label: 'Green-A400', color: currentPalette.success.main }} title="success.main" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="success.dark" data={{ label: 'Green-A700', color: currentPalette.success.dark }} title="success.dark" />
+                <ColorBox
+                  bgcolor="success.dark"
+                  color="background.paper"
+                  data={{ label: 'Green-A700', color: currentPalette.success.dark }}
+                  title="success.dark"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
+                  bgcolor="success.darker"
+                  color="background.paper"
+                  data={{ label: 'Green-A800', color: currentPalette.success.darker }}
+                  title="success.darker"
+                />
               </Grid>
             </Grid>
           </SubCard>
@@ -165,17 +195,38 @@ export default function UIColor() {
             <Grid container spacing={gridSpacing}>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
+                  bgcolor="orange.lighter"
+                  data={{ label: 'DeepOrange-50', color: currentPalette.orange.lighter }}
+                  title="orange.lighter"
+                  dark
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
                   bgcolor="orange.light"
-                  data={{ label: 'DeepOrange-50', color: currentPalette.orange.light }}
+                  data={{ label: 'DeepOrange-200', color: currentPalette.orange.light }}
                   title="orange.light"
                   dark
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="orange.main" data={{ label: 'DeepOrange-200', color: currentPalette.orange.main }} title="orange.main" />
+                <ColorBox bgcolor="orange.main" data={{ label: 'DeepOrange-400', color: currentPalette.orange.main }} title="orange.main" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="orange.dark" data={{ label: 'DeepOrange-800', color: currentPalette.orange.dark }} title="orange.dark" />
+                <ColorBox
+                  bgcolor="orange.dark"
+                  color="background.paper"
+                  data={{ label: 'DeepOrange-700', color: currentPalette.orange.dark }}
+                  title="orange.dark"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
+                  bgcolor="orange.darker"
+                  color="background.paper"
+                  data={{ label: 'DeepOrange-800', color: currentPalette.orange.darker }}
+                  title="orange.darker"
+                />
               </Grid>
             </Grid>
           </SubCard>
@@ -184,13 +235,34 @@ export default function UIColor() {
           <SubCard title="Error Color">
             <Grid container spacing={gridSpacing}>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="error.light" data={{ label: 'Red-50', color: currentPalette.error.light }} title="error.light" dark />
+                <ColorBox
+                  bgcolor="error.lighter"
+                  data={{ label: 'Red-50', color: currentPalette.error.lighter }}
+                  title="error.lighter"
+                  dark
+                />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="error.main" data={{ label: 'Red-200', color: currentPalette.error.main }} title="error.main" />
+                <ColorBox bgcolor="error.light" data={{ label: 'Red-200', color: currentPalette.error.light }} title="error.light" dark />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="error.dark" data={{ label: 'Red-800', color: currentPalette.error.dark }} title="error.dark" />
+                <ColorBox bgcolor="error.main" data={{ label: 'Red-400', color: currentPalette.error.main }} title="error.main" />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
+                  bgcolor="error.dark"
+                  color="background.paper"
+                  data={{ label: 'Red-700', color: currentPalette.error.dark }}
+                  title="error.dark"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
+                  bgcolor="error.darker"
+                  color="background.paper"
+                  data={{ label: 'Red-800', color: currentPalette.error.darker }}
+                  title="error.darker"
+                />
               </Grid>
             </Grid>
           </SubCard>
@@ -200,8 +272,16 @@ export default function UIColor() {
             <Grid container spacing={gridSpacing}>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
+                  bgcolor="warning.lighter"
+                  data={{ label: 'Amber-50', color: currentPalette.warning.lighter }}
+                  title="warning.lighter"
+                  dark
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
                   bgcolor="warning.light"
-                  data={{ label: 'Amber-50', color: currentPalette.warning.light }}
+                  data={{ label: 'Amber-200', color: currentPalette.warning.light }}
                   title="warning.light"
                   dark
                 />
@@ -209,13 +289,26 @@ export default function UIColor() {
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
                 <ColorBox
                   bgcolor="warning.main"
-                  data={{ label: 'Amber-100', color: currentPalette.warning.main }}
+                  data={{ label: 'Amber-400', color: currentPalette.warning.main }}
                   title="warning.main"
                   dark
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="warning.dark" data={{ label: 'Amber-500', color: currentPalette.warning.dark }} title="warning.dark" />
+                <ColorBox
+                  bgcolor="warning.dark"
+                  color="background.paper"
+                  data={{ label: 'Amber-700', color: currentPalette.warning.dark }}
+                  title="warning.dark"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
+                <ColorBox
+                  bgcolor="warning.darker"
+                  color="background.paper"
+                  data={{ label: 'Amber-800', color: currentPalette.warning.darker }}
+                  title="warning.darker"
+                />
               </Grid>
             </Grid>
           </SubCard>
@@ -239,16 +332,37 @@ export default function UIColor() {
                 <ColorBox bgcolor="grey.500" data={{ label: 'Grey-500', color: currentPalette.grey[500] }} title="grey[500]" />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="grey.600" data={{ label: 'Grey-600', color: currentPalette.grey[600] }} title="grey[600]" />
+                <ColorBox
+                  bgcolor="grey.600"
+                  color="background.paper"
+                  data={{ label: 'Grey-600', color: currentPalette.grey[600] }}
+                  title="grey[600]"
+                />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="grey.700" data={{ label: 'Grey-700', color: currentPalette.grey[700] }} title="grey[700]" />
+                <ColorBox
+                  bgcolor="grey.700"
+                  color="background.paper"
+                  data={{ label: 'Grey-700', color: currentPalette.grey[700] }}
+                  title="grey[700]"
+                />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="grey.900" data={{ label: 'Grey-900', color: currentPalette.grey[900] }} title="grey[900]" />
+                <ColorBox
+                  bgcolor="grey.900"
+                  color="background.paper"
+                  data={{ label: 'Grey-900', color: currentPalette.grey[900] }}
+                  title="grey[900]"
+                />
               </Grid>
               <Grid size={{ xs: 12, sm: 6, md: 4, lg: 2 }}>
-                <ColorBox bgcolor="#fff" data={{ label: 'Pure White', color: '#ffffff' }} title="Pure White" dark />
+                <ColorBox
+                  bgcolor="#fff"
+                  color="background.paper"
+                  data={{ label: 'Pure White', color: '#ffffff' }}
+                  title="Pure White"
+                  dark
+                />
               </Grid>
             </Grid>
           </SubCard>

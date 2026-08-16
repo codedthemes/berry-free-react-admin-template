@@ -47,10 +47,10 @@ export default function TotalGrowthBarChart({ isLoading }) {
   const divider = theme.vars.palette.divider;
   const grey500 = theme.vars.palette.grey[500];
 
-  const primary200 = theme.vars.palette.primary[200];
+  const primary200 = theme.vars.palette.primary.light;
   const primaryDark = theme.vars.palette.primary.dark;
   const secondaryMain = theme.vars.palette.secondary.main;
-  const secondaryLight = theme.vars.palette.secondary.light;
+  const secondaryLight = theme.vars.palette.secondary.lighter;
 
   useEffect(() => {
     setChartOptions({

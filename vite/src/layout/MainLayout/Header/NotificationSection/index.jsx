@@ -79,7 +79,7 @@ export default function NotificationSection() {
   }, [open]);
 
   const handleChange = (event) => {
-    event?.target.value && setValue(event?.target.value);
+    if (event?.target.value) setValue(event?.target.value);
   };
 
   return (
@@ -91,12 +91,13 @@ export default function NotificationSection() {
             ...theme.typography.commonAvatar,
             ...theme.typography.mediumAvatar,
             transition: 'all .2s ease-in-out',
-            color: theme.vars.palette.warning.dark,
-            background: theme.vars.palette.warning.light,
+            color: theme.vars.palette.warning.main,
+            background: theme.vars.palette.warning.lighter,
             '&:hover, &[aria-controls="menu-list-grow"]': {
-              color: theme.vars.palette.warning.light,
-              background: theme.vars.palette.warning.dark
-            }
+              color: theme.vars.palette.warning.lighter,
+              background: theme.vars.palette.warning.main
+            },
+            svg: { width: 20, height: 20 }
           }}
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}
@@ -120,12 +121,12 @@ export default function NotificationSection() {
             <Transitions position={downMD ? 'top' : 'top-right'} in={open} {...TransitionProps}>
               <Paper>
                 <Activity mode={open ? 'visible' : 'hidden'}>
-                  <MainCard border={false} elevation={16} content={false} boxShadow shadow={theme.shadows[16]} sx={{ maxWidth: 330 }}>
+                  <MainCard border={false} elevation={16} content={false} sx={{ maxWidth: 330 }}>
                     <Stack sx={{ gap: 2 }}>
                       <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'space-between', pt: 2, px: 2 }}>
                         <Stack direction="row" sx={{ gap: 2 }}>
                           <Typography variant="subtitle1">All Notification</Typography>
-                          <Chip size="small" label="01" variant="filled" sx={{ color: 'background.default', bgcolor: 'warning.dark' }} />
+                          <Chip size="small" label="01" variant="filled" sx={{ color: 'background.default', bgcolor: 'warning.main' }} />
                         </Stack>
                         <Typography component={Link} to="#" variant="subtitle2" sx={{ color: 'primary.main' }}>
                           Mark as all read
@@ -153,9 +154,7 @@ export default function NotificationSection() {
                       </Box>
                     </Stack>
                     <CardActions sx={{ p: 1.25, justifyContent: 'center' }}>
-                      <Button size="small" disableElevation>
-                        View All
-                      </Button>
+                      <Button disableElevation>View All</Button>
                     </CardActions>
                   </MainCard>
                 </Activity>

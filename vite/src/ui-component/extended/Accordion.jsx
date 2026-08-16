@@ -14,8 +14,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function Accordion({ data, defaultExpandedId = null, expandIcon, square, toggle }) {
   const [expanded, setExpanded] = useState(null);
-  const handleChange = (panel) => (event, newExpanded) => {
-    toggle && setExpanded(newExpanded ? panel : false);
+  const handleChange = (panel) => (_event, newExpanded) => {
+    if (toggle) setExpanded(newExpanded ? panel : false);
   };
 
   useEffect(() => {
@@ -50,7 +50,7 @@ export default function Accordion({ data, defaultExpandedId = null, expandIcon, 
 
 Accordion.propTypes = {
   data: PropTypes.array,
-  defaultExpandedId: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.any]),
+  defaultExpandedId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.any]),
   expandIcon: PropTypes.node,
   square: PropTypes.bool,
   toggle: PropTypes.bool

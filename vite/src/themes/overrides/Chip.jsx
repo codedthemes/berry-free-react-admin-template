@@ -1,9 +1,6 @@
-// project imports
-import { withAlpha } from 'utils/colorUtils';
-
 // ===============================||  OVERRIDES - CHIP  ||=============================== //
 
-export default function Chip(theme) {
+export default function Chip() {
   return {
     MuiChip: {
       defaultProps: {
@@ -14,9 +11,8 @@ export default function Chip(theme) {
         root: {
           variants: [
             {
-              props: { variant: 'light' }, // Variant for light Chip
+              props: { variant: 'light' },
               style: ({ ownerState, theme }) => {
-                // Make sure color exists and is a key of palette
                 const colorKey = ownerState.color;
                 const paletteColor = theme.vars.palette[colorKey];
 
@@ -24,45 +20,48 @@ export default function Chip(theme) {
 
                 return {
                   color: paletteColor.main,
-                  backgroundColor: paletteColor.light,
-
-                  ...(ownerState.color === 'error' && {
-                    backgroundColor: withAlpha(paletteColor.light, 0.25)
-                  }),
-                  ...(ownerState.color === 'success' && {
-                    backgroundColor: withAlpha(paletteColor.light, 0.5)
-                  }),
-                  ...((ownerState.color === 'warning' || ownerState.color === 'success') && {
-                    color: paletteColor.dark
-                  }),
+                  backgroundColor: paletteColor.lighter,
 
                   '&.MuiChip-clickable': {
                     '&:hover': {
-                      color: paletteColor.light,
-                      backgroundColor: paletteColor.dark
+                      color: paletteColor.lighter,
+                      backgroundColor: paletteColor.main
                     }
                   }
                 };
-              }
-            },
-            {
-              props: { variant: 'outlined', color: 'warning' },
-              style: {
-                borderColor: theme.vars.palette.warning.dark,
-                color: theme.vars.palette.warning.dark
-              }
-            },
-            {
-              props: { variant: 'outlined', color: 'success' },
-              style: {
-                borderColor: theme.vars.palette.success.dark,
-                color: theme.vars.palette.success.dark
               }
             }
           ],
           '&.MuiChip-deletable .MuiChip-deleteIcon': {
             color: 'inherit'
           }
+        },
+        sizeMedium: {
+          height: 28
+        },
+        deleteIconMedium: {
+          fontSize: 20,
+          marginRight: 4
+        },
+        labelMedium: ({ ownerState }) => ({
+          paddingLeft: ownerState.variant === 'outlined' ? 9 : 10,
+          paddingRight: ownerState.variant === 'outlined' ? 9 : 10
+        }),
+        avatarMedium: {
+          width: 20,
+          height: 20,
+          fontSize: 10
+        },
+        avatar: ({ ownerState, theme }) => {
+          const colorKey = ownerState.color;
+          const paletteColor = theme.vars.palette[colorKey];
+
+          if (!paletteColor) return {};
+
+          return {
+            backgroundColor: paletteColor.main,
+            color: theme.vars.palette.common.white
+          };
         }
       }
     }

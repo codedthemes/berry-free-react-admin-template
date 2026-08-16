@@ -14,15 +14,20 @@ import DataGrid from './DataGrid';
 import DatePicker from './DatePicker';
 import Divider from './Divider';
 import DateTimePickerToolbar from './DateTimePickerToolbar';
+import DialogActions from './DialogActions';
 import Dialog from './Dialog';
 import DialogTitle from './DialogTitle';
+import IconButton from './IconButton';
 import InputBase from './InputBase';
+import InputLabel from './InputLabel';
 import ListItemButton from './ListItemButton';
 import ListItemIcon from './ListItemIcon';
 import ListItemText from './ListItemText';
+import OutlinedInput from './OutlinedInput';
 import Paper from './Paper';
 import Select from './Select';
 import Slider from './Slider';
+import Switch from './Switch';
 import TableCell from './TableCell';
 import Tabs from './Tabs';
 import Typography from './Typography';
@@ -42,16 +47,21 @@ export default function ComponentsOverrides(theme, borderRadius, outlinedFilled)
     DataGrid(theme),
     DatePicker(),
     DateTimePickerToolbar(),
+    DialogActions(),
     Dialog(),
     DialogTitle(),
     Divider(theme),
+    IconButton(theme),
     InputBase(theme),
+    InputLabel(),
     ListItemButton(theme),
     ListItemIcon(theme),
     ListItemText(theme),
+    OutlinedInput(theme, borderRadius, outlinedFilled),
     Paper(borderRadius),
     Select(),
     Slider(theme),
+    Switch(theme),
     TableCell(theme),
     Tabs(theme),
     Typography(theme)

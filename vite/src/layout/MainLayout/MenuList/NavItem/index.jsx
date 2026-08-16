@@ -5,7 +5,6 @@ import { Link, matchPath, useLocation } from 'react-router-dom';
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Avatar from '@mui/material/Avatar';
 import ButtonBase from '@mui/material/ButtonBase';
 import Chip from '@mui/material/Chip';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -106,10 +105,10 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
                   height: 46,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  '&:hover': { bgcolor: 'secondary.light' },
+                  '&:hover': { bgcolor: 'secondary.lighter' },
                   ...(isSelected && {
-                    bgcolor: 'secondary.light',
-                    '&:hover': { bgcolor: 'secondary.light' }
+                    bgcolor: 'secondary.lighter',
+                    '&:hover': { bgcolor: 'secondary.lighter' }
                   })
                 })
             }}
@@ -164,11 +163,7 @@ export default function NavItem({ item, level, isParents = false, setSelectedID 
             variant={item.chip?.variant}
             size={item.chip?.size}
             label={item.chip?.label}
-            avatar={
-              <Activity mode={item.chip?.avatar ? 'visible' : 'hidden'}>
-                <Avatar>{item.chip?.avatar}</Avatar>
-              </Activity>
-            }
+            avatar={item.chip?.avatar}
           />
         </Activity>
       </ListItemButton>

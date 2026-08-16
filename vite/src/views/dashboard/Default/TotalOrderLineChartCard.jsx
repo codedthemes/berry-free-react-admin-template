@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -29,7 +29,7 @@ const yearlyData = [{ data: [35, 44, 9, 54, 45, 66, 41, 69] }];
 export default function TotalOrderLineChartCard({ isLoading }) {
   const theme = useTheme();
 
-  const [timeValue, setTimeValue] = React.useState(false);
+  const [timeValue, setTimeValue] = useState(false);
   const [series, setSeries] = useState(yearlyData);
 
   const handleChangeTime = (_event, newValue) => {
@@ -63,7 +63,7 @@ export default function TotalOrderLineChartCard({ isLoading }) {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.vars.palette.primary[800],
+              bgcolor: theme.vars.palette.primary.darker,
               borderRadius: '50%',
               top: { xs: -85 },
               right: { xs: -95 }
@@ -73,7 +73,7 @@ export default function TotalOrderLineChartCard({ isLoading }) {
               position: 'absolute',
               width: 210,
               height: 210,
-              background: theme.vars.palette.primary[800],
+              bgcolor: theme.vars.palette.primary.darker,
               borderRadius: '50%',
               top: { xs: -125 },
               right: { xs: -15 },
@@ -86,14 +86,12 @@ export default function TotalOrderLineChartCard({ isLoading }) {
               <Avatar
                 variant="rounded"
                 sx={{
-                  ...theme.typography.largeAvatar,
-                  borderRadius: 2,
-                  bgcolor: 'primary.800',
+                  bgcolor: 'primary.darker',
                   color: 'common.white',
                   mt: 1
                 }}
               >
-                <LocalMallOutlinedIcon fontSize="inherit" />
+                <LocalMallOutlinedIcon />
               </Avatar>
               <Box>
                 <Button
@@ -125,15 +123,17 @@ export default function TotalOrderLineChartCard({ isLoading }) {
                       <Typography sx={{ fontSize: '2.125rem', fontWeight: 500, mr: 1, mt: 1.75, mb: 0.75 }}>
                         {timeValue ? '$108' : '$961'}
                       </Typography>
-                      <Avatar sx={{ ...theme.typography.smallAvatar, bgcolor: 'primary.200', color: 'primary.dark' }}>
-                        <ArrowDownwardIcon fontSize="inherit" sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
+                      <Avatar
+                        sx={{ width: 22, height: 22, bgcolor: 'primary.light', color: 'primary.darker', svg: { width: 16, height: 16 } }}
+                      >
+                        <ArrowDownwardIcon sx={{ transform: 'rotate3d(1, 1, 1, 45deg)' }} />
                       </Avatar>
                     </Stack>
                     <Typography
                       sx={{
                         fontSize: '1rem',
                         fontWeight: 500,
-                        color: 'primary.200'
+                        color: 'primary.light'
                       }}
                     >
                       Total Order

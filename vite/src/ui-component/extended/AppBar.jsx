@@ -65,16 +65,23 @@ export default function AppBar({ ...others }) {
               <Logo />
             </Typography>
             <Stack direction="row" sx={{ gap: { xs: 1.5, md: 2.5 }, display: { xs: 'none', sm: 'flex' } }}>
-              <Button color="inherit" component={Link} href="#">
+              <Button color="inherit" component={Link} href="#" nativeButton={false}>
                 Home
               </Button>
-              <Button color="inherit" component={RouterLink} to="/login" target="_blank">
+              <Button color="inherit" component={RouterLink} to="/login" target="_blank" nativeButton={false}>
                 Dashboard
               </Button>
-              <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
+              <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank" nativeButton={false}>
                 Documentation
               </Button>
-              <Button component={Link} href="https://links.codedthemes.com/hsqll" disableElevation variant="contained" color="secondary">
+              <Button
+                component={Link}
+                href="https://links.codedthemes.com/hsqll"
+                disableElevation
+                variant="contained"
+                color="secondary"
+                nativeButton={false}
+              >
                 Purchase Now
               </Button>
             </Stack>
@@ -87,7 +94,7 @@ export default function AppBar({ ...others }) {
                   <Box sx={{ width: 'auto' }} role="presentation" onClick={drawerToggler(false)} onKeyDown={drawerToggler(false)}>
                     <List>
                       <Link sx={{ textDecoration: 'none' }} href="#" target="_blank">
-                        <ListItemButton component="a">
+                        <ListItemButton component="a" nativeButton={false}>
                           <ListItemIcon>
                             <IconHome2 />
                           </ListItemIcon>
@@ -95,7 +102,7 @@ export default function AppBar({ ...others }) {
                         </ListItemButton>
                       </Link>
                       <Link sx={{ textDecoration: 'none' }} href="/login" target="_blank">
-                        <ListItemButton component="a">
+                        <ListItemButton component="a" nativeButton={false}>
                           <ListItemIcon>
                             <IconDashboard />
                           </ListItemIcon>
@@ -103,7 +110,7 @@ export default function AppBar({ ...others }) {
                         </ListItemButton>
                       </Link>
                       <Link sx={{ textDecoration: 'none' }} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                        <ListItemButton component="a">
+                        <ListItemButton component="a" nativeButton={false}>
                           <ListItemIcon>
                             <IconBook />
                           </ListItemIcon>
@@ -111,7 +118,7 @@ export default function AppBar({ ...others }) {
                         </ListItemButton>
                       </Link>
                       <Link sx={{ textDecoration: 'none' }} href="https://links.codedthemes.com/hsqll" target="_blank">
-                        <ListItemButton component="a">
+                        <ListItemButton component="a" nativeButton={false}>
                           <ListItemIcon>
                             <IconCreditCard />
                           </ListItemIcon>
